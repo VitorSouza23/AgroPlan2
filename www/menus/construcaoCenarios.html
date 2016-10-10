@@ -1,0 +1,135 @@
+<ion-view view-title="Construção de Cenários">
+  <ion-content>
+    <div class="list">
+      <div class="item item-divider item-positive">
+        Cenário Provável
+      </div>
+        <label class="item item-input" href="#">
+          <span class="input-label">Receita Total:</span>
+          <input type="text"ng-model="cdc.provavel.receitaTotal">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Custos Variáveis Totais:</span>
+          <input type="text"ng-model="cdc.provavel.custoVariaveisTotais">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Custo com Materiais:</span>
+          <input type="text" ng-model="cdc.provavel.custoComMateriais">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Imposto Sobre Venda:</span>
+          <input type="text"ng-model="cdc.provavel.impostoSobreVenda">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Gastos com Vendas:</span>
+          <input type="text"ng-model="cdc.provavel.gastoComVenda">
+        </label>
+        <div class="item item-divider item-dark">
+          Sub-Total
+        </div>
+        <label class="item item-input" href="#">
+          <span class="input-label">Margem de Contribuição:</span>
+          <input type="text"ng-model="cdc.provavel.margemDeContribuicao">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Custo Fixo Total:</span>
+          <input type="text"ng-model="cdc.provavel.custoFixoTotal">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Lucro/Prejuízo Operacional:</span>
+          <input type="text"ng-model="cdc.provavel.lucroPrejuisoOperacional">
+        </label>
+
+        <div class="item item-divider item-assertive">
+          Cenário Pessimista
+        </div>
+        <label class="item item-input" href="#">
+          <span class="input-label">Receita Total:</span>
+          <input type="text"ng-model="cdc.pessimsita.receitaTotal">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Custos Variáveis Totais:</span>
+          <input type="text"ng-model="cdc.pessimsita.custoVariaveisTotais">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Custo com Materiais:</span>
+          <input type="text" ng-model="cdc.pessimsita.custoComMateriais">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Imposto Sobre Venda:</span>
+          <input type="text"ng-model="cdc.provavel.impostoSobreVenda">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Gastos com Vendas:</span>
+          <input type="text"ng-model="cdc.pessimsita.gastoComVenda">
+        </label>
+        <div class="item item-divider item-dark">
+          Sub-Total
+        </div>
+        <label class="item item-input" href="#">
+          <span class="input-label">Margem de Contribuição:</span>
+          <input type="text"ng-model="cdc.pessimsita.margemDeContribuicao">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Custo Fixo Total:</span>
+          <input type="text"ng-model="cdc.pessimsita.custoFixoTotal">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Lucro/Prejuízo Operacional:</span>
+          <input type="text"ng-model="cdc.pessimsita.lucroPrejuisoOperacional">
+        </label>
+
+        <div class="item item-divider item-energized">
+          Cenário Otimista
+        </div>
+        <label class="item item-input" href="#">
+          <span class="input-label">Receita Total:</span>
+          <input type="text"ng-model="cdc.otimista.receitaTotal">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Custos Variáveis Totais:</span>
+          <input type="text"ng-model="cdc.otimista.custoVariaveisTotais">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Custo com Materiais:</span>
+          <input type="text" ng-model="cdc.otimista.custoComMateriais">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Imposto Sobre Venda:</span>
+          <input type="text"ng-model="cdc.otimista.impostoSobreVenda">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Gastos com Vendas:</span>
+          <input type="text"ng-model="cdc.otimista.gastoComVenda">
+        </label>
+        <div class="item item-divider item-dark">
+          Sub-Total
+        </div>
+        <label class="item item-input" href="#">
+          <span class="input-label">Margem de Contribuição:</span>
+          <input type="text"ng-model="cdc.otimista.margemDeContribuicao">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Custo Fixo Total:</span>
+          <input type="text"ng-model="cdc.otimista.custoFixoTotal">
+        </label>
+        <label class="item item-input" href="#">
+          <span class="input-label">Lucro/Prejuízo Operacional:</span>
+          <input type="text"ng-model="cdc.otimista.lucroPrejuisoOperacional">
+        </label>
+
+        <!--Botões Confirmar e Cancelar-->
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block button-positive" ng-click="addConstrucaoDeCenarios()">
+            Confirmar
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-assertive" ng-click="back()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+  </ion-content>
+</ion-view>

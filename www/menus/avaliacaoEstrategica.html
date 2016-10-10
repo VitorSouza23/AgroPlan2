@@ -1,0 +1,41 @@
+<ion-view view-title="Análise FOFA">
+  <ion-content>
+    <div class="list">
+      <div class="item item-divider">
+        Ambiente Interno
+      </div>
+        <label class="item item-input-outline" href="#">
+          <span class="input-label">Forças:</span>
+          <input type="text"  ng-model="fofa.forca">
+        </label>
+        <label class="item item-input-outline" href="#">
+          <span class="input-label">Fraquezas:</span>
+          <input type="text" ng-model="fofa.fraquesa">
+        </label>
+        <div class="item item-divider">
+          Ambiente Externo
+        </div>
+        <label class="item item-input-outline" href="#">
+          <span class="input-label">Oportunidades:</span>
+          <input type="text"  ng-model="fofa.oportunidade">
+        </label>
+        <label class="item item-input-outline" href="#">
+          <span class="input-label">Ameaças:</span>
+          <input type="text"  ng-model="fofa.ameaca">
+        </label>
+
+        <!--Botões Confirmar e Cancelar-->
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block button-positive" ng-click="addAnaliseFOFA()">
+            Confirmar
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-assertive" ng-click="back()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+  </ion-content>
+</ion-view>

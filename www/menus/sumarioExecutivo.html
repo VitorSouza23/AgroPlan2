@@ -1,0 +1,105 @@
+<ion-view view-title="Sumário Executivo">
+  <ion-content>
+    <!--Dados da Empresa-->
+    <div class="list">
+      <div class="item item-divider">
+        Dados do Empreendimento
+      </div>
+        <label class="item item-input" href="#">
+          <input type="text" placeholder="Nome do Empreendimento" ng-model="su.dadosDoemprendimento.nome">
+        </label>
+        <label class="item item-input" href="#">
+          <input type="text" placeholder="CNPJ" ng-model="su.dadosDoemprendimento.cnpj" ng-hide="!cnpjOuCpf">
+          <input type="text" placeholder="CPF" ng-model="su.dadosDoemprendimento.cpf" ng-hide="cnpjOuCpf">
+          <label class="toggle">
+            <input type="checkbox" ng-model="cnpjOuCpf" ng-click="escolherCnpjOuCpf()" >
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </label>
+    <!--Principais Pontos-->
+      <div class="item item-divider">
+        Principais Pontos
+      </div>
+        <label class="item item-input" href="#">
+          <input type="text" placeholder="Principais Pontos" ng-model="su.principaisPontos">
+        </label>
+        <label class="item item-input" href="#">
+          <input type="text" placeholder="Missão da Empresa" ng-model="su.missaoDaEmpresa">
+        </label>
+
+      <!--Socios-->
+      <div class="item item-divider">
+        Sócios
+      </div>
+      <div class="button-bar">
+        <div class="col col-80">
+        <button  class="button button-block  icon-left ion-plus-circled button-balanced" ng-click="openSocios()">Sócio</button>
+      </div>
+      <div class="col col-20">
+        <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordem()"></button>
+      </div>
+    </div>
+      <ion-list show-reorder="reordenar">
+      <ion-item ng-repeat="socio in su.socios">
+        <div class="row">
+          <div class="col col-90">
+              {{socio.nome}}
+              <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarSocio(socio)"></ion-option-button>
+              <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverSocio(socio)"></ion-option-button>
+              <ion-reorder-button class="ion-navicon" on-reorder="moverSocio(socio, $fromIndex, $toIndex)"></ion-reorder-button>
+
+          </div>
+        </div>
+      </ion-item>
+      </ion-list>
+
+      <!--Forma Jurídica-->
+        <div class="item item-divider">
+          Forma Jurídica
+        </div>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            F. Jurídica:
+          </div>
+          <select ng-model="su.formaJuridica">
+            <option selected>MEI</option>
+            <option>Empresário Individual</option>
+            <option>ERELI</option>
+            <option>Sociedade Limitada</option>
+            <option>Outra</option>
+          </select>
+        </label>
+
+      <!--Enquadramento Tributário-->
+      <div class="item item-divider">
+        Enquadramento Tributário
+      </div>
+        <ion-checkbox class="checkbox-balanced" ng-model="su.optantePeloSimples">Optante pelo SIMPLES?</ion-checkbox>
+      </label>
+
+    <!--Fontes de Recursos-->
+
+      <div class="item item-divider">
+        Fontes de Recursos
+      </div>
+        <label class="item item-input" href="#">
+          <input type="text" placeholder="Fontes de Recursos" ng-model="su.fontesDeRecursos">
+        </label>
+        <!--Botões Confirmar e Cancelar-->
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block icon-rigth ion-checkmark button-positive" ng-click="addSumarioExecutivo()">
+            Confirmar
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block icon-rigth ion-close button-assertive" ng-click="back()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

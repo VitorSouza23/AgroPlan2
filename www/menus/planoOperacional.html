@@ -1,0 +1,75 @@
+<ion-view view-title="Plano Operacional">
+  <ion-content>
+    <div class="list">
+      <div class="item item-divider">
+        Layout ou Arranjo Físico
+      </div>
+      <div class="button-bar">
+        <button class="button button-block icon-left ion-camera button-calm" ng-click = "takePicture()">Tirar Foto</button>
+        <button class="button button-block icon-left ion-images button-energized" ng-click = "getPicture()">Abrir Galeria</button>
+      </div>
+      <div class="item item-image">
+        <img ng-src="{{picture}}">
+      </div>
+
+      <div class="item item-divider">
+        Dados de Capacidade
+      </div>
+      <label class="item item-input">
+        <input type="text" placeholder="Capacidade Produtiva" ng-model="po.capacidadeProdutiva">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Capacidade Comercial" ng-model="po.capacidadeComercial">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Capacidade Produtiva Inicial" ng-model="po.capacidadeProdutivaInicial">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Capacidade Comercial Inicial" ng-model="po.capacidadeComercialInicial">
+      </label>
+      <div class="item item-divider">
+        Processos Operacionais
+      </div>
+      <label class="item item-input">
+        <input type="text" placeholder="Processos" ng-model="po.processosOperacionais">
+      </label>
+      <div class="item item-divider">
+        Cargos Disponíveis
+      </div>
+      <div class="button-bar">
+        <div class="col col-80">
+          <button  class="button button-block icon-left ion-plus-circled button-balanced" ng-click="openCargos()">Cargos</button>
+        </div>
+        <div class="col col-20">
+          <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordem()"></button>
+        </div>
+      </div>
+        <ion-list show-reorder="reordenar">
+          <ion-item ng-repeat="cargo in po.cargos">
+            <div class="row">
+              <div class="col col-90">
+                {{cargo.nome}}
+                <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarCargo(cargo)"></ion-option-button>
+                <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverCargo(cargo)"></ion-option-button>
+                <ion-reorder-button class="ion-navicon" on-reorder="moverCargo(cargo, $fromIndex, $toIndex)"></ion-reorder-button>
+              </div>
+            </div>
+          </ion-item>
+        </ion-list>
+
+        <!--Botões Confirmar e Cancelar-->
+        <div class="row">
+          <div class="col col-60">
+            <button class="button button-block button-positive" ng-click="addPlanoOperacional()">
+              Confirmar
+            </button>
+          </div>
+          <div class="col">
+            <button class="button button-block button-assertive" ng-click="back()">
+              Cancelar
+            </button>
+          </div>
+        </div>
+
+      </ion-content>
+    </ion-view>

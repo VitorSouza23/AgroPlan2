@@ -1,0 +1,76 @@
+<ion-view view-title="Plano de Marketing">
+  <ion-content>
+    <!--Principais Produtos-->
+    <div class="list">
+      <div class="item item-divider">
+        Principais Produtos
+      </div>
+      <div class="button-bar">
+        <div class="col col-80">
+          <button  class="button button-block icon-left ion-plus-circled button-balanced" ng-click="openProdutos()">Produto</button>
+        </div>
+        <div class="col col-20">
+          <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordem()"></button>
+        </div>
+      </div>
+      <ion-list show-reorder="reordenar">
+        <ion-item ng-repeat="produto in pm.produtos">
+          <div class="row">
+            <div class="col col-90">
+              {{produto.nome}}
+              <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarProduto(produto)"></ion-option-button>
+              <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverProduto(produto)"></ion-option-button>
+              <ion-reorder-button class="ion-navicon" on-reorder="moverProduto(produto, $fromIndex, $toIndex)"></ion-reorder-button>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+
+      <!--Estudo de Estratégias-->
+      <div class="item item-divider">
+        Estratégias e Estruturas
+      </div>
+      <label class="item item-input" href="#">
+        <input type="text" placeholder="Estratégias Promocionais" ng-model="pm.estraTegiasPromocionais">
+      </label>
+      <label class="item item-input" href="#">
+        <input type="text" placeholder="Estrutura de Comercialização" ng-model="pm.estruturaDeComercializacao">
+      </label>
+
+      <div class="item item-divider">
+        Estudo da Localização
+      </div>
+      <label class="item item-input" href="#">
+        <input type="text" placeholder="Endereço" ng-model="pm.localizacaoDoNegocio.endereco">
+      </label>
+      <label class="item item-input" href="#">
+        <input type="text" placeholder="Bairro" ng-model="pm.localizacaoDoNegocio.bairro">
+      </label>
+      <label class="item item-input" href="#">
+        <input type="text" placeholder="Cidade" ng-model="pm.localizacaoDoNegocio.cidade">
+      </label>
+      <label class="item item-input" href="#">
+        <input type="text" placeholder="Estado" ng-model="pm.localizacaoDoNegocio.estado">
+      </label>
+      <label class="item item-input" href="#">
+        <input type="text" placeholder="Telefone" ng-model="pm.localizacaoDoNegocio.telefone">
+      </label>
+      <label class="item item-input" href="#">
+        <input type="text" placeholder="Considereções" ng-model="pm.localizacaoDoNegocio.consideracoese">
+      </label>
+
+      <!--Botões Confirmar e Cancelar-->
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block button-positive" ng-click="addPlanoDeMarketing()">
+            Confirmar
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-assertive" ng-click="back()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </ion-content>
+  </ion-view>
