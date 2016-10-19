@@ -5,13 +5,16 @@
       <div class="item item-divider">
         Estudo de Clientes
       </div>
-      <label class="item item-input" href="#">
+      <label class="item item-input item-floating-label" href="#">
+        <span class="input-label">Público Alvo</span>
         <input type="text" placeholder="Público-Alvo" ng-model="adm.cliente.publicoAlvo">
       </label>
-      <label class="item item-input" href="#">
+      <label class="item item-input item-floating-label" href="#">
+        <span class="input-label">Comportamento dos Clientes </span>
         <input type="text" placeholder="Comportamento dos Clientes" ng-model="adm.cliente.comportamentoDosClientes">
       </label>
-      <label class="item item-input" href="#">
+      <label class="item item-input item-floating-label" href="#">
+        <span class="input-label">Área de Abrangência </span>
         <input type="text" placeholder="Área de Abrangência" ng-model="adm.cliente.areaDeAbrangencia">
       </label>
       <!--Estudo de Concorrentes-->
@@ -20,7 +23,7 @@
       </div>
       <div class="button-bar">
         <div class="col col-80">
-          <button  class="button button-block icon-left ion-plus-circled button-balanced" ng-click="openConcorrentes()">Concorrentes</button>
+          <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openConcorrentes()">Concorrentes</button>
         </div>
         <div class="col col-20">
           <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordemConcorrente()"></button>
@@ -43,7 +46,7 @@
       </div>
       <div class="button-bar">
         <div class="col col-80">
-          <button  class="button button-block icon-left ion-plus-circled button-balanced" ng-click="openFornecedores()">Fornecedores</button>
+          <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openFornecedores()">Fornecedores</button>
         </div>
         <div class="col col-20">
           <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordemFornecedor()"></button>
@@ -65,12 +68,12 @@
       <!--Botões Confirmar e Cancelar-->
       <div class="row">
         <div class="col col-60">
-          <button class="button button-block button-positive" ng-click="addAnaliseDeMercado()">
+          <button class="button button-block button-outline button-positive" ng-click="addAnaliseDeMercado()">
             Confirmar
           </button>
         </div>
         <div class="col">
-          <button class="button button-block button-assertive" ng-click="back()">
+          <button class="button button-block button-outline button-assertive" ng-click="back()">
             Cancelar
           </button>
         </div>

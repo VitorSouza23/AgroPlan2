@@ -5,8 +5,8 @@
         Layout ou Arranjo Físico
       </div>
       <div class="button-bar">
-        <button class="button button-block icon-left ion-camera button-calm" ng-click = "takePicture()">Tirar Foto</button>
-        <button class="button button-block icon-left ion-images button-energized" ng-click = "getPicture()">Abrir Galeria</button>
+        <button class="button button-block button-outline icon-left ion-camera button-calm" ng-click = "takePicture()">Tirar Foto</button>
+        <button class="button button-block button-outline icon-left ion-images button-energized" ng-click = "getPicture()">Abrir Galeria</button>
       </div>
       <div class="item item-image">
         <img ng-src="{{picture}}">
@@ -15,22 +15,27 @@
       <div class="item item-divider">
         Dados de Capacidade
       </div>
-      <label class="item item-input">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Capacidade Produtiva </span>
         <input type="text" placeholder="Capacidade Produtiva" ng-model="po.capacidadeProdutiva">
       </label>
-      <label class="item item-input">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Capacidade Comercial </span>
         <input type="text" placeholder="Capacidade Comercial" ng-model="po.capacidadeComercial">
       </label>
-      <label class="item item-input">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Capacidade Produtiva Inicial </span>
         <input type="text" placeholder="Capacidade Produtiva Inicial" ng-model="po.capacidadeProdutivaInicial">
       </label>
-      <label class="item item-input">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Capacidade Comercial Inicial </span>
         <input type="text" placeholder="Capacidade Comercial Inicial" ng-model="po.capacidadeComercialInicial">
       </label>
       <div class="item item-divider">
         Processos Operacionais
       </div>
-      <label class="item item-input">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Processos Operacionais </span>
         <input type="text" placeholder="Processos" ng-model="po.processosOperacionais">
       </label>
       <div class="item item-divider">
@@ -38,7 +43,7 @@
       </div>
       <div class="button-bar">
         <div class="col col-80">
-          <button  class="button button-block icon-left ion-plus-circled button-balanced" ng-click="openCargos()">Cargos</button>
+          <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openCargos()">Cargos</button>
         </div>
         <div class="col col-20">
           <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordem()"></button>
@@ -60,12 +65,12 @@
         <!--Botões Confirmar e Cancelar-->
         <div class="row">
           <div class="col col-60">
-            <button class="button button-block button-positive" ng-click="addPlanoOperacional()">
+            <button class="button button-block button-outline button-positive" ng-click="addPlanoOperacional()">
               Confirmar
             </button>
           </div>
           <div class="col">
-            <button class="button button-block button-assertive" ng-click="back()">
+            <button class="button button-block button-outline button-assertive" ng-click="back()">
               Cancelar
             </button>
           </div>

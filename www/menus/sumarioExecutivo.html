@@ -5,7 +5,8 @@
       <div class="item item-divider">
         Dados do Empreendimento
       </div>
-        <label class="item item-input" href="#">
+        <label class="item item-input item-floating-label" href="#">
+          <span class="input-label">Nome do Empreendimento</span>
           <input type="text" placeholder="Nome do Empreendimento" ng-model="su.dadosDoemprendimento.nome">
         </label>
         <label class="item item-input" href="#">
@@ -22,10 +23,12 @@
       <div class="item item-divider">
         Principais Pontos
       </div>
-        <label class="item item-input" href="#">
+        <label class="item item-input item-floating-label" href="#">
+          <span class="input-label">Principais Pontos </span>
           <input type="text" placeholder="Principais Pontos" ng-model="su.principaisPontos">
         </label>
-        <label class="item item-input" href="#">
+        <label class="item item-input item-floating-label" href="#">
+          <span class="input-label">MIssão da Empresa </span>
           <input type="text" placeholder="Missão da Empresa" ng-model="su.missaoDaEmpresa">
         </label>
 
@@ -35,7 +38,7 @@
       </div>
       <div class="button-bar">
         <div class="col col-80">
-        <button  class="button button-block  icon-left ion-plus-circled button-balanced" ng-click="openSocios()">Sócio</button>
+        <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openSocios()">Sócio</button>
       </div>
       <div class="col col-20">
         <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordem()"></button>
@@ -84,18 +87,19 @@
       <div class="item item-divider">
         Fontes de Recursos
       </div>
-        <label class="item item-input" href="#">
+        <label class="item item-input item-floating-label" href="#">
+          <span class="input-label">Fontes de Recursos </span>
           <input type="text" placeholder="Fontes de Recursos" ng-model="su.fontesDeRecursos">
         </label>
         <!--Botões Confirmar e Cancelar-->
       <div class="row">
         <div class="col col-60">
-          <button class="button button-block icon-rigth ion-checkmark button-positive" ng-click="addSumarioExecutivo()">
+          <button class="button button-block button-outline icon-rigth ion-checkmark button-positive" ng-click="addSumarioExecutivo()">
             Confirmar
           </button>
         </div>
         <div class="col">
-          <button class="button button-block icon-rigth ion-close button-assertive" ng-click="back()">
+          <button class="button button-block button-outline icon-rigth ion-close button-assertive" ng-click="back()">
             Cancelar
           </button>
         </div>
