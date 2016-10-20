@@ -47,4 +47,49 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+
+.service('AnaliseDeMercado', function(){
+  var analiseDeMercado = new AnaliseDeMercado();
+  return analiseDeMercado;
+})
+
+.service('AvaliacaoEstrategica', function(){
+  var avaliacaoEstrategica = new AvaliacaoEstrategica();
+  return avaliacaoEstrategica;
+})
+.service('AvaliacaoDoPlano', function(){
+  var avaliacaoDoPlano = new AvaliacaoDoPlano();
+  return avaliacaoDoPlano;
+})
+
+.service('ConstrucaoDeCenario', function(){
+  var construcaoDeCenarios = new ConstrucaoDeCenario();
+  return construcaoDeCenarios;
+})
+
+.service('PlanoFinanceiro', function(){
+  var planoFinanceiro = new PlanoFinanceiro();
+  return planoFinanceiro;
+})
+.service('PlanoDeMarketing', function(){
+  var planoDeMarketing= new PlanoDeMarketing();
+  return planoDeMarketing;
+})
+
+.service('PlanoOperacional', function(){
+  var planoOperacional= new PlanoOperacional();
+  return planoOperacional;
+})
+.service('RoteiroParaColeta', function(){
+  var roteiroParaColeta = new RoteiroParaColeta();
+  return roteiroParaColeta;
+})
+
+.service('SumarioExecutivo', function(){
+  var sumarioExecutivo = new SumarioExecutivo();
+  return sumarioExecutivo;
+})
+
+
+;

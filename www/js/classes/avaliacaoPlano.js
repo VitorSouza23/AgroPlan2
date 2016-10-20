@@ -1,0 +1,3 @@
+unction AvaliacaoDoPlano(){
+  this.avalicao;
+}

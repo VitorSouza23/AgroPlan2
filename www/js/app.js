@@ -60,7 +60,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-analiseMercado': {
         templateUrl: 'menus/analiseMercado.html',
-        controller: 'DashCtrl'
+        controller: 'AnaliseDeMercadoCtrl'
       }
     }
   })
@@ -121,7 +121,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-avaliacaoEstrategica': {
         templateUrl: 'menus/avaliacaoEstrategica.html',
-        controller: 'DashCtrl'
+        controller: 'AvaliacaoEstrategicaCtrl'
       }
     }
   })

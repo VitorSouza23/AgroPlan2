@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services'])
 
 
 .controller('DashCtrl', function($scope) {})
@@ -26,4 +26,42 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
-});
+})
+
+.controller('AvaliacaoEstrategicaCtrl', function($scope, AvaliacaoEstrategica){
+  $scope.avaliacaoEstrategica = AvaliacaoEstrategica;
+})
+
+.controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado){
+  $scope.analiseDeMercado = AnaliseDeMercado;
+})
+
+.controller('AvaliacaoDoPlanoCtrl', function($scope, AvaliacaoDoPlano){
+  $scope.avaliacaoDoPlano = AvaliacaoDoPlano;
+})
+
+.controller('CosntrucaoDeCenarioCtrl', function($scope, ConstrucaoDeCenario){
+  $scope.construcaoDeCenario = ConstrucaoDeCenario;
+})
+
+.controller('PlanoFinanceiroCtrl', function($scope, PlanoFinanceiro){
+  $scope.planoFinanceiro = PlanoFinanceiro;
+})
+.controller('PlanoDeMarketingCtrl', function($scope, PlanoDeMarketing){
+  $scope.planoDeMarketing = PlanoDeMarketing;
+})
+
+.controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional){
+  $scope.planoOperacional = PlanoOperacional;
+})
+
+.controller('RoteiroParaColetaCtrl', function($scope, RoteiroParaColeta){
+  $scope.roteiroParaColeta = RoteiroParaColeta;
+})
+
+.controller('SumarioExecutivoCtrl', function($scope, SumarioExecutivo){
+  $scope.sumarioExecutivo = SumarioExecutivo
+  ;
+})
+
+;

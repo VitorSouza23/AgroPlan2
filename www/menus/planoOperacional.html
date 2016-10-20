@@ -17,26 +17,26 @@
       </div>
       <label class="item item-input item-floating-label">
         <span class="input-label">Capacidade Produtiva </span>
-        <input type="text" placeholder="Capacidade Produtiva" ng-model="po.capacidadeProdutiva">
+        <input type="text" placeholder="Capacidade Produtiva" ng-model="planoOperacional.capacidadeProdutiva">
       </label>
       <label class="item item-input item-floating-label">
         <span class="input-label">Capacidade Comercial </span>
-        <input type="text" placeholder="Capacidade Comercial" ng-model="po.capacidadeComercial">
+        <input type="text" placeholder="Capacidade Comercial" ng-model="planoOperacional.capacidadeComercial">
       </label>
       <label class="item item-input item-floating-label">
         <span class="input-label">Capacidade Produtiva Inicial </span>
-        <input type="text" placeholder="Capacidade Produtiva Inicial" ng-model="po.capacidadeProdutivaInicial">
+        <input type="text" placeholder="Capacidade Produtiva Inicial" ng-model="planoOperacional.capacidadeProdutivaInicial">
       </label>
       <label class="item item-input item-floating-label">
         <span class="input-label">Capacidade Comercial Inicial </span>
-        <input type="text" placeholder="Capacidade Comercial Inicial" ng-model="po.capacidadeComercialInicial">
+        <input type="text" placeholder="Capacidade Comercial Inicial" ng-model="planoOperacional.capacidadeComercialInicial">
       </label>
       <div class="item item-divider">
         Processos Operacionais
       </div>
       <label class="item item-input item-floating-label">
         <span class="input-label">Processos Operacionais </span>
-        <input type="text" placeholder="Processos" ng-model="po.processosOperacionais">
+        <input type="text" placeholder="Processos" ng-model="planoOperacional.processosOperacionais">
       </label>
       <div class="item item-divider">
         Cargos Disponíveis
@@ -50,7 +50,7 @@
         </div>
       </div>
         <ion-list show-reorder="reordenar">
-          <ion-item ng-repeat="cargo in po.cargos">
+          <ion-item ng-repeat="cargo in planoOperacional.cargos">
             <div class="row">
               <div class="col col-90">
                 {{cargo.nome}}

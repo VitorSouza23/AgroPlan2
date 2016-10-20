@@ -14,7 +14,7 @@
         </div>
       </div>
       <ion-list show-reorder="reordenarEquipamento">
-        <ion-item ng-repeat="equipamento in pf.estoqueInicial.equipamentos">
+        <ion-item ng-repeat="equipamento in planoFinanceiro.estoqueInicial.equipamentos">
           <div class="row">
             <div class="col col-90">
               {{equipamento.descricao}}
@@ -35,7 +35,7 @@
         </div>
       </div>
       <ion-list show-reorder="reordenarMaquina">
-        <ion-item ng-repeat="maquina in pf.estoqueInicial.maquinas">
+        <ion-item ng-repeat="maquina in planoFinanceiro.estoqueInicial.maquinas">
           <div class="row">
             <div class="col col-90">
               {{maquina.descricao}}
@@ -56,7 +56,7 @@
         </div>
       </div>
       <ion-list show-reorder="reordenar">
-        <ion-item ng-repeat="movel in pf.estoqueInicial.moveis">
+        <ion-item ng-repeat="movel in planoFinanceiro.estoqueInicial.moveis">
           <div class="row">
             <div class="col col-90">
               {{movel.descricao}}
@@ -77,7 +77,7 @@
         </div>
       </div>
       <ion-list show-reorder="reordenarUtensilio">
-        <ion-item ng-repeat="utensilio in pf.estoqueInicial.utensilios">
+        <ion-item ng-repeat="utensilio in planoFinanceiro.estoqueInicial.utensilios">
           <div class="row">
             <div class="col col-90">
               {{utensilio.descricao}}
@@ -98,7 +98,7 @@
         </div>
       </div>
       <ion-list show-reorder="reordenarVeiculo">
-        <ion-item ng-repeat="veiculo in pf.estoqueInicial.veiculos">
+        <ion-item ng-repeat="veiculo in planoFinanceiro.estoqueInicial.veiculos">
           <div class="row">
             <div class="col col-90">
               {{veiculo.descricao}}
@@ -122,7 +122,7 @@
         </div>
       </div>
       <ion-list show-reorder="reordenarCompra">
-        <ion-item ng-repeat="compra in pf.compras">
+        <ion-item ng-repeat="compra in planoFinanceiro.compras">
           <div class="row">
             <div class="col col-90">
               Prazo de {{compra.dias}} dias
@@ -143,7 +143,7 @@
         </div>
       </div>
       <ion-list show-reorder="reordenarVenda">
-        <ion-item ng-repeat="venda in pf.vendas">
+        <ion-item ng-repeat="venda in planoFinanceiro.vendas">
           <div class="row">
             <div class="col col-90">
               Prazo de {{venda.dias}} dias

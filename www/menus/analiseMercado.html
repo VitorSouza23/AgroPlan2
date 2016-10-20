@@ -7,15 +7,15 @@
       </div>
       <label class="item item-input item-floating-label" href="#">
         <span class="input-label">Público Alvo</span>
-        <input type="text" placeholder="Público-Alvo" ng-model="adm.cliente.publicoAlvo">
+        <input type="text" placeholder="Público-Alvo" ng-model="analiseMercado.cliente.publicoAlvo">
       </label>
       <label class="item item-input item-floating-label" href="#">
         <span class="input-label">Comportamento dos Clientes </span>
-        <input type="text" placeholder="Comportamento dos Clientes" ng-model="adm.cliente.comportamentoDosClientes">
+        <input type="text" placeholder="Comportamento dos Clientes" ng-model="analiseDeMercado.cliente.comportamentoDosClientes">
       </label>
       <label class="item item-input item-floating-label" href="#">
         <span class="input-label">Área de Abrangência </span>
-        <input type="text" placeholder="Área de Abrangência" ng-model="adm.cliente.areaDeAbrangencia">
+        <input type="text" placeholder="Área de Abrangência" ng-model="analiseDeMercado.cliente.areaDeAbrangencia">
       </label>
       <!--Estudo de Concorrentes-->
       <div class="item item-divider">
@@ -30,7 +30,7 @@
         </div>
       </div>
       <ion-list show-reorder="reordenarConcorrente">
-        <ion-item ng-repeat="concorrente in adm.concorrentes">
+        <ion-item ng-repeat="concorrente in analiseDeMercado.concorrentes">
           <div class="row">
             <div class="col col-90">
               {{concorrente.nome}}
@@ -53,7 +53,7 @@
         </div>
       </div>
       <ion-list show-reorder="reordenarFornecedor">
-        <ion-item ng-repeat="fornecedor in adm.fornecedores">
+        <ion-item ng-repeat="fornecedor in analiseDeMercado.fornecedores">
           <div class="row">
             <div class="col col-90">
               {{fornecedor.nome}}
