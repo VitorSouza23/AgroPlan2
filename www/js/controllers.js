@@ -61,7 +61,7 @@ angular.module('starter.controllers', ['starter.services'])
 
 .controller('SumarioExecutivoCtrl', function($scope, SumarioExecutivo){
   $scope.sumarioExecutivo = SumarioExecutivo
-  ;
+   ;
 })
 
 ;
