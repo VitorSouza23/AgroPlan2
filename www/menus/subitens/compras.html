@@ -1,0 +1,32 @@
+<ion-modal-view >
+  <ion-header-bar class="bar-balanced">
+    <h1 class="title">Compra</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeCompras()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Dias de Prazo para Pagamento</span>
+        <input type="number" placeholder="0" ng-model="compra.dias" autofocus="true" min="0">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Porcentagem de Vendas com esse Praso</span>
+        <input type="number" placeholder="0" ng-model="compra.porcentagem" min="0">
+      </label>
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block icon-rigth ion-checkmark button-positive" ng-click="addCompra()">
+            Confirmar
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block icon-rigth ion-close button-assertive" ng-click="closeCompras()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

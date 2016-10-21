@@ -1,3 +1,3 @@
-unction AvaliacaoDoPlano(){
+function AvaliacaoDoPlano(){
   this.avalicao;
 }

@@ -7,7 +7,7 @@ function SumarioExecutivo(){
   this.optantePeloSimples;
   this.fontesDeRecursos;
 
-  this.addSocio = function(socio){
+  this.adicionarSocio = function(socio){
     this.socios.push(socio);
   };
 

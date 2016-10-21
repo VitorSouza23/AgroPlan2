@@ -1,0 +1,36 @@
+<ion-modal-view >
+  <ion-header-bar class="bar-calm">
+    <h1 class="title">Utensílio</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeUtensilios()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Descrição</span>
+        <input type="text" placeholder="Descrição" ng-model="utensilio.descricao" autofocus="true">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Quantidade</span>
+        <input type="number" placeholder="0" ng-model="utensilio.quantidade" min="0">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Valor Unitário</span>
+        <input type="number" placeholder="0.00" min="0" ng-model="utensilio.valorUnitario">
+      </label>
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block icon-rigth ion-checkmark button-positive" ng-click="addUtensilio()">
+            Confirmar
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block icon-rigth ion-close button-assertive" ng-click="closeUtensilios()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

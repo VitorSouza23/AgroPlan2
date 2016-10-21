@@ -1,0 +1,60 @@
+<ion-modal-view >
+  <ion-header-bar class="bar-balanced">
+    <h1 class="title">Concorrentes</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeConcorrentes()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Nome</span>
+        <input type="text" placeholder="Nome" ng-model="concorrente.nome" autofocus="true">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Qualidade</span>
+        <input type="text" placeholder="Qualidade" ng-model="concorrente.qualidade">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Preço Médio dos Produtos</span>
+        <input type="text" placeholder="Preço" ng-model="concorrente.preco">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Condições de Pagamento</span>
+        <input type="text" placeholder="Condições de Pagamento" ng-model="concorrente.condicoesDePagamento">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Localização</span>
+        <input type="text" placeholder="Endereço" ng-model="concorrente.localizacao">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Tipo de Atendimento</span>
+        <input type="text" placeholder="Tipo de Atendimento" ng-model="concorrente.atendimento">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Serviços aos Clientes</span>
+        <input type="text" placeholder="Serviços aos Clientes" ng-model="concorrente.servicos">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Garantias Oferecidas</span>
+        <input type="text" placeholder="Garantias Oferecidas" ng-model="concorrente.garantias">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Observações</span>
+        <input type="text" placeholder="Observações" ng-model="concorrente.observacoes">
+      </label>
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block icon-rigth ion-checkmark button-positive" ng-click="addConcorrente()">
+            Confirmar
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block icon-rigth ion-close button-assertive" ng-click="closeConcorrentes()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

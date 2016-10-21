@@ -1,0 +1,33 @@
+<ion-modal-view >
+  <ion-header-bar class="bar-balanced">
+    <h1 class="title">Cargos</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeCargos()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Nome do Cargo</span>
+        <input type="text" placeholder="Nome" ng-model="cargo.nome" autofocus="true">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Qualificações Necessárias</span>
+        <input type="text" placeholder="Qualificações" ng-model="cargo.qualificacoes">
+      </label>
+
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block icon-rigth ion-checkmark button-positive" ng-click="addCargo()">
+            Confirmar
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block icon-rigth ion-close button-assertive" ng-click="closeCargos()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

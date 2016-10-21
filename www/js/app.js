@@ -70,7 +70,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-sumarioExecutivo': {
         templateUrl: 'menus/sumarioExecutivo.html',
-        controller: 'DashCtrl'
+        controller: 'SumarioExecutivoCtrl'
+      }
+    }
+  })
+
+  .state('tab.socios', {
+    url: '/sumarioExecutivo/socios',
+    views: {
+      'tab-account': {
+        templateUrl: 'menus/subitens/socios.html',
+        controller: 'SumarioExecutivoCtrl'
       }
     }
   })
