@@ -1,4 +1,4 @@
-function AnaliseFOFA(){
+function AvaliacaoEstrategica(){
     this.forca;
     this.fraquesa;
     this.oprotunidade;
