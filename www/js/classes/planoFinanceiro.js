@@ -14,7 +14,7 @@ function PlanoFinanceiro(){
 
   this.editarVenda = function(venda){
     var pos = this.vendas.indexOf(venda);
-    this.vendas[pos] = vendas;
+    this.vendas[pos] = venda;
   };
 
   this.addCompra = function(compra){

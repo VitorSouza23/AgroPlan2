@@ -150,7 +150,77 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-planoFinanceiro': {
         templateUrl: 'menus/planoFinanceiro.html',
-        controller: 'DashCtrl'
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.maquina', {
+    url: '/planoFinanceiro/maquinas',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/maquinas.html',
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.movel', {
+    url: '/planoFinanceiro/moveis',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/moveis.html',
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.utensilio', {
+    url: '/planoFinanceiro/utensilios',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/utensilios.html',
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.veiculo', {
+    url: '/planoFinanceiro/veiculos',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/veiculos.html',
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.compra', {
+    url: '/planoFinanceiro/compras',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/compras.html',
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.venda', {
+    url: '/planoFinanceiro/vendas',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/vendas.html',
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.equipamento', {
+    url: '/planoFinanceiro/equipamentos',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/equipamentos.html',
+        controller: 'PlanoFinanceiroCtrl'
       }
     }
   })

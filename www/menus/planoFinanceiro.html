@@ -55,7 +55,7 @@
           <button  class="button button-block button-outline icon-center ion-navicon button-calm" ng-click="mostrarReordemMovel()"></button>
         </div>
       </div>
-      <ion-list show-reorder="reordenar">
+      <ion-list show-reorder="reordenarMovel">
         <ion-item ng-repeat="movel in planoFinanceiro.estoqueInicial.moveis">
           <div class="row">
             <div class="col col-90">
@@ -81,8 +81,8 @@
           <div class="row">
             <div class="col col-90">
               {{utensilio.descricao}}
-              <ion-option-button class="button-positive ion-edit" ng-click=""></ion-option-button>
-              <ion-option-button class="ion-minus-circled button-assertive" ng-click=""></ion-option-button>
+              <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarUtensilio(utensilio)"></ion-option-button>
+              <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverUtensilio(utensilio)"></ion-option-button>
               <ion-reorder-button class="ion-navicon" on-reorder="moverUtensilio(utensilio, $fromIndex, $toIndex)"></ion-reorder-button>
             </div>
           </div>
