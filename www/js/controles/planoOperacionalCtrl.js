@@ -1,8 +1,9 @@
-angular.module('starter.controllers.planoOperacional', ['starter.services.planoOperacional'])
+angular.module('starter.controllers.planoOperacional', ['starter.services.planoOperacional', 'starter.services'])
 
-.controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicModal, $ionicListDelegate, $ionicHistory){
+.controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup){
   $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
   $scope.editar = PlanoOperacional.editar;
+  $scope.imagem;
 
   $scope.addCargo = function(){
     if(!$scope.editar){
@@ -46,42 +47,38 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     }
   };
 
-  $scope.takePicture = function () {
+  function sucessoAoPegarFoto(imageData){
+    $scope.imagem = "data:image/jpeg;base64," + imageData;
+  }
 
-    var options = {
+  function erroAoPegarFoto(erro){
+    console.log(err);
+    $ionicPopup.alert({
+     title: 'Erro ao acessar recursos de Foto!',
+     template: 'Não foi possível acessar a câmera ou a biblioteca de imagens.'
+   });
+  }
+  $scope.tirarFoto = function () {
+    navigator.camera.getPicture(sucessoAoPegarFoto, erroAoPegarFoto, {
       destinationType : Camera.DestinationType.DATA_URL,
-      sourceType : Camera.PictureSourceType.CAMERA,
+      sourceType : 1,
       encodingType: Camera.EncodingType.JPEG,
       quality : 75,
       targetWidth: 200,
       targetHeight: 200,
-      sourceType: 1
-    };
 
-    Camera.getPicture(options).then(function(imageData) {
-      $scope.picture = "data:image/jpeg;base64," + imageData;
-    }, function(err) {
-      console.log(err);
     });
-
   };
 
-  $scope.getPicture = function () {
-
-    var options = {
+  $scope.pegarFoto = function () {
+    navigator.camera.getPicture(sucessoAoPegarFoto, erroAoPegarFoto, {
       destinationType : Camera.DestinationType.DATA_URL,
-      sourceType : Camera.PictureSourceType.CAMERA,
+      sourceType : 0,
       encodingType: Camera.EncodingType.JPEG,
       quality : 75,
       targetWidth: 200,
       targetHeight: 200,
-      sourceType: 0
-    };
 
-    Camera.getPicture(options).then(function(imageData) {
-      $scope.picture = "data:image/jpeg;base64," + imageData;
-    }, function(err) {
-      console.log(err);
     });
   };
 
