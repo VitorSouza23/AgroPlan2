@@ -9,7 +9,9 @@
         <button class="button button-block button-outline icon-left ion-images button-energized" ng-click = "pegarFoto()">Abrir Galeria</button>
       </div>
       <div class="item item-image">
-        <img ng-src="{{imagem}}">
+        <ion-scroll direction="x">
+          <img ng-src="{{imagem}}">
+        </ion-scroll>
       </div>
 
       <div class="item item-divider">
@@ -49,32 +51,32 @@
           <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordem()"></button>
         </div>
       </div>
-        <ion-list show-reorder="reordenar">
-          <ion-item ng-repeat="cargo in planoOperacional.cargos">
-            <div class="row">
-              <div class="col col-90">
-                {{cargo.nome}}
-                <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarCargo(cargo)"></ion-option-button>
-                <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverCargo(cargo)"></ion-option-button>
-                <ion-reorder-button class="ion-navicon" on-reorder="moverCargo(cargo, $fromIndex, $toIndex)"></ion-reorder-button>
-              </div>
+      <ion-list show-reorder="reordenar">
+        <ion-item ng-repeat="cargo in planoOperacional.cargos">
+          <div class="row">
+            <div class="col col-90">
+              {{cargo.nome}}
+              <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarCargo(cargo)"></ion-option-button>
+              <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverCargo(cargo)"></ion-option-button>
+              <ion-reorder-button class="ion-navicon" on-reorder="moverCargo(cargo, $fromIndex, $toIndex)"></ion-reorder-button>
             </div>
-          </ion-item>
-        </ion-list>
+          </div>
+        </ion-item>
+      </ion-list>
 
-        <!--Botões Confirmar e Cancelar-->
-        <div class="row">
-          <div class="col col-60">
-            <button class="button button-block button-outline button-positive" ng-click="addPlanoOperacional()">
-              Confirmar
-            </button>
-          </div>
-          <div class="col">
-            <button class="button button-block button-outline button-assertive" ng-click="back()">
-              Cancelar
-            </button>
-          </div>
+      <!--Botões Confirmar e Cancelar-->
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block button-outline button-positive" ng-click="addPlanoOperacional()">
+            Confirmar
+          </button>
         </div>
+        <div class="col">
+          <button class="button button-block button-outline button-assertive" ng-click="back()">
+            Cancelar
+          </button>
+        </div>
+      </div>
 
-      </ion-content>
-    </ion-view>
+    </ion-content>
+  </ion-view>

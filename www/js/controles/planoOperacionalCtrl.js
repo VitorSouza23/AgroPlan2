@@ -1,10 +1,10 @@
-angular.module('starter.controllers.planoOperacional', ['starter.services.planoOperacional', 'starter.services'])
+angular.module('starter.controllers.planoOperacional', ['starter.services.planoOperacional', 'starter.services', 'ionic'])
 
 .controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup){
   $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
   $scope.editar = PlanoOperacional.editar;
   $scope.imagem;
-
+  var tipoDestinoCaminhoFoto;
   $scope.addCargo = function(){
     if(!$scope.editar){
       $scope.planoOperacional.addCargo($scope.cargo);
@@ -48,7 +48,12 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
   };
 
   function sucessoAoPegarFoto(imageData){
-    $scope.imagem = "data:image/jpeg;base64," + imageData;
+    if(tipoDestinoCaminhoFoto == 1 || tipoDestinoCaminhoFoto == 2){
+      $scope.imagem = imageData;
+    }else {
+      $scope.imagem = "data:image/jpeg;base64," + imageData;
+    }
+    
   }
 
   function erroAoPegarFoto(erro){
@@ -58,9 +63,26 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
      template: 'Não foi possível acessar a câmera ou a biblioteca de imagens.'
    });
   }
+
+  function tipoDoSitema(){
+    if(ionic.Platform.isAndroid()){
+      tipoDestinoCaminhoFoto = 1;
+    }else if(ionic.Platform.isIOS()){
+      tipoDestinoCaminhoFoto = 2;
+    }else if (ionic.Platform.isWebView()){
+      console.log("É um navegador!");
+      $ionicPopup.alert({
+       title: 'Erro ao acessar recursos de Camêra!',
+       template: 'Você está executando este aplicativo via Browser!, não há suporte à câmera.'
+     });
+    }else{
+      tipoDestinoCaminhoFoto = 0;
+    }
+  }
   $scope.tirarFoto = function () {
+    tipoDoSitema();
     navigator.camera.getPicture(sucessoAoPegarFoto, erroAoPegarFoto, {
-      destinationType : Camera.DestinationType.DATA_URL,
+      destinationType : tipoDestinoCaminhoFoto,
       sourceType : 1,
       encodingType: Camera.EncodingType.JPEG,
       quality : 75,
@@ -72,7 +94,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
   $scope.pegarFoto = function () {
     navigator.camera.getPicture(sucessoAoPegarFoto, erroAoPegarFoto, {
-      destinationType : Camera.DestinationType.DATA_URL,
+      destinationType : tipoDestinoCaminhoFoto,
       sourceType : 0,
       encodingType: Camera.EncodingType.JPEG,
       quality : 75,
