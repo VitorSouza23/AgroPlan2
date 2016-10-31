@@ -230,7 +230,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-construcaoCenarios': {
         templateUrl: 'menus/construcaoCenarios.html',
-        controller: 'DashCtrl'
+        controller: 'CosntrucaoDeCenarioCtrl'
       }
     }
   })
@@ -246,9 +246,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  .state('tab.roteiroInformacao', {
+    url: '/roteiroInformacao',
+    views: {
+      'tab-roteiroInformacao': {
+        templateUrl: 'menus/roteiroInformacao.html',
+        controller: 'RoteiroParaColetaCtrl'
+      }
+    }
+  })
 
-
-
+  .state('tab.avaliacaoDoPlano', {
+    url: '/avaliacaoDoPlano',
+    views: {
+      'tab-avaliacaoDoPlano': {
+        templateUrl: 'menus/avaliacaoPlano.html',
+        controller: 'AvaliacaoDoPlanoCtrl'
+      }
+    }
+  })
 
   .state('tab.chats', {
     url: '/chats',

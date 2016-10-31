@@ -1,8 +1,15 @@
 angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoDeMarketing'])
 
-.controller('PlanoDeMarketingCtrl', function($scope, PlanoDeMarketing, Produto, $ionicModal, $ionicListDelegate, $ionicHistory){
+.controller('PlanoDeMarketingCtrl', function($scope, PlanoDeMarketing, Produto, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout){
   $scope.planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
   $scope.editar = PlanoDeMarketing.editar;
+
+  $scope.showConfirm = function() {
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Plano de Marketing',
+     template: 'É onde o usuário informará todos os detalhes dos itens a serem cultivados e vendidos.',
+     cancelText: 'Sair'
+   })};
 
   $scope.addProduto = function(){
     if(!$scope.editar){

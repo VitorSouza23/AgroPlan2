@@ -1,6 +1,6 @@
 angular.module('starter.controllers.analiseDeMercado', ['starter.services.analiseDeMercado'])
 
-.controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, Concorrente, Fornecedor, $ionicModal, $ionicListDelegate, $ionicHistory){
+.controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, Concorrente, Fornecedor, $ionicModal, $ionicListDelegate, $ionicHistory,$ionicPopup, $timeout){
   $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
   $scope.editar  = AnaliseDeMercado.editar;
 
@@ -15,6 +15,14 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
     }
     $scope.closeConcorrentes();
   }
+
+  $scope.showConfirm = function() {
+ var confirmPopup = $ionicPopup.confirm({
+   title: 'Análise de Mercado',
+   template: 'É onde serão inseridos os dados coletados pelo usuário em relação do seu empreendimento com o mercado.',
+   cancelText: 'Sair'
+ })};
+
 
   $scope.botaoRemoverConcorrente = function(concorrente){
     $scope.analiseDeMercado.removerConcorrente(concorrente);

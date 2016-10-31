@@ -1,8 +1,16 @@
 angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFinanceiro'])
 
-.controller('PlanoFinanceiroCtrl', function($scope, PlanoFinanceiro, Equipamento, Utensilio, Movel, Maquina, Veiculo, Compra, Venda, $ionicModal, $ionicListDelegate, $ionicHistory){
+.controller('PlanoFinanceiroCtrl', function($scope, PlanoFinanceiro, Equipamento, Utensilio, Movel, Maquina, Veiculo, Compra, Venda, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout){
   $scope.planoFinanceiro = PlanoFinanceiro.getPlanoFinanceiro();
   $scope.editar = PlanoFinanceiro.getEditar();
+
+  $scope.showConfirm = function() {
+ var confirmPopup = $ionicPopup.confirm({
+   title: 'Plano Financeiro',
+   template: 'É onde o usuário irá informar o total de recursos a serem investidos para que o negócio comece a funcionar.',
+   cancelText: 'Sair'
+ })};
+
 
   //Equipamento
   $scope.addEquipamento = function(){

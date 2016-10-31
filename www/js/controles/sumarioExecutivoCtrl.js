@@ -1,10 +1,17 @@
 angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumarioExecutivo'])
 
-.controller('SumarioExecutivoCtrl', function($scope, SumarioExecutivo, Socio, $ionicModal, $ionicListDelegate, $ionicHistory){
+.controller('SumarioExecutivoCtrl', function($scope, SumarioExecutivo, Socio, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout){
   $scope.sumarioExecutivo = SumarioExecutivo.getSumarioExecutivo();
   $scope.cnpjOuCpf = SumarioExecutivo.getCnpjOuCpf();
   $scope.escolherCnpjOuCpf = SumarioExecutivo.escolherCnpjOuCpf();
   $scope.editar = SumarioExecutivo.editar;
+
+  $scope.showConfirm = function() {
+  var confirmPopup = $ionicPopup.confirm({
+    title: 'Sumário Executivo',
+    template: 'É o resumo do Plano de Negócios, onde será descrito os pontos mais importantes do negócio.',
+    cancelText: 'Sair'
+  })};
 
 
   $scope.socio = Socio.getSocio();

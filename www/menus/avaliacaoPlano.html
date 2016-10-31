@@ -1,0 +1,28 @@
+<ion-view view-title="Avaliação do Plano de Negócio">
+  <ion-content>
+    <div class="list">
+      <div class="col col-100">
+        <button class="button button-block button-outline button-positive" ng-click="showConfirm()">
+          O que é?
+        </div>
+      <div class="item item-divider">
+        Aavalição
+      </div>
+        <label class="item item-input-outline" href="#">
+          <input type="text"  placeholder="Avaliação" ng-model="ap.avaliacao">
+        </label>
+        <!--Botões Confirmar e Cancelar-->
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block button-positive" ng-click="addAvaliacaoDoPlano()">
+            Confirmar
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-assertive" ng-click="back()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+  </ion-content>
+</ion-view>

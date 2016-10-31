@@ -1,9 +1,17 @@
 angular.module('starter.controllers.planoOperacional', ['starter.services.planoOperacional', 'starter.services', 'ionic'])
 
-.controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup){
+.controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup, $ionicPopup, $timeout){
   $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
   $scope.editar = PlanoOperacional.editar;
   $scope.imagem;
+
+  $scope.showConfirm = function() {
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Plano Operacional',
+      template: 'É onde será informado o funcionamento de seu negócio.',
+      cancelText: 'Sair'
+    })};
+
   var tipoDestinoCaminhoFoto;
   $scope.addCargo = function(){
     if(!$scope.editar){
@@ -53,7 +61,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     }else {
       $scope.imagem = "data:image/jpeg;base64," + imageData;
     }
-    
+
   }
 
   function erroAoPegarFoto(erro){
