@@ -1,0 +1,37 @@
+<ion-modal-view >
+  <ion-header-bar class="bar-balanced">
+    <h1 class="title">Produtos</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeProdutos()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Nome do Produto</span>
+        <input type="text" placeholder="Nome do Produto" ng-model="produto.nome" autofocus="true">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Ciclo de Produção</span>
+        <input type="text" placeholder="Ciclo" ng-model="porduto.cicloDeProducao">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Preço</span>
+        <input type="text" placeholder="Preço(R$)" ng-model="produto.preco">
+      </label>
+
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block icon-rigth ion-checkmark button-positive" ng-click="addProduto()">
+            Confirmar
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block icon-rigth ion-close button-assertive" ng-click="closeProdutos()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,3 @@
+function AvaliacaoDoPlano(){
+  this.avalicao;
+}

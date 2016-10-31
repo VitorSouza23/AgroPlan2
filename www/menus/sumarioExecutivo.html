@@ -1,5 +1,13 @@
 <ion-view view-title="Sumário Executivo">
   <ion-content>
+<<<<<<< HEAD
+    <div class="list">
+        <div class="col col-100">
+          <button class="button button-block button-outline button-positive" ng-click="showConfirm()">
+          O que é?
+    </div>
+=======
+>>>>>>> 404bee94a93b31a8408be9d9ae85e13ef839fe6a
     <!--Dados da Empresa-->
     <div class="list">
       <div class="item item-divider">
@@ -7,11 +15,11 @@
       </div>
         <label class="item item-input item-floating-label" href="#">
           <span class="input-label">Nome do Empreendimento</span>
-          <input type="text" placeholder="Nome do Empreendimento" ng-model="su.dadosDoemprendimento.nome">
+          <input type="text" placeholder="Nome do Empreendimento" ng-model="sumarioExecutivo.dadosDoemprendimento.nome">
         </label>
         <label class="item item-input" href="#">
-          <input type="text" placeholder="CNPJ" ng-model="su.dadosDoemprendimento.cnpj" ng-hide="!cnpjOuCpf">
-          <input type="text" placeholder="CPF" ng-model="su.dadosDoemprendimento.cpf" ng-hide="cnpjOuCpf">
+          <input type="text" placeholder="CNPJ" ng-model="sumarioExecutivo.dadosDoemprendimento.cnpj" ng-hide="!cnpjOuCpf">
+          <input type="text" placeholder="CPF" ng-model="sumarioExecutivo.dadosDoemprendimento.cpf" ng-hide="cnpjOuCpf">
           <label class="toggle">
             <input type="checkbox" ng-model="cnpjOuCpf" ng-click="escolherCnpjOuCpf()" >
             <div class="track">
@@ -25,11 +33,11 @@
       </div>
         <label class="item item-input item-floating-label" href="#">
           <span class="input-label">Principais Pontos </span>
-          <input type="text" placeholder="Principais Pontos" ng-model="su.principaisPontos">
+          <input type="text" placeholder="Principais Pontos" ng-model="sumarioExecutivo.principaisPontos">
         </label>
         <label class="item item-input item-floating-label" href="#">
           <span class="input-label">MIssão da Empresa </span>
-          <input type="text" placeholder="Missão da Empresa" ng-model="su.missaoDaEmpresa">
+          <input type="text" placeholder="Missão da Empresa" ng-model="sumarioExecutivo.missaoDaEmpresa">
         </label>
 
       <!--Socios-->
@@ -45,7 +53,7 @@
       </div>
     </div>
       <ion-list show-reorder="reordenar">
-      <ion-item ng-repeat="socio in su.socios">
+      <ion-item ng-repeat="socio in sumarioExecutivo.socios">
         <div class="row">
           <div class="col col-90">
               {{socio.nome}}
@@ -66,7 +74,7 @@
           <div class="input-label">
             F. Jurídica:
           </div>
-          <select ng-model="su.formaJuridica">
+          <select ng-model="sumarioExecutivo.formaJuridica">
             <option selected>MEI</option>
             <option>Empresário Individual</option>
             <option>ERELI</option>
@@ -79,7 +87,7 @@
       <div class="item item-divider">
         Enquadramento Tributário
       </div>
-        <ion-checkbox class="checkbox-balanced" ng-model="su.optantePeloSimples">Optante pelo SIMPLES?</ion-checkbox>
+        <ion-checkbox class="checkbox-balanced" ng-model="sumarioExecutivo.optantePeloSimples">Optante pelo SIMPLES?</ion-checkbox>
       </label>
 
     <!--Fontes de Recursos-->

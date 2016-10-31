@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services','starter.controllers.sumarioExecutivo','starter.controllers.analiseDeMercado', 'starter.controllers.planoFinanceiro', 'starter.controllers.planoDeMarketing', 'starter.controllers.planoOperacional', 'starter.controllers.construcaoDeCenario', 'starter.controllers.avaliacaoEstrategica','starter.controllers.roteiroParaColeta', 'starter.controllers.avaliacaoDoPlano'])
 
 
 .controller('DashCtrl', function($scope) {})
@@ -26,4 +26,9 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 404bee94a93b31a8408be9d9ae85e13ef839fe6a
 });

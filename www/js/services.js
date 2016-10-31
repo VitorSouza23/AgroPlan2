@@ -47,4 +47,25 @@ angular.module('starter.services', [])
       return null;
     }
   };
+<<<<<<< HEAD
+})
+
+.factory('Camera', function($q) {
+
+   return {
+      getPicture: function(options) {
+         var q = $q.defer();
+
+         navigator.camera.getPicture(function(result) {
+            q.resolve(result);
+         }, function(err) {
+            q.reject(err);
+         }, options);
+
+         return q.promise;
+      }
+   }
+
+=======
+>>>>>>> 404bee94a93b31a8408be9d9ae85e13ef839fe6a
 });

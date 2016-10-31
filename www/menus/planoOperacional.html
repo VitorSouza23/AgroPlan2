@@ -1,15 +1,33 @@
 <ion-view view-title="Plano Operacional">
   <ion-content>
     <div class="list">
+<<<<<<< HEAD
+        <div class="col col-100">
+          <button class="button button-block button-outline button-positive" ng-click="showConfirm()">
+          O que é?
+    </div>
+    <div class="list">
+=======
+>>>>>>> 404bee94a93b31a8408be9d9ae85e13ef839fe6a
       <div class="item item-divider">
         Layout ou Arranjo Físico
       </div>
       <div class="button-bar">
+<<<<<<< HEAD
         <button class="button button-block button-outline icon-left ion-camera button-calm" ng-click = "takePicture()">Tirar Foto</button>
         <button class="button button-block button-outline icon-left ion-images button-energized" ng-click = "getPicture()">Abrir Galeria</button>
       </div>
       <div class="item item-image">
         <img ng-src="{{picture}}">
+=======
+        <button class="button button-block button-outline icon-left ion-camera button-calm" ng-click = "tirarFoto()">Tirar Foto</button>
+        <button class="button button-block button-outline icon-left ion-images button-energized" ng-click = "pegarFoto()">Abrir Galeria</button>
+      </div>
+      <div class="item item-image">
+        <ion-scroll direction="x">
+          <img ng-src="{{imagem}}">
+        </ion-scroll>
+>>>>>>> 404bee94a93b31a8408be9d9ae85e13ef839fe6a
       </div>
 
       <div class="item item-divider">
@@ -17,26 +35,26 @@
       </div>
       <label class="item item-input item-floating-label">
         <span class="input-label">Capacidade Produtiva </span>
-        <input type="text" placeholder="Capacidade Produtiva" ng-model="po.capacidadeProdutiva">
+        <input type="text" placeholder="Capacidade Produtiva" ng-model="planoOperacional.capacidadeProdutiva">
       </label>
       <label class="item item-input item-floating-label">
         <span class="input-label">Capacidade Comercial </span>
-        <input type="text" placeholder="Capacidade Comercial" ng-model="po.capacidadeComercial">
+        <input type="text" placeholder="Capacidade Comercial" ng-model="planoOperacional.capacidadeComercial">
       </label>
       <label class="item item-input item-floating-label">
         <span class="input-label">Capacidade Produtiva Inicial </span>
-        <input type="text" placeholder="Capacidade Produtiva Inicial" ng-model="po.capacidadeProdutivaInicial">
+        <input type="text" placeholder="Capacidade Produtiva Inicial" ng-model="planoOperacional.capacidadeProdutivaInicial">
       </label>
       <label class="item item-input item-floating-label">
         <span class="input-label">Capacidade Comercial Inicial </span>
-        <input type="text" placeholder="Capacidade Comercial Inicial" ng-model="po.capacidadeComercialInicial">
+        <input type="text" placeholder="Capacidade Comercial Inicial" ng-model="planoOperacional.capacidadeComercialInicial">
       </label>
       <div class="item item-divider">
         Processos Operacionais
       </div>
       <label class="item item-input item-floating-label">
         <span class="input-label">Processos Operacionais </span>
-        <input type="text" placeholder="Processos" ng-model="po.processosOperacionais">
+        <input type="text" placeholder="Processos" ng-model="planoOperacional.processosOperacionais">
       </label>
       <div class="item item-divider">
         Cargos Disponíveis
@@ -49,8 +67,9 @@
           <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordem()"></button>
         </div>
       </div>
+<<<<<<< HEAD
         <ion-list show-reorder="reordenar">
-          <ion-item ng-repeat="cargo in po.cargos">
+          <ion-item ng-repeat="cargo in planoOperacional.cargos">
             <div class="row">
               <div class="col col-90">
                 {{cargo.nome}}
@@ -78,3 +97,34 @@
 
       </ion-content>
     </ion-view>
+=======
+      <ion-list show-reorder="reordenar">
+        <ion-item ng-repeat="cargo in planoOperacional.cargos">
+          <div class="row">
+            <div class="col col-90">
+              {{cargo.nome}}
+              <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarCargo(cargo)"></ion-option-button>
+              <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverCargo(cargo)"></ion-option-button>
+              <ion-reorder-button class="ion-navicon" on-reorder="moverCargo(cargo, $fromIndex, $toIndex)"></ion-reorder-button>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+
+      <!--Botões Confirmar e Cancelar-->
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block button-outline button-positive" ng-click="addPlanoOperacional()">
+            Confirmar
+          </button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-outline button-assertive" ng-click="back()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+
+    </ion-content>
+  </ion-view>
+>>>>>>> 404bee94a93b31a8408be9d9ae85e13ef839fe6a

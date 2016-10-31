@@ -1,82 +1,148 @@
-<ion-view view-title="Roteiro para Coleta de Informações">
+<ion-view view-title="Análise de Mercado">
   <ion-content>
+    <div class="list">
+        <div class="col col-100">
+          <button class="button button-block button-outline button-positive" ng-click="showConfirm()">
+          O que é?
+    </div>
     <!--Estudo do Cliente-->
     <div class="list">
       <div class="item item-divider">
-        Estudo de Clientes
+        Sumário Executivo
       </div>
       <label class="item item-input item-floating-label" href="#">
-        <span class="input-label">Público Alvo</span>
-        <input type="text" placeholder="Público-Alvo" ng-model="adm.cliente.publicoAlvo">
+        <span class="input-label">Atividade</span>
+        <input type="text" placeholder="O quê?">
       </label>
       <label class="item item-input item-floating-label" href="#">
-        <span class="input-label">Comportamento dos Clientes </span>
-        <input type="text" placeholder="Comportamento dos Clientes" ng-model="adm.cliente.comportamentoDosClientes">
+        <span class="input-label">Local</span>
+        <input type="text" placeholder="Onde?">
       </label>
       <label class="item item-input item-floating-label" href="#">
-        <span class="input-label">Área de Abrangência </span>
-        <input type="text" placeholder="Área de Abrangência" ng-model="adm.cliente.areaDeAbrangencia">
+        <span class="input-label">Método</span>
+        <input type="text" placeholder="Como?">
       </label>
-      <!--Estudo de Concorrentes-->
-      <div class="item item-divider">
-        Estudo de Concorrentes
-      </div>
-      <div class="button-bar">
-        <div class="col col-80">
-          <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openConcorrentes()">Concorrentes</button>
-        </div>
-        <div class="col col-20">
-          <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordemConcorrente()"></button>
-        </div>
-      </div>
-      <ion-list show-reorder="reordenarConcorrente">
-        <ion-item ng-repeat="concorrente in adm.concorrentes">
-          <div class="row">
-            <div class="col col-90">
-              {{concorrente.nome}}
-              <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarConcorrente(concorrente)"></ion-option-button>
-              <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverConcorrente(concorrente)"></ion-option-button>
-              <ion-reorder-button class="ion-navicon" on-reorder="moverConcorrente(concorrente, $fromIndex, $toIndex)"></ion-reorder-button>
-            </div>
-          </div>
-        </ion-item>
-      </ion-list>
-      <div class="item item-divider">
-        Estudo de Fornecedores
-      </div>
-      <div class="button-bar">
-        <div class="col col-80">
-          <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openFornecedores()">Fornecedores</button>
-        </div>
-        <div class="col col-20">
-          <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordemFornecedor()"></button>
-        </div>
-      </div>
-      <ion-list show-reorder="reordenarFornecedor">
-        <ion-item ng-repeat="fornecedor in adm.fornecedores">
-          <div class="row">
-            <div class="col col-90">
-              {{fornecedor.nome}}
-              <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarFornecedor(fornecedor)"></ion-option-button>
-              <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverFornecedor(fornecedor)"></ion-option-button>
-              <ion-reorder-button class="ion-navicon" on-reorder="moverFornecedor(fornecedor, $fromIndex, $toIndex)"></ion-reorder-button>
-            </div>
-          </div>
-        </ion-item>
-      </ion-list>
+      <label class="item item-input item-floating-label" href="#">
+        <span class="input-label">Prazo</span>
+        <input type="text" placeholder="Quando?">
+      </label>
+      <label class="item item-input item-floating-label" href="#">
+        <span class="input-label">Responsável</span>
+        <input type="text" placeholder="Quem?">
+      </label>
 
-      <!--Botões Confirmar e Cancelar-->
-      <div class="row">
-        <div class="col col-60">
-          <button class="button button-block button-outline button-positive" ng-click="addAnaliseDeMercado()">
-            Confirmar
-          </button>
+      <div class="list">
+        <div class="item item-divider">
+          Análise de Mercado
         </div>
-        <div class="col">
-          <button class="button button-block button-outline button-assertive" ng-click="back()">
-            Cancelar
-          </button>
-        </div>
-      </div>
+        <label class="item item-input item-floating-label" href="#">
+          <span class="input-label">Atividade</span>
+          <input type="text" placeholder="O quê?">
+        </label>
+        <label class="item item-input item-floating-label" href="#">
+          <span class="input-label">Local</span>
+          <input type="text" placeholder="Onde?">
+        </label>
+        <label class="item item-input item-floating-label" href="#">
+          <span class="input-label">Método</span>
+          <input type="text" placeholder="Como?">
+        </label>
+        <label class="item item-input item-floating-label" href="#">
+          <span class="input-label">Prazo</span>
+          <input type="text" placeholder="Quando?">
+        </label>
+        <label class="item item-input item-floating-label" href="#">
+          <span class="input-label">Responsável</span>
+          <input type="text" placeholder="Quem?">
+        </label>
+
+        <div class="list">
+          <div class="item item-divider">
+            Plano de Marketing
+          </div>
+          <label class="item item-input item-floating-label" href="#">
+            <span class="input-label">Atividade</span>
+            <input type="text" placeholder="O quê?">
+          </label>
+          <label class="item item-input item-floating-label" href="#">
+            <span class="input-label">Local</span>
+            <input type="text" placeholder="Onde?">
+          </label>
+          <label class="item item-input item-floating-label" href="#">
+            <span class="input-label">Método</span>
+            <input type="text" placeholder="Como?">
+          </label>
+          <label class="item item-input item-floating-label" href="#">
+            <span class="input-label">Prazo</span>
+            <input type="text" placeholder="Quando?">
+          </label>
+          <label class="item item-input item-floating-label" href="#">
+            <span class="input-label">Responsável</span>
+            <input type="text" placeholder="Quem?">
+          </label>
+
+          <div class="list">
+            <div class="item item-divider">
+              Plano Operacional
+            </div>
+            <label class="item item-input item-floating-label" href="#">
+              <span class="input-label">Atividade</span>
+              <input type="text" placeholder="O quê?">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+              <span class="input-label">Local</span>
+              <input type="text" placeholder="Onde?">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+              <span class="input-label">Método</span>
+              <input type="text" placeholder="Como?">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+              <span class="input-label">Prazo</span>
+              <input type="text" placeholder="Quando?">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+              <span class="input-label">Responsável</span>
+              <input type="text" placeholder="Quem?">
+            </label>
+
+            <div class="list">
+              <div class="item item-divider">
+                Plano Financeiro
+              </div>
+              <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Atividade</span>
+                <input type="text" placeholder="O quê?">
+              </label>
+              <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Local</span>
+                <input type="text" placeholder="Onde?">
+              </label>
+              <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Método</span>
+                <input type="text" placeholder="Como?">
+              </label>
+              <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Prazo</span>
+                <input type="text" placeholder="Quando?">
+              </label>
+              <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Responsável</span>
+                <input type="text" placeholder="Quem?">
+              </label>
+
+              <div class="row">
+                <div class="col col-60">
+                  <button class="button button-block button-outline button-positive" ng-click="addAnaliseDeMercado()">
+                    Confirmar
+                  </button>
+                </div>
+                <div class="col">
+                  <button class="button button-block button-outline button-assertive" ng-click="back()">
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+
     </ion-content>
   </ion-view>

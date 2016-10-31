@@ -8,8 +8,8 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .config(function($ionicConfigProvider) {
-    $ionicConfigProvider.tabs.position('bottom'); //posição das abas
-    $ionicConfigProvider.tabs.style('standard'); //permite que eu edite a cor no scss
+  $ionicConfigProvider.tabs.position('bottom'); //posição das abas
+  $ionicConfigProvider.tabs.style('standard'); //permite que eu edite a cor no scss
 })
 
 .run(function($ionicPlatform) {
@@ -37,7 +37,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -60,7 +60,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-analiseMercado': {
         templateUrl: 'menus/analiseMercado.html',
-        controller: 'DashCtrl'
+        controller: 'AnaliseDeMercadoCtrl'
+      }
+    }
+  })
+
+  .state('tab.fornecedores', {
+    url: '/analiseMercado/fornecedores',
+    views: {
+      'tab-analiseMercado': {
+        templateUrl: 'menus/subitens/fornecedores.html',
+        controller: 'AnaliseDeMercadoCtrl'
+      }
+    }
+  })
+
+  .state('tab.concorrentes', {
+    url: '/analiseMercado/concorrentes',
+    views: {
+      'tab-analiseMercado': {
+        templateUrl: 'menus/subitens/concorrentes.html',
+        controller: 'AnaliseDeMercadoCtrl'
       }
     }
   })
@@ -70,7 +90,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-sumarioExecutivo': {
         templateUrl: 'menus/sumarioExecutivo.html',
-        controller: 'DashCtrl'
+        controller: 'SumarioExecutivoCtrl'
+      }
+    }
+  })
+
+  .state('tab.socios', {
+    url: '/sumarioExecutivo/socios',
+    views: {
+      'tab-sumarioExecutivo': {
+        templateUrl: 'menus/subitens/socios.html',
+        controller: 'SumarioExecutivoCtrl'
       }
     }
   })
@@ -80,7 +110,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-planoMarketing': {
         templateUrl: 'menus/planoMarketing.html',
-        controller: 'DashCtrl'
+        controller: 'PlanoDeMarketingCtrl'
+      }
+    }
+  })
+
+  .state('tab.produtos', {
+    url: '/planoMarketing/produtos',
+    views: {
+      'tab-planoMarketing': {
+        templateUrl: 'menus/subitens/produtos.html',
+        controller: 'PlanoDeMarketingCtrl'
       }
     }
   })
@@ -90,7 +130,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-planoOperacional': {
         templateUrl: 'menus/planoOperacional.html',
-        controller: 'DashCtrl'
+        controller: 'PlanoOperacionalCtrl'
+      }
+    }
+  })
+
+  .state('tab.cargos', {
+    url: '/planoOperacional/cargos',
+    views: {
+      'tab-planoOperacional': {
+        templateUrl: 'menus/subitens/cargos.html',
+        controller: 'PlanoOperacionalCtrl'
       }
     }
   })
@@ -100,7 +150,77 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-planoFinanceiro': {
         templateUrl: 'menus/planoFinanceiro.html',
-        controller: 'DashCtrl'
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.maquina', {
+    url: '/planoFinanceiro/maquinas',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/maquinas.html',
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.movel', {
+    url: '/planoFinanceiro/moveis',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/moveis.html',
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.utensilio', {
+    url: '/planoFinanceiro/utensilios',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/utensilios.html',
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.veiculo', {
+    url: '/planoFinanceiro/veiculos',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/veiculos.html',
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.compra', {
+    url: '/planoFinanceiro/compras',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/compras.html',
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.venda', {
+    url: '/planoFinanceiro/vendas',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/vendas.html',
+        controller: 'PlanoFinanceiroCtrl'
+      }
+    }
+  })
+
+  .state('tab.equipamento', {
+    url: '/planoFinanceiro/equipamentos',
+    views: {
+      'tab-planoFinanceiro': {
+        templateUrl: 'menus/subitens/equipamentos.html',
+        controller: 'PlanoFinanceiroCtrl'
       }
     }
   })
@@ -121,33 +241,46 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-avaliacaoEstrategica': {
         templateUrl: 'menus/avaliacaoEstrategica.html',
+        controller: 'AvaliacaoEstrategicaCtrl'
+      }
+    }
+  })
+
+<<<<<<< HEAD
+  .state('tab.roteiroInformacao', {
+    url: '/roteiroInformacao',
+    views: {
+      'tab-roteiroInformacao': {
+        templateUrl: 'menus/roteiroInformacao.html',
         controller: 'DashCtrl'
       }
     }
   })
 
+=======
+>>>>>>> 404bee94a93b31a8408be9d9ae85e13ef839fe6a
 
 
 
 
   .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
+    url: '/chats',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/tab-chats.html',
+        controller: 'ChatsCtrl'
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
+    }
+  })
+  .state('tab.chat-detail', {
+    url: '/chats/:chatId',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/chat-detail.html',
+        controller: 'ChatDetailCtrl'
       }
-    })
+    }
+  })
 
   .state('tab.account', {
     url: '/account',
