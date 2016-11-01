@@ -58,4 +58,4 @@ angular.module('starter.services.analiseDeMercado', [])
   this.novoConcorrente = function(){
     return this.concorrente = new Concorrente();
   }
-});
+})
