@@ -47,4 +47,20 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+
+
+.factory('BancoDeDados', function($http, $q){
+  var deffered = $q.defer();
+  var salvar = function(caminho, objeto){
+    $http.post(caminho, objeto).success(function(dados){
+      deffered.resolve(dados);
+    });
+    return deffered.promise;
+  };
+
+  return {
+    salvar: salvar
+  };
+})
+;
