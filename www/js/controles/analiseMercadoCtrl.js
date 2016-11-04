@@ -1,6 +1,6 @@
 angular.module('starter.controllers.analiseDeMercado', ['starter.services.analiseDeMercado'])
 
-.controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, Concorrente, Fornecedor, $ionicModal, $ionicListDelegate, $ionicHistory,$ionicPopup, $timeout, $http){
+.controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, AnaliseDeMercadoID, Concorrente, Fornecedor, $ionicModal, $ionicListDelegate, $ionicHistory,$ionicPopup, $timeout, $http){
   $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
   $scope.editar  = AnaliseDeMercado.editar;
 
@@ -113,41 +113,39 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
     $scope.analiseDeMercado.fornecedores.splice(toIndex, 0, item);
   };
 
+  salvarFornecedorID = function(fornecedor){
+    var json = angular.toJson(fornecedor);
+    return $http.post('https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', json);
+  }
+
+
+
   $scope.salvar = function(){
     var json;
-    var indice;
+    var indice
+    var analiseDeMercadoID = AnaliseDeMercadoID.novaAnaliseDeMercadoID();
     for(indice = 0; indice < $scope.analiseDeMercado.fornecedores.length; indice++){
-      json = angular.toJson($scope.analiseDeMercado.fornecedores[indice]);
-      $http.post('https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', json).success(function(dados){
-        $scope.analiseDeMercado.fornecedores[indice] = dados;
+       salvarFornecedorID($scope.analiseDeMercado.fornecedores[indice]).success(function(dados){
+        analiseDeMercadoID.idsFornecedores[indice] = dados._id;
       });
+      console.log(analiseDeMercadoID.idsFornecedores[indice]);
     }
 
     for(indice = 0; indice < $scope.analiseDeMercado.concorrentes.length; indice++){
       json = angular.toJson($scope.analiseDeMercado.concorrentes[indice]);
-      $http.post('https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', json).success(function(dados){
-        $scope.analiseDeMercado.concorrentes[indice] = dados;
+      $http.post('https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', json).then(function(response){
+        analiseDeMercadoID.idsConcorrentes[indice] = response.data._id;
       });
     }
 
     json = angular.toJson($scope.analiseDeMercado.cliente);
-    $http.post('https://api.mlab.com/api/1/databases/agroplan/collections/cliente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', json).success(function(dados){
-      $scope.analiseDeMercado.cliente = dados;
+    $http.post('https://api.mlab.com/api/1/databases/agroplan/collections/cliente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', json).then(function(response){
+      analiseDeMercadoID.idCliente = response.data._id;
     });
 
-    var analiseDeMercado = $scope.analiseDeMercado;
-    for(indice = 0; indice < $scope.analiseDeMercado.fornecedores.length; indice++){
-      analiseDeMercado.fornecedores[indice] = $scope.analiseDeMercado.fornecedores[indice]._id;
-    }
-    for(indice = 0; indice < $scope.analiseDeMercado.concorrentes.length; indice++){
-      analiseDeMercado.concorrentes[indice] = $scope.analiseDeMercado.concorrentes[indice]._id;
-    }
-
-    analiseDeMercado.cliente = $scope.analiseDeMercado.cliente._id;
-    json = angular.toJson(analiseDeMercado);
+    console.log(analiseDeMercadoID.idsFornecedores[0]);
+    json = angular.toJson(analiseDeMercadoID);
     localStorage.setItem("analiseDeMercado", json);
-    $http.post('https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', json).success(function(dados){
-      $scope.analiseDeMercado = dados;
-    });
+    $http.post('https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', json);
   }
 });

@@ -26,6 +26,10 @@ angular.module('starter.services.analiseDeMercado', [])
   this.setAnaliseDeMercado = function(analiseDeMercado){
     this.analiseDeMercado = analiseDeMercado;
   }
+
+  this.novaAnaliseDeMercado = function(){
+    return new AnaliseDeMercado();
+  }
 })
 
 .service('Fornecedor', function(){
@@ -57,5 +61,11 @@ angular.module('starter.services.analiseDeMercado', [])
 
   this.novoConcorrente = function(){
     return this.concorrente = new Concorrente();
+  }
+})
+
+.service('AnaliseDeMercadoID', function(){
+  this.novaAnaliseDeMercadoID = function(){
+    return new AnaliseDeMercadoID();
   }
 })

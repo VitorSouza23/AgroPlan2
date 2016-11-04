@@ -1,7 +1,7 @@
 function AnaliseDeMercado(){
   this.cliente = new Cliente();
-  this.concorrentes = new Array;
-  this.fornecedores = new Array;
+  this.concorrentes = [];
+  this.fornecedores = [];
 
   this.addConcorrente = function(concorrente){
     this.concorrentes.push(concorrente);
@@ -61,4 +61,10 @@ function Fornecedor(){
   this.prazoDeEntrega;
   this.localizacao;
   this.item;
+}
+
+function AnaliseDeMercadoID(){
+  this.idCliente;
+  this.idsFornecedores = [];
+  this.idsConcorrentes = [];
 }
