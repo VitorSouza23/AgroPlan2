@@ -4,7 +4,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
   $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
   $scope.editar  = AnaliseDeMercado.editar;
   $scope.bancoDeDados = BancoDeDados;
-  $scope.analiseDeMercadoID = AnaliseDeMercadoID.novaAnaliseDeMercadoID();
+  $scope.analiseDeMercadoID = AnaliseDeMercadoID;
   $scope._id;
   $scope.addConcorrente = function(){
     if(!$scope.editar){
@@ -115,50 +115,56 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
     };
 
     $scope.salvar = function(){
-
       var caminho;
       var objeto;
 
-      for(indice = 0; indice < $scope.analiseDeMercado.fornecedores.length; indice++){
+      salvarFornecedores();
+      salvarConcorrentes();
+      salvarCliente();
+
+      setTimeout(function () {
+        console.log($scope.analiseDeMercadoID.idsFornecedores);
+        console.log($scope.analiseDeMercadoID.idsConcorrentes);
+        console.log($scope.analiseDeMercadoID.idCliente);
+        json = angular.toJson($scope.analiseDeMercadoID);
+        localStorage.setItem("analiseDeMercado", json);
+        caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+        objeto = $scope.analiseDeMercadoID;
+        $scope.bancoDeDados.salvar(caminho, objeto);
+      }, 10000);
+
+    }
+
+    function salvarFornecedores(){
+      $scope.analiseDeMercado.fornecedores.forEach(function(fornecedor){
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-        objeto = $scope.analiseDeMercado.fornecedores[indice];
-        $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-          $scope._id = dados._id;
-          $scope.salvarIdFornecedor(indice);
-          console.log(dados);
-
+        objeto = fornecedor;
+        $scope.bancoDeDados.salvar(caminho, objeto).then(function(response){
+          $scope.analiseDeMercadoID.idsFornecedores.push(response.data._id);
+          console.log(response);
         });
-        console.log($scope.analiseDeMercadoID.idsFornecedores[indice]);
-      }
+      });
+    }
 
-
-
-      for(indice = 0; indice < $scope.analiseDeMercado.concorrentes.length; indice++){
+    function salvarConcorrentes(){
+      $scope.analiseDeMercado.concorrentes.forEach(function(concorrente){
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-        objeto = $scope.analiseDeMercado.concorrentes[indice];
-        /*$scope.bancoDeDados.salvar(caminho, objeto).success(function(dados){
-          $scope.analiseDeMercadoID.idsConcorrentes[indice] = dados._id;
-        });*/
-      }
+        objeto = concorrente;
+         $scope.bancoDeDados.salvar(caminho, objeto).then(function(response){
+          $scope.analiseDeMercadoID.idsConcorrentes.push(response.data._id);
+          console.log(response);
+        });
+      });
+    }
 
-      json = angular.toJson();
+    function salvarCliente(){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cliente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
       objeto = $scope.analiseDeMercado.cliente;
-      /*$scope.bancoDeDados.salvar(caminho, objeto).success(function(dados){
-        $scope.analiseDeMercadoID.idCliente = dados._id;
-      });*/
+      $scope.bancoDeDados.salvar(caminho, objeto).then(function(response){
+        $scope.analiseDeMercadoID.idCliente = response.data._id;
+        console.log(response);
 
-      console.log($scope.analiseDeMercadoID.idsFornecedores[0]);
-      json = angular.toJson(this.analiseDeMercadoID);
-      localStorage.setItem("analiseDeMercado", json);
-      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      objeto = $scope.analiseDeMercadoID;
-      $scope.bancoDeDados.salvar(caminho, objeto);
+      });
     }
 
-    $scope.salvarIdFornecedor = function(indice){
-      console.log($scope._id);
-      $scope.analiseDeMercadoID.idsFornecedores[indice] = $scope._id;
-      console.log($scope.analiseDeMercadoID.idsFornecedores[indice]);
-    }
   });

@@ -62,9 +62,3 @@ function Fornecedor(){
   this.localizacao;
   this.item;
 }
-
-function AnaliseDeMercadoID(){
-  this.idCliente;
-  this.idsFornecedores = [];
-  this.idsConcorrentes = [];
-}

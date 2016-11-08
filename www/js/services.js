@@ -53,14 +53,19 @@ angular.module('starter.services', [])
 .factory('BancoDeDados', function($http, $q){
   var deffered = $q.defer();
   var salvar = function(caminho, objeto){
-    $http.post(caminho, objeto).success(function(dados){
+    $http.post(caminho, objeto)
+    .then(function(dados){
       deffered.resolve(dados);
+    }
+    ,function(dados){
+      deffered.reject(dados + "erro!");
     });
+
     return deffered.promise;
   };
+  return{
+    salvar:salvar
+  }
 
-  return {
-    salvar: salvar
-  };
 })
 ;

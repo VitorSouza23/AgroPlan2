@@ -64,8 +64,13 @@ angular.module('starter.services.analiseDeMercado', [])
   }
 })
 
-.service('AnaliseDeMercadoID', function(){
-  this.novaAnaliseDeMercadoID = function(){
-    return new AnaliseDeMercadoID();
+.factory('AnaliseDeMercadoID', function(){
+  var idCliente;
+  var idsFornecedores = [];
+  var idsConcorrentes = [];
+  return{
+    idCliente : idCliente,
+    idsFornecedores : idsFornecedores,
+    idsConcorrentes : idsConcorrentes
   }
 })
