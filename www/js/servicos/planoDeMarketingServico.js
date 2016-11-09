@@ -43,3 +43,10 @@ angular.module('starter.services.planoDeMarketing', [])
     return this.produto = new Produto();
   }
 })
+
+.factory('PlanoDeMarketingID', function(){
+  var idsPordutos = [];
+  return{
+    idsProdutos:idsProdutos
+  }
+})

@@ -5,7 +5,7 @@ function PlanoOperacional(){
   this.capacidadeComercialInicial;
   this.capacidadeProdutivaInicial;
   this.processosOperacionais;
-  this.cargos = new Array();
+  this.cargos = [];
 
   this.addCargo = function(cargo){
     this.cargos.push(cargo);

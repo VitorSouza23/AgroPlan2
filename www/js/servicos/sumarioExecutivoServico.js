@@ -54,4 +54,11 @@ angular.module('starter.services.sumarioExecutivo', [])
     return this.socio = new Socio();
   }
 
+})
+
+.factory('SumarioExecutivoID', function(){
+  var idsSocios = [];
+  return{
+    idsSocios:idsSocios
+  }
 });

@@ -43,3 +43,10 @@ angular.module('starter.services.planoOperacional', [])
     return this.cargo = new Cargo();
   }
 })
+
+.factory('PlanoOperacionalID', function(){
+  var idsCargos = [];
+  return{
+    idsCargos:idsCargos
+  }
+})

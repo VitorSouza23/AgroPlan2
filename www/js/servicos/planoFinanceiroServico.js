@@ -139,4 +139,26 @@ angular.module('starter.services.planoFinanceiro', [])
   this.novaVenda = function(){
     return this.venda = new Venda();
   }
-});
+})
+
+.factory('PlanoFinanceiroID',function(){
+  var idsEquipamentos = [];
+  var idsMaquinas = [];
+  var idsMoveis = [];
+  var idsUtensilios = [];
+  var idsVeiculos = [];
+
+  var idsCompras = [];
+  var idsVendas = [];
+
+  return{
+    idsEquipamentos:idsEquipamentos,
+    idsMaquinas:idsMaquinas,
+    idsMoveis:idsMoveis,
+    idsUtensilios:idsUtensilios,
+    idsVeiculos:idsVeiculos,
+    idsCompras:idsCompras,
+    idsVendas:idsVendas
+  }
+})
+;

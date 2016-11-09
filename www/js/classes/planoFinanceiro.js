@@ -1,7 +1,7 @@
 function PlanoFinanceiro(){
   this.estoqueInicial = new EstoqueInicial();
-  this.vendas = new Array();
-  this.compras = new Array();
+  this.vendas = [];
+  this.compras = [];
 
   this.addVenda = function(venda){
     this.vendas.push(venda);

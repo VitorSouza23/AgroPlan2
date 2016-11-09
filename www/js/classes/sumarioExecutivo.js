@@ -1,6 +1,6 @@
 function SumarioExecutivo(){
   this.principaisPontos;
-  this.socios = new Array();
+  this.socios = [];
   this.dadosDoemprendimento = new DadosDoEmprendimento();
   this.missaoDaEmpresa;
   this.fomaJuridica;
