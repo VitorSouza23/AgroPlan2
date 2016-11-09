@@ -63,8 +63,22 @@ angular.module('starter.services', [])
 
     return deffered.promise;
   };
+
+  var salvarArray = function(caminho, array){
+    var promessas = [];
+    var promessa;
+
+    array.forEach(function(objeto){
+      promessa = $http.post(caminho, objeto);
+        promessas.push(promessa);
+      });
+
+    return $q.all(promessas);
+    };
+  
   return{
-    salvar:salvar
+    salvar:salvar,
+    salvarArray:salvarArray
   }
 
 })
