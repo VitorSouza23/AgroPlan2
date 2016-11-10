@@ -1,6 +1,6 @@
 function PlanoDeMarketing(){
   this.produtos = [];
-  this.estraTegiasPromocionais;
+  this.estrategiasPromocionais;
   this.estruturaDeComercializacao;
   this.localizacaoDoNegocio = new LocalizacaoDoNegocio();
 

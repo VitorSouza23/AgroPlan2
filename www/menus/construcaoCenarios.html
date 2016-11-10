@@ -61,7 +61,7 @@
         </label>
         <label class="item item-input" href="#">
           <span class="input-label">Imposto Sobre Venda:</span>
-          <input type="text"ng-model="construcaoDeCenario.provavel.impostoSobreVenda">
+          <input type="text"ng-model="construcaoDeCenario.pessimista.impostoSobreVenda">
         </label>
         <label class="item item-input" href="#">
           <span class="input-label">Gastos com Vendas:</span>
@@ -125,7 +125,7 @@
         <!--Botões Confirmar e Cancelar-->
       <div class="row">
         <div class="col col-60">
-          <button class="button button-block button-outline button-positive" ng-click="addConstrucaoDeCenarios()">
+          <button class="button button-block button-outline button-positive" ng-click="salvar()">
             Confirmar
           </button>
         </div>

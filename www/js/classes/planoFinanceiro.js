@@ -87,11 +87,11 @@ function Veiculo(){
 }
 
 function EstoqueInicial(){
-  this.equipamentos = new Array();
-  this.maquinas = new Array();
-  this.moveis = new Array();
-  this.utensilios = new Array();
-  this.veiculos = new Array();
+  this.equipamentos = [];
+  this.maquinas = [];
+  this.moveis = [];
+  this.utensilios = [];
+  this.veiculos = [];
 
 
   this.addEquipamento = function(equipamento){

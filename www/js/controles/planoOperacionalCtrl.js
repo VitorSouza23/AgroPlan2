@@ -1,9 +1,10 @@
-angular.module('starter.controllers.planoOperacional', ['starter.services.planoOperacional', 'starter.services', 'ionic'])
+angular.module('starter.controllers.planoOperacional', ['starter.services.planoOperacional', 'starter.services', 'ionic', 'starter.services.bancoDeDados'])
 
-.controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup, $ionicPopup, $timeout){
+.controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoOperacionalID){
   $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
   $scope.editar = PlanoOperacional.editar;
-  $scope.imagem;
+  $scope.planoOperacionalID = PlanoOperacionalID;
+  $scope.bancoDeDados = BancoDeDados;
 
   $scope.showConfirm = function() {
     var confirmPopup = $ionicPopup.confirm({
@@ -57,9 +58,9 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
   function sucessoAoPegarFoto(imageData){
     if(tipoDestinoCaminhoFoto == 1 || tipoDestinoCaminhoFoto == 2){
-      $scope.imagem = imageData;
+      $scope.planoOperacional.layout = imageData;
     }else {
-      $scope.imagem = "data:image/jpeg;base64," + imageData;
+      $scope.planoOperacional.layout = "data:image/jpeg;base64," + imageData;
     }
 
   }
@@ -120,6 +121,65 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     $scope.planoOperacional.cargos.splice(fromIndex, 1);
     $scope.planoOperacional.cargos.splice(toIndex, 0, item);
   };
+
+  $scope.salvar = function(){
+    var caminho;
+    var objeto;
+
+    salvarCargos();
+    salvarImagem();
+    $scope.planoOperacionalID.capacidadeComercial = $scope.planoOperacional.capacidadeComercial;
+    $scope.planoOperacionalID.capacidadeProdutiva =  $scope.planoOperacional.capacidadeProdutiva;
+    $scope.planoOperacionalID.capacidadeComercialInicial = $scope.planoOperacional.capacidadeComercialInicial;
+    $scope.planoOperacionalID.capacidadeProdutivaInicial =  $scope.planoOperacional.capacidadeProdutivaInicial;
+    $scope.planoOperacionalID.processosOperacionais =  $scope.planoOperacional.processosOperacionais;
+
+    $ionicLoading.show({
+      template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+      duration: 10000
+    }).then(function(){
+      setTimeout(function(){
+        console.log($scope.planoOperacionalID.idsCargos);
+        console.log($scope.planoOperacionalID.idImagem);
+        console.log($scope.planoOperacionalID.capacidadeProdutiva);
+        json = angular.toJson($scope.PlanoOperacionalID);
+        localStorage.setItem("analiseDeMercado", json);
+        caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoOperacional?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+        objeto = $scope.planoOperacionalID;
+        $scope.bancoDeDados.salvar(caminho, objeto);
+      }, 10000);
+    });
+
+    $scope.hide = function(){
+      $ionicLoading.hide().then(function(){
+        console.log("The loading indicator is now hidden");
+      });
+
+    };
+  };
+
+  function salvarCargos(){
+    caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cargos?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+    $scope.bancoDeDados.salvarArray(caminho, $scope.planoOperacional.cargos).then(function (dados){
+      dados.forEach(function(dado){
+        $scope.planoOperacionalID.idsCargos.push(dado.data._id);
+        console.log(dado);
+      });
+    });
+
+  }
+
+
+  function salvarImagem(){
+    caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/imagem?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+    objeto = $scope.planoOperacional.layout;
+    json = JSON.stringify($scope.planoOperacional.layout);
+    $scope.bancoDeDados.salvar(caminho, json).then(function(response){
+      $scope.planoOperacionalID.idImagem = response.data._id;
+      console.log(response);
+
+    });
+  }
 
 
 })

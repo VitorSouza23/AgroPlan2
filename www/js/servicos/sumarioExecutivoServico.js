@@ -57,8 +57,20 @@ angular.module('starter.services.sumarioExecutivo', [])
 })
 
 .factory('SumarioExecutivoID', function(){
+  var principaisPontos;
+  var dadosDoemprendimento;
+  var missaoDaEmpresa;
+  var fomaJuridica;
+  var optantePeloSimples;
+  var fontesDeRecursos;
   var idsSocios = [];
   return{
+    principaisPontos:principaisPontos,
+    dadosDoemprendimento:dadosDoemprendimento,
+    missaoDaEmpresa:missaoDaEmpresa,
+    fomaJuridica:fomaJuridica,
+    optantePeloSimples:optantePeloSimples,
+    fontesDeRecursos:fontesDeRecursos,
     idsSocios:idsSocios
   }
 });

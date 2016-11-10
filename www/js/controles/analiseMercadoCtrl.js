@@ -1,6 +1,6 @@
-angular.module('starter.controllers.analiseDeMercado', ['starter.services.analiseDeMercado', 'starter.services'])
+angular.module('starter.controllers.analiseDeMercado', ['starter.services.analiseDeMercado', 'starter.services.bancoDeDados'])
 
-.controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, AnaliseDeMercadoID, BancoDeDados, Concorrente, Fornecedor, $ionicModal, $ionicListDelegate, $ionicHistory,$ionicPopup, $timeout, $http){
+.controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, AnaliseDeMercadoID, Concorrente, Fornecedor, $ionicModal, $ionicListDelegate, $ionicHistory,$ionicPopup, $timeout, BancoDeDados,$ionicLoading){
   $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
   $scope.editar  = AnaliseDeMercado.editar;
   $scope.bancoDeDados = BancoDeDados;
@@ -122,18 +122,30 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       salvarConcorrentes();
       salvarCliente();
 
-      setTimeout(function () {
-        console.log($scope.analiseDeMercadoID.idsFornecedores);
-        console.log($scope.analiseDeMercadoID.idsConcorrentes);
-        console.log($scope.analiseDeMercadoID.idCliente);
-        json = angular.toJson($scope.analiseDeMercadoID);
-        localStorage.setItem("analiseDeMercado", json);
-        caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-        objeto = $scope.analiseDeMercadoID;
-        $scope.bancoDeDados.salvar(caminho, objeto);
-      }, 10000);
+      $ionicLoading.show({
+        template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        duration: 10000
+      }).then(function(){
+        setTimeout(function(){
+          console.log("The loading indicator is now displayed");
+          console.log($scope.analiseDeMercadoID.idsFornecedores);
+          console.log($scope.analiseDeMercadoID.idsConcorrentes);
+          console.log($scope.analiseDeMercadoID.idCliente);
+          json = angular.toJson($scope.analiseDeMercadoID);
+          localStorage.setItem("analiseDeMercado", json);
+          caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+          objeto = $scope.analiseDeMercadoID;
+          $scope.bancoDeDados.salvar(caminho, objeto);
+        }, 10000);
+      });
 
-    }
+      $scope.hide = function(){
+        $ionicLoading.hide().then(function(){
+          console.log("The loading indicator is now hidden");
+        });
+
+      };
+    };
 
     function salvarFornecedores(){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';

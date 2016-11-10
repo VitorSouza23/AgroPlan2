@@ -45,8 +45,20 @@ angular.module('starter.services.planoOperacional', [])
 })
 
 .factory('PlanoOperacionalID', function(){
+  var capacidadeProdutiva;
+  var capacidadeComercial;
+  var capacidadeProdutivaInicial;
+  var capacidadeComercialInicial;
+  var processosOperacionais;
   var idsCargos = [];
+  var idImagem;
   return{
-    idsCargos:idsCargos
+    capacidadeProdutiva:capacidadeProdutiva,
+    capacidadeComercial:capacidadeComercial,
+    capacidadeComercialInicial:capacidadeComercialInicial,
+    capacidadeProdutivaInicial:capacidadeProdutivaInicial,
+    processosOperacionais:processosOperacionais,
+    idsCargos:idsCargos,
+    idImagem:idImagem
   }
 })
