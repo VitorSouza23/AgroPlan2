@@ -1,4 +1,4 @@
-angular.module('starter.controllers.construcaoDeCenario', ['starter.services.construcaoDeCenario','starter.services.bancoDeDados'])
+angular.module('starter.controllers.construcaoDeCenario', ['starter.services.construcaoDeCenario','starter.services.utilitarios'])
 
 .controller('CosntrucaoDeCenarioCtrl', function($scope, ConstrucaoDeCenario, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading){
   $scope.construcaoDeCenario = ConstrucaoDeCenario.getConstrucaoDeCenario();

@@ -1,4 +1,4 @@
-angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.avaliacaoEstrategica', 'starter.services.bancoDeDados'])
+angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.avaliacaoEstrategica', 'starter.services.utilitarios'])
 
 .controller('AvaliacaoEstrategicaCtrl', function($scope, AvaliacaoEstrategica, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading){
   $scope.avaliacaoEstrategica = AvaliacaoEstrategica.getAvaliacaoEstrategica();

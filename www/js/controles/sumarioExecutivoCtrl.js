@@ -1,12 +1,16 @@
-angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumarioExecutivo', "starter.services.bancoDeDados"])
+angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumarioExecutivo', "starter.services.utilitarios"])
 
-.controller('SumarioExecutivoCtrl', function($scope, SumarioExecutivo, Socio, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, SumarioExecutivoID){
+.controller('SumarioExecutivoCtrl', function($scope, SumarioExecutivo, Socio, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, SumarioExecutivoID, Modal){
   $scope.sumarioExecutivo = SumarioExecutivo.getSumarioExecutivo();
   $scope.cnpjOuCpf = SumarioExecutivo.getCnpjOuCpf();
   $scope.escolherCnpjOuCpf = SumarioExecutivo.escolherCnpjOuCpf();
   $scope.editar = SumarioExecutivo.editar;
   $scope.bancoDeDados = BancoDeDados;
   $scope.sumarioExecutivoID = SumarioExecutivoID;
+  Modal.init('menus/subitens/socios.html', $scope).then(function(modal){
+    $scope.modalSocio = modal;
+  });
+
   $scope.showConfirm = function() {
   var confirmPopup = $ionicPopup.confirm({
     title: 'Sumário Executivo',
@@ -25,7 +29,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
       $scope.sumarioExecutivo.editarSocio($scope.socio);
       $scope.editar = false;
     }
-    $scope.closeSocios();
+    $scope.modalSocio.hide();
   };
 
   $scope.botaoRemoverSocio = function(socio){
@@ -39,18 +43,8 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
 
   };
 
-  $ionicModal.fromTemplateUrl('menus/subitens/socios.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  $scope.closeSocios = function() {
-    $scope.modal.hide();
-  };
-
   $scope.openSocios = function() {
-    $scope.modal.show();
+    $scope.modalSocio.show();
     if(!$scope.editar){
       $scope.socio = Socio.novoSocio();
     }

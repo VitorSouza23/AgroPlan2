@@ -1,7 +1,7 @@
 <ion-view view-title="Análise de Mercado">
   <ion-content>
     <!--Estudo do Cliente-->
-    <div class="list">
+    <div class="list" ng-init="recuperarDados()">
       <div class="col col-100">
         <button class="button button-block button-outline button-positive" ng-click="showConfirm()">
           O que é?
@@ -27,7 +27,7 @@
         </div>
         <div class="button-bar">
           <div class="col col-80">
-            <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openConcorrentes()">Concorrentes</button>
+            <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="abrirModalConcorrente()">Concorrentes</button>
           </div>
           <div class="col col-20">
             <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordemConcorrente()"></button>

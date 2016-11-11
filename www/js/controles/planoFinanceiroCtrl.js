@@ -1,10 +1,33 @@
-angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFinanceiro', 'starter.services.planoFinanceiro'])
+angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFinanceiro', 'starter.services.utilitarios'])
 
-.controller('PlanoFinanceiroCtrl', function($scope, PlanoFinanceiro, Equipamento, Utensilio, Movel, Maquina, Veiculo, Compra, Venda, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoFinanceiroID){
+.controller('PlanoFinanceiroCtrl', function($scope, PlanoFinanceiro, Equipamento, Utensilio, Movel, Maquina, Veiculo, Compra, Venda, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoFinanceiroID, Modal){
   $scope.planoFinanceiro = PlanoFinanceiro.getPlanoFinanceiro();
   $scope.editar = PlanoFinanceiro.getEditar();
   $scope.bancoDeDados = BancoDeDados;
   $scope.planoFinanceiroID = PlanoFinanceiroID;
+
+  Modal.init('menus/subitens/equipamentos.html', $scope).then(function(modal){
+    $scope.modalEquipamento = modal;
+  });
+  Modal.init('menus/subitens/maquinas.html', $scope).then(function(modal){
+    $scope.modalMaquina = modal;
+  });
+  Modal.init('menus/subitens/moveis.html', $scope).then(function(modal){
+    $scope.modalMovel = modal;
+  });
+  Modal.init('menus/subitens/utensilios.html', $scope).then(function(modal){
+    $scope.modalUtensilio = modal;
+  });
+  Modal.init('menus/subitens/veiculos.html', $scope).then(function(modal){
+    $scope.modalVeiculo = modal;
+  });
+  Modal.init('menus/subitens/vendas.html', $scope).then(function(modal){
+    $scope.modalVenda = modal;
+  });
+  Modal.init('menus/subitens/compras.html', $scope).then(function(modal){
+    $scope.modalCompra = modal;
+  });
+
   $scope.showConfirm = function() {
     var confirmPopup = $ionicPopup.confirm({
       title: 'Plano Financeiro',
@@ -22,7 +45,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
-      $scope.closeEquipamentos();
+      $scope.modalEquipamento.hide();
     };
 
     $scope.botaoRemoverEquipamento= function(equipamento){
@@ -35,19 +58,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.openEquipamentos();
     };
 
-    $ionicModal.fromTemplateUrl('menus/subitens/equipamentos.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modale = modal;
-    });
-
-    $scope.closeEquipamentos = function() {
-      $scope.modale.hide();
-      $scope.equipamento = null;
-    };
-
     $scope.openEquipamentos = function() {
-      $scope.modale.show();
+      $scope.modalEquipamento.show();
       if(!$scope.editar){
         $scope.equipamento = Equipamento.novoEquipamento();
       }
@@ -76,7 +88,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
-      $scope.closeMaquinas();
+      $scope.modalMaquina.hide();
     };
 
     $scope.botaoRemoverMaquina= function(maquina){
@@ -89,19 +101,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.openMaquinas();
     };
 
-    $ionicModal.fromTemplateUrl('menus/subitens/maquinas.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modalma = modal;
-    });
-
-    $scope.closeMaquinas = function() {
-      $scope.modalma.hide();
-      $scope.maquina = null;
-    };
-
     $scope.openMaquinas = function() {
-      $scope.modalma.show();
+      $scope.modalMaquina.show();
       if(!$scope.editar){
         $scope.maquina = Maquina.novaMaquina();
       }
@@ -127,7 +128,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
-      $scope.closeMoveis();
+      $scope.modalMovel.hide();
     };
 
     $scope.botaoRemoverMovel= function(movel){
@@ -140,19 +141,10 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.openMoveis();
     };
 
-    $ionicModal.fromTemplateUrl('menus/subitens/moveis.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modalmo = modal;
-    });
 
-    $scope.closeMoveis = function() {
-      $scope.modalmo.hide();
-      $scope.movel = null;
-    };
 
     $scope.openMoveis = function() {
-      $scope.modalmo.show();
+      $scope.modalMovel.show();
       if(!$scope.editar){
         $scope.movel = Movel.novoMovel();
       }
@@ -177,7 +169,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
-      $scope.closeUtensilios();
+      $scope.modalUtensilio.hide();
     };
 
     $scope.botaoRemoverUtensilio = function(utensilio){
@@ -190,19 +182,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.openUtensilios();
     };
 
-    $ionicModal.fromTemplateUrl('menus/subitens/utensilios.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modalu = modal;
-    });
-
-    $scope.closeUtensilios = function() {
-      $scope.modalu.hide();
-      $scope.utensilio = null;
-    };
-
     $scope.openUtensilios = function() {
-      $scope.modalu.show();
+      $scope.modalUtensilio.show();
       if(!$scope.editar){
         $scope.utensilio = Utensilio.novoUtensilio();
       }
@@ -227,7 +208,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
-      $scope.closeVeiculos();
+      $scope.modalVeiculo.hide();
     };
 
     $scope.botaoRemoverVeiculo = function(veiculo){
@@ -240,19 +221,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.openVeiculos();
     };
 
-    $ionicModal.fromTemplateUrl('menus/subitens/veiculos.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modalv = modal;
-    });
-
-    $scope.closeVeiculos = function() {
-      $scope.modalv.hide();
-      $scope.veiculo = null;
-    };
-
     $scope.openVeiculos = function() {
-      $scope.modalv.show();
+      $scope.modalVeiculo.show();
       if(!$scope.editar){
         $scope.veiculo = Veiculo.novoVeiculo();
       }
@@ -277,7 +247,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
-      $scope.closeVendas();
+      $scope.modalVenda.hide();
     };
 
     $scope.botaoRemoverVenda = function(venda){
@@ -290,19 +260,9 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.openVendas();
     };
 
-    $ionicModal.fromTemplateUrl('menus/subitens/vendas.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modalven = modal;
-    });
-
-    $scope.closeVendas = function() {
-      $scope.modalven.hide();
-      $scope.venda = null;
-    };
 
     $scope.openVendas = function() {
-      $scope.modalven.show();
+      $scope.modalVenda.show();
       if(!$scope.editar){
         $scope.venda = Venda.novaVenda();
       }
@@ -327,7 +287,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
-      $scope.closeCompras();
+      $scope.modalCompra.hide();
     };
 
     $scope.botaoRemoverCompra = function(compra){
@@ -340,19 +300,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.openCompras();
     };
 
-    $ionicModal.fromTemplateUrl('menus/subitens/compras.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modalcom = modal;
-    });
-
-    $scope.closeCompras = function() {
-      $scope.modalcom.hide();
-      $scope.venda = null;
-    };
-
     $scope.openCompras = function() {
-      $scope.modalcom.show();
+      $scope.modalCompra.show();
       if(!$scope.editar){
         $scope.compra =
         Compra.novaCompra();

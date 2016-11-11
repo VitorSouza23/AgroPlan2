@@ -1,4 +1,4 @@
-angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avaliacaoDoPlano', 'starter.services.bancoDeDados'])
+angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avaliacaoDoPlano', 'starter.services.utilitarios'])
 .controller('AvaliacaoDoPlanoCtrl', function($scope, AvaliacaoDoPlano, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading){
   $scope.avaliacaoDoPlano = AvaliacaoDoPlano.getAvaliacaoDoPlano();
   $scope.bancoDeDados = BancoDeDados;

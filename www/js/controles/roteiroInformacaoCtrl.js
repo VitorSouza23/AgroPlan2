@@ -1,4 +1,4 @@
-angular.module('starter.controllers.roteiroParaColeta', ['starter.services.roteiroParaColeta'])
+angular.module('starter.controllers.roteiroParaColeta', ['starter.services.roteiroParaColeta', 'starter.services.utilitarios'])
 .controller('RoteiroParaColetaCtrl', function($scope, RoteiroParaColeta, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading){
   $scope.roteiroParaColeta = RoteiroParaColeta.getRoteiroParaColeta();
   $scope.bancoDeDados = BancoDeDados;

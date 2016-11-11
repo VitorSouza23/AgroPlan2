@@ -2,7 +2,7 @@
   <ion-header-bar class="bar-balanced">
     <h1 class="title">Venda</h1>
     <div class="buttons">
-      <button class="button button-clear" ng-click="closeVendas()">Fechar</button>
+      <button class="button button-clear" ng-click="modalVenda.hide()">Fechar</button>
     </div>
   </ion-header-bar>
   <ion-content>
@@ -22,7 +22,7 @@
           </button>
         </div>
         <div class="col">
-          <button class="button button-block icon-rigth ion-close button-assertive" ng-click="closeVendas()">
+          <button class="button button-block icon-rigth ion-close button-assertive" ng-click="modalVenda.hide()">
             Cancelar
           </button>
         </div>

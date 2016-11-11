@@ -1,11 +1,19 @@
-angular.module('starter.controllers.analiseDeMercado', ['starter.services.analiseDeMercado', 'starter.services.bancoDeDados'])
+angular.module('starter.controllers.analiseDeMercado', ['starter.services.analiseDeMercado', 'starter.services.utilitarios'])
 
-.controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, AnaliseDeMercadoID, Concorrente, Fornecedor, $ionicModal, $ionicListDelegate, $ionicHistory,$ionicPopup, $timeout, BancoDeDados,$ionicLoading){
+.controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, AnaliseDeMercadoID, Concorrente, Fornecedor, $ionicListDelegate, $ionicHistory,$ionicPopup, $timeout, BancoDeDados,$ionicLoading, Modal){
   $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
   $scope.editar  = AnaliseDeMercado.editar;
   $scope.bancoDeDados = BancoDeDados;
   $scope.analiseDeMercadoID = AnaliseDeMercadoID;
-  $scope._id;
+
+  Modal.init('menus/subitens/concorrentes.html', $scope).then(function(modal){
+    $scope.modalConcorrente = modal;
+  });
+
+  Modal.init('menus/subitens/fornecedores.html', $scope).then(function(modal){
+    $scope.modalFornecedor = modal;
+  });
+
   $scope.addConcorrente = function(){
     if(!$scope.editar){
       $scope.analiseDeMercado.addConcorrente($scope.concorrente);
@@ -14,7 +22,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       $scope.editar = false;
       $ionicListDelegate.closeOptionButtons();
     }
-    $scope.closeConcorrentes();
+    $scope.modalConcorrente.hide();
   }
 
   $scope.showConfirm = function() {
@@ -35,22 +43,11 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       $scope.openConcorrentes();
     };
 
-    $ionicModal.fromTemplateUrl('menus/subitens/concorrentes.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });
-
-    $scope.closeConcorrentes = function() {
-      $scope.modal.hide();
-    };
-
     $scope.openConcorrentes = function() {
-      $scope.modal.show();
+      $scope.modalConcorrente.show();
       if(!$scope.editar){
         $scope.concorrente = Concorrente.novoConcorrente();
       }
-
     };
 
     $scope.addFornecedor = function(){
@@ -61,7 +58,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
-      $scope.closeFornecedores();
+      $scope.modalFornecedor.hide();
     }
 
     $scope.botaoRemoverFornecedor = function(fornecedor){
@@ -74,18 +71,9 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       $scope.openFornecedores();
     };
 
-    $ionicModal.fromTemplateUrl('menus/subitens/fornecedores.html', {
-      scope: $scope
-    }).then(function(modale) {
-      $scope.modale = modale;
-    });
-
-    $scope.closeFornecedores = function() {
-      $scope.modale.hide();
-    };
 
     $scope.openFornecedores = function() {
-      $scope.modale.show();
+      $scope.modalFornecedor.show();
       if(!$scope.editar){
         $scope.fornecedor = Fornecedor.novoFornecedor();
       }
@@ -149,25 +137,41 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
 
     function salvarFornecedores(){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      $scope.bancoDeDados.salvarArray(caminho, $scope.analiseDeMercado.fornecedores).then(function (dados){
+      auxListaFornecedor = [];
+      $scope.analiseDeMercado.fornecedores.forEach(function(fornecedor){
+        if(fornecedor._id == null){
+          auxListaFornecedor.push(fornecedor);
+        }else{
+          $scope.analiseDeMercadoID.idsFornecedores.push(fornecedor._id);
+        }
+      });
+      $scope.bancoDeDados.salvarArray(caminho, auxListaFornecedor).then(function (dados){
         dados.forEach(function(dado){
           $scope.analiseDeMercadoID.idsFornecedores.push(dado.data._id);
           console.log(dado);
         });
       });
 
-    }
+    };
 
     function salvarConcorrentes(){
 
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      $scope.bancoDeDados.salvarArray(caminho, $scope.analiseDeMercado.concorrentes).then(function(dados){
+      auxListaConcorrente = [];
+      $scope.analiseDeMercado.concorrentes.forEach(function(concorrente){
+        if(concorrente._id == null){
+          auxListaConcorrente.push(concorrente);
+        }else{
+          $scope.analiseDeMercadoID.idsConcorrentes.push(concorrente._id);
+        }
+      });
+      $scope.bancoDeDados.salvarArray(caminho, auxListaConcorrente).then(function(dados){
         dados.forEach(function(dado){
           $scope.analiseDeMercadoID.idsConcorrentes.push(dado.data._id);
           console.log(dado);
         })
       });
-    }
+    };
 
     function salvarCliente(){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cliente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
@@ -177,6 +181,31 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
         console.log(response);
 
       });
-    }
+    };
+
+    $scope.recuperarDados = function(){
+    $ionicLoading.show({
+      template: 'Aguarde.. <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+      duration: 10000
+    }).then(function(){
+      setTimeout(function(){
+        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+          $scope.analiseDeMercado.fornecedores = dados.data;
+        });
+      }, 5000);
+      setTimeout(function(){
+        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+          $scope.analiseDeMercado.concorrentes = dados.data;
+        });
+      }, 5000);
+    });;
+
+    $scope.hide = function(){
+      $ionicLoading.hide().then(function(){
+        console.log("The loading indicator is now hidden");
+      });
+
+    };
+  };
 
   });

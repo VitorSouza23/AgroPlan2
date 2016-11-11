@@ -1,10 +1,14 @@
-angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoDeMarketing', 'starter.services.bancoDeDados'])
+angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoDeMarketing', 'starter.services.utilitarios'])
 
-.controller('PlanoDeMarketingCtrl', function($scope, PlanoDeMarketing, Produto, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoDeMarketingID){
+.controller('PlanoDeMarketingCtrl', function($scope, PlanoDeMarketing, Produto, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoDeMarketingID, Modal){
   $scope.planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
   $scope.editar = PlanoDeMarketing.editar;
   $scope.bancoDeDados = BancoDeDados;
   $scope.planoDeMarketingID = PlanoDeMarketingID;
+  Modal.init('menus/subitens/produtos.html', $scope).then(function(modal){
+    $scope.modalProduto = modal;
+  });
+
   $scope.showConfirm = function() {
     var confirmPopup = $ionicPopup.confirm({
       title: 'Plano de Marketing',
@@ -20,7 +24,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
-      $scope.closeProdutos();
+      $scope.modalProduto.hide();
     }
 
     $scope.botaoRemoverProduto= function(produto){
@@ -37,18 +41,9 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
       $ionicHistory.goBack();
     };
 
-    $ionicModal.fromTemplateUrl('menus/subitens/produtos.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });
-
-    $scope.closeProdutos = function() {
-      $scope.modal.hide();
-    };
 
     $scope.openProdutos= function() {
-      $scope.modal.show();
+      $scope.modalProduto.show();
       if(!$scope.editar){
         $scope.produto = Produto.novoProduto();
       }

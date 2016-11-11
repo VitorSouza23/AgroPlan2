@@ -2,7 +2,7 @@
   <ion-header-bar class="bar-balanced">
     <h1 class="title">Fornecedores</h1>
     <div class="buttons">
-      <button class="button button-clear" ng-click="closeFornecedores()">Fechar</button>
+      <button class="button button-clear" ng-click="modalFornecedor.hide()">Fechar</button>
     </div>
   </ion-header-bar>
   <ion-content>
@@ -38,7 +38,7 @@
           </button>
         </div>
         <div class="col">
-          <button class="button button-block icon-rigth ion-close button-assertive" ng-click="closeFornecedores()">
+          <button class="button button-block icon-rigth ion-close button-assertive" ng-click="modalFornecedor.hide()">
             Cancelar
           </button>
         </div>

@@ -1,10 +1,13 @@
-angular.module('starter.controllers.planoOperacional', ['starter.services.planoOperacional', 'starter.services', 'ionic', 'starter.services.bancoDeDados'])
+angular.module('starter.controllers.planoOperacional', ['starter.services.planoOperacional', 'ionic', 'starter.services.utilitarios'])
 
-.controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicModal, $ionicListDelegate, $ionicHistory, $ionicPopup, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoOperacionalID){
+.controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicListDelegate, $ionicHistory, $ionicPopup, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoOperacionalID, Modal){
   $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
   $scope.editar = PlanoOperacional.editar;
   $scope.planoOperacionalID = PlanoOperacionalID;
   $scope.bancoDeDados = BancoDeDados;
+  Modal.init('menus/subitens/cargos.html', $scope).then(function(modal){
+    $scope.modalCargo = modal;
+  });
 
   $scope.showConfirm = function() {
     var confirmPopup = $ionicPopup.confirm({
@@ -22,7 +25,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
       $scope.editar = false;
       $ionicListDelegate.closeOptionButtons();
     }
-    $scope.closeCargos();
+    $scope.modalCargo.hide();
   };
 
   $scope.botaoRemoverCargo = function(cargo){
@@ -39,18 +42,8 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     $ionicHistory.goBack();
   };
 
-  $ionicModal.fromTemplateUrl('menus/subitens/cargos.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  $scope.closeCargos = function() {
-    $scope.modal.hide();
-  };
-
   $scope.openCargos= function() {
-    $scope.modal.show();
+    $scope.modalCargo.show();
     if(!$scope.editar){
       $scope.cargo = Cargo.novoCargo();
     }
