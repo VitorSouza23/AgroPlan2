@@ -15,6 +15,7 @@ function PlanoDeMarketing(){
 
   this.editarProduto = function(produto){
     var pos = this.produtos.indexOf(produto);
+    produto._id = null;
     this.produtos[pos] = produto;
   }
 }

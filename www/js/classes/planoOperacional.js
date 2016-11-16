@@ -18,6 +18,7 @@ function PlanoOperacional(){
 
   this.editarCargo = function(cargo){
     var pos = this.cargos.indexOf(cargo);
+    cargo._id = null;
     this.cargos[pos] = cargo;
   };
 

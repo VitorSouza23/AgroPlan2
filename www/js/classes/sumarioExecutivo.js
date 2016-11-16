@@ -18,6 +18,7 @@ function SumarioExecutivo(){
 
   this.editarSocio = function(socio){
     var pos = this.socios.indexOf(socio);
+    socio._id = null;
     this.socios[pos] = socio;
   }
 };

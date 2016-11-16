@@ -1,8 +1,9 @@
 angular.module('starter.services.utilitarios', [])
 
 .factory('BancoDeDados', function($http, $q){
-  var deffered = $q.defer();
+
   var salvar = function(caminho, objeto){
+    deffered = $q.defer();
     $http.post(caminho, objeto)
     .then(function(dados){
       deffered.resolve(dados);
@@ -27,7 +28,8 @@ angular.module('starter.services.utilitarios', [])
   };
 
   var recuperar = function(caminho){
-    $http.get(caminho).then(function(dados){
+    deffered = $q.defer();
+    $http.get(caminho, {cache : true}).then(function(dados){
       deffered.resolve(dados);
     }),function(dados){
       deffered.reject(dados + "erro!");
@@ -36,6 +38,7 @@ angular.module('starter.services.utilitarios', [])
   };
 
   var atualizar = function(caminho, objeto){
+    deffered = $q.defer();
     http.put(caminho+objeto._id, objeto).then(function(dados){
       deffered.resolve(dados);
     }),function(dados){
@@ -45,6 +48,7 @@ angular.module('starter.services.utilitarios', [])
   };
 
   var remover = function(caminho, objeto){
+    deffered = $q.defer();
     http.delete(caminho+objeto._id).then(function(dados){
       deffered.resolve(dados);
     }),function(dados){
@@ -57,8 +61,9 @@ angular.module('starter.services.utilitarios', [])
     salvar:salvar,
     salvarArray:salvarArray,
     recuperar:recuperar,
-    atualizar,atualizar,
+    atualizar:atualizar,
     remover:remover
+
   }
 
 })

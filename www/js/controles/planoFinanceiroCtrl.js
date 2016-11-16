@@ -432,4 +432,83 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
         })
       });
     }
+
+    $scope.recuperarDadosEquipamentos = function(){
+      $ionicLoading.show({
+        template: 'Acessando Equipamentos... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        duration: 5000
+      }).then(function(){
+        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/equipamento?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+          $scope.planoFinanceiro.estoqueInicial.equipamentos = dados.data;
+          console.log(dados);
+        });
+      });
+    };
+
+    $scope.recuperarDadosMaquinas = function(){
+      $ionicLoading.show({
+        template: 'Acessando Maquinas... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        duration: 5000
+      }).then(function(){
+        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/maquina?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+          $scope.planoFinanceiro.estoqueInicial.maquinas = dados.data;
+        });
+      });
+    };
+
+    $scope.recuperarDadosMoveis = function(){
+      $ionicLoading.show({
+        template: 'Acessando Moveis... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        duration: 5000
+      }).then(function(){
+        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/movel?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+          $scope.planoFinanceiro.estoqueInicial.moveis = dados.data;
+        });
+      });
+    };
+
+    $scope.recuperarDadosUtensilios = function(){
+      $ionicLoading.show({
+        template: 'Acessando Utensílios... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        duration: 5000
+      }).then(function(){
+        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/utensilio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+          $scope.planoFinanceiro.estoqueInicial.utensilios = dados.data;
+        });
+      });
+    };
+
+    $scope.recuperarDadosVeiculos = function(){
+      $ionicLoading.show({
+        template: 'Acessando Veiculos... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        duration: 5000
+      }).then(function(){
+        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/veiculo?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+          $scope.planoFinanceiro.estoqueInicial.veiculos = dados.data;
+        });
+      });
+    };
+
+    $scope.recuperarDadosCompras = function(){
+      $ionicLoading.show({
+        template: 'Acessando Compras... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        duration: 5000
+      }).then(function(){
+        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/compra?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+          $scope.planoFinanceiro.compras = dados.data;
+        });
+      });
+    };
+
+    $scope.recuperarDadosVendas = function(){
+      $ionicLoading.show({
+        template: 'Acessando Vendas... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        duration: 5000
+      }).then(function(){
+        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/compra?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+          $scope.planoFinanceiro.vendas= dados.data;
+        });
+      });
+    };
+
   });

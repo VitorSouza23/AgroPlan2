@@ -105,7 +105,17 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
         console.log(dado);
       });
     });
-
   }
+
+  $scope.recuperarDadosSocios= function(){
+    $ionicLoading.show({
+      template: 'Acessando Socios... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+      duration: 5000
+    }).then(function(){
+      $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/socio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+        $scope.sumarioExecutivo.socios = dados.data;
+      });
+    });
+  };
 
 });

@@ -174,5 +174,15 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     });
   }
 
+  $scope.recuperarDadosCargos = function(){
+    $ionicLoading.show({
+      template: 'Acessando Cargos... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+      duration: 5000
+    }).then(function(){
+      $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/cargos?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+        $scope.planoOperacional.cargos = dados.data;
+      });
+    });
+  };
 
 })

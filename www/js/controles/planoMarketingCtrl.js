@@ -112,4 +112,16 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
 
       });
     }
-  })
+
+
+    $scope.recuperarDadosProdutos = function(){
+      $ionicLoading.show({
+        template: 'Acessando Produtos... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        duration: 5000
+      }).then(function(){
+        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/produto?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+          $scope.planoDeMarketing.produtos = dados.data;
+        });
+      });
+    };
+  });
