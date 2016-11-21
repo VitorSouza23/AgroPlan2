@@ -85,4 +85,37 @@ angular.module('starter.services.utilitarios', [])
   return{
     init:init
   }
-});
+})
+.factory('Menu', function($ionicActionSheet, $timeout){
+  var show = function() {
+
+    // Show the action sheet
+    var menu = $ionicActionSheet.show({
+      buttons: [
+        {
+          text: 'Arquivos Salvos',
+          href: '#/tab/menuArmazenamento'
+        }
+      ],
+      titleText: 'Opções',
+      cancelText: 'Cancelar',
+      cancel: function() {
+          // add cancel code..
+        },
+      buttonClicked: function(index) {
+        return true;
+      }
+    });
+
+    // For example's sake, hide the sheet after two seconds
+    $timeout(function() {
+      menu();
+    }, 10000);
+
+  };
+
+  return{
+    show:show
+  }
+})
+;
