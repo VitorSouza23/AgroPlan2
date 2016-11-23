@@ -3,49 +3,53 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out
 -->
-<ion-tabs tabs-swipable class="tabs-icon-top tabs-color-active-positive">
+<ion-tabs tabs-swipable class="tabs-icon-top tabs-color-active-positive" ng-controller="MenuCtrl" >
 
   <!-- Dashboard Tab -->
-  <ion-tab title="Sumário Exec." icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/sumarioExecutivo">
+  <ion-tab title="Sumário Exec." icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/sumarioExecutivo" ng-if="menu.getMostrarMenusTab()">
     <ion-nav-view name="tab-sumarioExecutivo"></ion-nav-view>
   </ion-tab>
 
   <!-- Chats Tab -->
-  <ion-tab title="Análise Mercado" icon-off="ion-ios-search" icon-on="ion-ios-search-strong" href="#/tab/analiseMercado">
+  <ion-tab title="Análise Mercado" icon-off="ion-ios-search" icon-on="ion-ios-search-strong" href="#/tab/analiseMercado" ng-if="menu.getMostrarMenusTab()">
     <ion-nav-view name="tab-analiseMercado"></ion-nav-view>
   </ion-tab>
 
   <!-- Account Tab -->
-  <ion-tab title="Plano de Marketing" icon-off="ion-ios-pricetags-outline" icon-on="ion-ios-pricetags" href="#/tab/planoMarketing">
+  <ion-tab title="Plano de Marketing" icon-off="ion-ios-pricetags-outline" icon-on="ion-ios-pricetags" href="#/tab/planoMarketing" ng-if="menu.getMostrarMenusTab()">
     <ion-nav-view name="tab-planoMarketing"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Plano Operacional" icon-off="ion-ios-briefcase-outline" icon-on="ion-ios-briefcase" href="#/tab/planoOperacional">
+  <ion-tab title="Plano Operacional" icon-off="ion-ios-briefcase-outline" icon-on="ion-ios-briefcase" href="#/tab/planoOperacional" ng-if="menu.getMostrarMenusTab()">
     <ion-nav-view name="tab-planoOperacional"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Plano Financeiro" icon-off="ion-social-usd-outline" icon-on="ion-social-usd" href="#/tab/planoFinanceiro">
+  <ion-tab title="Plano Financeiro" icon-off="ion-social-usd-outline" icon-on="ion-social-usd" href="#/tab/planoFinanceiro" ng-if="menu.getMostrarMenusTab()">
     <ion-nav-view name="tab-planoFinanceiro"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Construção de Cenários" icon-off="ion-ios-eye-outline" icon-on="ion-ios-eye" href="#/tab/construcaoCenarios">
+  <ion-tab title="Construção de Cenários" icon-off="ion-ios-eye-outline" icon-on="ion-ios-eye" href="#/tab/construcaoCenarios" ng-if="menu.getMostrarMenusTab()">
     <ion-nav-view name="tab-construcaoCenarios"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Avaliação Estratégica" icon-off="ion-ios-pie-outline" icon-on="ion-ios-pie" href="#/tab/avaliacaoEstrategica">
+  <ion-tab title="Avaliação Estratégica" icon-off="ion-ios-pie-outline" icon-on="ion-ios-pie" href="#/tab/avaliacaoEstrategica" ng-if="menu.getMostrarMenusTab()">
     <ion-nav-view name="tab-avaliacaoEstrategica"></ion-nav-view>
 
   </ion-tab>
 
-  <ion-tab title="Roteiro" icon-off="ion-ios-bookmarks-outline" icon-on="ion-ios-bookmarks" href="#/tab/roteiroInformacao">
+  <ion-tab title="Roteiro" icon-off="ion-ios-bookmarks-outline" icon-on="ion-ios-bookmarks" href="#/tab/roteiroInformacao" ng-if="menu.getMostrarMenusTab()">
     <ion-nav-view name="tab-roteiroInformacao"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Avaliacao Do Plano" icon-off="ion-document" icon-on="ion-document-text" href="#/tab/avaliacaoDoPlano">
+  <ion-tab title="Avaliacao Do Plano" icon-off="ion-document" icon-on="ion-document-text" href="#/tab/avaliacaoDoPlano" ng-if="menu.getMostrarMenusTab()">
     <ion-nav-view name="tab-avaliacaoDoPlano"></ion-nav-view>
   </ion-tab>
 
-  <div  ng-controller="MenuCtrl">
+  <ion-tab title="Dados Armazenados"  icon-on="ion-upload" href="#/tab/menuArmazenamento" ng-if="menu.getMostrarMenuArmazenamento()">
+    <ion-nav-view name="tab-menuArmazenamento"></ion-nav-view>
+  </ion-tab>
+
+  <div>
     <button  class="button ion-grid button-balanced" ng-click="menu.show()"></button>
   </div>
 

@@ -1,11 +1,10 @@
 <ion-view view-title="Gerenciar Armazenamento">
   <ion-content>
     <ion-list>
-      <ion-item  class="item item-icon-right" ng-repeat="playlist in playlists" href="#/app/menuArmazenamento/{{menuArmazenamento.id}}">
-          {{menuArmazenamento .title}}
-          <i class="icon ion-ios-checkmark-empty" ng-hide="playlist.terminado"></i>
+      <ion-item  class="item item-icon-right" ng-repeat="menu in menuArmazenamento" href="#/tab/menuArmazenamento/{{menuArmazenamento.id}}">
+          {{menu.title}}
       </ion-item>
     </ion-list>
-    <button class="button button-full button-positive" ng-click="salvarPlano()">Gerar Plano de Negócios</button>
+    <button class="button button-full button-positive" ng-click="">Salvar Alterações</button>
   </ion-content>
 </ion-view>

@@ -87,7 +87,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab.socios', {
     url: '/sumarioExecutivo/socios',
     views: {
-      'tab-sumarioExecutivo': {
+      'tab-sumarioExecutivo-socios': {
         templateUrl: 'menus/subitens/socios.html',
         controller: 'SumarioExecutivoCtrl'
       }
@@ -107,7 +107,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab.produtos', {
     url: '/planoMarketing/produtos',
     views: {
-      'tab-planoMarketing': {
+      'tab-planoMarketing-produtos': {
         templateUrl: 'menus/subitens/produtos.html',
         controller: 'PlanoDeMarketingCtrl'
       }
@@ -127,7 +127,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab.cargos', {
     url: '/planoOperacional/cargos',
     views: {
-      'tab-planoOperacional': {
+      'tab-planoOperacional-cargos': {
         templateUrl: 'menus/subitens/cargos.html',
         controller: 'PlanoOperacionalCtrl'
       }
@@ -147,7 +147,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab.maquina', {
     url: '/planoFinanceiro/maquinas',
     views: {
-      'tab-planoFinanceiro': {
+      'tab-planoFinanceiro-maquinas': {
         templateUrl: 'menus/subitens/maquinas.html',
         controller: 'PlanoFinanceiroCtrl'
       }
@@ -157,7 +157,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab.movel', {
     url: '/planoFinanceiro/moveis',
     views: {
-      'tab-planoFinanceiro': {
+      'tab-planoFinanceiro-moveis': {
         templateUrl: 'menus/subitens/moveis.html',
         controller: 'PlanoFinanceiroCtrl'
       }
@@ -167,7 +167,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab.utensilio', {
     url: '/planoFinanceiro/utensilios',
     views: {
-      'tab-planoFinanceiro': {
+      'tab-planoFinanceiro-utensilios': {
         templateUrl: 'menus/subitens/utensilios.html',
         controller: 'PlanoFinanceiroCtrl'
       }
@@ -177,7 +177,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab.veiculo', {
     url: '/planoFinanceiro/veiculos',
     views: {
-      'tab-planoFinanceiro': {
+      'tab-planoFinanceiro-veiculo': {
         templateUrl: 'menus/subitens/veiculos.html',
         controller: 'PlanoFinanceiroCtrl'
       }
@@ -187,7 +187,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab.compra', {
     url: '/planoFinanceiro/compras',
     views: {
-      'tab-planoFinanceiro': {
+      'tab-planoFinanceiro-compras': {
         templateUrl: 'menus/subitens/compras.html',
         controller: 'PlanoFinanceiroCtrl'
       }
@@ -197,7 +197,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab.venda', {
     url: '/planoFinanceiro/vendas',
     views: {
-      'tab-planoFinanceiro': {
+      'tab-planoFinanceiro-vendas': {
         templateUrl: 'menus/subitens/vendas.html',
         controller: 'PlanoFinanceiroCtrl'
       }
@@ -207,7 +207,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab.equipamento', {
     url: '/planoFinanceiro/equipamentos',
     views: {
-      'tab-planoFinanceiro': {
+      'tab-planoFinanceiro-equipamentos': {
         templateUrl: 'menus/subitens/equipamentos.html',
         controller: 'PlanoFinanceiroCtrl'
       }
@@ -258,7 +258,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   .state('tab.menuArmazenamento', {
     url: '/menuArmazenamento',
     views: {
-      'tab-account': {
+      'tab-menuArmazenamento': {
         templateUrl: 'menus/armazenamento/menuArmazenamento.html',
         controller: 'MenuArmazenamentoCtrl'
       }
@@ -266,6 +266,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
 // if none of the above states are matched, use this as the fallback
-$urlRouterProvider.otherwise('/tab/dash');
+$urlRouterProvider.otherwise('/tab/sumarioExecutivo');
 
 });

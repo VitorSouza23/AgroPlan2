@@ -86,26 +86,36 @@ angular.module('starter.services.utilitarios', [])
     init:init
   }
 })
-.factory('Menu', function($ionicActionSheet, $timeout){
+.factory('Menu', function($ionicActionSheet, $timeout, $state){
+  var mostrarMenuArmazenamento = false;
+  var mostrarMenusTab = true;
   var show = function() {
 
     // Show the action sheet
     var menu = $ionicActionSheet.show({
       buttons: [
-        {
-          text: 'Arquivos Salvos',
-          href: '#/tab/menuArmazenamento'
-        }
+        {text: 'Arquivos Salvos'},
+        {text: 'Voltar'}
       ],
       titleText: 'Opções',
       cancelText: 'Cancelar',
       cancel: function() {
-          // add cancel code..
+
         },
       buttonClicked: function(index) {
+        if(index === 0){
+          mostrarMenusTab = false;
+          mostrarMenuArmazenamento = true;
+          $state.go('tab.menuArmazenamento');
+        }else if(index === 1){
+          mostrarMenusTab = true;
+          mostrarMenuArmazenamento = false;
+          $state.go('tab.sumarioExecutivo');
+        }
         return true;
       }
     });
+
 
     // For example's sake, hide the sheet after two seconds
     $timeout(function() {
@@ -114,8 +124,18 @@ angular.module('starter.services.utilitarios', [])
 
   };
 
+  var getMostrarMenuArmazenamento = function(){
+    return mostrarMenuArmazenamento;
+  }
+
+  var getMostrarMenusTab = function(){
+    return mostrarMenusTab;
+  }
+
   return{
-    show:show
+    show:show,
+    getMostrarMenusTab:getMostrarMenusTab,
+    getMostrarMenuArmazenamento:getMostrarMenuArmazenamento
   }
 })
 ;
