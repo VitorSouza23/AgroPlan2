@@ -3,6 +3,4 @@ angular.module('starter.controllers', ['starter.services','starter.controllers.s
 
 .controller('MenuCtrl', function($scope, Menu) {
   $scope.menu = Menu;
-
-
 });

@@ -10,6 +10,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 .config(function($ionicConfigProvider) {
   $ionicConfigProvider.tabs.position('bottom'); //posição das abas
   $ionicConfigProvider.tabs.style('standard'); //permite que eu edite a cor no scss
+  $ionicConfigProvider.views.maxCache(0);
 })
 
 .run(function($ionicPlatform) {
@@ -46,6 +47,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.analiseMercado', {
     url: '/analiseMercado',
+
     views: {
       'tab-analiseMercado': {
         templateUrl: 'menus/analiseMercado.html',
@@ -56,6 +58,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.fornecedores', {
     url: '/analiseMercado/fornecedores',
+
     views: {
       'tab-analiseMercado': {
         templateUrl: 'menus/subitens/fornecedores.html',
@@ -66,6 +69,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.concorrentes', {
     url: '/analiseMercado/concorrentes',
+
     views: {
       'tab-analiseMercado': {
         templateUrl: 'menus/subitens/concorrentes.html',
@@ -76,6 +80,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.sumarioExecutivo', {
     url: '/sumarioExecutivo',
+
     views: {
       'tab-sumarioExecutivo': {
         templateUrl: 'menus/sumarioExecutivo.html',
@@ -86,6 +91,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.socios', {
     url: '/sumarioExecutivo/socios',
+
     views: {
       'tab-sumarioExecutivo-socios': {
         templateUrl: 'menus/subitens/socios.html',
@@ -96,6 +102,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.planoMarketing', {
     url: '/planoMarketing',
+
     views: {
       'tab-planoMarketing': {
         templateUrl: 'menus/planoMarketing.html',
@@ -106,6 +113,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.produtos', {
     url: '/planoMarketing/produtos',
+
     views: {
       'tab-planoMarketing-produtos': {
         templateUrl: 'menus/subitens/produtos.html',
@@ -116,6 +124,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.planoOperacional', {
     url: '/planoOperacional',
+
     views: {
       'tab-planoOperacional': {
         templateUrl: 'menus/planoOperacional.html',
@@ -126,6 +135,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.cargos', {
     url: '/planoOperacional/cargos',
+
     views: {
       'tab-planoOperacional-cargos': {
         templateUrl: 'menus/subitens/cargos.html',
@@ -136,6 +146,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.planoFinanceiro', {
     url: '/planoFinanceiro',
+
     views: {
       'tab-planoFinanceiro': {
         templateUrl: 'menus/planoFinanceiro.html',
@@ -146,6 +157,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.maquina', {
     url: '/planoFinanceiro/maquinas',
+
     views: {
       'tab-planoFinanceiro-maquinas': {
         templateUrl: 'menus/subitens/maquinas.html',
@@ -156,6 +168,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.movel', {
     url: '/planoFinanceiro/moveis',
+
     views: {
       'tab-planoFinanceiro-moveis': {
         templateUrl: 'menus/subitens/moveis.html',
@@ -166,6 +179,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.utensilio', {
     url: '/planoFinanceiro/utensilios',
+
     views: {
       'tab-planoFinanceiro-utensilios': {
         templateUrl: 'menus/subitens/utensilios.html',
@@ -176,6 +190,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.veiculo', {
     url: '/planoFinanceiro/veiculos',
+
     views: {
       'tab-planoFinanceiro-veiculo': {
         templateUrl: 'menus/subitens/veiculos.html',
@@ -186,6 +201,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.compra', {
     url: '/planoFinanceiro/compras',
+
     views: {
       'tab-planoFinanceiro-compras': {
         templateUrl: 'menus/subitens/compras.html',
@@ -196,6 +212,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.venda', {
     url: '/planoFinanceiro/vendas',
+
     views: {
       'tab-planoFinanceiro-vendas': {
         templateUrl: 'menus/subitens/vendas.html',
@@ -206,6 +223,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.equipamento', {
     url: '/planoFinanceiro/equipamentos',
+
     views: {
       'tab-planoFinanceiro-equipamentos': {
         templateUrl: 'menus/subitens/equipamentos.html',
@@ -216,6 +234,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.construcaoCenarios', {
     url: '/construcaoCenarios',
+
     views: {
       'tab-construcaoCenarios': {
         templateUrl: 'menus/construcaoCenarios.html',
@@ -227,6 +246,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.avaliacaoEstrategica', {
     url: '/avaliacaoEstrategica',
+
     views: {
       'tab-avaliacaoEstrategica': {
         templateUrl: 'menus/avaliacaoEstrategica.html',
@@ -237,6 +257,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.roteiroInformacao', {
     url: '/roteiroInformacao',
+
     views: {
       'tab-roteiroInformacao': {
         templateUrl: 'menus/roteiroInformacao.html',
@@ -247,6 +268,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.avaliacaoDoPlano', {
     url: '/avaliacaoDoPlano',
+
     views: {
       'tab-avaliacaoDoPlano': {
         templateUrl: 'menus/avaliacaoPlano.html',
@@ -257,6 +279,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.menuArmazenamento', {
     url: '/menuArmazenamento',
+    
     views: {
       'tab-menuArmazenamento': {
         templateUrl: 'menus/armazenamento/menuArmazenamento.html',

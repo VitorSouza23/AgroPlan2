@@ -86,7 +86,7 @@ angular.module('starter.services.utilitarios', [])
     init:init
   }
 })
-.factory('Menu', function($ionicActionSheet, $timeout, $state){
+.factory('Menu', function($ionicActionSheet, $timeout, $state, $ionicHistory){
   var mostrarMenuArmazenamento = false;
   var mostrarMenusTab = true;
   var show = function() {
@@ -101,41 +101,47 @@ angular.module('starter.services.utilitarios', [])
       cancelText: 'Cancelar',
       cancel: function() {
 
-        },
+      },
       buttonClicked: function(index) {
         if(index === 0){
           mostrarMenusTab = false;
           mostrarMenuArmazenamento = true;
-          $state.go('tab.menuArmazenamento');
+          $state.go('tab.menuArmazenamento', {}, { reload: true,
+            inherit: false,
+            notify: true });
         }else if(index === 1){
           mostrarMenusTab = true;
           mostrarMenuArmazenamento = false;
-          $state.go('tab.sumarioExecutivo');
+          /*$state.transitionTo('tab.sumarioExecutivo', {}, { reload: true,
+            inherit: false,
+            notify: true });
+            $state.reload();*/
+            $ionicHistory.goBack();
+          }
+          return true;
         }
-        return true;
-      }
-    });
+      });
 
 
-    // For example's sake, hide the sheet after two seconds
-    $timeout(function() {
-      menu();
-    }, 10000);
+      // For example's sake, hide the sheet after two seconds
+      $timeout(function() {
+        menu();
+      }, 10000);
 
-  };
+    };
 
-  var getMostrarMenuArmazenamento = function(){
-    return mostrarMenuArmazenamento;
-  }
+    var getMostrarMenuArmazenamento = function(){
+      return mostrarMenuArmazenamento;
+    }
 
-  var getMostrarMenusTab = function(){
-    return mostrarMenusTab;
-  }
+    var getMostrarMenusTab = function(){
+      return mostrarMenusTab;
+    }
 
-  return{
-    show:show,
-    getMostrarMenusTab:getMostrarMenusTab,
-    getMostrarMenuArmazenamento:getMostrarMenuArmazenamento
-  }
-})
-;
+    return{
+      show:show,
+      getMostrarMenusTab:getMostrarMenusTab,
+      getMostrarMenuArmazenamento:getMostrarMenuArmazenamento
+    }
+  })
+  ;
