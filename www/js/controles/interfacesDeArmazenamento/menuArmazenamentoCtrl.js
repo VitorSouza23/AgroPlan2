@@ -1,14 +1,14 @@
 angular.module('starter.controllers.menuArmazenamento', [])
 .controller('MenuArmazenamentoCtrl', function($scope){
 $scope.menuArmazenamento = [
-    { title: 'Sumário Executivo', id: 1, terminado: true},
-    { title: 'Análise de Mercado', id: 2, terminado: true},
-    { title: 'Plano de Marketing', id: 3, terminado: true },
-    { title: 'Plano Operacional', id: 4, terminado: true },
-    { title: 'Plano Financeiro', id: 5, terminado: true },
-    { title: 'Construção de Cenários', id: 6, terminado: true },
-    { title: 'Avaliação Estratégica', id: 7, terminado: true },
-    { title: 'Avaliação do Plano de Negócios', id: 8, terminado: true },
-    { title: 'Roteiro para Coleta de Informação', id: 9, terminado: true }
+    { title: 'Sumário Executivo', id: 0},
+    { title: 'Análise de Mercado', id: 1},
+    { title: 'Plano de Marketing', id: 2},
+    { title: 'Plano Operacional', id: 3},
+    { title: 'Plano Financeiro', id: 4},
+    { title: 'Construção de Cenários', id: 5},
+    { title: 'Avaliação Estratégica', id: 6},
+    { title: 'Avaliação do Plano de Negócios', id: 7},
+    { title: 'Roteiro para Coleta de Informação', id: 8}
 ]
 });

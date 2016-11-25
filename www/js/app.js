@@ -279,7 +279,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   .state('tab.menuArmazenamento', {
     url: '/menuArmazenamento',
-    
+
     views: {
       'tab-menuArmazenamento': {
         templateUrl: 'menus/armazenamento/menuArmazenamento.html',
@@ -287,6 +287,62 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+
+  .state('tab.menuArmazenamento.sumarioExecutivo', {
+    url: '/menuArmazenamento/0',
+
+    views: {
+      'tab-menuArmazenamento-sumarioExecutivo': {
+        templateUrl: 'menus/armazenamento/armazenamentoSumarioExecutivo.html',
+        controller: 'MenuArmazenamentoCtrl'
+      }
+    }
+  })
+
+  .state('tab.menuArmazenamento.analiseDeMercado', {
+    url: '/menuArmazenamento/1',
+
+    views: {
+      'tab-menuArmazenamento-analiseDeMercado': {
+        templateUrl: 'menus/armazenamento/armazenamentoAnaliseDeMercado.html',
+        controller: 'MenuArmazenamentoCtrl'
+      }
+    }
+  })
+
+  .state('tab.menuArmazenamento.planoDeMarketing', {
+    url: '/menuArmazenamento/2',
+
+    views: {
+      'tab-menuArmazenamento-planoDeMarketing': {
+        templateUrl: 'menus/armazenamento/armazenamentoPlanoDeMarketing.html',
+        controller: 'MenuArmazenamentoCtrl'
+      }
+    }
+  })
+
+  .state('tab.menuArmazenamento.planoOperacional', {
+    url: '/menuArmazenamento/3',
+
+    views: {
+      'tab-menuArmazenamento-planoOperacional': {
+        templateUrl: 'menus/armazenamento/armazenamentoPlanoOperacional.html',
+        controller: 'MenuArmazenamentoCtrl'
+      }
+    }
+  })
+
+  .state('tab.menuArmazenamento.planoFinanceiro', {
+    url: '/menuArmazenamento/4',
+
+    views: {
+      'tab-menuArmazenamento-planoFinanceiro': {
+        templateUrl: 'menus/armazenamento/armazenamentoPlanoFinanceiro.html',
+        controller: 'MenuArmazenamentoCtrl'
+      }
+    }
+  })
+
 
 // if none of the above states are matched, use this as the fallback
 $urlRouterProvider.otherwise('/tab/sumarioExecutivo');
