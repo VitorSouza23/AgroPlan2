@@ -277,66 +277,72 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.menuArmazenamento', {
+  .state('menu', {
+      url: "/menu",
+      templateUrl: "menus/armazenamento/menuAbstract.html",
+
+    })
+
+  .state('menu.menuArmazenamento', {
     url: '/menuArmazenamento',
 
     views: {
-      'tab-menuArmazenamento': {
+      'menu-menuArmazenamento': {
         templateUrl: 'menus/armazenamento/menuArmazenamento.html',
         controller: 'MenuArmazenamentoCtrl'
       }
     }
   })
 
-  .state('tab.menuArmazenamento.sumarioExecutivo', {
+  .state('menu.menuArmazenamento.sumarioExecutivo', {
     url: '/menuArmazenamento/0',
 
     views: {
-      'tab-menuArmazenamento-sumarioExecutivo': {
+      'menu-menuArmazenamento': {
         templateUrl: 'menus/armazenamento/armazenamentoSumarioExecutivo.html',
         controller: 'MenuArmazenamentoCtrl'
       }
     }
   })
 
-  .state('tab.menuArmazenamento.analiseDeMercado', {
+  .state('menu.menuArmazenamento.analiseDeMercado', {
     url: '/menuArmazenamento/1',
 
     views: {
-      'tab-menuArmazenamento-analiseDeMercado': {
+      'menu-menuArmazenamento': {
         templateUrl: 'menus/armazenamento/armazenamentoAnaliseDeMercado.html',
         controller: 'MenuArmazenamentoCtrl'
       }
     }
   })
 
-  .state('tab.menuArmazenamento.planoDeMarketing', {
+  .state('menu.menuArmazenamento.planoDeMarketing', {
     url: '/menuArmazenamento/2',
 
     views: {
-      'tab-menuArmazenamento-planoDeMarketing': {
+      'menu-menuArmazenamento': {
         templateUrl: 'menus/armazenamento/armazenamentoPlanoDeMarketing.html',
         controller: 'MenuArmazenamentoCtrl'
       }
     }
   })
 
-  .state('tab.menuArmazenamento.planoOperacional', {
+  .state('menu.menuArmazenamento.planoOperacional', {
     url: '/menuArmazenamento/3',
 
     views: {
-      'tab-menuArmazenamento-planoOperacional': {
+      'menu-menuArmazenamento': {
         templateUrl: 'menus/armazenamento/armazenamentoPlanoOperacional.html',
         controller: 'MenuArmazenamentoCtrl'
       }
     }
   })
 
-  .state('tab.menuArmazenamento.planoFinanceiro', {
+  .state('menu.menuArmazenamento.planoFinanceiro', {
     url: '/menuArmazenamento/4',
 
     views: {
-      'tab-menuArmazenamento-planoFinanceiro': {
+      'menu-menuArmazenamento': {
         templateUrl: 'menus/armazenamento/armazenamentoPlanoFinanceiro.html',
         controller: 'MenuArmazenamentoCtrl'
       }

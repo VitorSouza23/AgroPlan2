@@ -106,7 +106,7 @@ angular.module('starter.services.utilitarios', [])
         if(index === 0){
           mostrarMenusTab = false;
           mostrarMenuArmazenamento = true;
-          $state.go('tab.menuArmazenamento', {}, { reload: true,
+          $state.go('menu', {}, { reload: true,
             inherit: false,
             notify: true });
         }else if(index === 1){

@@ -1,10 +1,10 @@
 <ion-view view-title="Gerenciar Armazenamento">
   <ion-content>
     <ion-list>
-      <ion-item  class="item item-icon-right" ng-repeat="menu in menuArmazenamento" href="#/tab/menuArmazenamento/{{menu.id}}">
+      <ion-item  class="item item-icon-right" ng-repeat="menu in menuArmazenamento" href="#/menu/menuArmazenamento/{{menu.id}}">
           {{menu.title}}
       </ion-item>
     </ion-list>
-    <button class="button button-full button-positive" ng-click="">Salvar Alterações</button>
+    <button class="button button-full button-positive" ng-click="voltar()">Salvar Alterações</button>
   </ion-content>
 </ion-view>
