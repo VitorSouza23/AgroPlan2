@@ -38,12 +38,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
+  .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+  })
+  
   .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
   })
-
 
   .state('tab.analiseMercado', {
     url: '/analiseMercado',
@@ -277,80 +282,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('menu', {
-      url: "/menu",
-      templateUrl: "menus/armazenamento/menuAbstract.html",
-
-    })
-
-  .state('menu.menuArmazenamento', {
-    url: '/menuArmazenamento',
-
-    views: {
-      'menu-menuArmazenamento': {
-        templateUrl: 'menus/armazenamento/menuArmazenamento.html',
-        controller: 'MenuArmazenamentoCtrl'
-      }
-    }
-  })
-
-  .state('menu.menuArmazenamento.sumarioExecutivo', {
-    url: '/menuArmazenamento/0',
-
-    views: {
-      'menu-menuArmazenamento': {
-        templateUrl: 'menus/armazenamento/armazenamentoSumarioExecutivo.html',
-        controller: 'MenuArmazenamentoCtrl'
-      }
-    }
-  })
-
-  .state('menu.menuArmazenamento.analiseDeMercado', {
-    url: '/menuArmazenamento/1',
-
-    views: {
-      'menu-menuArmazenamento': {
-        templateUrl: 'menus/armazenamento/armazenamentoAnaliseDeMercado.html',
-        controller: 'MenuArmazenamentoCtrl'
-      }
-    }
-  })
-
-  .state('menu.menuArmazenamento.planoDeMarketing', {
-    url: '/menuArmazenamento/2',
-
-    views: {
-      'menu-menuArmazenamento': {
-        templateUrl: 'menus/armazenamento/armazenamentoPlanoDeMarketing.html',
-        controller: 'MenuArmazenamentoCtrl'
-      }
-    }
-  })
-
-  .state('menu.menuArmazenamento.planoOperacional', {
-    url: '/menuArmazenamento/3',
-
-    views: {
-      'menu-menuArmazenamento': {
-        templateUrl: 'menus/armazenamento/armazenamentoPlanoOperacional.html',
-        controller: 'MenuArmazenamentoCtrl'
-      }
-    }
-  })
-
-  .state('menu.menuArmazenamento.planoFinanceiro', {
-    url: '/menuArmazenamento/4',
-
-    views: {
-      'menu-menuArmazenamento': {
-        templateUrl: 'menus/armazenamento/armazenamentoPlanoFinanceiro.html',
-        controller: 'MenuArmazenamentoCtrl'
-      }
-    }
-  })
-
 
 // if none of the above states are matched, use this as the fallback
-$urlRouterProvider.otherwise('/tab/sumarioExecutivo');
+$urlRouterProvider.otherwise('/login');
 
 });

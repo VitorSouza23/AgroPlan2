@@ -5,17 +5,14 @@ navigation history that also transitions its views in and out
 -->
 <ion-tabs tabs-swipable class="tabs-icon-top tabs-color-active-positive" ng-controller="MenuCtrl" >
 
-  <!-- Dashboard Tab -->
   <ion-tab title="Sumário Exec." icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/sumarioExecutivo" ng-if="menu.getMostrarMenusTab()">
     <ion-nav-view name="tab-sumarioExecutivo"></ion-nav-view>
   </ion-tab>
 
-  <!-- Chats Tab -->
   <ion-tab title="Análise Mercado" icon-off="ion-ios-search" icon-on="ion-ios-search-strong" href="#/tab/analiseMercado" ng-if="menu.getMostrarMenusTab()">
     <ion-nav-view name="tab-analiseMercado"></ion-nav-view>
   </ion-tab>
 
-  <!-- Account Tab -->
   <ion-tab title="Plano de Marketing" icon-off="ion-ios-pricetags-outline" icon-on="ion-ios-pricetags" href="#/tab/planoMarketing" ng-if="menu.getMostrarMenusTab()">
     <ion-nav-view name="tab-planoMarketing"></ion-nav-view>
   </ion-tab>

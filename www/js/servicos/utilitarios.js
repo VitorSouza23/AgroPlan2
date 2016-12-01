@@ -94,7 +94,7 @@ angular.module('starter.services.utilitarios', [])
     // Show the action sheet
     var menu = $ionicActionSheet.show({
       buttons: [
-        {text: 'Arquivos Salvos'},
+        {text: 'Configurações'},
         {text: 'Voltar'}
       ],
       titleText: 'Opções',
@@ -104,11 +104,7 @@ angular.module('starter.services.utilitarios', [])
       },
       buttonClicked: function(index) {
         if(index === 0){
-          mostrarMenusTab = false;
-          mostrarMenuArmazenamento = true;
-          $state.go('menu', {}, { reload: true,
-            inherit: false,
-            notify: true });
+          
         }else if(index === 1){
           mostrarMenusTab = true;
           mostrarMenuArmazenamento = false;
