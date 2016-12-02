@@ -95,6 +95,7 @@ angular.module('starter.services.utilitarios', [])
     var menu = $ionicActionSheet.show({
       buttons: [
         {text: 'Configurações'},
+        {text: 'Sair'},
         {text: 'Voltar'}
       ],
       titleText: 'Opções',
@@ -104,8 +105,12 @@ angular.module('starter.services.utilitarios', [])
       },
       buttonClicked: function(index) {
         if(index === 0){
-          
+
         }else if(index === 1){
+          $state.go('login', {}, { reload: true,
+            inherit: false,
+            notify: true });
+          }else if(index === 2){
           mostrarMenusTab = true;
           mostrarMenuArmazenamento = false;
           /*$state.transitionTo('tab.sumarioExecutivo', {}, { reload: true,

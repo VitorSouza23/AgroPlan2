@@ -6,7 +6,11 @@ angular.module('starter.controllers', ['starter.services','starter.controllers.s
 })
 
 .controller('LoginCtrl', function($scope, ServicoLogin, $ionicPopup, $state) {
-  $scope.usuario = {};
+$scope.usuario = {};
+
+  $scope.init = function(){
+    $scope.usuario = {};
+  }
 
   $scope.login = function(){
     ServicoLogin.fazerLogin($scope.usuario.cpf, $scope.usuario.senha).success(function(data) {
