@@ -23,4 +23,17 @@ $scope.usuario = {};
        });
   }
 })
-;
+
+
+.controller('CadastroCtrl', function($scope, Modal, ServicoLogin, $ionicHistory) {
+  Modal.init('templates/cadastro.html', $scope).then(function(modal){
+    $scope.modalCadastro = modal;
+    console.log(modalCadastro);
+  });
+
+  $scope.abrirTela = function() {
+    $scope.modalCadastro.show();
+  };
+
+
+})

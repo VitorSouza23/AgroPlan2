@@ -43,7 +43,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl'
   })
-  
+
+  .state('login.cadastro', {
+      url: '/login/cadastro',
+      templateUrl: 'templates/cadastro.html',
+      controller: 'CadastroCtrl'
+  })
+
   .state('tab', {
     url: '/tab',
     abstract: true,
