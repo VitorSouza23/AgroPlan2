@@ -57,12 +57,23 @@ angular.module('starter.services.utilitarios', [])
     return deffered.promise;
   };
 
+  var pesquisar = function(caminho, parametro){
+    deffered = $q.defer();
+    $http.get(caminho, {cache : false, params: {par:parametro}}).then(function(dados){
+      deffered.resolve(dados);
+    }),function(dados){
+      deffered.reject(dados + "erro!");
+    }
+    return deffered.promise;
+  };
+
   return{
     salvar:salvar,
     salvarArray:salvarArray,
     recuperar:recuperar,
     atualizar:atualizar,
-    remover:remover
+    remover:remover,
+    pesquisar:pesquisar
 
   }
 

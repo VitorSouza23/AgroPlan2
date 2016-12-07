@@ -5,13 +5,13 @@
   <ion-content>
       <div class="list list-inset">
           <label class="item item-input">
-              <input type="text" placeholder="Insira seu CPF">
+              <input type="text" placeholder="Insira seu CPF" ng-model="novoUsuario.cpf">
           </label>
           <label class="item item-input">
-              <input type="password" placeholder="Insira sua senha" >
+              <input type="password" placeholder="Insira sua senha" ng-model="novoUsuario.senha">
           </label>
       </div>
-      <button class="button button-block button-outline button-positive">Cadastrar</button>
+      <button class="button button-block button-outline button-positive" ng-click="cadastrarUsuario()">Cadastrar</button>
       <button class="button button-block button-outline button-positive" ng-click="modalCadastro.hide()">Voltar</button></button>
   </ion-content>
 </ion-modal-view>
