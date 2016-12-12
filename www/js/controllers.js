@@ -10,7 +10,17 @@ angular.module('starter.controllers', ['starter.services','starter.controllers.s
 
   $scope.init = function(){
     $scope.usuario = {};
+    $rootScope.usuario = null;
+    $rootScope.isLogin = false;
   }
+
+  $scope.enter = function(evt){
+    if(evt.which === 13){
+      $scope.login();
+    }
+  }
+
+  
 
   $scope.login = function(){
     ServicoLogin.fazerLogin($scope.usuario.cpf, $scope.usuario.senha).then(function(dados){
