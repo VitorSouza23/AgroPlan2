@@ -28,7 +28,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   });
 })
- 
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -61,7 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-analiseMercado': {
-        templateUrl: 'menus/analiseMercado.html',
+        templateUrl: 'js/components/analise-de-mercado/analise-de-mercado.html',
         controller: 'AnaliseDeMercadoCtrl'
       }
     }
@@ -72,7 +72,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-analiseMercado': {
-        templateUrl: 'menus/subitens/fornecedores.html',
+        templateUrl: 'js/components/analise-de-mercado/subitens/fornecedores.html',
         controller: 'AnaliseDeMercadoCtrl'
       }
     }
@@ -83,7 +83,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-analiseMercado': {
-        templateUrl: 'menus/subitens/concorrentes.html',
+        templateUrl: 'js/components/analise-de-mercado/subitens/concorrentes.html',
         controller: 'AnaliseDeMercadoCtrl'
       }
     }
@@ -94,7 +94,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-sumarioExecutivo': {
-        templateUrl: 'menus/sumarioExecutivo.html',
+        templateUrl: 'js/components/sumario-executivo/sumario-executivo.html',
         controller: 'SumarioExecutivoCtrl'
       }
     }
@@ -105,7 +105,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-sumarioExecutivo-socios': {
-        templateUrl: 'menus/subitens/socios.html',
+        templateUrl: 'js/components/sumario-executivo/subitnes/socios.html',
         controller: 'SumarioExecutivoCtrl'
       }
     }
@@ -116,7 +116,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoMarketing': {
-        templateUrl: 'menus/planoMarketing.html',
+        templateUrl: 'www/js/components/plano-de-marketing/plano-de-marketing.html',
         controller: 'PlanoDeMarketingCtrl'
       }
     }
@@ -127,7 +127,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoMarketing-produtos': {
-        templateUrl: 'menus/subitens/produtos.html',
+        templateUrl: 'js/components/plano-de-marketing/subitens/produtos.html',
         controller: 'PlanoDeMarketingCtrl'
       }
     }
@@ -138,7 +138,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoOperacional': {
-        templateUrl: 'menus/planoOperacional.html',
+        templateUrl: 'js/components/plano-operacional/plano-operacional.html',
         controller: 'PlanoOperacionalCtrl'
       }
     }
@@ -149,7 +149,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoOperacional-cargos': {
-        templateUrl: 'menus/subitens/cargos.html',
+        templateUrl: 'js/components/plano-operacional/subitens/cargos.html',
         controller: 'PlanoOperacionalCtrl'
       }
     }
@@ -160,7 +160,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoFinanceiro': {
-        templateUrl: 'menus/planoFinanceiro.html',
+        templateUrl: 'js/components/plano-financeiro/plano-financeiro.html',
         controller: 'PlanoFinanceiroCtrl'
       }
     }
@@ -171,7 +171,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoFinanceiro-maquinas': {
-        templateUrl: 'menus/subitens/maquinas.html',
+        templateUrl: 'www/js/components/plano-financeiro/subitens/maquinas.html',
         controller: 'PlanoFinanceiroCtrl'
       }
     }
@@ -182,7 +182,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoFinanceiro-moveis': {
-        templateUrl: 'menus/subitens/moveis.html',
+        templateUrl: 'js/components/plano-financeiro/subitens/moveis.html',
         controller: 'PlanoFinanceiroCtrl'
       }
     }
@@ -193,7 +193,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoFinanceiro-utensilios': {
-        templateUrl: 'menus/subitens/utensilios.html',
+        templateUrl: 'js/components/plano-financeiro/subitens/utensilios.html',
         controller: 'PlanoFinanceiroCtrl'
       }
     }
@@ -204,7 +204,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoFinanceiro-veiculo': {
-        templateUrl: 'menus/subitens/veiculos.html',
+        templateUrl: 'js/components/plano-financeiro/subitens/veiculos.html',
         controller: 'PlanoFinanceiroCtrl'
       }
     }
@@ -215,7 +215,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoFinanceiro-compras': {
-        templateUrl: 'menus/subitens/compras.html',
+        templateUrl: 'js/components/plano-financeiro/subitens/compras.html',
         controller: 'PlanoFinanceiroCtrl'
       }
     }
@@ -226,7 +226,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoFinanceiro-vendas': {
-        templateUrl: 'menus/subitens/vendas.html',
+        templateUrl: 'js/components/plano-financeiro/subitens/vendas.html',
         controller: 'PlanoFinanceiroCtrl'
       }
     }
@@ -237,7 +237,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoFinanceiro-equipamentos': {
-        templateUrl: 'menus/subitens/equipamentos.html',
+        templateUrl: 'www/js/components/plano-financeiro/subitens/equipamentos.html',
         controller: 'PlanoFinanceiroCtrl'
       }
     }
@@ -248,7 +248,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-construcaoCenarios': {
-        templateUrl: 'menus/construcaoCenarios.html',
+        templateUrl: 'js/components/contrucao-de-cenarios/construcao-de-cenarios.html',
         controller: 'CosntrucaoDeCenarioCtrl'
       }
     }
@@ -260,7 +260,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-avaliacaoEstrategica': {
-        templateUrl: 'menus/avaliacaoEstrategica.html',
+        templateUrl: 'js/components/avaliacao-estrategica/avaliacao-estrategica.html',
         controller: 'AvaliacaoEstrategicaCtrl'
       }
     }
@@ -271,7 +271,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-roteiroInformacao': {
-        templateUrl: 'menus/roteiroInformacao.html',
+        templateUrl: 'js/components/roteiro-de-informacao/roteiro-de-informacao.html',
         controller: 'RoteiroParaColetaCtrl'
       }
     }
@@ -282,7 +282,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-avaliacaoDoPlano': {
-        templateUrl: 'menus/avaliacaoPlano.html',
+        templateUrl: 'js/components/avaliaca-do-plano/avaliacao-do-plano.html',
         controller: 'AvaliacaoDoPlanoCtrl'
       }
     }

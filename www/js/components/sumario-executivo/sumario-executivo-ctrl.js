@@ -7,7 +7,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
   $scope.editar = SumarioExecutivo.editar;
   $scope.bancoDeDados = BancoDeDados;
   $scope.sumarioExecutivoID = SumarioExecutivoID;
-  Modal.init('menus/subitens/socios.html', $scope).then(function(modal){
+  Modal.init('subitens/socios.html', $scope).then(function(modal){
     $scope.modalSocio = modal;
   });
 

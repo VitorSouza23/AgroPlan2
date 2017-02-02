@@ -5,7 +5,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
   $scope.editar = PlanoOperacional.editar;
   $scope.planoOperacionalID = PlanoOperacionalID;
   $scope.bancoDeDados = BancoDeDados;
-  Modal.init('menus/subitens/cargos.html', $scope).then(function(modal){
+  Modal.init('subitens/cargos.html', $scope).then(function(modal){
     $scope.modalCargo = modal;
   });
 

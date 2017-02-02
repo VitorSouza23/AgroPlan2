@@ -6,25 +6,25 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
   $scope.bancoDeDados = BancoDeDados;
   $scope.planoFinanceiroID = PlanoFinanceiroID;
 
-  Modal.init('menus/subitens/equipamentos.html', $scope).then(function(modal){
+  Modal.init('subitens/equipamentos.html', $scope).then(function(modal){
     $scope.modalEquipamento = modal;
   });
-  Modal.init('menus/subitens/maquinas.html', $scope).then(function(modal){
+  Modal.init('subitens/maquinas.html', $scope).then(function(modal){
     $scope.modalMaquina = modal;
   });
-  Modal.init('menus/subitens/moveis.html', $scope).then(function(modal){
+  Modal.init('subitens/moveis.html', $scope).then(function(modal){
     $scope.modalMovel = modal;
   });
-  Modal.init('menus/subitens/utensilios.html', $scope).then(function(modal){
+  Modal.init('subitens/utensilios.html', $scope).then(function(modal){
     $scope.modalUtensilio = modal;
   });
-  Modal.init('menus/subitens/veiculos.html', $scope).then(function(modal){
+  Modal.init('subitens/veiculos.html', $scope).then(function(modal){
     $scope.modalVeiculo = modal;
   });
-  Modal.init('menus/subitens/vendas.html', $scope).then(function(modal){
+  Modal.init('subitens/vendas.html', $scope).then(function(modal){
     $scope.modalVenda = modal;
   });
-  Modal.init('menus/subitens/compras.html', $scope).then(function(modal){
+  Modal.init('subitens/compras.html', $scope).then(function(modal){
     $scope.modalCompra = modal;
   });
 

@@ -6,11 +6,11 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
   $scope.bancoDeDados = BancoDeDados;
   $scope.analiseDeMercadoID = AnaliseDeMercadoID;
 
-  Modal.init('menus/subitens/concorrentes.html', $scope).then(function(modal){
+  Modal.init('subitens/concorrentes.html', $scope).then(function(modal){
     $scope.modalConcorrente = modal;
   });
 
-  Modal.init('menus/subitens/fornecedores.html', $scope).then(function(modal){
+  Modal.init('subitens/fornecedores.html', $scope).then(function(modal){
     $scope.modalFornecedor = modal;
   });
 
