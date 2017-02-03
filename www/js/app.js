@@ -40,13 +40,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // setup an abstract state for the tabs directive
   .state('login', {
       url: '/login',
-      templateUrl: 'templates/login.html',
+      templateUrl: 'js/components/tela-de-login/tela-de-login.html',
       controller: 'LoginCtrl'
   })
 
   .state('login.cadastro', {
       url: '/login/cadastro',
-      templateUrl: 'templates/cadastro.html',
+      templateUrl: 'js/components/tela-de-login/subitens/cadastro.html',
       controller: 'CadastroCtrl'
   })
 
@@ -116,7 +116,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoMarketing': {
-        templateUrl: 'www/js/components/plano-de-marketing/plano-de-marketing.html',
+        templateUrl: 'js/components/plano-de-marketing/plano-de-marketing.html',
         controller: 'PlanoDeMarketingCtrl'
       }
     }
@@ -171,7 +171,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoFinanceiro-maquinas': {
-        templateUrl: 'www/js/components/plano-financeiro/subitens/maquinas.html',
+        templateUrl: 'js/components/plano-financeiro/subitens/maquinas.html',
         controller: 'PlanoFinanceiroCtrl'
       }
     }
@@ -237,7 +237,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     views: {
       'tab-planoFinanceiro-equipamentos': {
-        templateUrl: 'www/js/components/plano-financeiro/subitens/equipamentos.html',
+        templateUrl: 'js/components/plano-financeiro/subitens/equipamentos.html',
         controller: 'PlanoFinanceiroCtrl'
       }
     }

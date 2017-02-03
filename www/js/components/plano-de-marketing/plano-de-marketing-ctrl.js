@@ -5,7 +5,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
   $scope.editar = PlanoDeMarketing.editar;
   $scope.bancoDeDados = BancoDeDados;
   $scope.planoDeMarketingID = PlanoDeMarketingID;
-  Modal.init('subitens/produtos.html', $scope).then(function(modal){
+  Modal.init('js/components/plano-de-marketing/subitens/produtos.html', $scope).then(function(modal){
     $scope.modalProduto = modal;
   });
 

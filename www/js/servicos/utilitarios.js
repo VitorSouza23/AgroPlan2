@@ -57,13 +57,21 @@ angular.module('starter.services.utilitarios', [])
     return deffered.promise;
   };
 
-  var pesquisar = function(caminho, parametro){
+  var pesquisarUsuario = function(caminho, usuario){
     deffered = $q.defer();
-    $http.get(caminho, {cache : false, params: {par:parametro}}).then(function(dados){
+    console.log(usuario);
+    //$http.get(caminho, {cache : false, params: {cpf:usuario.cpf, senha:usuario.senha}}).then(function(dados){
+    $http({
+      method:'GET',
+      url: caminho,
+      cache: false,
+      params: {cpf: usuario.cpf, senha: usuario.senha}
+    }).then(function(dados){
+      console.log(dados);
       deffered.resolve(dados);
-    }),function(dados){
+    },function(dados){
       deffered.reject(dados + "erro!");
-    }
+    })
     return deffered.promise;
   };
 
@@ -73,7 +81,7 @@ angular.module('starter.services.utilitarios', [])
     recuperar:recuperar,
     atualizar:atualizar,
     remover:remover,
-    pesquisar:pesquisar
+    pesquisarUsuario:pesquisarUsuario
 
   }
 
