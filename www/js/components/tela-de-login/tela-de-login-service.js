@@ -30,6 +30,14 @@ angular.module('starter.services.login', ['starter.services.utilitarios'])
         console.log(erro);
       });
       return deffered.promise;
+    },
+
+    verificarCPFJaCadastrado: function(cpf){
+      var caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/usuario?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      BancoDeDados.pesquisarCPFCadastrado(caminho, cpf).then(function(dados){
+        console.log(dados.data[0]);
+        return dados.data[0] != null ? true : false;
+      })
     }
   }
 })

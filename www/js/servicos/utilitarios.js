@@ -59,13 +59,33 @@ angular.module('starter.services.utilitarios', [])
 
   var pesquisarUsuario = function(caminho, usuario){
     deffered = $q.defer();
-    console.log(usuario);
+    jsonString = JSON.stringify({cpf: usuario.cpf, senha: usuario.senha});
+    //console.log(usuario);
+    //console.log(jsonString);
     //$http.get(caminho, {cache : false, params: {cpf:usuario.cpf, senha:usuario.senha}}).then(function(dados){
     $http({
       method:'GET',
-      url: caminho,
+      url: caminho + "&q="+jsonString,
       cache: false,
-      params: {cpf: usuario.cpf, senha: usuario.senha}
+    }).then(function(dados){
+      console.log(dados);
+      deffered.resolve(dados);
+    },function(dados){
+      deffered.reject(dados + "erro!");
+    })
+    return deffered.promise;
+  };
+
+  var pesquisarCPFCadastrado = function(caminho, usuarioCpf){
+    deffered = $q.defer();
+    jsonString = JSON.stringify({cpf: usuarioCpf});
+    //console.log(usuario);
+    //console.log(jsonString);
+    //$http.get(caminho, {cache : false, params: {cpf:usuario.cpf, senha:usuario.senha}}).then(function(dados){
+    $http({
+      method:'GET',
+      url: caminho + "&q="+jsonString,
+      cache: false,
     }).then(function(dados){
       console.log(dados);
       deffered.resolve(dados);
@@ -81,7 +101,8 @@ angular.module('starter.services.utilitarios', [])
     recuperar:recuperar,
     atualizar:atualizar,
     remover:remover,
-    pesquisarUsuario:pesquisarUsuario
+    pesquisarUsuario:pesquisarUsuario,
+    pesquisarCPFCadastrado:pesquisarCPFCadastrado
 
   }
 

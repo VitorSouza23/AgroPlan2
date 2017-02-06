@@ -17,20 +17,20 @@ angular.module('starter.controllers.login', ['starter.services','starter.service
 
   $scope.login = function(){
     ServicoLogin.fazerLogin($scope.usuario).then(function(dados){
-      console.log(dados);
-      usuarios = dados.data;
+      //console.log(dados);
+      usuario = dados.data[0];
+      //console.log(usuario);
       $rootScope.usuario = null;
-      usuarios.forEach(function (usuario){
-        if(usuario.cpf == $scope.usuario.cpf && $scope.usuario.senha == usuario.senha){
-          $rootScope.usuario = $scope.usuario;
-          $rootScope.isLogin = true;
 
+        if(usuario != null){
+          $rootScope.usuario = usuario;
+          $rootScope.isLogin = true;
         }
-      });
+
       if($rootScope.usuario != null){
         $ionicPopup.alert({
           title: 'Bem Vindo!',
-          template: 'Seja bem vindo dono do CPF: ' + $rootScope.usuario.cpf + " !"
+          template: 'Seja bem vindo ' + $rootScope.usuario.nome + "! \n" + 'CPF: ' + $rootScope.usuario.cpf
         });
         $state.go('tab.sumarioExecutivo');
       }else{
@@ -45,8 +45,9 @@ angular.module('starter.controllers.login', ['starter.services','starter.service
 })
 
 
-.controller('CadastroCtrl', function($scope, Modal, ServicoLogin, $ionicHistory, ServicoLogin, $ionicPopup) {
+.controller('CadastroCtrl', function($scope, Modal, ServicoLogin, $ionicHistory, $ionicPopup) {
   $scope.novoUsuario = {};
+  $scope.senhaAConfirmar = {};
   Modal.init('js/components/tela-de-login/subitens/cadastro.html', $scope).then(function(modal){
     $scope.modalCadastro = modal;
     console.log($scope.modalCadastro);
@@ -57,13 +58,28 @@ angular.module('starter.controllers.login', ['starter.services','starter.service
   };
 
   $scope.cadastrarUsuario = function(){
-    ServicoLogin.cadastrarUsuario($scope.novoUsuario).then(function(dados){
-      $scope.modalCadastro.hide();
+    //console.log($scope.novoUsuario.senha);
+    //console.log($scope.senhaAConfirmar.senha);
+    if(!angular.equals($scope.novoUsuario.senha,$scope.senhaAConfirmar.senha)){
       $ionicPopup.alert({
-        title: 'Novo Usuário Cadastrado!',
-        template: 'Seja bem vindo dono do CPF: ' + dados.data.cpf + " !"
+        title: 'As senhas não são iguais!',
+        template: 'Por favor, corrija sua senha.'
       });
-    });
+    }else if(ServicoLogin.verificarCPFJaCadastrado($scope.novoUsuario.cpf)){
+      $ionicPopup.alert({
+        title: 'Este CPF já está cadastrado no sisitema!',
+        template: 'Por favor, coloque outro CPF.'
+      });
+    }else{
+      ServicoLogin.cadastrarUsuario($scope.novoUsuario).then(function(dados){
+        $scope.modalCadastro.hide();
+        $ionicPopup.alert({
+          title: 'Novo Usuário Cadastrado!',
+          template: 'Seja bem vindo ' + dados.data.nome + "! \n" + 'CPF: ' + dados.data.cpf
+        });
+      });
+    }
+
   }
 
 });
