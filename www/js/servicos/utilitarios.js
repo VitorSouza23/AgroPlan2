@@ -76,12 +76,9 @@ angular.module('starter.services.utilitarios', [])
     return deffered.promise;
   };
 
-  var pesquisarCPFCadastrado = function(caminho, usuarioCpf){
+  var pesquisarCPFCadastrado = function(caminho, usuario){
     deffered = $q.defer();
-    jsonString = JSON.stringify({cpf: usuarioCpf});
-    //console.log(usuario);
-    //console.log(jsonString);
-    //$http.get(caminho, {cache : false, params: {cpf:usuario.cpf, senha:usuario.senha}}).then(function(dados){
+    jsonString = JSON.stringify({cpf: usuario.cpf});
     $http({
       method:'GET',
       url: caminho + "&q="+jsonString,
@@ -91,7 +88,7 @@ angular.module('starter.services.utilitarios', [])
       deffered.resolve(dados);
     },function(dados){
       deffered.reject(dados + "erro!");
-    })
+    });
     return deffered.promise;
   };
 
@@ -126,7 +123,8 @@ angular.module('starter.services.utilitarios', [])
     init:init
   }
 })
-.factory('Menu', function($ionicActionSheet, $timeout, $state, $ionicHistory){
+
+.factory('Menu', function($ionicActionSheet, $timeout, $state, $ionicHistory, $rootScope){
   var mostrarMenuArmazenamento = false;
   var mostrarMenusTab = true;
   var show = function() {
@@ -147,13 +145,15 @@ angular.module('starter.services.utilitarios', [])
         if(index === 0){
 
         }else if(index === 1){
+          $rootScope.usuario = null;
+          $rootScope.isLogin = false;
           $state.go('login', {}, { reload: true,
             inherit: false,
             notify: true });
           }else if(index === 2){
-          mostrarMenusTab = true;
-          mostrarMenuArmazenamento = false;
-          /*$state.transitionTo('tab.sumarioExecutivo', {}, { reload: true,
+            mostrarMenusTab = true;
+            mostrarMenuArmazenamento = false;
+            /*$state.transitionTo('tab.sumarioExecutivo', {}, { reload: true,
             inherit: false,
             notify: true });
             $state.reload();*/

@@ -12,7 +12,7 @@ angular.module('starter.services.login', ['starter.services.utilitarios'])
         usuarioAutenticado = dados.data;
         if (usuarioAutenticado.cpf == usuario.cpf && usuarioAutenticado.senha == usuario.senha) {
           console.log(usuario);
-          deffered.resolve(usuario);
+          deffered.resolve(usuarioAutenticado);
         }
       }, function(erro){
         console.log("Erro: " + erro);
@@ -24,7 +24,7 @@ angular.module('starter.services.login', ['starter.services.utilitarios'])
       deffered = $q.defer();
       var caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/usuario?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
       BancoDeDados.salvar(caminho, novoUsuario).then(function(dados){
-        console.log(dados);
+        //console.log(dados);
         deffered.resolve(dados);
       }, function(erro){
         console.log(erro);
@@ -32,12 +32,19 @@ angular.module('starter.services.login', ['starter.services.utilitarios'])
       return deffered.promise;
     },
 
-    verificarCPFJaCadastrado: function(cpf){
+    verificarCPFJaCadastrado: function(usuario){
+      deffered = $q.defer();
+      var cpfExistente = false;
       var caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/usuario?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      BancoDeDados.pesquisarCPFCadastrado(caminho, cpf).then(function(dados){
+      BancoDeDados.pesquisarCPFCadastrado(caminho, usuario).then(function(dados){
         console.log(dados.data[0]);
-        return dados.data[0] != null ? true : false;
-      })
+        deffered.resolve(dados);
+        if(dados.data.length > 0 ){
+          cpfExistente = true;
+        }
+      });
+      console.log(cpfExistente);
+      return cpfExistente;
     }
   }
 })
