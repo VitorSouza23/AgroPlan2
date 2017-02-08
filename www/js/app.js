@@ -44,6 +44,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       controller: 'LoginCtrl'
   })
 
+  .state('sobreProjeto', {
+      url: '/sobreProjeto',
+      templateUrl: 'js/components/projeto-sobre/projeto-sobre.html',
+      controller: 'SobreProjetoCtrl'
+  })
+
   .state('login.cadastro', {
       url: '/login/cadastro',
       templateUrl: 'js/components/tela-de-login/subitens/cadastro.html',

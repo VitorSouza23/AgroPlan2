@@ -77,6 +77,7 @@ angular.module('starter.services.utilitarios', [])
   };
 
   var pesquisarCPFCadastrado = function(caminho, usuario){
+    //console.log(usuario);
     deffered = $q.defer();
     jsonString = JSON.stringify({cpf: usuario.cpf});
     $http({
@@ -84,8 +85,9 @@ angular.module('starter.services.utilitarios', [])
       url: caminho + "&q="+jsonString,
       cache: false,
     }).then(function(dados){
-      console.log(dados);
       deffered.resolve(dados);
+      //console.log(dados);
+
     },function(dados){
       deffered.reject(dados + "erro!");
     });
@@ -132,6 +134,7 @@ angular.module('starter.services.utilitarios', [])
     // Show the action sheet
     var menu = $ionicActionSheet.show({
       buttons: [
+        {text: 'Sobre o projeto'},
         {text: 'Configurações'},
         {text: 'Sair'},
         {text: 'Voltar'}
@@ -143,6 +146,9 @@ angular.module('starter.services.utilitarios', [])
       },
       buttonClicked: function(index) {
         if(index === 0){
+          $state.go('sobreProjeto', {}, { reload: true,
+            inherit: false,
+            notify: true });
 
         }else if(index === 1){
           $rootScope.usuario = null;

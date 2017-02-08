@@ -2,7 +2,7 @@
   <ion-content class="padding">
       <div class="list list-inset">
           <label class="item item-input">
-              <input type="text" placeholder="CPF" ng-model="usuario.cpf">
+              <input type="tel" placeholder="CPF (Somente números!)" ng-model="usuario.cpf" ng-keypress="enter($event)" maxlength="11">
           </label>
           <label class="item item-input">
               <input type="password" placeholder="Senha" ng-model="usuario.senha" ng-keypress="enter($event)">

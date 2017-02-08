@@ -34,17 +34,14 @@ angular.module('starter.services.login', ['starter.services.utilitarios'])
 
     verificarCPFJaCadastrado: function(usuario){
       deffered = $q.defer();
-      var cpfExistente = false;
       var caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/usuario?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
       BancoDeDados.pesquisarCPFCadastrado(caminho, usuario).then(function(dados){
-        console.log(dados.data[0]);
         deffered.resolve(dados);
-        if(dados.data.length > 0 ){
-          cpfExistente = true;
-        }
+      }, function(erro){
+        deffered.reject(erro);
       });
-      console.log(cpfExistente);
-      return cpfExistente;
+
+      return deffered.promise;
     }
   }
 })

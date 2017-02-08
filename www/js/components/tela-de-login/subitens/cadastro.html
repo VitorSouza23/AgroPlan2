@@ -5,7 +5,7 @@
   <ion-content>
     <div class="list list-inset">
       <label class="item item-input">
-        <input type="text" placeholder="Insira seu CPF (somente números)" ng-model="novoUsuario.cpf" maxlength="11">
+        <input type="text" placeholder="Insira seu CPF (somente números)" ng-model="novoUsuario.cpf" maxlength="11" ng-keyup="verificarCPF()">
       </label>
       <label class="item item-input">
         <input type="text" placeholder="Insira seu Nome" ng-model="novoUsuario.nome">
