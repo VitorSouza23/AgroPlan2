@@ -1,7 +1,7 @@
 angular.module('starter.controllers.login', ['starter.services','starter.services.utilitarios', 'starter.services.login'])
 
 .controller('LoginCtrl', function($scope, ServicoLogin, $ionicPopup, $state, $rootScope) {
-  $scope.usuario = new Usuario;
+  $scope.usuario = {};
 
   $scope.init = function(){
     $scope.usuario = {};
@@ -33,7 +33,7 @@ angular.module('starter.controllers.login', ['starter.services','starter.service
             title: 'Bem Vindo!',
             template: 'Seja bem vindo ' + $rootScope.usuario.nome + "! \n" + 'CPF: ' + $rootScope.usuario.cpf
           });
-          $state.go('tab.sumarioExecutivo');
+          $state.go('planoDeNegocio');
         }else{
           var alertPopup = $ionicPopup.alert({
             title: 'Falha no Login!',

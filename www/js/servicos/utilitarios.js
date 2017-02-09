@@ -150,13 +150,13 @@ angular.module('starter.services.utilitarios', [])
             inherit: false,
             notify: true });
 
-        }else if(index === 1){
+        }else if(index === 2){
           $rootScope.usuario = null;
           $rootScope.isLogin = false;
           $state.go('login', {}, { reload: true,
             inherit: false,
             notify: true });
-          }else if(index === 2){
+          }else if(index === 3){
             mostrarMenusTab = true;
             mostrarMenuArmazenamento = false;
             /*$state.transitionTo('tab.sumarioExecutivo', {}, { reload: true,

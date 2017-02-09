@@ -56,6 +56,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       controller: 'CadastroCtrl'
   })
 
+  .state('planoDeNegocio', {
+      url: '/planoDeNegocio',
+      templateUrl: 'js/components/plano-de-negocio/plano-de-negocio.html',
+      controller: 'PlanoDeNegocioCtrl'
+  })
+
   .state('tab', {
     url: '/tab',
     abstract: true,
