@@ -39,12 +39,15 @@ function AnaliseDeMercado(){
 };
 
 function Cliente(){
+  this._id;
   this.publicoAlvo;
   this.comportamentoDosClientes;
   this.areaDeAbrangencia;
+  this.idUsuario;
 };
 
 function Concorrente(){
+  this._id;
   this.nome;
   this.qualidade;
   this.preco;
@@ -54,13 +57,16 @@ function Concorrente(){
   this.servicos;
   this.garantias;
   this.observacoes;
+  this.idUsuario;
 };
 
 function Fornecedor(){
+  this._id;
   this.nome;
   this.preco;
   this.condicoesDePagamento;
   this.prazoDeEntrega;
   this.localizacao;
   this.item;
+  this.idUsuario;
 }

@@ -1,6 +1,6 @@
 angular.module('starter.controllers.analiseDeMercado', ['starter.services.analiseDeMercado', 'starter.services.utilitarios'])
 
-.controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, AnaliseDeMercadoID, Concorrente, Fornecedor, $ionicListDelegate, $ionicHistory,$ionicPopup, $timeout, BancoDeDados,$ionicLoading, Modal){
+.controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, AnaliseDeMercadoID, Concorrente, Fornecedor, $ionicListDelegate, $ionicHistory,$ionicPopup, $timeout, BancoDeDados,$ionicLoading, Modal, $rootScope){
   $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
   $scope.editar  = AnaliseDeMercado.editar;
   $scope.bancoDeDados = BancoDeDados;
@@ -16,6 +16,9 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
 
   $scope.addConcorrente = function(){
     if(!$scope.editar){
+      $scope.concorrente.idUsuario = $rootScope.usuario._id;
+      salvarConcorrente($scope.concorrente);
+
       $scope.analiseDeMercado.addConcorrente($scope.concorrente);
     }else{
       $scope.analiseDeMercado.editarConcorrente($scope.concorrente);
@@ -52,7 +55,10 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
 
     $scope.addFornecedor = function(){
       if(!$scope.editar){
+        $scope.fornecedor.idUsuario = $rootScope.usuario._id;
+        salvarFornecedor($scope.fornecedor);
         $scope.analiseDeMercado.addFornecedor($scope.fornecedor);
+
       }else{
         $scope.analiseDeMercado.editarFornecedor($scope.fornecedor);
         $scope.editar = false;
@@ -106,7 +112,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       var caminho;
       var objeto;
 
-      salvarFornecedores();
+      /*salvarFornecedores();
       salvarConcorrentes();
       salvarCliente();
 
@@ -116,6 +122,23 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       }).then(function(){
         setTimeout(function(){
           console.log("The loading indicator is now displayed");
+          console.log($scope.analiseDeMercadoID.idsFornecedores);
+          console.log($scope.analiseDeMercadoID.idsConcorrentes);
+          console.log($scope.analiseDeMercadoID.idCliente);
+          json = angular.toJson($scope.analiseDeMercadoID);
+          localStorage.setItem("analiseDeMercado", json);
+          caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+          objeto = $scope.analiseDeMercadoID;
+          $scope.bancoDeDados.salvar(caminho, objeto);
+        }, 10000);
+      });*/
+      salvarCliente();
+      $ionicLoading.show({
+        template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        duration: 10000
+      }).then(function(){
+        setTimeout(function(){
+          
           console.log($scope.analiseDeMercadoID.idsFornecedores);
           console.log($scope.analiseDeMercadoID.idsConcorrentes);
           console.log($scope.analiseDeMercadoID.idCliente);
@@ -135,7 +158,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       };
     };
 
-    function salvarFornecedores(){
+    /*function salvarFornecedores(){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
       auxListaFornecedor = [];
       $scope.analiseDeMercado.fornecedores.forEach(function(fornecedor){
@@ -152,9 +175,19 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
         });
       });
 
+    };*/
+
+    function salvarFornecedor(fornecedor){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.salvar(caminho, fornecedor).then(function (dados){
+          console.log(dados.data);
+          $scope.analiseDeMercadoID.idsFornecedores.push(dados.data._id);
+      });
+
     };
 
-    function salvarConcorrentes(){
+
+    /*function salvarConcorrentes(){
 
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
       auxListaConcorrente = [];
@@ -171,15 +204,35 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
           console.log(dado);
         })
       });
+    };*/
+
+    function salvarConcorrente(concorrente){
+
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.salvar(caminho, concorrente).then(function(dados){
+        console.log(dados.data);
+        $scope.analiseDeMercadoID.idsConcorrentes.push(dados.data._id);
+      });
     };
 
-    function salvarCliente(){
+    /*function salvarCliente(){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cliente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
       objeto = $scope.analiseDeMercado.cliente;
       $scope.bancoDeDados.salvar(caminho, objeto).then(function(response){
         $scope.analiseDeMercadoID.idCliente = response.data._id;
         console.log(response);
 
+      });
+    };*/
+
+    function salvarCliente(){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cliente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      objeto = $scope.analiseDeMercado.cliente;
+      objeto.idUsuario = $rootScope.usuario._id;
+      $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
+
+        console.log(dados);
+        $scope.analiseDeMercadoID.idCliente = dados.data._id;
       });
     };
 
