@@ -37,7 +37,7 @@ angular.module('starter.controllers.login', ['starter.services','starter.service
         }else{
           var alertPopup = $ionicPopup.alert({
             title: 'Falha no Login!',
-            template: 'Por favor, corrija os campos incorretos!'
+            template: 'O CPF ou Senha incorretos!'
           });
         }
       });

@@ -14,7 +14,7 @@ function AnaliseDeMercado(){
 
   this.editarConcorrente = function(concorrente){
     var pos = this.concorrentes.indexOf(concorrente);
-    concorrente._id = null;
+    //concorrente._id = null;
     this.concorrentes[pos] = concorrente;
   };
 
@@ -31,7 +31,7 @@ function AnaliseDeMercado(){
 
   this.editarFornecedor = function(fornecedor){
       var pos = this.fornecedores.indexOf(fornecedor);
-      fornecedor._id = null;
+      //fornecedor._id = null;
       this.fornecedores[pos] = fornecedor;
     };
 

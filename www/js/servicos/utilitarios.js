@@ -39,7 +39,9 @@ angular.module('starter.services.utilitarios', [])
 
   var atualizar = function(caminho, objeto){
     deffered = $q.defer();
-    http.put(caminho+objeto._id, objeto).then(function(dados){
+    jsonString = JSON.stringify({_id:objeto._id});
+    console.log(caminho + "&q="+jsonString);
+    $http.put(caminho + "&q="+jsonString, objeto).then(function(dados){
       deffered.resolve(dados);
     }),function(dados){
       deffered.reject(dados + "erro!");
@@ -49,7 +51,9 @@ angular.module('starter.services.utilitarios', [])
 
   var remover = function(caminho, objeto){
     deffered = $q.defer();
-    http.delete(caminho+objeto._id).then(function(dados){
+    jsonString = JSON.stringify({_id:objeto._id});
+    console.log(caminho + "&q="+jsonString);
+    $http.delete(caminho + "&q="+jsonString).then(function(dados){
       deffered.resolve(dados);
     }),function(dados){
       deffered.reject(dados + "erro!");
@@ -94,6 +98,17 @@ angular.module('starter.services.utilitarios', [])
     return deffered.promise;
   };
 
+  var recuperarComIdUsuario = function(caminho, usuario){
+    deffered = $q.defer();
+    jsonString = JSON.stringify({idUsuario: usuario._id.$oid});
+    $http.get(caminho + "&q="+jsonString, {cache : true}).then(function(dados){
+      deffered.resolve(dados);
+    }),function(dados){
+      deffered.reject(dados + "erro!");
+    }
+    return deffered.promise;
+  };
+
   return{
     salvar:salvar,
     salvarArray:salvarArray,
@@ -101,8 +116,8 @@ angular.module('starter.services.utilitarios', [])
     atualizar:atualizar,
     remover:remover,
     pesquisarUsuario:pesquisarUsuario,
-    pesquisarCPFCadastrado:pesquisarCPFCadastrado
-
+    pesquisarCPFCadastrado:pesquisarCPFCadastrado,
+    recuperarComIdUsuario:recuperarComIdUsuario
   }
 
 })
@@ -126,7 +141,7 @@ angular.module('starter.services.utilitarios', [])
   }
 })
 
-.factory('Menu', function($ionicActionSheet, $timeout, $state, $ionicHistory, $rootScope){
+.factory('Menu', function($ionicActionSheet, $timeout, $state, $ionicHistory, $rootScope, $window){
   var mostrarMenuArmazenamento = false;
   var mostrarMenusTab = true;
   var show = function() {
@@ -153,6 +168,7 @@ angular.module('starter.services.utilitarios', [])
         }else if(index === 2){
           $rootScope.usuario = null;
           $rootScope.isLogin = false;
+          $window.location.reload(true)
           $state.go('login', {}, { reload: true,
             inherit: false,
             notify: true });

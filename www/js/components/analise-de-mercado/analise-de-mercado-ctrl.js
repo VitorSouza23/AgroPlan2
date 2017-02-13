@@ -1,10 +1,17 @@
 angular.module('starter.controllers.analiseDeMercado', ['starter.services.analiseDeMercado', 'starter.services.utilitarios'])
 
+
+
 .controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, AnaliseDeMercadoID, Concorrente, Fornecedor, $ionicListDelegate, $ionicHistory,$ionicPopup, $timeout, BancoDeDados,$ionicLoading, Modal, $rootScope){
-  $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
-  $scope.editar  = AnaliseDeMercado.editar;
-  $scope.bancoDeDados = BancoDeDados;
-  $scope.analiseDeMercadoID = AnaliseDeMercadoID;
+
+  $scope.init = function(){
+    $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
+    $scope.editar  = AnaliseDeMercado.editar;
+    $scope.bancoDeDados = BancoDeDados;
+    $scope.analiseDeMercadoID = AnaliseDeMercadoID;
+
+
+  }
 
   Modal.init('js/components/analise-de-mercado/subitens/concorrentes.html', $scope).then(function(modal){
     $scope.modalConcorrente = modal;
@@ -16,17 +23,20 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
 
   $scope.addConcorrente = function(){
     if(!$scope.editar){
-      $scope.concorrente.idUsuario = $rootScope.usuario._id;
+      $scope.concorrente.idUsuario = $rootScope.usuario._id.$oid;
       salvarConcorrente($scope.concorrente);
 
       $scope.analiseDeMercado.addConcorrente($scope.concorrente);
     }else{
       $scope.analiseDeMercado.editarConcorrente($scope.concorrente);
+      atualizarConcorrente($scope.concorrente);
       $scope.editar = false;
       $ionicListDelegate.closeOptionButtons();
     }
     $scope.modalConcorrente.hide();
   }
+
+
 
   $scope.showConfirm = function() {
     var confirmPopup = $ionicPopup.confirm({
@@ -53,14 +63,33 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       }
     };
 
+    $scope.excluirConcorrentePermanentemente = function(){
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Excluir?',
+        template: 'Deseja excluir permanentemente este item?',
+        cancelText: 'Não'
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          excluirConcorrente($scope.concorrente);
+          console.log("Excluído!");
+        } else {
+          console.log('Não Excluído!');
+        }
+      });
+
+    }
+
     $scope.addFornecedor = function(){
       if(!$scope.editar){
-        $scope.fornecedor.idUsuario = $rootScope.usuario._id;
+        $scope.fornecedor.idUsuario = $rootScope.usuario._id.$oid;
         salvarFornecedor($scope.fornecedor);
         $scope.analiseDeMercado.addFornecedor($scope.fornecedor);
 
       }else{
         $scope.analiseDeMercado.editarFornecedor($scope.fornecedor);
+        atualizarFornecedor($scope.fornecedor);
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
@@ -85,6 +114,25 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       }
 
     };
+
+    $scope.excluirFornecedorPermanentemente = function(){
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Excluir?',
+        template: 'Deseja excluir permanentemente este item?',
+        cancelText: 'Não'
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          excluirConcorrente($scope.fornecedor);
+          console.log("Excluído!");
+        } else {
+          console.log('Não Excluído!');
+        }
+      });
+
+    }
+
 
     $scope.back = function(){
       $ionicHistory.goBack();
@@ -112,16 +160,13 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       var caminho;
       var objeto;
 
-      /*salvarFornecedores();
-      salvarConcorrentes();
       salvarCliente();
+      $ionicLoading.show({
+        template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        duration: 1000
+      }).then(function(){
+        setTimeout(function(){
 
-      $ionicLoading.show({
-        template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 10000
-      }).then(function(){
-        setTimeout(function(){
-          console.log("The loading indicator is now displayed");
           console.log($scope.analiseDeMercadoID.idsFornecedores);
           console.log($scope.analiseDeMercadoID.idsConcorrentes);
           console.log($scope.analiseDeMercadoID.idCliente);
@@ -130,100 +175,68 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
           caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
           objeto = $scope.analiseDeMercadoID;
           $scope.bancoDeDados.salvar(caminho, objeto);
-        }, 10000);
-      });*/
-      salvarCliente();
-      $ionicLoading.show({
-        template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 10000
-      }).then(function(){
-        setTimeout(function(){
-          
-          console.log($scope.analiseDeMercadoID.idsFornecedores);
-          console.log($scope.analiseDeMercadoID.idsConcorrentes);
-          console.log($scope.analiseDeMercadoID.idCliente);
-          json = angular.toJson($scope.analiseDeMercadoID);
-          localStorage.setItem("analiseDeMercado", json);
-          caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-          objeto = $scope.analiseDeMercadoID;
-          $scope.bancoDeDados.salvar(caminho, objeto);
-        }, 10000);
+        }, 1000);
       });
 
       $scope.hide = function(){
-        $ionicLoading.hide().then(function(){
-          console.log("The loading indicator is now hidden");
-        });
-
+        $ionicLoading.hide();
       };
     };
 
-    /*function salvarFornecedores(){
-      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      auxListaFornecedor = [];
-      $scope.analiseDeMercado.fornecedores.forEach(function(fornecedor){
-        if(fornecedor._id == null){
-          auxListaFornecedor.push(fornecedor);
-        }else{
-          $scope.analiseDeMercadoID.idsFornecedores.push(fornecedor._id);
-        }
-      });
-      $scope.bancoDeDados.salvarArray(caminho, auxListaFornecedor).then(function (dados){
-        dados.forEach(function(dado){
-          $scope.analiseDeMercadoID.idsFornecedores.push(dado.data._id);
-          console.log(dado);
-        });
-      });
 
-    };*/
 
     function salvarFornecedor(fornecedor){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
       $scope.bancoDeDados.salvar(caminho, fornecedor).then(function (dados){
-          console.log(dados.data);
-          $scope.analiseDeMercadoID.idsFornecedores.push(dados.data._id);
+        console.log(dados.data);
+        $scope.analiseDeMercadoID.idsFornecedores.push(dados.data._id.$oid);
       });
 
     };
 
-
-    /*function salvarConcorrentes(){
-
-      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      auxListaConcorrente = [];
-      $scope.analiseDeMercado.concorrentes.forEach(function(concorrente){
-        if(concorrente._id == null){
-          auxListaConcorrente.push(concorrente);
-        }else{
-          $scope.analiseDeMercadoID.idsConcorrentes.push(concorrente._id);
-        }
+    function atualizarFornecedor(fornecedor){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.atualizar(caminho, fornecedor).then(function(dados){
+        console.log(dados.data);
+        //$scope.analiseDeMercadoID.idsConcorrentes.push(dados.data._id.$oid);
       });
-      $scope.bancoDeDados.salvarArray(caminho, auxListaConcorrente).then(function(dados){
-        dados.forEach(function(dado){
-          $scope.analiseDeMercadoID.idsConcorrentes.push(dado.data._id);
-          console.log(dado);
-        })
+    }
+
+    function excluirFornecedor(fornecedor){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.remover(caminho, fornecedor).then(function(dados){
+        console.log(dados.data);
+
       });
-    };*/
+    }
+
 
     function salvarConcorrente(concorrente){
 
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
       $scope.bancoDeDados.salvar(caminho, concorrente).then(function(dados){
         console.log(dados.data);
-        $scope.analiseDeMercadoID.idsConcorrentes.push(dados.data._id);
+        $scope.analiseDeMercadoID.idsConcorrentes.push(dados.data._id.$oid);
       });
     };
 
-    /*function salvarCliente(){
-      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cliente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      objeto = $scope.analiseDeMercado.cliente;
-      $scope.bancoDeDados.salvar(caminho, objeto).then(function(response){
-        $scope.analiseDeMercadoID.idCliente = response.data._id;
-        console.log(response);
+    function atualizarConcorrente(concorrente){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.atualizar(caminho, concorrente).then(function(dados){
+        console.log(dados.data);
+        //$scope.analiseDeMercadoID.idsConcorrentes.push(dados.data._id.$oid);
+      });
+    }
+
+    function excluirConcorrente(concorrente){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.remover(caminho, concorrente).then(function(dados){
+        console.log(dados.data);
 
       });
-    };*/
+    }
+
+
 
     function salvarCliente(){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cliente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
@@ -232,17 +245,23 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
 
         console.log(dados);
-        $scope.analiseDeMercadoID.idCliente = dados.data._id;
+        $scope.analiseDeMercadoID.idCliente = dados.data._id.$oid;
       });
     };
 
     $scope.recuperarDadosFornecedores = function(){
       $ionicLoading.show({
         template: 'Acessando Fornecedores... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 5000
+        duration: 100
       }).then(function(){
-        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+        $scope.bancoDeDados.recuperarComIdUsuario('https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', $rootScope.usuario).then(function(dados){
           $scope.analiseDeMercado.fornecedores = dados.data;
+          //angular.extend($scope.analiseDeMercado.fornecedores, dados.data);
+          $scope.analiseDeMercadoID.idsFornecedores = [];
+          dados.data.forEach(function(dado){
+            $scope.analiseDeMercadoID.idsFornecedores.push(dado._id);
+          });
+          console.log($scope.analiseDeMercado.fornecedores);
 
         });
 
@@ -252,10 +271,14 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
     $scope.recuperarDadosConcorrentes = function(){
       $ionicLoading.show({
         template: 'Acessando Concorrentes... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 5000
+        duration: 100
       }).then(function(){
-        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+        $scope.bancoDeDados.recuperarComIdUsuario('https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', $rootScope.usuario).then(function(dados){
           $scope.analiseDeMercado.concorrentes = dados.data;
+          $scope.analiseDeMercadoID.idsConcorrentes = [];
+          dados.data.forEach(function(dado){
+            $scope.analiseDeMercadoID.idsConcorrentes.push(dado._id);
+          })
           console.log(dados);
         });
       });
