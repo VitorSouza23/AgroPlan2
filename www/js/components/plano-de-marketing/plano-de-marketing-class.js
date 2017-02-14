@@ -15,15 +15,16 @@ function PlanoDeMarketing(){
 
   this.editarProduto = function(produto){
     var pos = this.produtos.indexOf(produto);
-    produto._id = null;
     this.produtos[pos] = produto;
   }
 }
 
 function Produto(){
+  this._id;
   this.nome;
   this.cicloDeProducao;
   this.preco;
+  this.idUsuario;
 }
 
 function LocalizacaoDoNegocio(){

@@ -1,6 +1,6 @@
 angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoDeMarketing', 'starter.services.utilitarios'])
 
-.controller('PlanoDeMarketingCtrl', function($scope, PlanoDeMarketing, Produto, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoDeMarketingID, Modal){
+.controller('PlanoDeMarketingCtrl', function($scope, PlanoDeMarketing, Produto, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoDeMarketingID, Modal, $rootScope){
   $scope.planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
   $scope.editar = PlanoDeMarketing.editar;
   $scope.bancoDeDados = BancoDeDados;
@@ -18,9 +18,13 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
 
     $scope.addProduto = function(){
       if(!$scope.editar){
+        $scope.produto.idUsuario = $rootScope.usuario._id.$oid;
+        salvarProduto($scope.produto);
         $scope.planoDeMarketing.addProduto($scope.produto);
       }else{
         $scope.planoDeMarketing.editarProduto($scope.produto);
+        console.log($scope.produto);
+        atualizarProduto($scope.produto);
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
@@ -58,11 +62,28 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
       $scope.planoDeMarketing.produtos.splice(toIndex, 0, item);
     };
 
+    $scope.excluirProdutoPermanentemente = function(){
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Excluir?',
+        template: 'Deseja excluir permanentemente este item?',
+        cancelText: 'Não'
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          excluirProduto($scope.produto);
+          console.log("Excluído!");
+        } else {
+          console.log('Não Excluído!');
+        }
+      });
+
+    }
+
     $scope.salvar = function(){
       var caminho;
       var objeto;
 
-      salvarProdutos();
       salvarLocalizacao();
       $scope.planoDeMarketingID.estrategiasPromocionais = $scope.planoDeMarketing.estrategiasPromocionais;
       $scope.planoDeMarketingID.estruturaDeComercializacao = $scope.planoDeMarketing.estruturaDeComercializacao;
@@ -91,15 +112,32 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
       };
     };
 
-    function salvarProdutos(){
+
+
+    function salvarProduto(produto){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/produto?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      $scope.bancoDeDados.salvarArray(caminho, $scope.planoDeMarketing.produtos).then(function (dados){
-        dados.forEach(function(dado){
-          $scope.planoDeMarketingID.idsProdutos.push(dado.data._id);
-          console.log(dado);
-        });
+      $scope.bancoDeDados.salvar(caminho, produto).then(function (dados){
+        console.log(dados.data);
+        $scope.produto._id = dados.data._id;
+        $scope.planoDeMarketingID.idsProdutos.push(dados.data._id.$oid);
       });
 
+    };
+
+    function atualizarProduto(produto){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/produto?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.atualizar(caminho, produto).then(function(dados){
+        console.log(dados.data);
+
+      });
+    }
+
+    function excluirProduto(produto){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/produto?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.remover(caminho, produto).then(function(dados){
+        console.log(dados.data);
+
+      });
     }
 
 
@@ -107,7 +145,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/localizacao?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
       objeto = $scope.planoDeMarketing.localizacaoDoNegocio;
       $scope.bancoDeDados.salvar(caminho, objeto).then(function(response){
-        $scope.planoDeMarketingID.idLocalizacao = response.data._id;
+        $scope.planoDeMarketingID.idLocalizacao = response.data._id.$oid;
         console.log(response);
 
       });
@@ -117,10 +155,16 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
     $scope.recuperarDadosProdutos = function(){
       $ionicLoading.show({
         template: 'Acessando Produtos... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 5000
+        duration: 1000
       }).then(function(){
-        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/produto?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+        $scope.bancoDeDados.recuperarComIdUsuario('https://api.mlab.com/api/1/databases/agroplan/collections/produto?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', $rootScope.usuario).then(function(dados){
           $scope.planoDeMarketing.produtos = dados.data;
+          console.log(dados.data);
+          $scope.planoDeMarketingID.idsProdutos = [];
+          dados.data.forEach(function(dado){
+            $scope.planoDeMarketingID.idsProdutos.push(dado._id.$oid);
+          });
+          console.log($scope.planoDeMarketingID.idsProdutos);
         });
       });
     };

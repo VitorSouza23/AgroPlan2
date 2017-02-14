@@ -14,7 +14,6 @@ function PlanoFinanceiro(){
 
   this.editarVenda = function(venda){
     var pos = this.vendas.indexOf(venda);
-    venda._id = null;
     this.vendas[pos] = venda;
   };
 
@@ -29,12 +28,12 @@ function PlanoFinanceiro(){
 
   this.editarCompra = function(compra){
     var pos = this.compras.indexOf(compra);
-    compra._id = null;
     this.compras[pos] = compra;
   };
 }
 
 function Equipamento(){
+  this._id;
   this.descricao;
   this.quantidade;
   this.valorUnitario;
@@ -46,6 +45,7 @@ function Equipamento(){
 }
 
 function Maquina(){
+  this._id;
   this.descricao;
   this.quantidade;
   this.valorUnitario;
@@ -57,6 +57,7 @@ function Maquina(){
 }
 
 function Movel(){
+  this._id;
   this.descricao;
   this.quantidade;
   this.valorUnitario;
@@ -68,6 +69,7 @@ function Movel(){
 }
 
 function Utensilio(){
+  this._id;
   this.descricao;
   this.quantidade;
   this.valorUnitario;
@@ -78,6 +80,7 @@ function Utensilio(){
 }
 
 function Veiculo(){
+  this._id;
   this.descricao;
   this.quantidade;
   this.valorUnitario;
@@ -107,7 +110,6 @@ function EstoqueInicial(){
 
   this.editarEquipamento = function(equipamento){
     var pos = this.equipamentos.indexOf(equipamento);
-    equipamento._id = null;
     this.equipamentos[pos] = equipamento;
   };
 
@@ -122,7 +124,6 @@ function EstoqueInicial(){
 
   this.editarMaquina = function(maquina){
     var pos = this.maquinas.indexOf(maquina);
-    maquina._id = null;
     this.maquinas[pos] = maquina;
   };
 
@@ -137,7 +138,6 @@ function EstoqueInicial(){
 
   this.editarMovel = function(movel){
     var pos = this.moveis.indexOf(movel);
-    movel._id = null;
     this.moveis[pos] = movel;
   };
 
@@ -152,7 +152,6 @@ function EstoqueInicial(){
 
   this.editarUtensilio = function(utensilio){
     var pos = this.utensilios.indexOf(utensilio);
-    utensilio._id = null;
     this.utensilios[pos] = utensilio;
   };
 
@@ -167,7 +166,6 @@ function EstoqueInicial(){
 
   this.editarVeiculo = function(veiculo){
     var pos = this.veiculos.indexOf(veiculo);
-    veiculos._id = null;
     this.veiculos[pos] = veiculo;
   };
 
@@ -195,6 +193,7 @@ function EstoqueInicial(){
 };
 
 function Venda(){
+  this._id;
   this.dias;
   this.porcentagem;
 
@@ -204,6 +203,7 @@ function Venda(){
 };
 
 function Compra(){
+  this._id;
   this.dias;
   this.porcentagem;
 

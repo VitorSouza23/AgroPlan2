@@ -1,6 +1,9 @@
-angular.module('starter.controllers.planoOperacional', ['starter.services.planoOperacional', 'ionic', 'starter.services.utilitarios'])
+angular.module('starter.controllers.planoOperacional', ['starter.services.planoOperacional',
+'ionic', 'starter.services.utilitarios'])
 
-.controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicListDelegate, $ionicHistory, $ionicPopup, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoOperacionalID, Modal){
+.controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicListDelegate,
+  $ionicHistory, $ionicPopup, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoOperacionalID,
+   Modal, $rootScope){
   $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
   $scope.editar = PlanoOperacional.editar;
   $scope.planoOperacionalID = PlanoOperacionalID;
@@ -19,9 +22,12 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
   var tipoDestinoCaminhoFoto;
   $scope.addCargo = function(){
     if(!$scope.editar){
+      $scope.cargo.idUsuario = $rootScope.usuario._id.$oid;
+      salvarCargo($scope.cargo);
       $scope.planoOperacional.addCargo($scope.cargo);
     }else{
       $scope.planoOperacional.editarCargo($scope.cargo);
+      atualizarCargo($scope.cargo);
       $scope.editar = false;
       $ionicListDelegate.closeOptionButtons();
     }
@@ -36,6 +42,23 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     $scope.cargo = cargo;
     $scope.editar = true;
     $scope.openCargos();
+  };
+
+  $scope.excluirCargoPermanentemente = function(){
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Excluir?',
+      template: 'Deseja excluir permanentemente este item?',
+      cancelText: 'Não'
+    });
+
+    confirmPopup.then(function(res) {
+      if(res) {
+        excluirCargo($scope.cargo);
+        console.log("Excluído!");
+      } else {
+        console.log('Não Excluído!');
+      }
+    });
   };
 
   $scope.back = function(){
@@ -119,7 +142,6 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     var caminho;
     var objeto;
 
-    salvarCargos();
     salvarImagem();
     $scope.planoOperacionalID.capacidadeComercial = $scope.planoOperacional.capacidadeComercial;
     $scope.planoOperacionalID.capacidadeProdutiva =  $scope.planoOperacional.capacidadeProdutiva;
@@ -129,7 +151,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
     $ionicLoading.show({
       template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-      duration: 10000
+      duration: 1000
     }).then(function(){
       setTimeout(function(){
         console.log($scope.planoOperacionalID.idsCargos);
@@ -151,15 +173,30 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     };
   };
 
-  function salvarCargos(){
+
+  function salvarCargo(cargo){
     caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cargos?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-    $scope.bancoDeDados.salvarArray(caminho, $scope.planoOperacional.cargos).then(function (dados){
-      dados.forEach(function(dado){
-        $scope.planoOperacionalID.idsCargos.push(dado.data._id);
-        console.log(dado);
-      });
+    $scope.bancoDeDados.salvar(caminho, cargo).then(function (dados){
+      console.log(dados.data);
+      $scope.cargo._id = dados.data._id;
+      $scope.planoOperacionalID.idsCargos.push(dados.data._id.$oid);
     });
 
+  };
+
+  function atualizarCargo(cargo){
+    caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cargos?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+    $scope.bancoDeDados.atualizar(caminho, cargo).then(function(dados){
+      console.log(dados.data);
+    });
+  }
+
+  function excluirCargo(cargo){
+    caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cargos?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+    $scope.bancoDeDados.remover(caminho, cargo).then(function(dados){
+      console.log(dados.data);
+
+    });
   }
 
 
@@ -177,10 +214,15 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
   $scope.recuperarDadosCargos = function(){
     $ionicLoading.show({
       template: 'Acessando Cargos... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-      duration: 5000
+      duration: 1000
     }).then(function(){
-      $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/cargos?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+      $scope.bancoDeDados.recuperarComIdUsuario('https://api.mlab.com/api/1/databases/agroplan/collections/cargos?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', $rootScope.usuario).then(function(dados){
         $scope.planoOperacional.cargos = dados.data;
+        $scope.planoOperacionalID.idsCargos = [];
+        dados.data.forEach(function(dado){
+          $scope.planoOperacionalID.idsCargos.push(dado._id.$oid);
+        });
+        console.log($scope.planoOperacional.cargos);
       });
     });
   };

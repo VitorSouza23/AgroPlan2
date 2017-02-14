@@ -18,18 +18,19 @@ function SumarioExecutivo(){
 
   this.editarSocio = function(socio){
     var pos = this.socios.indexOf(socio);
-    socio._id = null;
     this.socios[pos] = socio;
   }
 };
 
 function Socio(){
+  this._id;
   this.nome;
   this.endereco;
   this.cidade;
   this.estado;
   this.telefone;
   this.perfil;
+  this.idUsuario;
 };
 
 function DadosDoEmprendimento(){

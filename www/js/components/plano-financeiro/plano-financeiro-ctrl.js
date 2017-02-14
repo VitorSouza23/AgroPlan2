@@ -1,6 +1,10 @@
-angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFinanceiro', 'starter.services.utilitarios'])
+angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFinanceiro',
+'starter.services.utilitarios'])
 
-.controller('PlanoFinanceiroCtrl', function($scope, PlanoFinanceiro, Equipamento, Utensilio, Movel, Maquina, Veiculo, Compra, Venda, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoFinanceiroID, Modal){
+.controller('PlanoFinanceiroCtrl', function($scope, PlanoFinanceiro, Equipamento, Utensilio, Movel,
+   Maquina, Veiculo, Compra, Venda, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout,
+   BancoDeDados,$ionicLoading, PlanoFinanceiroID, Modal, $rootScope){
+
   $scope.planoFinanceiro = PlanoFinanceiro.getPlanoFinanceiro();
   $scope.editar = PlanoFinanceiro.getEditar();
   $scope.bancoDeDados = BancoDeDados;
@@ -39,9 +43,12 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     //Equipamento
     $scope.addEquipamento = function(){
       if(!$scope.editar){
+        $scope.equipamento.idUsuario = $rootScope.usuario._id.$oid;
+        salvarEquipamento($scope.equipamento);
         $scope.planoFinanceiro.estoqueInicial.addEquipamento($scope.equipamento);
       }else{
         $scope.planoFinanceiro.estoqueInicial.editarEquipamento($scope.equipamento);
+        atualizarEquipamento($scope.equipamento);
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
@@ -65,6 +72,23 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       }
     };
 
+    $scope.excluirEquipamentoPermanentemente = function(){
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Excluir?',
+        template: 'Deseja excluir permanentemente este item?',
+        cancelText: 'Não'
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          excluirEquipamento($scope.equipamento);
+          console.log("Excluído!");
+        } else {
+          console.log('Não Excluído!');
+        }
+      });
+    };
+
     $scope.mostrarReordemEquipamento = function(){
       $scope.reordenarEquipamento = !$scope.reordenarEquipamento;
     }
@@ -82,9 +106,12 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
     $scope.addMaquina = function(){
       if(!$scope.editar){
+        $scope.maquina.idUsuario = $rootScope.usuario._id.$oid;
+        salvarMaquina($scope.maquina);
         $scope.planoFinanceiro.estoqueInicial.addMaquina($scope.maquina);
       }else{
         $scope.planoFinanceiro.estoqueInicial.editarMaquina($scope.maquina);
+        atualizarMaquina($scope.maquina);
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
@@ -108,6 +135,23 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       }
     };
 
+    $scope.excluirMaquinaPermanentemente = function(){
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Excluir?',
+        template: 'Deseja excluir permanentemente este item?',
+        cancelText: 'Não'
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          excluirMaquina($scope.maquina);
+          console.log("Excluído!");
+        } else {
+          console.log('Não Excluído!');
+        }
+      });
+    };
+
     $scope.mostrarReordemMaquina = function(){
       $scope.reordenarMaquina = !$scope.reordenarMaquina;
     }
@@ -122,9 +166,12 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
     $scope.addMovel = function(){
       if(!$scope.editar){
+        $scope.movel.idUsuario = $rootScope.usuario._id.$oid;
+        salvarMovel($scope.movel);
         $scope.planoFinanceiro.estoqueInicial.addMovel($scope.movel);
       }else{
         $scope.planoFinanceiro.estoqueInicial.editarMovel($scope.movel);
+        atualizarMovel($scope.movel);
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
@@ -141,7 +188,22 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.openMoveis();
     };
 
+    $scope.excluirMovelPermanentemente = function(){
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Excluir?',
+        template: 'Deseja excluir permanentemente este item?',
+        cancelText: 'Não'
+      });
 
+      confirmPopup.then(function(res) {
+        if(res) {
+          excluirMovel($scope.movel);
+          console.log("Excluído!");
+        } else {
+          console.log('Não Excluído!');
+        }
+      });
+    };
 
     $scope.openMoveis = function() {
       $scope.modalMovel.show();
@@ -163,9 +225,12 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
     $scope.addUtensilio = function(){
       if(!$scope.editar){
+        $scope.utensilio.idUsuario = $rootScope.usuario._id.$oid;
+        salvarUtensilio($scope.utensilio);
         $scope.planoFinanceiro.estoqueInicial.addUtensilio($scope.utensilio);
       }else{
         $scope.planoFinanceiro.estoqueInicial.editarUtensilio($scope.utensilio);
+        atualizarUtensilio($scope.utensilio);
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
@@ -180,6 +245,23 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.utensilio = utensilio;
       $scope.editar = true;
       $scope.openUtensilios();
+    };
+
+    $scope.excluirUtensilioPermanentemente = function(){
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Excluir?',
+        template: 'Deseja excluir permanentemente este item?',
+        cancelText: 'Não'
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          excluirUtensilio($scope.utensilio);
+          console.log("Excluído!");
+        } else {
+          console.log('Não Excluído!');
+        }
+      });
     };
 
     $scope.openUtensilios = function() {
@@ -202,9 +284,12 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
     $scope.addVeiculo = function(){
       if(!$scope.editar){
+        $scope.veiculo.idUsuario = $rootScope.usuario._id.$oid;
+        salvarVeiculo($scope.veiculo);
         $scope.planoFinanceiro.estoqueInicial.addVeiculo($scope.veiculo);
       }else{
         $scope.planoFinanceiro.estoqueInicial.editarVeiculo($scope.veiculo);
+        atualizarVeiculo($scope.veiculo);
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
@@ -219,6 +304,23 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.veiculo = veiculo;
       $scope.editar = true;
       $scope.openVeiculos();
+    };
+
+    $scope.excluirVeiculoPermanentemente = function(){
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Excluir?',
+        template: 'Deseja excluir permanentemente este item?',
+        cancelText: 'Não'
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          excluirVeiculo($scope.veiculo);
+          console.log("Excluído!");
+        } else {
+          console.log('Não Excluído!');
+        }
+      });
     };
 
     $scope.openVeiculos = function() {
@@ -241,9 +343,12 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
     $scope.addVenda = function(){
       if(!$scope.editar){
+        $scope.venda.idUsuario = $rootScope.usuario._id.$oid;
+        salvarVenda($scope.venda);
         $scope.planoFinanceiro.addVenda($scope.venda);
       }else{
         $scope.planoFinanceiro.editarVenda($scope.venda);
+        atualizarVenda($scope.venda);
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
@@ -260,6 +365,22 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.openVendas();
     };
 
+    $scope.excluirVendaPermanentemente = function(){
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Excluir?',
+        template: 'Deseja excluir permanentemente este item?',
+        cancelText: 'Não'
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          excluirVenda($scope.venda);
+          console.log("Excluído!");
+        } else {
+          console.log('Não Excluído!');
+        }
+      });
+    };
 
     $scope.openVendas = function() {
       $scope.modalVenda.show();
@@ -281,9 +402,12 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
     $scope.addCompra = function(){
       if(!$scope.editar){
+        $scope.compra.idUsuario = $rootScope.usuario._id.$oid;
+        salvarCompra($scope.compra);
         $scope.planoFinanceiro.addCompra($scope.compra);
       }else{
         $scope.planoFinanceiro.editarCompra($scope.compra);
+        atualizarCompra($scope.compra);
         $scope.editar = false;
         $ionicListDelegate.closeOptionButtons();
       }
@@ -298,6 +422,23 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.compra = compra;
       $scope.editar = true;
       $scope.openCompras();
+    };
+
+    $scope.excluirCompraPermanentemente = function(){
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Excluir?',
+        template: 'Deseja excluir permanentemente este item?',
+        cancelText: 'Não'
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          excluirCompra($scope.compra);
+          console.log("Excluído!");
+        } else {
+          console.log('Não Excluído!');
+        }
+      });
     };
 
     $scope.openCompras = function() {
@@ -320,17 +461,9 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       var caminho;
       var objeto;
 
-      salvarEquipamentos();
-      salvarMaquinas();
-      salvarMoveis();
-      salvarUtensilios();
-      salvarVeiculos();
-      salvarCompras();
-      salvarVendas();
-
       $ionicLoading.show({
         template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 10000
+        duration: 1000
       }).then(function(){
         setTimeout(function(){
           console.log($scope.planoFinanceiroID.idsEquipamentos);
@@ -356,90 +489,185 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       };
     };
 
-    function salvarEquipamentos(){
+
+    function salvarEquipamento(equipamento){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/equipamento?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      $scope.bancoDeDados.salvarArray(caminho, $scope.planoFinanceiro.estoqueInicial.equipamentos).then(function (dados){
-        dados.forEach(function(dado){
-          $scope.planoFinanceiroID.idsEquipamentos.push(dado.data._id);
-          console.log(dado);
-        });
+      $scope.bancoDeDados.salvar(caminho, equipamento).then(function(dados){
+        console.log(dados.data);
+        $scope.equipamento._id = dados.data._id;
+        $scope.planoFinanceiroID.idsEquipamentos.push(dados.data._id.$oid);
       });
+    };
 
-    }
+    function atualizarEquipamento(equipamento){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/equipamento?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.atualizar(caminho, equipamento).then(function(dados){
+        console.log(dados.data);
+      });
+    };
 
-    function salvarMaquinas(){
+    function excluirEquipamento(equipamento){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/equipamento?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.remover(caminho, equipamento).then(function(dados){
+        console.log(dados.data);
+      });
+    };
 
+
+    function salvarMaquina(maquina){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/maquina?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      $scope.bancoDeDados.salvarArray(caminho, $scope.planoFinanceiro.estoqueInicial.maquinas).then(function(dados){
-        dados.forEach(function(dado){
-          $scope.planoFinanceiroID.idsMaquinas.push(dado.data._id);
-          console.log(dado);
-        })
+      $scope.bancoDeDados.salvar(caminho, maquina).then(function(dados){
+        console.log(dados.data);
+        $scope.maquina._id = dados.data._id;
+        $scope.planoFinanceiroID.idsMaquinas.push(dados.data._id.$oid);
       });
-    }
+    };
 
-    function salvarMoveis(){
+    function atualizarMaquina(maquina){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/maquina?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.atualizar(caminho, maquina).then(function(dados){
+        console.log(dados.data);
+      });
+    };
 
+    function excluirMaquina(maquina){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/maquina?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.remover(caminho, maquina).then(function(dados){
+        console.log(dados.data);
+      });
+    };
+
+
+    function salvarMovel(movel){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/movel?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      $scope.bancoDeDados.salvarArray(caminho, $scope.planoFinanceiro.estoqueInicial.moveis).then(function(dados){
-        dados.forEach(function(dado){
-          $scope.planoFinanceiroID.idsMoveis.push(dado.data._id);
-          console.log(dado);
-        })
+      $scope.bancoDeDados.salvar(caminho, movel).then(function(dados){
+        console.log(dados.data);
+        $scope.movel._id = dados.data._id;
+        $scope.planoFinanceiroID.idsMoveis.push(dados.data._id.$oid);
       });
-    }
+    };
 
-    function salvarUtensilios(){
+    function atualizarMovel(movel){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/movel?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.atualizar(caminho, movel).then(function(dados){
+        console.log(dados.data);
+      });
+    };
 
+    function excluirMovel(movel){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/movel?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.remover(caminho, movel).then(function(dados){
+        console.log(dados.data);
+      });
+    };
+
+
+    function salvarUtensilio(utensilio){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/utensilio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      $scope.bancoDeDados.salvarArray(caminho, $scope.planoFinanceiro.estoqueInicial.utensilios).then(function(dados){
-        dados.forEach(function(dado){
-          $scope.planoFinanceiroID.idsUtensilios.push(dado.data._id);
-          console.log(dado);
-        })
+      $scope.bancoDeDados.salvar(caminho, utensilio).then(function(dados){
+        console.log(dados.data);
+        $scope.utensilio._id = dados.data._id;
+        $scope.planoFinanceiroID.idsUtensilios.push(dados.data._id.$oid);
       });
-    }
+    };
 
-    function salvarVeiculos(){
+    function atualizarUtensilio(utensilio){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/utensilio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.atualizar(caminho, utensilio).then(function(dados){
+        console.log(dados.data);
+      });
+    };
 
+    function excluirUtensilio(utensilio){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/utensilio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.remover(caminho, utensilio).then(function(dados){
+        console.log(dados.data);
+      });
+    };
+
+
+    function salvarVeiculo(veiculo){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/veiculo?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      $scope.bancoDeDados.salvarArray(caminho, $scope.planoFinanceiro.estoqueInicial.veiculos).then(function(dados){
-        dados.forEach(function(dado){
-          $scope.planoFinanceiroID.idsVeiculos.push(dado.data._id);
-          console.log(dado);
-        })
+      $scope.bancoDeDados.salvar(caminho, veiculo).then(function(dados){
+        console.log(dados.data);
+        $scope.veiculo._id = dados.data._id;
+        $scope.planoFinanceiroID.idsVeiculos.push(dados.data._id.$oid);
       });
-    }
+    };
 
-    function salvarCompras(){
+    function atualizarVeiculo(veiculo){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/veiculo?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.atualizar(caminho, veiculo).then(function(dados){
+        console.log(dados.data);
+      });
+    };
 
+    function excluirVeiculo(veiculo){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/veiculo?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.remover(caminho, veiculo).then(function(dados){
+        console.log(dados.data);
+      });
+    };
+
+
+    function salvarCompra(compra){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/compra?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      $scope.bancoDeDados.salvarArray(caminho, $scope.planoFinanceiro.compras).then(function(dados){
-        dados.forEach(function(dado){
-          $scope.planoFinanceiroID.idsCompras.push(dado.data._id);
-          console.log(dado);
-        })
+      $scope.bancoDeDados.salvar(caminho, compra).then(function(dados){
+        console.log(dados.data);
+        $scope.compra._id = dados.data._id;
+        $scope.planoFinanceiroID.idsCompras.push(dados.data._id.$oid);
       });
-    }
+    };
 
-    function salvarVendas(){
+    function atualizarCompra(compra){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/compra?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.atualizar(caminho, compra).then(function(dados){
+        console.log(dados.data);
+      });
+    };
 
+    function excluirCompra(compra){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/compra?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.remover(caminho, compra).then(function(dados){
+        console.log(dados.data);
+      });
+    };
+
+
+    function salvarVenda(venda){
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/venda?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      $scope.bancoDeDados.salvarArray(caminho, $scope.planoFinanceiro.vendas).then(function(dados){
-        dados.forEach(function(dado){
-          $scope.planoFinanceiroID.idsVendas.push(dado.data._id);
-          console.log(dado);
-        })
+      $scope.bancoDeDados.salvar(caminho, venda).then(function(dados){
+        console.log(dados.data);
+        $scope.venda._id = dados.data._id;
+        $scope.planoFinanceiroID.idsVendas.push(dados.data._id.$oid);
       });
-    }
+    };
+
+    function atualizarVenda(venda){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/venda?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.atualizar(caminho, venda).then(function(dados){
+        console.log(dados.data);
+      });
+    };
+
+    function excluirVenda(venda){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/venda?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      $scope.bancoDeDados.remover(caminho, venda).then(function(dados){
+        console.log(dados.data);
+      });
+    };
 
     $scope.recuperarDadosEquipamentos = function(){
       $ionicLoading.show({
         template: 'Acessando Equipamentos... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 5000
+        duration: 1000
       }).then(function(){
-        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/equipamento?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+        $scope.bancoDeDados.recuperarComIdUsuario('https://api.mlab.com/api/1/databases/agroplan/collections/equipamento?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', $rootScope.usuario).then(function(dados){
           $scope.planoFinanceiro.estoqueInicial.equipamentos = dados.data;
+          $scope.planoFinanceiroID.idsEquipamentos = [];
+          dados.data.forEach(function(dado){
+            $scope.planoFinanceiroID.idsEquipamentos.push(dado._id.$oid);
+          })
           console.log(dados);
         });
       });
@@ -448,10 +676,15 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     $scope.recuperarDadosMaquinas = function(){
       $ionicLoading.show({
         template: 'Acessando Maquinas... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 5000
+        duration: 1000
       }).then(function(){
-        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/maquina?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+        $scope.bancoDeDados.recuperarComIdUsuario('https://api.mlab.com/api/1/databases/agroplan/collections/maquina?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', $rootScope.usuario).then(function(dados){
           $scope.planoFinanceiro.estoqueInicial.maquinas = dados.data;
+          $scope.planoFinanceiroID.idsMaquinas = [];
+          dados.data.forEach(function(dado){
+            $scope.planoFinanceiroID.idsMaquinas.push(dado._id.$oid);
+          })
+          console.log(dados);
         });
       });
     };
@@ -459,10 +692,15 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     $scope.recuperarDadosMoveis = function(){
       $ionicLoading.show({
         template: 'Acessando Moveis... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 5000
+        duration: 1000
       }).then(function(){
-        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/movel?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+        $scope.bancoDeDados.recuperarComIdUsuario('https://api.mlab.com/api/1/databases/agroplan/collections/movel?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', $rootScope.usuario).then(function(dados){
           $scope.planoFinanceiro.estoqueInicial.moveis = dados.data;
+          $scope.planoFinanceiroID.idsMoveis = [];
+          dados.data.forEach(function(dado){
+            $scope.planoFinanceiroID.idsMoveis.push(dado._id.$oid);
+          })
+          console.log(dados);
         });
       });
     };
@@ -470,10 +708,15 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     $scope.recuperarDadosUtensilios = function(){
       $ionicLoading.show({
         template: 'Acessando Utensílios... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 5000
+        duration: 1000
       }).then(function(){
-        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/utensilio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+        $scope.bancoDeDados.recuperarComIdUsuario('https://api.mlab.com/api/1/databases/agroplan/collections/utensilio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', $rootScope.usuario).then(function(dados){
           $scope.planoFinanceiro.estoqueInicial.utensilios = dados.data;
+          $scope.planoFinanceiroID.idsUtensilios = [];
+          dados.data.forEach(function(dado){
+            $scope.planoFinanceiroID.idsUtensilios.push(dado._id.$oid);
+          })
+          console.log(dados);
         });
       });
     };
@@ -481,10 +724,15 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     $scope.recuperarDadosVeiculos = function(){
       $ionicLoading.show({
         template: 'Acessando Veiculos... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 5000
+        duration: 1000
       }).then(function(){
-        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/veiculo?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+        $scope.bancoDeDados.recuperarComIdUsuario('https://api.mlab.com/api/1/databases/agroplan/collections/veiculo?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', $rootScope.usuario).then(function(dados){
           $scope.planoFinanceiro.estoqueInicial.veiculos = dados.data;
+          $scope.planoFinanceiroID.idsVeiculos = [];
+          dados.data.forEach(function(dado){
+            $scope.planoFinanceiroID.idsVeiculos.push(dado._id.$oid);
+          })
+          console.log(dados);
         });
       });
     };
@@ -492,10 +740,15 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     $scope.recuperarDadosCompras = function(){
       $ionicLoading.show({
         template: 'Acessando Compras... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 5000
+        duration: 1000
       }).then(function(){
-        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/compra?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+        $scope.bancoDeDados.recuperarComIdUsuario('https://api.mlab.com/api/1/databases/agroplan/collections/compra?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', $rootScope.usuario).then(function(dados){
           $scope.planoFinanceiro.compras = dados.data;
+          $scope.planoFinanceiroID.idsCompras = [];
+          dados.data.forEach(function(dado){
+            $scope.planoFinanceiroID.idsCompras.push(dado._id.$oid);
+          })
+          console.log(dados);
         });
       });
     };
@@ -503,10 +756,15 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     $scope.recuperarDadosVendas = function(){
       $ionicLoading.show({
         template: 'Acessando Vendas... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 5000
+        duration: 1000
       }).then(function(){
-        $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/compra?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
-          $scope.planoFinanceiro.vendas= dados.data;
+        $scope.bancoDeDados.recuperarComIdUsuario('https://api.mlab.com/api/1/databases/agroplan/collections/venda?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', $rootScope.usuario).then(function(dados){
+          $scope.planoFinanceiro.vendas = dados.data;
+          $scope.planoFinanceiroID.idsVendas = [];
+          dados.data.forEach(function(dado){
+            $scope.planoFinanceiroID.idsVendas.push(dado._id.$oid);
+          })
+          console.log(dados);
         });
       });
     };

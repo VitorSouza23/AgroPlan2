@@ -1,6 +1,10 @@
-angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumarioExecutivo', "starter.services.utilitarios"])
+angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumarioExecutivo',
+"starter.services.utilitarios"])
 
-.controller('SumarioExecutivoCtrl', function($scope, SumarioExecutivo, Socio, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, SumarioExecutivoID, Modal){
+.controller('SumarioExecutivoCtrl', function($scope, SumarioExecutivo, Socio, $ionicListDelegate,
+  $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, SumarioExecutivoID, Modal,
+  $rootScope){
+
   $scope.sumarioExecutivo = SumarioExecutivo.getSumarioExecutivo();
   $scope.cnpjOuCpf = SumarioExecutivo.getCnpjOuCpf();
   $scope.escolherCnpjOuCpf = SumarioExecutivo.escolherCnpjOuCpf();
@@ -23,10 +27,13 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
 
   $scope.botaoAdicionarSocio = function(socio){
     if(!this.editar){
+      $scope.socio.idUsuario = $rootScope.usuario._id.$oid;
+      salvarSocio($scope.socio);
       $scope.sumarioExecutivo.adicionarSocio($scope.socio);
       $ionicListDelegate.closeOptionButtons();
     }else{
       $scope.sumarioExecutivo.editarSocio($scope.socio);
+      atualizarSocio($scope.socio);
       $scope.editar = false;
     }
     $scope.modalSocio.hide();
@@ -34,6 +41,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
 
   $scope.botaoRemoverSocio = function(socio){
     $scope.sumarioExecutivo.removerSocio(socio);
+
   };
 
   $scope.botaoEditarSocio = function(socio){
@@ -41,6 +49,23 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
     $scope.editar = true;
     $scope.openSocios();
 
+  };
+
+  $scope.excluirSocioPermanentemente = function(){
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Excluir?',
+      template: 'Deseja excluir permanentemente este item?',
+      cancelText: 'Não'
+    });
+
+    confirmPopup.then(function(res) {
+      if(res) {
+        excluirSocio($scope.socio);
+        console.log("Excluído!");
+      } else {
+        console.log('Não Excluído!');
+      }
+    });
   };
 
   $scope.openSocios = function() {
@@ -67,7 +92,6 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
     var caminho;
     var objeto;
 
-    salvarSocios();
     $scope.sumarioExecutivoID.principaisPontos = $scope.sumarioExecutivo.principaisPontos;
     $scope.sumarioExecutivoID.dadosDoemprendimento = $scope.sumarioExecutivo.dadosDoemprendimento;
     $scope.sumarioExecutivoID.missaoDaEmpresa = $scope.sumarioExecutivo.missaoDaEmpresa;
@@ -76,7 +100,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
     $scope.sumarioExecutivoID.fontesDeRecursos = $scope.sumarioExecutivo.fontesDeRecursos;
     $ionicLoading.show({
       template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-      duration: 10000
+      duration: 1000
     }).then(function(){
       setTimeout(function(){
 
@@ -97,23 +121,45 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
     };
   };
 
-  function salvarSocios(){
+
+
+  function salvarSocio(socio){
     caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/socio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-    $scope.bancoDeDados.salvarArray(caminho, $scope.sumarioExecutivo.socios).then(function (dados){
-      dados.forEach(function(dado){
-        $scope.sumarioExecutivoID.idsSocios.push(dado.data._id);
-        console.log(dado);
-      });
+    $scope.bancoDeDados.salvar(caminho, socio).then(function (dados){
+      console.log(dados.data);
+      $scope.socio._id = dados.data._id;
+      $scope.sumarioExecutivoID.idsSocios.push(dados.data._id.$oid);
+    });
+
+  };
+
+  function atualizarSocio(socio){
+    caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/socio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+    $scope.bancoDeDados.atualizar(caminho, socio).then(function(dados){
+      console.log(dados.data);
+    });
+  }
+
+  function excluirSocio(socio){
+    caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/socio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+    $scope.bancoDeDados.remover(caminho, socio).then(function(dados){
+      console.log(dados.data);
+
     });
   }
 
   $scope.recuperarDadosSocios= function(){
     $ionicLoading.show({
       template: 'Acessando Socios... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-      duration: 5000
+      duration: 1000
     }).then(function(){
-      $scope.bancoDeDados.recuperar('https://api.mlab.com/api/1/databases/agroplan/collections/socio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff').then(function(dados){
+      $scope.bancoDeDados.recuperarComIdUsuario('https://api.mlab.com/api/1/databases/agroplan/collections/socio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff', $rootScope.usuario).then(function(dados){
         $scope.sumarioExecutivo.socios = dados.data;
+        $scope.sumarioExecutivoID.idsSocios = [];
+        dados.data.forEach(function(dado){
+          $scope.sumarioExecutivoID.idsSocios.push(dado._id.$oid);
+        });
+        console.log($scope.sumarioExecutivo.socios);
       });
     });
   };
