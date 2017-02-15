@@ -88,6 +88,7 @@ angular.module('starter.controllers.login', ['starter.services','starter.service
         template: 'Por favor, corrija o campo "CPF".'
       });
     }else{
+      $scope.novoUsuario.planosDeNegocio = [];
       ServicoLogin.cadastrarUsuario($scope.novoUsuario).then(function(dados){
         $scope.modalCadastro.hide();
         $scope.novoUsuario = {};

@@ -35,6 +35,8 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
   };
 
   $scope.botaoRemoverCargo = function(cargo){
+    var pos = $scope.planoOperacionalID.idsCargos.indexOf(cargo._id.$oid);
+    $scope.planoOperacionalID.idsCargos.splice(pos,1);
     $scope.planoOperacional.removerCargo(cargo);
   };
 
@@ -195,8 +197,9 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cargos?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
     $scope.bancoDeDados.remover(caminho, cargo).then(function(dados){
       console.log(dados.data);
-
     });
+    $scope.botaoRemoverCargo(cargo);
+    $scope.modalCargo.hide();
   }
 
 

@@ -46,6 +46,8 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
 
 
     $scope.botaoRemoverConcorrente = function(concorrente){
+      var pos = $scope.analiseDeMercadoID.idsConcorrentes.indexOf(concorrente._id.$oid);
+      $scope.analiseDeMercadoID.idsConcorrentes.splice(pos,1);
       $scope.analiseDeMercado.removerConcorrente(concorrente);
     };
 
@@ -97,7 +99,10 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
     }
 
     $scope.botaoRemoverFornecedor = function(fornecedor){
+      var pos = $scope.analiseDeMercadoID.idsFornecedores.indexOf(fornecedor._id.$oid);
+      $scope.analiseDeMercadoID.idsFornecedores.splice(pos,1);
       $scope.analiseDeMercado.removerFornecedor(fornecedor);
+      console.log($scope.analiseDeMercadoID.idsFornecedores);
     };
 
     $scope.botaoEditarFornecedor = function(fornecedor){
@@ -206,8 +211,9 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
       $scope.bancoDeDados.remover(caminho, fornecedor).then(function(dados){
         console.log(dados.data);
-
       });
+      $scope.botaoRemoverFornecedor(fornecedor);
+      $scope.modalFornecedor.hide();
     }
 
 
@@ -232,8 +238,9 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
       $scope.bancoDeDados.remover(caminho, concorrente).then(function(dados){
         console.log(dados.data);
-
       });
+      $scope.botaoRemoverConcorrente(concorrente);
+      $scope.modalConcorrente.hide();
     };
 
 

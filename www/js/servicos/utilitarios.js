@@ -50,10 +50,11 @@ angular.module('starter.services.utilitarios', [])
   };
 
   var remover = function(caminho, objeto){
+    objeto.desativado = true;
     deffered = $q.defer();
     jsonString = JSON.stringify({_id:objeto._id});
     console.log(caminho + "&q="+jsonString);
-    $http.delete(caminho + "&q="+jsonString).then(function(dados){
+    $http.put(caminho + "&q="+jsonString, objeto).then(function(dados){
       deffered.resolve(dados);
     }),function(dados){
       deffered.reject(dados + "erro!");
@@ -100,8 +101,9 @@ angular.module('starter.services.utilitarios', [])
 
   var recuperarComIdUsuario = function(caminho, usuario){
     deffered = $q.defer();
-    jsonString = JSON.stringify({idUsuario: usuario._id.$oid});
-    $http.get(caminho + "&q="+jsonString, {cache : true}).then(function(dados){
+    jsonString = JSON.stringify({idUsuario: usuario._id.$oid, desativado: false});
+    console.log(caminho + "&q="+jsonString);
+    $http.get(caminho + "&q="+jsonString, {cache : false}).then(function(dados){
       deffered.resolve(dados);
     }),function(dados){
       deffered.reject(dados + "erro!");

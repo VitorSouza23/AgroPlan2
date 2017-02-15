@@ -2,6 +2,7 @@ function ConstrucaoDeCenario(){
   this.provavel = new Cenario();
   this.pessimsita = new Cenario();
   this.otimista = new Cenario();
+  this.desativado = false;
 }
 
 function Cenario(){
@@ -13,4 +14,5 @@ function Cenario(){
   this.margemDeContribuicao;
   this.custoFixoTotal;
   this.lucroPrejuisoOperacional;
+  this.desativado = false;
 }

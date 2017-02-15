@@ -40,6 +40,8 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
   };
 
   $scope.botaoRemoverSocio = function(socio){
+    var pos = $scope.sumarioExecutivoID.idsSocios.indexOf(socio._id.$oid);
+    $scope.sumarioExecutivoID.idsSocios.splice(pos,1);
     $scope.sumarioExecutivo.removerSocio(socio);
 
   };
@@ -144,8 +146,9 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
     caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/socio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
     $scope.bancoDeDados.remover(caminho, socio).then(function(dados){
       console.log(dados.data);
-
     });
+    $scope.botaoRemoverSocio(socio);
+    $scope.modalSocio.hide();
   }
 
   $scope.recuperarDadosSocios= function(){

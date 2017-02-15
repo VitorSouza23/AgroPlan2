@@ -2,6 +2,7 @@ function PlanoFinanceiro(){
   this.estoqueInicial = new EstoqueInicial();
   this.vendas = [];
   this.compras = [];
+  this.desativado = false;
 
   this.addVenda = function(venda){
     this.vendas.push(venda);
@@ -37,6 +38,7 @@ function Equipamento(){
   this.descricao;
   this.quantidade;
   this.valorUnitario;
+  this.desativado = false;
 
 
   this.calcularTotal = function(){
@@ -49,6 +51,7 @@ function Maquina(){
   this.descricao;
   this.quantidade;
   this.valorUnitario;
+  this.desativado = false;
 
 
   this.calcularTotal = function(){
@@ -61,6 +64,7 @@ function Movel(){
   this.descricao;
   this.quantidade;
   this.valorUnitario;
+  this.desativado = false;
 
 
   this.calcularTotal = function(){
@@ -73,6 +77,7 @@ function Utensilio(){
   this.descricao;
   this.quantidade;
   this.valorUnitario;
+  this.desativado = false;
 
   this.calcularTotal = function(){
     return this.valorUnitario * this.quantidade;
@@ -84,6 +89,7 @@ function Veiculo(){
   this.descricao;
   this.quantidade;
   this.valorUnitario;
+  this.desativado = false;
 
 
   this.calcularTotal = function(){
@@ -97,6 +103,7 @@ function EstoqueInicial(){
   this.moveis = [];
   this.utensilios = [];
   this.veiculos = [];
+  this.desativado = false;
 
 
   this.addEquipamento = function(equipamento){
@@ -196,6 +203,7 @@ function Venda(){
   this._id;
   this.dias;
   this.porcentagem;
+  this.desativado = false;
 
   this.calcularMediaPonderadaDeDias = function(){
     return this.dias * this.porcentagem;
@@ -206,6 +214,7 @@ function Compra(){
   this._id;
   this.dias;
   this.porcentagem;
+  this.desativado = false;
 
   this.calcularMediaPonderadaDeDias = function(){
     return this.dias * this.porcentagem;

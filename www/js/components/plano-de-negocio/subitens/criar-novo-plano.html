@@ -1,0 +1,28 @@
+<ion-modal-view >
+  <ion-header-bar class="bar-balanced">
+    <h1 class="title">Novo Plano de Negócio</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="modalNovoPlanoDeNegocio.hide()">Fechar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Nome</span>
+        <input type="text" placeholder="Nome" ng-model="planoDeNegocio.nome" autofocus="true">
+      </label>
+      <div class="row">
+        <div class="col col-60">
+          <button class="button button-block icon-rigth ion-checkmark button-positive" ng-click="criarNovoPlano()">
+            Confirmar
+          </button>
+        </div>
+        <div class="row">
+          <button class="button button-block icon-rigth ion-trash-a button-assertive" ng-click="">
+            Excluir
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

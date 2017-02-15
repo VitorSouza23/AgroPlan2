@@ -2,6 +2,7 @@ function AnaliseDeMercado(){
   this.cliente = new Cliente();
   this.concorrentes = [];
   this.fornecedores = [];
+  this.desativado = false;
 
   this.addConcorrente = function(concorrente){
     this.concorrentes.push(concorrente);
@@ -44,6 +45,7 @@ function Cliente(){
   this.comportamentoDosClientes;
   this.areaDeAbrangencia;
   this.idUsuario;
+  this.desativado = false;
 };
 
 function Concorrente(){
@@ -58,6 +60,7 @@ function Concorrente(){
   this.garantias;
   this.observacoes;
   this.idUsuario;
+  this.desativado = false;
 };
 
 function Fornecedor(){
@@ -69,4 +72,5 @@ function Fornecedor(){
   this.localizacao;
   this.item;
   this.idUsuario;
+  this.desativado = false;
 }

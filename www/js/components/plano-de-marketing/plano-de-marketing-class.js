@@ -3,6 +3,7 @@ function PlanoDeMarketing(){
   this.estrategiasPromocionais;
   this.estruturaDeComercializacao;
   this.localizacaoDoNegocio = new LocalizacaoDoNegocio();
+  this.desativado = false;
 
   this.addProduto = function(produto){
     this.produtos.push(produto);
@@ -25,6 +26,7 @@ function Produto(){
   this.cicloDeProducao;
   this.preco;
   this.idUsuario;
+  this.desativado = false;
 }
 
 function LocalizacaoDoNegocio(){
@@ -34,4 +36,5 @@ function LocalizacaoDoNegocio(){
   this.estado;
   this.telefone;
   this.consideracoes;
+  this.desativado = false;
 }

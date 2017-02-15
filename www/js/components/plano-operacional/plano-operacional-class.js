@@ -6,6 +6,7 @@ function PlanoOperacional(){
   this.capacidadeProdutivaInicial;
   this.processosOperacionais;
   this.cargos = [];
+  this.desativado = false;
 
   this.addCargo = function(cargo){
     this.cargos.push(cargo);
@@ -29,4 +30,5 @@ function Cargo(){
   this.salarioBase;
   this.qualificacoes;
   this.idUsuario;
+  this.desativado = false;
 }

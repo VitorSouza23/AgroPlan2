@@ -6,6 +6,7 @@ function SumarioExecutivo(){
   this.fomaJuridica;
   this.optantePeloSimples;
   this.fontesDeRecursos;
+  this.desativado = false;
 
   this.adicionarSocio = function(socio){
     this.socios.push(socio);
@@ -31,10 +32,12 @@ function Socio(){
   this.telefone;
   this.perfil;
   this.idUsuario;
+  this.desativado = false;
 };
 
 function DadosDoEmprendimento(){
   this.nome;
   this.cnpj;
   this.cpf;
+  this.desativado = false;
 };

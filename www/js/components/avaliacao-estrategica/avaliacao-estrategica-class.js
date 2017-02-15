@@ -3,4 +3,5 @@ function AvaliacaoEstrategica(){
     this.fraquesa;
     this.oprotunidade;
     this.ameaca;
+    this.desativado = false;
 }

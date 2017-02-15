@@ -4,6 +4,7 @@ function RoteiroParaColeta(){
   this.planoDeMarketing = new Roteiro();
   this.planoOperacional = new Roteiro();
   this.planoFinanceiro = new Roteiro();
+  this.desativado = false;
 }
 
 function Roteiro(){
@@ -12,4 +13,5 @@ function Roteiro(){
   this.metodo;
   this.prazo;
   this.responsavel;
+  this.desativado = false;
 }

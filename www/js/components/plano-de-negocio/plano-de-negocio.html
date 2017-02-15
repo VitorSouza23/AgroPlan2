@@ -17,11 +17,20 @@
       <div class="item item-divider">
         Planos de Negócio
       </div>
-      <a class="item" href="#">
-        Exemplo
-      </a>
+      <ion-list show-reorder="reordenarConcorrente">
+        <ion-item ng-repeat="planoDeNegocio in usuario.planosDeNegocio">
+          <div class="row">
+            <div class="col col-90">
+              {{planoDeNegocio.nome}}
+              <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarConcorrente(concorrente)"></ion-option-button>
+              <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverConcorrente(concorrente)"></ion-option-button>
+              <ion-reorder-button class="ion-navicon" on-reorder="moverConcorrente(concorrente, $fromIndex, $toIndex)"></ion-reorder-button>
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
     </div>
     <button class="button button-block button-outline button-positive icon-left ion-plus-circled" ng-click="novoPlanoDeNegocio()">Novo Plano De Negócio</button>
-    
+
     </ion-content>
   </ion-view>

@@ -32,6 +32,8 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
     }
 
     $scope.botaoRemoverProduto= function(produto){
+      var pos = $scope.planoDeMarketingID.idsProdutos.indexOf(produto._id.$oid);
+      $scope.planoDeMarketingID.idsProdutos.splice(pos,1);
       $scope.planoDeMarketing.removerProduto(produto);
     };
 
@@ -138,6 +140,8 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
         console.log(dados.data);
 
       });
+      $scope.botaoRemoverProduto(produto);
+      $scope.modalProduto.hide();
     }
 
 

@@ -56,6 +56,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverEquipamento= function(equipamento){
+      var pos = $scope.planoFinanceiroID.idsEquipamentos.indexOf(equipamento._id.$oid);
+      $scope.planoFinanceiroID.idsEquipamentos.splice(pos,1);
       $scope.planoFinanceiro.estoqueInicial.removerEquipamento(equipamento);
     };
 
@@ -119,6 +121,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverMaquina= function(maquina){
+      var pos = $scope.planoFinanceiroID.idsMaquinas.indexOf(maquina._id.$oid);
+      $scope.planoFinanceiroID.idsMaquinas.splice(pos,1);
       $scope.planoFinanceiro.estoqueInicial.removerMaquina(maquina);
     };
 
@@ -179,6 +183,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverMovel= function(movel){
+      var pos = $scope.planoFinanceiroID.idsMoveis.indexOf(movel._id.$oid);
+      $scope.planoFinanceiroID.idsMoveis.splice(pos,1);
       $scope.planoFinanceiro.estoqueInicial.removerMovel(movel);
     };
 
@@ -238,6 +244,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverUtensilio = function(utensilio){
+      var pos = $scope.planoFinanceiroID.idsUtensilios.indexOf(utensilio._id.$oid);
+      $scope.planoFinanceiroID.idsUtensilios.splice(pos,1);
       $scope.planoFinanceiro.estoqueInicial.removerUtensilio(utensilio);
     };
 
@@ -297,6 +305,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverVeiculo = function(veiculo){
+      var pos = $scope.planoFinanceiroID.idsVeiculos.indexOf(veiculo._id.$oid);
+      $scope.planoFinanceiroID.idsVeiculos.splice(pos,1);
       $scope.planoFinanceiro.estoqueInicial.removerVeiculo(veiculo);
     };
 
@@ -356,6 +366,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverVenda = function(venda){
+      var pos = $scope.planoFinanceiroID.idsVendas.indexOf(venda._id.$oid);
+      $scope.planoFinanceiroID.idsVendas.splice(pos,1);
       $scope.planoFinanceiro.removerVenda(venda);
     };
 
@@ -415,6 +427,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverCompra = function(compra){
+      var pos = $scope.planoFinanceiroID.idsCompras.indexOf(compra._id.$oid);
+      $scope.planoFinanceiroID.idsCompras.splice(pos,1);
       $scope.planoFinanceiro.removerCompra(compra);
     };
 
@@ -511,6 +525,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.remover(caminho, equipamento).then(function(dados){
         console.log(dados.data);
       });
+      $scope.botaoRemoverEquipamento(equipamento);
+      $scope.modalEquipamento.hide();
     };
 
 
@@ -535,6 +551,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.remover(caminho, maquina).then(function(dados){
         console.log(dados.data);
       });
+      $scope.botaoRemoverMaquina(maquina);
+      $scope.modalMaquina.hide();
     };
 
 
@@ -559,6 +577,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.remover(caminho, movel).then(function(dados){
         console.log(dados.data);
       });
+      $scope.botaoRemoverMovel(movel);
+      $scope.modalMovel.hide();
     };
 
 
@@ -583,6 +603,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.remover(caminho, utensilio).then(function(dados){
         console.log(dados.data);
       });
+      $scope.botaoRemoverUtensilio(utensilio);
+      $scope.modalUtensilio.hide();
     };
 
 
@@ -607,6 +629,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.remover(caminho, veiculo).then(function(dados){
         console.log(dados.data);
       });
+      $scope.botaoRemoverVeiculo(veiculo);
+      $scope.modalVeiculo.hide();
     };
 
 
@@ -631,6 +655,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.remover(caminho, compra).then(function(dados){
         console.log(dados.data);
       });
+      $scope.botaoRemoverCompra(compra);
+      $scope.modalCompra.hide();
     };
 
 
@@ -655,6 +681,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.remover(caminho, venda).then(function(dados){
         console.log(dados.data);
       });
+      $scope.botaoRemoverVenda(venda);
+      $scope.modalVenda.hide();
     };
 
     $scope.recuperarDadosEquipamentos = function(){

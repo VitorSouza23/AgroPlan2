@@ -62,6 +62,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       controller: 'PlanoDeNegocioCtrl'
   })
 
+  .state('planoDeNegocio.novoPlano', {
+      url: '/planoDeNegocio/novoPlanoDeNegocio',
+      templateUrl: 'js/components/plano-de-negocio/subitens/criar-novo-plano.html',
+      controller: 'PlanoDeNegocioCtrl'
+  })
+
   .state('tab', {
     url: '/tab',
     abstract: true,
