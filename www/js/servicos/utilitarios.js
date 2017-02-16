@@ -1,6 +1,6 @@
-angular.module('starter.services.utilitarios', [])
+angular.module('starter.services.utilitarios', ['starter.services.utilitarios'])
 
-.factory('BancoDeDados', function($http, $q){
+.factory('BancoDeDados', function($http, $q, $rootScope){
 
   var salvar = function(caminho, objeto){
     deffered = $q.defer();
@@ -111,6 +111,19 @@ angular.module('starter.services.utilitarios', [])
     return deffered.promise;
   };
 
+
+  var recuperarComId = function(caminho, objeto){
+    deffered = $q.defer();
+    jsonString = JSON.stringify({idUsuario: objeto._id, desativado: false});
+    console.log(caminho + "&q="+jsonString);
+    $http.get(caminho + "&q="+jsonString, {cache : false}).then(function(dados){
+      deffered.resolve(dados);
+    }),function(dados){
+      deffered.reject(dados + "erro!");
+    }
+    return deffered.promise;
+  };
+
   return{
     salvar:salvar,
     salvarArray:salvarArray,
@@ -119,7 +132,8 @@ angular.module('starter.services.utilitarios', [])
     remover:remover,
     pesquisarUsuario:pesquisarUsuario,
     pesquisarCPFCadastrado:pesquisarCPFCadastrado,
-    recuperarComIdUsuario:recuperarComIdUsuario
+    recuperarComIdUsuario:recuperarComIdUsuario,
+    recuperarComId:recuperarComId
   }
 
 })
@@ -143,7 +157,8 @@ angular.module('starter.services.utilitarios', [])
   }
 })
 
-.factory('Menu', function($ionicActionSheet, $timeout, $state, $ionicHistory, $rootScope, $window){
+.factory('Menu', function($ionicActionSheet, $timeout, $state, $ionicHistory, $rootScope, $window,
+  ServicoPlanoDeNegocio){
   var mostrarMenuArmazenamento = false;
   var mostrarMenusTab = true;
   var show = function() {
@@ -154,7 +169,8 @@ angular.module('starter.services.utilitarios', [])
         {text: 'Sobre o projeto'},
         {text: 'Configurações'},
         {text: 'Sair'},
-        {text: 'Voltar'}
+        {text: 'Voltar ao Menu Principal'},
+        {text: 'Salvar Plano de Negócio'}
       ],
       titleText: 'Opções',
       cancelText: 'Cancelar',
@@ -175,13 +191,14 @@ angular.module('starter.services.utilitarios', [])
             inherit: false,
             notify: true });
           }else if(index === 3){
-            mostrarMenusTab = true;
-            mostrarMenuArmazenamento = false;
-            /*$state.transitionTo('tab.sumarioExecutivo', {}, { reload: true,
-            inherit: false,
-            notify: true });
-            $state.reload();*/
-            $ionicHistory.goBack();
+            $state.go('planoDeNegocio', {}, { reload: true,
+              inherit: false,
+              notify: true });
+          }else if(index === 4){
+            ServicoPlanoDeNegocio.atualizarPlanoDeNegocio($rootScope.planoDeNegocioID);
+            $state.go('planoDeNegocio', {}, { reload: true,
+              inherit: false,
+              notify: true });
           }
           return true;
         }

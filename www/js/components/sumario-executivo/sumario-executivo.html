@@ -1,5 +1,5 @@
 <ion-view view-title="Sumário Executivo">
-  <ion-content>
+  <ion-content ng-init="inti()">
     <!--Dados da Empresa-->
     <div class="list">
 
@@ -101,16 +101,12 @@
       </label>
       <!--Botões Confirmar e Cancelar-->
       <div class="row">
-        <div class="col col-60">
+        <div class="col col-100">
           <button class="button button-block button-outline icon-rigth ion-checkmark button-positive" ng-click="salvar()">
             Confirmar
           </button>
         </div>
-        <div class="col">
-          <button class="button button-block button-outline icon-rigth ion-close button-assertive" ng-click="back()">
-            Cancelar
-          </button>
-        </div>
+
       </div>
     </div>
   </ion-content>

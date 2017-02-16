@@ -1,7 +1,12 @@
-angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.avaliacaoEstrategica', 'starter.services.utilitarios'])
+angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.avaliacaoEstrategica',
+ 'starter.services.utilitarios'])
 
-.controller('AvaliacaoEstrategicaCtrl', function($scope, AvaliacaoEstrategica, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading){
+.controller('AvaliacaoEstrategicaCtrl', function($scope, AvaliacaoEstrategica, $ionicHistory,
+  $ionicPopup, $timeout, BancoDeDados, $ionicLoading, $rootScope){
   $scope.avaliacaoEstrategica = AvaliacaoEstrategica.getAvaliacaoEstrategica();
+  $scope.init = function(){
+
+  }
   $scope.bancoDeDados = BancoDeDados;
   $scope.showConfirm = function() {
     var confirmPopup = $ionicPopup.confirm({
@@ -28,6 +33,7 @@ angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.av
           objeto = $scope.avaliacaoEstrategica;
           $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
             console.log(dados);
+            $rootScope.planoDeNegocioID.avaliacaoEstrategicaID = dados.data._id.$oid;
           });
         }, 10000);
       });

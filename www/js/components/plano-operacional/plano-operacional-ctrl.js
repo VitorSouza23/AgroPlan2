@@ -5,6 +5,11 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
   $ionicHistory, $ionicPopup, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoOperacionalID,
    Modal, $rootScope){
   $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
+
+  $scope.init = function(){
+
+  }
+
   $scope.editar = PlanoOperacional.editar;
   $scope.planoOperacionalID = PlanoOperacionalID;
   $scope.bancoDeDados = BancoDeDados;
@@ -163,7 +168,10 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
         localStorage.setItem("analiseDeMercado", json);
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoOperacional?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = $scope.planoOperacionalID;
-        $scope.bancoDeDados.salvar(caminho, objeto);
+        $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
+          console.log(dados.data);
+          $rootScope.planoDeNegocioID.planoOperacionalID = dados.data._id.$oid;
+        });
       }, 10000);
     });
 

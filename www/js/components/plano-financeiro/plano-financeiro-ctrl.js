@@ -5,7 +5,12 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
    Maquina, Veiculo, Compra, Venda, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout,
    BancoDeDados,$ionicLoading, PlanoFinanceiroID, Modal, $rootScope){
 
-  $scope.planoFinanceiro = PlanoFinanceiro.getPlanoFinanceiro();
+     $scope.planoFinanceiro = PlanoFinanceiro.getPlanoFinanceiro();
+
+  $scope.init = function(){
+
+  }
+
   $scope.editar = PlanoFinanceiro.getEditar();
   $scope.bancoDeDados = BancoDeDados;
   $scope.planoFinanceiroID = PlanoFinanceiroID;
@@ -491,7 +496,10 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           localStorage.setItem("planoFinanceiro", json);
           caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoFinanceiro?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
           objeto = $scope.planoFinanceiroID;
-          $scope.bancoDeDados.salvar(caminho, objeto);
+          $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
+            console.log(dados.data);
+            $rootScope.planoDeNegocioID.planoFinanceiroID = dados.data._id.$oid;
+          });
         }, 10000);
       });
 

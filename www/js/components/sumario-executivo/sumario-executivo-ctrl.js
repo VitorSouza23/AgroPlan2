@@ -6,6 +6,11 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
   $rootScope){
 
   $scope.sumarioExecutivo = SumarioExecutivo.getSumarioExecutivo();
+
+  $scope.init = function(){
+
+  }
+
   $scope.cnpjOuCpf = SumarioExecutivo.getCnpjOuCpf();
   $scope.escolherCnpjOuCpf = SumarioExecutivo.escolherCnpjOuCpf();
   $scope.editar = SumarioExecutivo.editar;
@@ -111,8 +116,11 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
         localStorage.setItem("suamarioExecutivo", json);
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/sumarioExecutivo?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = $scope.sumarioExecutivoID;
-        $scope.bancoDeDados.salvar(caminho, objeto);
-      }, 10000);
+        $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
+          console.log(dados.data);
+          $rootScope.planoDeNegocioID.sumarioExecutivoID = dados.data._id.$oid;
+        });
+      }, 1000);
     });
 
     $scope.hide = function(){

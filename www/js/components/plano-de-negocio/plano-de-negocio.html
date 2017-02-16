@@ -1,5 +1,5 @@
 <ion-view view-title="AgroPlan" name="planoDeNegocio">
-  <ion-content class="padding">
+  <ion-content class="padding" ng-init="recuperTodosOsPlanosPorIdUsuario()">
     <div class="card">
       <div class="item item-divider">
         Seja Bem-Vindo!
@@ -17,14 +17,11 @@
       <div class="item item-divider">
         Planos de Negócio
       </div>
-      <ion-list show-reorder="reordenarConcorrente">
-        <ion-item ng-repeat="planoDeNegocio in usuario.planosDeNegocio">
+      <ion-list>
+        <ion-item ng-repeat="planoDeNegocio in planosDeNegocio">
           <div class="row">
-            <div class="col col-90">
+            <div class="col col-100" ng-click="abrirMenuDeOpcoesDoPlano(planoDeNegocio)">
               {{planoDeNegocio.nome}}
-              <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarConcorrente(concorrente)"></ion-option-button>
-              <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverConcorrente(concorrente)"></ion-option-button>
-              <ion-reorder-button class="ion-navicon" on-reorder="moverConcorrente(concorrente, $fromIndex, $toIndex)"></ion-reorder-button>
             </div>
           </div>
         </ion-item>

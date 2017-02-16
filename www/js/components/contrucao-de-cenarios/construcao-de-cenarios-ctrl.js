@@ -2,6 +2,11 @@ angular.module('starter.controllers.construcaoDeCenario', ['starter.services.con
 
 .controller('CosntrucaoDeCenarioCtrl', function($scope, ConstrucaoDeCenario, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading){
   $scope.construcaoDeCenario = ConstrucaoDeCenario.getConstrucaoDeCenario();
+
+  $scope.init = function(){
+
+  }
+
   $scope.bancoDeDados = BancoDeDados;
   $scope.showConfirm = function() {
 var confirmPopup = $ionicPopup.confirm({
@@ -28,6 +33,7 @@ var confirmPopup = $ionicPopup.confirm({
         objeto = $scope.construcaoDeCenario;
         $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
           console.log(dados);
+          $rootScope.planoDeNegocioID.construcaoCenariosID = dados.data._id.$oid;
         });
       }, 10000);
     });

@@ -1,6 +1,13 @@
-angular.module('starter.controllers.roteiroParaColeta', ['starter.services.roteiroParaColeta', 'starter.services.utilitarios'])
-.controller('RoteiroParaColetaCtrl', function($scope, RoteiroParaColeta, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading){
+angular.module('starter.controllers.roteiroParaColeta', ['starter.services.roteiroParaColeta',
+'starter.services.utilitarios'])
+.controller('RoteiroParaColetaCtrl', function($scope, RoteiroParaColeta, $ionicHistory,
+  $ionicPopup, $timeout, BancoDeDados, $ionicLoading, $rootScope){
   $scope.roteiroParaColeta = RoteiroParaColeta.getRoteiroParaColeta();
+
+  $scope.init = function(){
+
+  }
+
   $scope.bancoDeDados = BancoDeDados;
 
   $scope.showConfirm = function() {
@@ -27,7 +34,8 @@ angular.module('starter.controllers.roteiroParaColeta', ['starter.services.rotei
           caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/roteiroInformacao?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
           objeto = $scope.roteiroParaColeta;
           $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-            console.log(dados);
+            console.log(dados)
+            $rootScope.planoDeNegocioID.roteiroDeInformacaoID = dados.data._id.$oid;;
           });
         }, 10000);
       });

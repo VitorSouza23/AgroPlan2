@@ -1,7 +1,15 @@
-angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoDeMarketing', 'starter.services.utilitarios'])
+angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoDeMarketing',
+'starter.services.utilitarios'])
 
-.controller('PlanoDeMarketingCtrl', function($scope, PlanoDeMarketing, Produto, $ionicListDelegate, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoDeMarketingID, Modal, $rootScope){
+.controller('PlanoDeMarketingCtrl', function($scope, PlanoDeMarketing, Produto, $ionicListDelegate,
+   $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoDeMarketingID, Modal,
+   $rootScope){
   $scope.planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
+
+  $scope.init = function(){
+
+  }
+
   $scope.editar = PlanoDeMarketing.editar;
   $scope.bancoDeDados = BancoDeDados;
   $scope.planoDeMarketingID = PlanoDeMarketingID;
@@ -102,7 +110,10 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
           localStorage.setItem("planoDeMarketing", json);
           caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoMarketing?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
           objeto = $scope.planoDeMarketingID;
-          $scope.bancoDeDados.salvar(caminho, objeto);
+          $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
+            console.log(dados.data);
+            $rootScope.planoDeNegocioID.planoDeMarketingID = dados.data._id.$oid;
+          });
         }, 10000);
       });
 

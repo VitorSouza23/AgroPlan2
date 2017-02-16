@@ -1,6 +1,11 @@
-angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avaliacaoDoPlano', 'starter.services.utilitarios'])
-.controller('AvaliacaoDoPlanoCtrl', function($scope, AvaliacaoDoPlano, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading){
+angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avaliacaoDoPlano',
+'starter.services.utilitarios'])
+.controller('AvaliacaoDoPlanoCtrl', function($scope, AvaliacaoDoPlano, $ionicHistory,
+  $ionicPopup, $timeout, BancoDeDados, $ionicLoading, $rootScope){
   $scope.avaliacaoDoPlano = AvaliacaoDoPlano.getAvaliacaoDoPlano();
+  $scope.init = function(){
+
+  }
   $scope.bancoDeDados = BancoDeDados;
 
   $scope.showConfirm = function() {
@@ -28,6 +33,7 @@ angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avalia
           objeto = $scope.avaliacaoDoPlano;
           $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
             console.log(dados);
+            $rootScope.planoDeNegocioID.avaliacaoPlanoID = dados.data._id.$oid;
           });
         }, 10000);
       });
