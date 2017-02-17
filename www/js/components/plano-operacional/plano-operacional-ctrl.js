@@ -27,7 +27,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
   var tipoDestinoCaminhoFoto;
   $scope.addCargo = function(){
     if(!$scope.editar){
-      $scope.cargo.idUsuario = $rootScope.usuario._id.$oid;
+      $scope.cargo.idUsuario = $rootScope.usuario._id;
       salvarCargo($scope.cargo);
       $scope.planoOperacional.addCargo($scope.cargo);
     }else{
@@ -40,7 +40,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
   };
 
   $scope.botaoRemoverCargo = function(cargo){
-    var pos = $scope.planoOperacionalID.idsCargos.indexOf(cargo._id.$oid);
+    var pos = $scope.planoOperacionalID.idsCargos.indexOf(cargo._id);
     $scope.planoOperacionalID.idsCargos.splice(pos,1);
     $scope.planoOperacional.removerCargo(cargo);
   };
@@ -170,7 +170,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
         objeto = $scope.planoOperacionalID;
         $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
           console.log(dados.data);
-          $rootScope.planoDeNegocioID.planoOperacionalID = dados.data._id.$oid;
+          $rootScope.planoDeNegocioID.planoOperacionalID = dados.data._id;
         });
       }, 10000);
     });
@@ -189,7 +189,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     $scope.bancoDeDados.salvar(caminho, cargo).then(function (dados){
       console.log(dados.data);
       $scope.cargo._id = dados.data._id;
-      $scope.planoOperacionalID.idsCargos.push(dados.data._id.$oid);
+      $scope.planoOperacionalID.idsCargos.push(dados.data._id);
     });
 
   };
@@ -231,7 +231,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
         $scope.planoOperacional.cargos = dados.data;
         $scope.planoOperacionalID.idsCargos = [];
         dados.data.forEach(function(dado){
-          $scope.planoOperacionalID.idsCargos.push(dado._id.$oid);
+          $scope.planoOperacionalID.idsCargos.push(dado._id);
         });
         console.log($scope.planoOperacional.cargos);
       });

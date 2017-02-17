@@ -101,7 +101,7 @@ angular.module('starter.services.utilitarios', ['starter.services.utilitarios'])
 
   var recuperarComIdUsuario = function(caminho, usuario){
     deffered = $q.defer();
-    jsonString = JSON.stringify({idUsuario: usuario._id.$oid, desativado: false});
+    jsonString = JSON.stringify({idUsuario: usuario._id, desativado: false});
     console.log(caminho + "&q="+jsonString);
     $http.get(caminho + "&q="+jsonString, {cache : false}).then(function(dados){
       deffered.resolve(dados);
@@ -114,7 +114,7 @@ angular.module('starter.services.utilitarios', ['starter.services.utilitarios'])
 
   var recuperarComId = function(caminho, objeto){
     deffered = $q.defer();
-    jsonString = JSON.stringify({idUsuario: objeto._id, desativado: false});
+    jsonString = JSON.stringify({idUsuario: objeto._id});
     console.log(caminho + "&q="+jsonString);
     $http.get(caminho + "&q="+jsonString, {cache : false}).then(function(dados){
       deffered.resolve(dados);

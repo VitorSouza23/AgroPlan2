@@ -25,6 +25,8 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services', 'start
   }
   $scope.editarPlano = function(planoDeNegocio){
     $rootScope.planoDeNegocioID = planoDeNegocio;
+    //$rootScope.planoDeNegocioMontado = ServicoPlanoDeNegocio.remontarPlanoDeNegocio(planoDeNegocio);
+    //console.log($rootScope.planoDeNegocioMontado);
     console.log($rootScope.planoDeNegocioID);
     $scope.fecharMenuDeOpcoesDoPlano();
     $state.go('tab.sumarioExecutivo');

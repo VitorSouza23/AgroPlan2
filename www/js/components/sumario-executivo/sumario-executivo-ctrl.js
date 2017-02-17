@@ -32,7 +32,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
 
   $scope.botaoAdicionarSocio = function(socio){
     if(!this.editar){
-      $scope.socio.idUsuario = $rootScope.usuario._id.$oid;
+      $scope.socio.idUsuario = $rootScope.usuario._id;
       salvarSocio($scope.socio);
       $scope.sumarioExecutivo.adicionarSocio($scope.socio);
       $ionicListDelegate.closeOptionButtons();
@@ -45,7 +45,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
   };
 
   $scope.botaoRemoverSocio = function(socio){
-    var pos = $scope.sumarioExecutivoID.idsSocios.indexOf(socio._id.$oid);
+    var pos = $scope.sumarioExecutivoID.idsSocios.indexOf(socio._id);
     $scope.sumarioExecutivoID.idsSocios.splice(pos,1);
     $scope.sumarioExecutivo.removerSocio(socio);
 
@@ -118,7 +118,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
         objeto = $scope.sumarioExecutivoID;
         $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
           console.log(dados.data);
-          $rootScope.planoDeNegocioID.sumarioExecutivoID = dados.data._id.$oid;
+          $rootScope.planoDeNegocioID.sumarioExecutivoID = dados.data._id;
         });
       }, 1000);
     });
@@ -138,7 +138,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
     $scope.bancoDeDados.salvar(caminho, socio).then(function (dados){
       console.log(dados.data);
       $scope.socio._id = dados.data._id;
-      $scope.sumarioExecutivoID.idsSocios.push(dados.data._id.$oid);
+      $scope.sumarioExecutivoID.idsSocios.push(dados.data._id);
     });
 
   };
@@ -168,7 +168,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
         $scope.sumarioExecutivo.socios = dados.data;
         $scope.sumarioExecutivoID.idsSocios = [];
         dados.data.forEach(function(dado){
-          $scope.sumarioExecutivoID.idsSocios.push(dado._id.$oid);
+          $scope.sumarioExecutivoID.idsSocios.push(dado._id);
         });
         console.log($scope.sumarioExecutivo.socios);
       });

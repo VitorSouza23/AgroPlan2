@@ -33,7 +33,7 @@ var confirmPopup = $ionicPopup.confirm({
         objeto = $scope.construcaoDeCenario;
         $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
           console.log(dados);
-          $rootScope.planoDeNegocioID.construcaoCenariosID = dados.data._id.$oid;
+          $rootScope.planoDeNegocioID.construcaoCenariosID = dados.data._id;
         });
       }, 10000);
     });

@@ -26,7 +26,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
 
     $scope.addProduto = function(){
       if(!$scope.editar){
-        $scope.produto.idUsuario = $rootScope.usuario._id.$oid;
+        $scope.produto.idUsuario = $rootScope.usuario._id;
         salvarProduto($scope.produto);
         $scope.planoDeMarketing.addProduto($scope.produto);
       }else{
@@ -40,7 +40,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
     }
 
     $scope.botaoRemoverProduto= function(produto){
-      var pos = $scope.planoDeMarketingID.idsProdutos.indexOf(produto._id.$oid);
+      var pos = $scope.planoDeMarketingID.idsProdutos.indexOf(produto._id);
       $scope.planoDeMarketingID.idsProdutos.splice(pos,1);
       $scope.planoDeMarketing.removerProduto(produto);
     };
@@ -112,7 +112,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
           objeto = $scope.planoDeMarketingID;
           $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
             console.log(dados.data);
-            $rootScope.planoDeNegocioID.planoDeMarketingID = dados.data._id.$oid;
+            $rootScope.planoDeNegocioID.planoDeMarketingID = dados.data._id;
           });
         }, 10000);
       });
@@ -132,7 +132,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
       $scope.bancoDeDados.salvar(caminho, produto).then(function (dados){
         console.log(dados.data);
         $scope.produto._id = dados.data._id;
-        $scope.planoDeMarketingID.idsProdutos.push(dados.data._id.$oid);
+        $scope.planoDeMarketingID.idsProdutos.push(dados.data._id);
       });
 
     };
@@ -160,7 +160,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
       caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/localizacao?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
       objeto = $scope.planoDeMarketing.localizacaoDoNegocio;
       $scope.bancoDeDados.salvar(caminho, objeto).then(function(response){
-        $scope.planoDeMarketingID.idLocalizacao = response.data._id.$oid;
+        $scope.planoDeMarketingID.idLocalizacao = response.data._id;
         console.log(response);
 
       });
@@ -177,7 +177,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
           console.log(dados.data);
           $scope.planoDeMarketingID.idsProdutos = [];
           dados.data.forEach(function(dado){
-            $scope.planoDeMarketingID.idsProdutos.push(dado._id.$oid);
+            $scope.planoDeMarketingID.idsProdutos.push(dado._id);
           });
           console.log($scope.planoDeMarketingID.idsProdutos);
         });

@@ -33,7 +33,7 @@ angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.av
           objeto = $scope.avaliacaoEstrategica;
           $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
             console.log(dados);
-            $rootScope.planoDeNegocioID.avaliacaoEstrategicaID = dados.data._id.$oid;
+            $rootScope.planoDeNegocioID.avaliacaoEstrategicaID = dados.data._id;
           });
         }, 10000);
       });

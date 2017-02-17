@@ -48,7 +48,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     //Equipamento
     $scope.addEquipamento = function(){
       if(!$scope.editar){
-        $scope.equipamento.idUsuario = $rootScope.usuario._id.$oid;
+        $scope.equipamento.idUsuario = $rootScope.usuario._id;
         salvarEquipamento($scope.equipamento);
         $scope.planoFinanceiro.estoqueInicial.addEquipamento($scope.equipamento);
       }else{
@@ -61,7 +61,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverEquipamento= function(equipamento){
-      var pos = $scope.planoFinanceiroID.idsEquipamentos.indexOf(equipamento._id.$oid);
+      var pos = $scope.planoFinanceiroID.idsEquipamentos.indexOf(equipamento._id);
       $scope.planoFinanceiroID.idsEquipamentos.splice(pos,1);
       $scope.planoFinanceiro.estoqueInicial.removerEquipamento(equipamento);
     };
@@ -113,7 +113,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
     $scope.addMaquina = function(){
       if(!$scope.editar){
-        $scope.maquina.idUsuario = $rootScope.usuario._id.$oid;
+        $scope.maquina.idUsuario = $rootScope.usuario._id;
         salvarMaquina($scope.maquina);
         $scope.planoFinanceiro.estoqueInicial.addMaquina($scope.maquina);
       }else{
@@ -126,7 +126,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverMaquina= function(maquina){
-      var pos = $scope.planoFinanceiroID.idsMaquinas.indexOf(maquina._id.$oid);
+      var pos = $scope.planoFinanceiroID.idsMaquinas.indexOf(maquina._id);
       $scope.planoFinanceiroID.idsMaquinas.splice(pos,1);
       $scope.planoFinanceiro.estoqueInicial.removerMaquina(maquina);
     };
@@ -175,7 +175,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
     $scope.addMovel = function(){
       if(!$scope.editar){
-        $scope.movel.idUsuario = $rootScope.usuario._id.$oid;
+        $scope.movel.idUsuario = $rootScope.usuario._id;
         salvarMovel($scope.movel);
         $scope.planoFinanceiro.estoqueInicial.addMovel($scope.movel);
       }else{
@@ -188,7 +188,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverMovel= function(movel){
-      var pos = $scope.planoFinanceiroID.idsMoveis.indexOf(movel._id.$oid);
+      var pos = $scope.planoFinanceiroID.idsMoveis.indexOf(movel._id);
       $scope.planoFinanceiroID.idsMoveis.splice(pos,1);
       $scope.planoFinanceiro.estoqueInicial.removerMovel(movel);
     };
@@ -236,7 +236,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
     $scope.addUtensilio = function(){
       if(!$scope.editar){
-        $scope.utensilio.idUsuario = $rootScope.usuario._id.$oid;
+        $scope.utensilio.idUsuario = $rootScope.usuario._id;
         salvarUtensilio($scope.utensilio);
         $scope.planoFinanceiro.estoqueInicial.addUtensilio($scope.utensilio);
       }else{
@@ -249,7 +249,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverUtensilio = function(utensilio){
-      var pos = $scope.planoFinanceiroID.idsUtensilios.indexOf(utensilio._id.$oid);
+      var pos = $scope.planoFinanceiroID.idsUtensilios.indexOf(utensilio._id);
       $scope.planoFinanceiroID.idsUtensilios.splice(pos,1);
       $scope.planoFinanceiro.estoqueInicial.removerUtensilio(utensilio);
     };
@@ -297,7 +297,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
     $scope.addVeiculo = function(){
       if(!$scope.editar){
-        $scope.veiculo.idUsuario = $rootScope.usuario._id.$oid;
+        $scope.veiculo.idUsuario = $rootScope.usuario._id;
         salvarVeiculo($scope.veiculo);
         $scope.planoFinanceiro.estoqueInicial.addVeiculo($scope.veiculo);
       }else{
@@ -310,7 +310,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverVeiculo = function(veiculo){
-      var pos = $scope.planoFinanceiroID.idsVeiculos.indexOf(veiculo._id.$oid);
+      var pos = $scope.planoFinanceiroID.idsVeiculos.indexOf(veiculo._id);
       $scope.planoFinanceiroID.idsVeiculos.splice(pos,1);
       $scope.planoFinanceiro.estoqueInicial.removerVeiculo(veiculo);
     };
@@ -358,7 +358,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
     $scope.addVenda = function(){
       if(!$scope.editar){
-        $scope.venda.idUsuario = $rootScope.usuario._id.$oid;
+        $scope.venda.idUsuario = $rootScope.usuario._id;
         salvarVenda($scope.venda);
         $scope.planoFinanceiro.addVenda($scope.venda);
       }else{
@@ -371,7 +371,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverVenda = function(venda){
-      var pos = $scope.planoFinanceiroID.idsVendas.indexOf(venda._id.$oid);
+      var pos = $scope.planoFinanceiroID.idsVendas.indexOf(venda._id);
       $scope.planoFinanceiroID.idsVendas.splice(pos,1);
       $scope.planoFinanceiro.removerVenda(venda);
     };
@@ -419,7 +419,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
     $scope.addCompra = function(){
       if(!$scope.editar){
-        $scope.compra.idUsuario = $rootScope.usuario._id.$oid;
+        $scope.compra.idUsuario = $rootScope.usuario._id;
         salvarCompra($scope.compra);
         $scope.planoFinanceiro.addCompra($scope.compra);
       }else{
@@ -432,7 +432,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     };
 
     $scope.botaoRemoverCompra = function(compra){
-      var pos = $scope.planoFinanceiroID.idsCompras.indexOf(compra._id.$oid);
+      var pos = $scope.planoFinanceiroID.idsCompras.indexOf(compra._id);
       $scope.planoFinanceiroID.idsCompras.splice(pos,1);
       $scope.planoFinanceiro.removerCompra(compra);
     };
@@ -498,7 +498,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           objeto = $scope.planoFinanceiroID;
           $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
             console.log(dados.data);
-            $rootScope.planoDeNegocioID.planoFinanceiroID = dados.data._id.$oid;
+            $rootScope.planoDeNegocioID.planoFinanceiroID = dados.data._id;
           });
         }, 10000);
       });
@@ -517,7 +517,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.salvar(caminho, equipamento).then(function(dados){
         console.log(dados.data);
         $scope.equipamento._id = dados.data._id;
-        $scope.planoFinanceiroID.idsEquipamentos.push(dados.data._id.$oid);
+        $scope.planoFinanceiroID.idsEquipamentos.push(dados.data._id);
       });
     };
 
@@ -543,7 +543,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.salvar(caminho, maquina).then(function(dados){
         console.log(dados.data);
         $scope.maquina._id = dados.data._id;
-        $scope.planoFinanceiroID.idsMaquinas.push(dados.data._id.$oid);
+        $scope.planoFinanceiroID.idsMaquinas.push(dados.data._id);
       });
     };
 
@@ -569,7 +569,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.salvar(caminho, movel).then(function(dados){
         console.log(dados.data);
         $scope.movel._id = dados.data._id;
-        $scope.planoFinanceiroID.idsMoveis.push(dados.data._id.$oid);
+        $scope.planoFinanceiroID.idsMoveis.push(dados.data._id);
       });
     };
 
@@ -595,7 +595,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.salvar(caminho, utensilio).then(function(dados){
         console.log(dados.data);
         $scope.utensilio._id = dados.data._id;
-        $scope.planoFinanceiroID.idsUtensilios.push(dados.data._id.$oid);
+        $scope.planoFinanceiroID.idsUtensilios.push(dados.data._id);
       });
     };
 
@@ -621,7 +621,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.salvar(caminho, veiculo).then(function(dados){
         console.log(dados.data);
         $scope.veiculo._id = dados.data._id;
-        $scope.planoFinanceiroID.idsVeiculos.push(dados.data._id.$oid);
+        $scope.planoFinanceiroID.idsVeiculos.push(dados.data._id);
       });
     };
 
@@ -647,7 +647,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.salvar(caminho, compra).then(function(dados){
         console.log(dados.data);
         $scope.compra._id = dados.data._id;
-        $scope.planoFinanceiroID.idsCompras.push(dados.data._id.$oid);
+        $scope.planoFinanceiroID.idsCompras.push(dados.data._id);
       });
     };
 
@@ -673,7 +673,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       $scope.bancoDeDados.salvar(caminho, venda).then(function(dados){
         console.log(dados.data);
         $scope.venda._id = dados.data._id;
-        $scope.planoFinanceiroID.idsVendas.push(dados.data._id.$oid);
+        $scope.planoFinanceiroID.idsVendas.push(dados.data._id);
       });
     };
 
@@ -702,7 +702,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           $scope.planoFinanceiro.estoqueInicial.equipamentos = dados.data;
           $scope.planoFinanceiroID.idsEquipamentos = [];
           dados.data.forEach(function(dado){
-            $scope.planoFinanceiroID.idsEquipamentos.push(dado._id.$oid);
+            $scope.planoFinanceiroID.idsEquipamentos.push(dado._id);
           })
           console.log(dados);
         });
@@ -718,7 +718,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           $scope.planoFinanceiro.estoqueInicial.maquinas = dados.data;
           $scope.planoFinanceiroID.idsMaquinas = [];
           dados.data.forEach(function(dado){
-            $scope.planoFinanceiroID.idsMaquinas.push(dado._id.$oid);
+            $scope.planoFinanceiroID.idsMaquinas.push(dado._id);
           })
           console.log(dados);
         });
@@ -734,7 +734,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           $scope.planoFinanceiro.estoqueInicial.moveis = dados.data;
           $scope.planoFinanceiroID.idsMoveis = [];
           dados.data.forEach(function(dado){
-            $scope.planoFinanceiroID.idsMoveis.push(dado._id.$oid);
+            $scope.planoFinanceiroID.idsMoveis.push(dado._id);
           })
           console.log(dados);
         });
@@ -750,7 +750,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           $scope.planoFinanceiro.estoqueInicial.utensilios = dados.data;
           $scope.planoFinanceiroID.idsUtensilios = [];
           dados.data.forEach(function(dado){
-            $scope.planoFinanceiroID.idsUtensilios.push(dado._id.$oid);
+            $scope.planoFinanceiroID.idsUtensilios.push(dado._id);
           })
           console.log(dados);
         });
@@ -766,7 +766,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           $scope.planoFinanceiro.estoqueInicial.veiculos = dados.data;
           $scope.planoFinanceiroID.idsVeiculos = [];
           dados.data.forEach(function(dado){
-            $scope.planoFinanceiroID.idsVeiculos.push(dado._id.$oid);
+            $scope.planoFinanceiroID.idsVeiculos.push(dado._id);
           })
           console.log(dados);
         });
@@ -782,7 +782,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           $scope.planoFinanceiro.compras = dados.data;
           $scope.planoFinanceiroID.idsCompras = [];
           dados.data.forEach(function(dado){
-            $scope.planoFinanceiroID.idsCompras.push(dado._id.$oid);
+            $scope.planoFinanceiroID.idsCompras.push(dado._id);
           })
           console.log(dados);
         });
@@ -798,7 +798,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           $scope.planoFinanceiro.vendas = dados.data;
           $scope.planoFinanceiroID.idsVendas = [];
           dados.data.forEach(function(dado){
-            $scope.planoFinanceiroID.idsVendas.push(dado._id.$oid);
+            $scope.planoFinanceiroID.idsVendas.push(dado._id);
           })
           console.log(dados);
         });
