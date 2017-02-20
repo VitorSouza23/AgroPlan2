@@ -1,4 +1,4 @@
-angular.module('starter.services.utilitarios', ['starter.services.utilitarios'])
+angular.module('starter.services.utilitarios', [])
 
 .factory('BancoDeDados', function($http, $q, $rootScope){
 
@@ -159,8 +159,6 @@ angular.module('starter.services.utilitarios', ['starter.services.utilitarios'])
 
 .factory('Menu', function($ionicActionSheet, $timeout, $state, $ionicHistory, $rootScope, $window,
   ServicoPlanoDeNegocio){
-  var mostrarMenuArmazenamento = false;
-  var mostrarMenusTab = true;
   var show = function() {
 
     // Show the action sheet
@@ -208,22 +206,14 @@ angular.module('starter.services.utilitarios', ['starter.services.utilitarios'])
       // For example's sake, hide the sheet after two seconds
       $timeout(function() {
         menu();
-      }, 10000);
+      }, 10000000);
 
     };
 
-    var getMostrarMenuArmazenamento = function(){
-      return mostrarMenuArmazenamento;
-    }
 
-    var getMostrarMenusTab = function(){
-      return mostrarMenusTab;
-    }
 
     return{
-      show:show,
-      getMostrarMenusTab:getMostrarMenusTab,
-      getMostrarMenuArmazenamento:getMostrarMenuArmazenamento
+      show:show
     }
   })
   ;

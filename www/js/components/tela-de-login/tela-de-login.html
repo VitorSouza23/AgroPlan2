@@ -1,14 +1,19 @@
 <ion-view view-title="AgroPlan" name="login-view" ng-int="init()">
   <ion-content class="padding">
-      <div class="list list-inset">
-          <label class="item item-input">
-              <input type="tel" placeholder="CPF (Somente números!)" ng-model="usuario.cpf" ng-keypress="enter($event)" maxlength="11">
-          </label>
-          <label class="item item-input">
-              <input type="password" placeholder="Senha" ng-model="usuario.senha" ng-keypress="enter($event)">
-          </label>
+    <ion-item class="item item-text-wrap">
+      <div class="col text-center">
+        <h2>Seja Bem vindo ao AgroPlan!</h2>
       </div>
-      <button class="button button-block button-outline button-positive" ng-click="login()">Login</button>
-      <button class="button button-block button-outline button-positive" ng-controller="CadastroCtrl" ng-click="abrirTela()">Cadastrar</button>
+    </ion-item>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input type="tel" placeholder="CPF (Somente números!)" ng-model="usuario.cpf" ng-keypress="enter($event)" maxlength="11">
+      </label>
+      <label class="item item-input">
+        <input type="password" placeholder="Senha" ng-model="usuario.senha" ng-keypress="enter($event)">
+      </label>
+    </div>
+    <button class="button button-block button-outline button-positive" ng-click="login()">Login</button>
+    <button class="button button-block button-outline button-positive" ng-controller="CadastroCtrl" ng-click="abrirTela()">Cadastrar</button>
   </ion-content>
 </ion-view>
