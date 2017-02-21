@@ -112,7 +112,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
           objeto = $scope.planoDeMarketingID;
           $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
             console.log(dados.data);
-            $rootScope.planoDeNegocioID.planoDeMarketingID = dados.data._id;
+            $rootScope.planoDeNegocioID.planoDeMarketingID._id = dados.data._id;
           });
         }, 10000);
       });

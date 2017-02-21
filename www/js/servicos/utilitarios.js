@@ -116,7 +116,7 @@ angular.module('starter.services.utilitarios', [])
     deffered = $q.defer();
     jsonString = JSON.stringify({idUsuario: objeto._id});
     console.log(caminho + "&q="+jsonString);
-    $http.get(caminho + "&q="+jsonString, {cache : false}).then(function(dados){
+    return $http.get(caminho + "&q="+jsonString, {cache : false}).then(function(dados){
       deffered.resolve(dados);
     }),function(dados){
       deffered.reject(dados + "erro!");

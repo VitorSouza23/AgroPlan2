@@ -35,7 +35,7 @@ angular.module('starter.controllers.roteiroParaColeta', ['starter.services.rotei
           objeto = $scope.roteiroParaColeta;
           $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
             console.log(dados)
-            $rootScope.planoDeNegocioID.roteiroDeInformacaoID = dados.data._id;;
+            $rootScope.planoDeNegocioID.roteiroDeInformacaoID._id = dados.data._id;;
           });
         }, 10000);
       });

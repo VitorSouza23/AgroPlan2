@@ -184,7 +184,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
             caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
             objeto = $scope.analiseDeMercadoID;
             $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-              $rootScope.planoDeNegocioID.analiseMercadoID = dados.data._id;
+              $rootScope.planoDeNegocioID.analiseMercadoID._id = dados.data._id;
             });
           }, 1000);
         });

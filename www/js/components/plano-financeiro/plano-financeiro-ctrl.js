@@ -498,7 +498,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           objeto = $scope.planoFinanceiroID;
           $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
             console.log(dados.data);
-            $rootScope.planoDeNegocioID.planoFinanceiroID = dados.data._id;
+            $rootScope.planoDeNegocioID.planoFinanceiroID._id = dados.data._id;
           });
         }, 10000);
       });

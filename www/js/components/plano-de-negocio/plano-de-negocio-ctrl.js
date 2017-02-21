@@ -2,7 +2,7 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
 'starter.services.plano-de-negocios'])
 
 .controller('PlanoDeNegocioCtrl', function($scope, $state, $rootScope, ServicoPlanoDeNegocio, Modal,
-   BancoDeDados, $window, $ionicPopup) {
+   BancoDeDados, $window, $ionicPopup, $ionicLoading) {
   $scope.usuario = $rootScope.usuario;
   $scope.planoDeNegocio;
   $scope.planosDeNegocio = [];
@@ -21,23 +21,22 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
     if($scope.editar){
       var pos = $scope.planosDeNegocio.indexOf($scope.planoDeNegocio);
       $scope.planosDeNegocio[pos] = $scope.planoDeNegocio;
-      ServicoPlanoDeNegocio.atualizarPlanoDeNegocio($scope.planoDeNegocio);
+      ServicoPlanoDeNegocio.atualizarPlanoDeNegocio($scope.planoDeNegocio)
       $scope.modalNovoPlanoDeNegocio.hide();
       $scope.editar = false;
     }else{
-      $scope.modalNovoPlanoDeNegocio.hide();
       console.log($scope.planoDeNegocio);
       $scope.planoDeNegocio.desativado = false;
-      $scope.planoDeNegocio = ServicoPlanoDeNegocio.salvarPlanoDeNegocio($scope.planoDeNegocio);
-      $rootScope.planoDeNegocioID = $scope.planoDeNegocio;
-      $scope.planosDeNegocio.push($scope.planoDeNegocio);
-      $state.go('tab.sumarioExecutivo');
+      ServicoPlanoDeNegocio.salvarPlanoDeNegocio($scope.planoDeNegocio);
+      esperaParaRecuperarNovoPlano();
+      $scope.modalNovoPlanoDeNegocio.hide();
+
     }
 
   }
   $scope.editarPlano = function(planoDeNegocio){
     $rootScope.planoDeNegocioID = planoDeNegocio;
-    //$rootScope.planoDeNegocioMontado = ServicoPlanoDeNegocio.remontarPlanoDeNegocio(planoDeNegocio);
+    $rootScope.planoDeNegocioMontado = ServicoPlanoDeNegocio.remontarPlanoDeNegocio(planoDeNegocio);
     //console.log($rootScope.planoDeNegocioMontado);
     console.log($rootScope.planoDeNegocioID);
     $scope.fecharMenuDeOpcoesDoPlano();
@@ -85,6 +84,21 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
       console.log(dados.data);
       $scope.planosDeNegocio = dados.data;
     });
+  }
+
+  esperaParaRecuperarNovoPlano = function(){
+    $ionicLoading.show({
+      template: 'Criando Novo Plano... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+      duration: 1000
+    }).then(function(){
+      setTimeout(function(){
+        $scope.recuperTodosOsPlanosPorIdUsuario();
+      }, 1000);
+    });
+
+    $scope.hide = function(){
+      $ionicLoading.hide();
+    };
   }
 
   $scope.sair = function(){

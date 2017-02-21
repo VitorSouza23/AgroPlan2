@@ -118,7 +118,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
         objeto = $scope.sumarioExecutivoID;
         $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
           console.log(dados.data);
-          $rootScope.planoDeNegocioID.sumarioExecutivoID = dados.data._id;
+          $rootScope.planoDeNegocioID.sumarioExecutivoID._id = dados.data._id;
         });
       }, 1000);
     });
