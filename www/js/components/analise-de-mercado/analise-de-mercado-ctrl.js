@@ -12,9 +12,8 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
     $scope.analiseDeMercadoID = AnaliseDeMercadoID;
 
     $scope.init = function(){
-      $scope.analiseDeMercado = $rootScope.planoDeNegocioMontado.analiseDeMercado;
-      $scope.analiseDeMercadoID.idsConcorrentes = $rootScope.planoDeNegocioMontado.analiseDeMercado.idsConcorrentes;
-      $scope.analiseDeMercadoID.idsFornecedores = $rootScope.planoDeNegocioMontado.analiseDeMercado.idsFornecedores;
+      console.log($rootScope.planoDeNegocioMontado);
+      recuperarSubitens();
     }
 
 
@@ -184,7 +183,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
             caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
             objeto = $scope.analiseDeMercadoID;
             $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-              $rootScope.planoDeNegocioID.analiseMercadoID._id = dados.data._id;
+              $rootScope.planoDeNegocio.analiseDeMercadoID._id = dados.data._id;
             });
           }, 1000);
         });
@@ -297,5 +296,64 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
           });
         });
       };
+
+      recuperarFornecedores = function(){
+        var objeto = {};
+        $rootScope.planoDeNegocioMontado.analiseDeMercado.idsFornecedores.forEach(function(dados){
+          caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+          objeto._id = dados;
+          BancoDeDados.recuperarComId(caminho, objeto).then(function(dados){
+            $scope.analiseDeMercado.fornecedores = dados.data;
+            $scope.analiseDeMercadoID.idsFornecedores = [];
+            dados.data.forEach(function(dado){
+              $scope.analiseDeMercadoID.idsFornecedores.push(dado._id);
+            });
+            console.log(dados);
+          });
+        });
+      }
+
+      recuperarConcorrentes = function(){
+        var objeto = {};
+        $rootScope.planoDeNegocioMontado.analiseDeMercado.idsConcorrentes.forEach(function(dados){
+          caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+          objeto._id = dados;
+          BancoDeDados.recuperarComId(caminho, objeto).then(function(dados){
+            $scope.analiseDeMercado.concorrentes = dados.data;
+            $scope.analiseDeMercadoID.idsConcorrentes = [];
+            dados.data.forEach(function(dado){
+              $scope.analiseDeMercadoID.idsConcorrentes.push(dado._id);
+            })
+            console.log(dados);
+          });
+        });
+
+      }
+
+      recuperarCliente = function(){
+        var objeto = {};
+        caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cliente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+        objeto._id = $rootScope.planoDeNegocioMontado.analiseDeMercado.idsCliente;
+        BancoDeDados.recuperarComId(caminho, objeto).then(function(dados){
+          $scope.analiseDeMercado.cliente = dados.data;
+          $scope.analiseDeMercadoID.idCliente = dados.data._id;
+          console.log(dados.data);
+        });
+
+      }
+
+      recuperarSubitens = function(){
+        if($rootScope.planoDeNegocioMontado.analiseDeMercado){
+          $ionicLoading.show({
+            template: 'Recuperando Dados... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+            duration: 2000
+          }).then(function(){
+            recuperarConcorrentes();
+            recuperarFornecedores();
+            recuperarCliente();
+          });
+        }
+      };
+
 
     });

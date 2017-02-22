@@ -114,9 +114,10 @@ angular.module('starter.services.utilitarios', [])
 
   var recuperarComId = function(caminho, objeto){
     deffered = $q.defer();
-    jsonString = JSON.stringify({idUsuario: objeto._id});
+    console.log(objeto);
+    jsonString = JSON.stringify({_id: objeto._id});
     console.log(caminho + "&q="+jsonString);
-    return $http.get(caminho + "&q="+jsonString, {cache : false}).then(function(dados){
+    $http.get(caminho + "&q="+jsonString, {cache : false}).then(function(dados){
       deffered.resolve(dados);
     }),function(dados){
       deffered.reject(dados + "erro!");
@@ -193,10 +194,11 @@ angular.module('starter.services.utilitarios', [])
               inherit: false,
               notify: true });
           }else if(index === 4){
-            ServicoPlanoDeNegocio.atualizarPlanoDeNegocio($rootScope.planoDeNegocioID);
-            $state.go('planoDeNegocio', {}, { reload: true,
-              inherit: false,
-              notify: true });
+            ServicoPlanoDeNegocio.atualizarPlanoDeNegocio($rootScope.planoDeNegocio);
+            $ionicLoading.show({
+              template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+              duration: 1000
+            });
           }
           return true;
         }

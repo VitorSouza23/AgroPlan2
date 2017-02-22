@@ -29,10 +29,6 @@ angular.module('starter.controllers.login', ['starter.services','starter.service
         }
 
         if($rootScope.usuario != null){
-          $ionicPopup.alert({
-            title: 'Bem Vindo!',
-            template: 'Seja bem vindo ' + $rootScope.usuario.nome + "! \n" + 'CPF: ' + $rootScope.usuario.cpf
-          });
           $state.go('planoDeNegocio');
         }else{
           var alertPopup = $ionicPopup.alert({

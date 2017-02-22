@@ -27,7 +27,10 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
     }else{
       console.log($scope.planoDeNegocio);
       $scope.planoDeNegocio.desativado = false;
-      ServicoPlanoDeNegocio.salvarPlanoDeNegocio($scope.planoDeNegocio);
+      var novoPlano = new PlanoDeNegocio();
+      novoPlano.idUsuario = $rootScope.usuario._id;
+      novoPlano.nome = $scope.planoDeNegocio.nome;
+      ServicoPlanoDeNegocio.salvarPlanoDeNegocio(novoPlano);
       esperaParaRecuperarNovoPlano();
       $scope.modalNovoPlanoDeNegocio.hide();
 
@@ -35,10 +38,11 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
 
   }
   $scope.editarPlano = function(planoDeNegocio){
-    $rootScope.planoDeNegocioID = planoDeNegocio;
-    $rootScope.planoDeNegocioMontado = ServicoPlanoDeNegocio.remontarPlanoDeNegocio(planoDeNegocio);
+    console.log(planoDeNegocio);
+    $rootScope.planoDeNegocio = planoDeNegocio;
+    esperarParaMontarPlano(planoDeNegocio);
     //console.log($rootScope.planoDeNegocioMontado);
-    console.log($rootScope.planoDeNegocioID);
+    console.log($rootScope.planoDeNegocio);
     $scope.fecharMenuDeOpcoesDoPlano();
     $state.go('tab.sumarioExecutivo');
   }
@@ -99,6 +103,17 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
     $scope.hide = function(){
       $ionicLoading.hide();
     };
+  }
+
+  esperarParaMontarPlano = function(planoDeNegocio){
+    $ionicLoading.show({
+      template: 'Recuperando Dados... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+      duration: 2000
+    }).then(function(){
+      setTimeout(function(){
+        $rootScope.planoDeNegocioMontado = ServicoPlanoDeNegocio.remontarPlanoDeNegocio(planoDeNegocio);
+      }, 1000);
+    });
   }
 
   $scope.sair = function(){
