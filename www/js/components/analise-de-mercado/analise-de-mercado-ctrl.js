@@ -5,7 +5,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
 
 .controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, AnaliseDeMercadoID,
   Concorrente, Fornecedor, $ionicListDelegate, $ionicHistory,$ionicPopup, $timeout,
-  BancoDeDados,$ionicLoading, Modal, $rootScope){
+  BancoDeDados,$ionicLoading, Modal, $rootScope, $q){
     $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
     $scope.editar  = AnaliseDeMercado.editar;
     $scope.bancoDeDados = BancoDeDados;
@@ -281,6 +281,8 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
         });
       };
 
+
+
       $scope.recuperarDadosConcorrentes = function(){
         $ionicLoading.show({
           template: 'Acessando Concorrentes... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
@@ -297,48 +299,46 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
         });
       };
 
+      //Recuperação de dados
+      var arrayPromessasFronecedores = [];
+      var arrayPromessasConcorrentes = [];
+      var promessaCliente = {};
+
       recuperarFornecedores = function(){
+        arrayPromessasFronecedores = [];
         var objeto = {};
-        $rootScope.planoDeNegocioMontado.analiseDeMercado.idsFornecedores.forEach(function(dados){
+        $scope.analiseDeMercadoID.idsFornecedores = [];
+        $rootScope.planoDeNegocioMontado.analiseDeMercado.idsFornecedores.forEach(function(dadoId){
           caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/fornecedores?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-          objeto._id = dados;
-          BancoDeDados.recuperarComId(caminho, objeto).then(function(dados){
-            $scope.analiseDeMercado.fornecedores = dados.data;
-            $scope.analiseDeMercadoID.idsFornecedores = [];
-            dados.data.forEach(function(dado){
-              $scope.analiseDeMercadoID.idsFornecedores.push(dado._id);
-            });
-            console.log(dados);
-          });
+          objeto._id = dadoId;
+          arrayPromessasFronecedores.push(BancoDeDados.recuperarComId(caminho, objeto));
         });
+        $q.all(arrayPromessasConcorrentes).then(function(dados){
+          console.log(dados);
+        });
+
       }
 
       recuperarConcorrentes = function(){
+        arrayPromessasConcorrentes = [];
         var objeto = {};
-        $rootScope.planoDeNegocioMontado.analiseDeMercado.idsConcorrentes.forEach(function(dados){
+        $rootScope.planoDeNegocioMontado.analiseDeMercado.idsConcorrentes.forEach(function(dadoId){
           caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/concorrente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-          objeto._id = dados;
-          BancoDeDados.recuperarComId(caminho, objeto).then(function(dados){
-            $scope.analiseDeMercado.concorrentes = dados.data;
-            $scope.analiseDeMercadoID.idsConcorrentes = [];
-            dados.data.forEach(function(dado){
-              $scope.analiseDeMercadoID.idsConcorrentes.push(dado._id);
-            })
-            console.log(dados);
-          });
+          objeto._id = dadoId;
+          arrayPromessasConcorrentes.push(BancoDeDados.recuperarComId(caminho, objeto));
+        });
+        $q.all(arrayPromessasConcorrentes).then(function(dados){
+          console.log(dados);
         });
 
       }
+
 
       recuperarCliente = function(){
         var objeto = {};
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cliente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-        objeto._id = $rootScope.planoDeNegocioMontado.analiseDeMercado.idsCliente;
-        BancoDeDados.recuperarComId(caminho, objeto).then(function(dados){
-          $scope.analiseDeMercado.cliente = dados.data;
-          $scope.analiseDeMercadoID.idCliente = dados.data._id;
-          console.log(dados.data);
-        });
+        objeto._id = $rootScope.planoDeNegocioMontado.analiseDeMercado.idCliente;
+        promessaCliente = BancoDeDados.recuperarComId(caminho, objeto);
 
       }
 
