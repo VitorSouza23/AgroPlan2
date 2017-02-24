@@ -65,10 +65,12 @@ angular.module('starter.services.analiseDeMercado', [])
 })
 
 .factory('AnaliseDeMercadoID', function(){
+  var _id;
   var idCliente;
   var idsFornecedores = [];
   var idsConcorrentes = [];
   return{
+    _id : _id,
     idCliente : idCliente,
     idsFornecedores : idsFornecedores,
     idsConcorrentes : idsConcorrentes

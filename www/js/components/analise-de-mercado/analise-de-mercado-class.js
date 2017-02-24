@@ -1,4 +1,5 @@
 function AnaliseDeMercado(){
+  this._id;
   this.cliente = new Cliente();
   this.concorrentes = [];
   this.fornecedores = [];

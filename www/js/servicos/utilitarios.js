@@ -113,16 +113,10 @@ angular.module('starter.services.utilitarios', [])
 
 
   var recuperarComId = function(caminho, objeto){
-    deffered = $q.defer();
     console.log(objeto);
     jsonString = JSON.stringify({_id: objeto._id});
     console.log(caminho + "&q="+jsonString);
-    $http.get(caminho + "&q="+jsonString, {cache : false}).then(function(dados){
-      deffered.resolve(dados);
-    }),function(dados){
-      deffered.reject(dados + "erro!");
-    }
-    return deffered.promise;
+    return $http.get(caminho + "&q="+jsonString, {cache : false});;
   }
 
 
