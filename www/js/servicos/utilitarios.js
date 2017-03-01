@@ -157,7 +157,7 @@ angular.module('starter.services.utilitarios', [])
 })
 
 .factory('Menu', function($ionicActionSheet, $timeout, $state, $ionicHistory, $rootScope, $window,
-  ServicoPlanoDeNegocio){
+  ServicoPlanoDeNegocio, $ionicLoading){
     var show = function() {
 
       // Show the action sheet
@@ -166,8 +166,7 @@ angular.module('starter.services.utilitarios', [])
           {text: 'Sobre o projeto'},
           {text: 'Configurações'},
           {text: 'Sair'},
-          {text: 'Voltar ao Menu Principal'},
-          {text: 'Salvar Plano de Negócio'}
+          {text: 'Salvar e Voltar'}
         ],
         titleText: 'Opções',
         cancelText: 'Cancelar',
@@ -179,41 +178,44 @@ angular.module('starter.services.utilitarios', [])
             $state.go('sobreProjeto', {}, { reload: true,
               inherit: false,
               notify: true });
-
             }else if(index === 2){
+              ServicoPlanoDeNegocio.atualizarPlanoDeNegocio($rootScope.planoDeNegocio);
+              $ionicLoading.show({
+                template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+                duration: 1000
+              });
               $rootScope.usuario = null;
               $rootScope.isLogin = false;
-              $window.location.reload(true)
+              $window.location.reload(true);
               $state.go('login', {}, { reload: true,
                 inherit: false,
                 notify: true });
               }else if(index === 3){
+                ServicoPlanoDeNegocio.atualizarPlanoDeNegocio($rootScope.planoDeNegocio);
+                $ionicLoading.show({
+                  template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+                  duration: 1000
+                });
                 $state.go('planoDeNegocio', {}, { reload: true,
                   inherit: false,
                   notify: true });
-                }else if(index === 4){
-                  ServicoPlanoDeNegocio.atualizarPlanoDeNegocio($rootScope.planoDeNegocio);
-                  $ionicLoading.show({
-                    template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-                    duration: 1000
-                  });
-                }
-                return true;
               }
-            });
+              return true;
+            }
+          });
 
 
-            // For example's sake, hide the sheet after two seconds
-            $timeout(function() {
-              menu();
-            }, 10000000);
+          // For example's sake, hide the sheet after two seconds
+          $timeout(function() {
+            menu();
+          }, 10000000);
 
-          };
+        };
 
 
 
-          return{
-            show:show
-          }
-        })
-        ;
+        return{
+          show:show
+        }
+      })
+      ;

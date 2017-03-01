@@ -1,4 +1,5 @@
 function PlanoDeMarketing(){
+  this._id;
   this.produtos = [];
   this.estrategiasPromocionais;
   this.estruturaDeComercializacao;
@@ -30,6 +31,7 @@ function Produto(){
 }
 
 function LocalizacaoDoNegocio(){
+  this._id;
   this.endereco;
   this.bairro;
   this.cidade;

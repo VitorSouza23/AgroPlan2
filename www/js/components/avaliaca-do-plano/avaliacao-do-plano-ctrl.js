@@ -3,8 +3,13 @@ angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avalia
 .controller('AvaliacaoDoPlanoCtrl', function($scope, AvaliacaoDoPlano, $ionicHistory,
   $ionicPopup, $timeout, BancoDeDados, $ionicLoading, $rootScope){
   $scope.avaliacaoDoPlano = AvaliacaoDoPlano.getAvaliacaoDoPlano();
-  $scope.init = function(){
 
+  $scope.init = function(){
+    console.log($rootScope.planoDeNegocioMontado.avaliacaoDoPlano);
+    if($rootScope.planoDeNegocioMontado.avaliacaoDoPlano._id != undefined){
+      $scope.avaliacaoDoPlano._id = $rootScope.planoDeNegocioMontado.avaliacaoDoPlano._id;
+      $scope.avaliacaoDoPlano.avaliacao = $rootScope.planoDeNegocioMontado.avaliacaoDoPlano.avaliacao;
+    }
   }
   $scope.bancoDeDados = BancoDeDados;
 
@@ -24,18 +29,21 @@ angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avalia
       var objeto;
       $ionicLoading.show({
         template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 10000
+        duration: 1000
       }).then(function(){
         setTimeout(function(){
-          json = angular.toJson($scope.avaliacaoDoPlano);
-          localStorage.setItem("avaliacaoEstrategica", json);
           caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/avaliacaoPlano?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
           objeto = $scope.avaliacaoDoPlano;
-          $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-            console.log(dados);
-            $rootScope.planoDeNegocioID.avaliacaoPlanoID._id = dados.data._id;
-          });
-        }, 10000);
+          if($scope.avaliacaoDoPlano._id == undefined){
+            $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
+              console.log(dados);
+              $rootScope.planoDeNegocio.avaliacaoPlanoID._id = dados.data._id;
+            });
+          }else{
+            $scope.bancoDeDados.atualizar(caminho, objeto);
+          }
+
+        }, 1000);
       });
 
       $scope.hide = function(){

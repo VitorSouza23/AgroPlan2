@@ -1,11 +1,18 @@
 angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.avaliacaoEstrategica',
- 'starter.services.utilitarios'])
+'starter.services.utilitarios'])
 
 .controller('AvaliacaoEstrategicaCtrl', function($scope, AvaliacaoEstrategica, $ionicHistory,
   $ionicPopup, $timeout, BancoDeDados, $ionicLoading, $rootScope){
-  $scope.avaliacaoEstrategica = AvaliacaoEstrategica.getAvaliacaoEstrategica();
-  $scope.init = function(){
-
+    $scope.avaliacaoEstrategica = AvaliacaoEstrategica.getAvaliacaoEstrategica();
+    $scope.init = function(){
+      console.log($rootScope.planoDeNegocioMontado.avaliacaoEstrategica);
+      if($rootScope.planoDeNegocioMontado.avaliacaoEstrategica._id != undefined){
+      $scope.avaliacaoEstrategica._id = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica._id;
+      $scope.avaliacaoEstrategica.froca = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.forca;
+      $scope.avaliacaoEstrategica.fraquesa = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.fraquesa;
+      $scope.avaliacaoEstrategica.oportunidade = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.oportunidade;
+      $scope.avaliacaoEstrategica.ameaca = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.ameaca;
+    }
   }
   $scope.bancoDeDados = BancoDeDados;
   $scope.showConfirm = function() {
@@ -24,18 +31,21 @@ angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.av
       var objeto;
       $ionicLoading.show({
         template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-        duration: 10000
+        duration: 1000
       }).then(function(){
         setTimeout(function(){
-          json = angular.toJson($scope.avaliacaoEstrategica);
-          localStorage.setItem("avaliacaoEstrategica", json);
           caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/avaliacaoEstrategica?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
           objeto = $scope.avaliacaoEstrategica;
-          $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-            console.log(dados);
-            $rootScope.planoDeNegocioID.avaliacaoEstrategicaID._id = dados.data._id;
-          });
-        }, 10000);
+          if($scope.avaliacaoEstrategica._id == undefined){
+            $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
+              console.log(dados);
+              $rootScope.planoDeNegocio.avaliacaoEstrategicaID._id = dados.data._id;
+            });
+          }else{
+            $scope.bancoDeDados.atualizar(caminho, objeto)
+          }
+
+        }, 1000);
       });
 
       $scope.hide = function(){

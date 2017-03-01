@@ -1,4 +1,5 @@
 function ConstrucaoDeCenario(){
+  this._id;
   this.provavel = new Cenario();
   this.pessimsita = new Cenario();
   this.otimista = new Cenario();

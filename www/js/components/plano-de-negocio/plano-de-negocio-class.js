@@ -7,7 +7,7 @@ function PlanoDeNegocio(){
   this.construcaoDeCenariosID = {};
   this.planoDeMarketingID = {};
   this.planoOperacionalID = {};
-  this.planoFinanaceiroID = {};
+  this.planoFinanceiroID = {};
   this.roteiroDeInformacaoID = {};
   this.sumarioExecutivoID = {};
   this.idUsuario;

@@ -1,48 +1,61 @@
-angular.module('starter.controllers.construcaoDeCenario', ['starter.services.construcaoDeCenario','starter.services.utilitarios'])
+angular.module('starter.controllers.construcaoDeCenario', [
+  'starter.services.construcaoDeCenario','starter.services.utilitarios'])
 
-.controller('CosntrucaoDeCenarioCtrl', function($scope, ConstrucaoDeCenario, $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading){
-  $scope.construcaoDeCenario = ConstrucaoDeCenario.getConstrucaoDeCenario();
+  .controller('CosntrucaoDeCenarioCtrl', function($scope, ConstrucaoDeCenario,
+    $ionicHistory, $ionicPopup, $timeout, BancoDeDados, $ionicLoading, $rootScope){
+      $scope.construcaoDeCenario = ConstrucaoDeCenario.getConstrucaoDeCenario();
 
-  $scope.init = function(){
+      $scope.init = function(){
+        console.log($rootScope.planoDeNegocioMontado.construcaoDeCenarios);
+        if($rootScope.planoDeNegocioMontado.construcaoDeCenarios._id != undefined){
+        $scope.construcaoDeCenario._id = $rootScope.planoDeNegocioMontado.construcaoDeCenarios._id;
+        $scope.construcaoDeCenario.provavel = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.provavel;
+        $scope.construcaoDeCenario.pessimsita = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.pessimsita;
+        $scope.construcaoDeCenario.otimista = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.otimista;
+      }
+    }
 
-  }
+    $scope.bancoDeDados = BancoDeDados;
+    $scope.showConfirm = function() {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Construção de Cenários',
+        template: 'É onde o usuário poderá simular valores e situações diversas para a empresa.',
+        cancelText: 'Sair'
+      })};
 
-  $scope.bancoDeDados = BancoDeDados;
-  $scope.showConfirm = function() {
-var confirmPopup = $ionicPopup.confirm({
-  title: 'Construção de Cenários',
-  template: 'É onde o usuário poderá simular valores e situações diversas para a empresa.',
-  cancelText: 'Sair'
-})};
+      $scope.back = function(){
+        $ionicHistory.goBack();
+      };
 
-  $scope.back = function(){
-    $ionicHistory.goBack();
-  };
+      $scope.salvar = function(){
+        var caminho;
+        var objeto;
+        $ionicLoading.show({
+          template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+          duration: 1000
+        }).then(function(){
+          setTimeout(function(){
+            json = angular.toJson($scope.construcaoDeCenario);
+            localStorage.setItem("avaliacaoEstrategica", json);
+            caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/construcaoCenario?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+            objeto = $scope.construcaoDeCenario;
+            if($scope.construcaoDeCenario._id == undefined){
+              $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
+                console.log(dados);
+                $rootScope.planoDeNegocio.construcaoDeCenariosID._id = dados.data._id;
+              });
+            }else{
+              $scope.bancoDeDados.atualizar(caminho, objeto);
+            }
 
-  $scope.salvar = function(){
-    var caminho;
-    var objeto;
-    $ionicLoading.show({
-      template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-      duration: 10000
-    }).then(function(){
-      setTimeout(function(){
-        json = angular.toJson($scope.construcaoDeCenario);
-        localStorage.setItem("avaliacaoEstrategica", json);
-        caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/construcaoCenario?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-        objeto = $scope.construcaoDeCenario;
-        $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-          console.log(dados);
-          $rootScope.planoDeNegocioID.construcaoCenariosID._id = dados.data._id;
+          }, 1000);
         });
-      }, 10000);
+
+        $scope.hide = function(){
+          $ionicLoading.hide().then(function(){
+            console.log("The loading indicator is now hidden");
+          });
+
+        };
+      };
     });
-
-    $scope.hide = function(){
-      $ionicLoading.hide().then(function(){
-        console.log("The loading indicator is now hidden");
-      });
-
-    };
-  };
-});

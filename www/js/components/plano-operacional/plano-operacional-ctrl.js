@@ -3,13 +3,17 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
 .controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicListDelegate,
   $ionicHistory, $ionicPopup, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoOperacionalID,
-   Modal, $rootScope){
+   Modal, $rootScope, $cordovaCamera){
   $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
 
   $scope.init = function(){
 
   }
 
+
+  $scope.dadosImagem;
+  $scope.urlImagem;
+  $scope.imagemJSON;
   $scope.editar = PlanoOperacional.editar;
   $scope.planoOperacionalID = PlanoOperacionalID;
   $scope.bancoDeDados = BancoDeDados;
@@ -112,29 +116,70 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     }
   }
   $scope.tirarFoto = function () {
-    tipoDoSitema();
-    navigator.camera.getPicture(sucessoAoPegarFoto, erroAoPegarFoto, {
-      destinationType : tipoDestinoCaminhoFoto,
-      sourceType : 1,
+    var imagemConfig = {
+      destinationType : Camera.DestinationType.DATA_URL,
+      sourceType : Camera.PictureSourceType.CAMERA,
       encodingType: Camera.EncodingType.JPEG,
-      quality : 75,
-      targetWidth: 200,
-      targetHeight: 200,
+      quality : 100,
+      targetWidth: 300,
+      targetHeight: 300,
+      saveToPhotoAlbum: true,
+      correctOrientation: true
+    }
 
+    $cordovaCamera.getPicture(imagemConfig).then(function(imageData) {
+      $scope.dadosImagem = imageData;
+      $scope.planoOperacional.layout = "data:image/jpeg;base64," + imageData;
+      $scope.imagemJSON = JSON.stringify({
+        imagem: $scope.planoOperacional.layout
+      })
+
+      var caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/imagem?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      var objeto = $scope.imagemJSON;
+      $scope.bancoDeDados.salvar(caminho, objeto).then(function(response){
+        $scope.planoOperacionalID.idImagem = response.data._id;
+        console.log(response);
+
+      });
+
+    }, function(err) {
+      alert('Erro ao obter imagem!');
     });
-  };
+  }
+
 
   $scope.pegarFoto = function () {
-    navigator.camera.getPicture(sucessoAoPegarFoto, erroAoPegarFoto, {
-      destinationType : tipoDestinoCaminhoFoto,
-      sourceType : 0,
+    var imagemGaleria = {
+      destinationType : Camera.DestinationType.DATA_URL,
+      sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
       encodingType: Camera.EncodingType.JPEG,
-      quality : 75,
-      targetWidth: 200,
-      targetHeight: 200,
+      quality : 100,
+      targetWidth: 300,
+      targetHeight: 300,
+      saveToPhotoAlbum: true,
+      correctOrientation: true
+    }
 
+    $cordovaCamera.getPicture(imagemGaleria).then(function(imageData) {
+      $scope.dadosImagem = imageData;
+      $scope.planoOperacional.layout = "data:image/jpeg;base64," + imageData;
+      $scope.imagemJSON = JSON.stringify({
+        imagem: $scope.planoOperacional.layout
+      })
+
+      var caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/imagem?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      var objeto = $scope.imagemJSON;
+      $scope.bancoDeDados.salvar(caminho, objeto).then(function(response){
+        $scope.planoOperacionalID.idImagem = response.data._id;
+        console.log(response);
+
+      });
+
+    }, function(err) {
+      alert('Erro ao obter imagem!');
     });
-  };
+  }
+
 
   $scope.mostrarReordem = function(){
     $scope.reordenar = !$scope.reordenar;

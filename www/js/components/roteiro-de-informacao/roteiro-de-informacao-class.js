@@ -1,4 +1,5 @@
 function RoteiroParaColeta(){
+  this._id;
   this.sumarioExecutivo = new Roteiro();
   this.analiseDeMercado = new Roteiro();
   this.planoDeMarketing = new Roteiro();

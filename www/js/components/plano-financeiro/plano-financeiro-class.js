@@ -1,4 +1,5 @@
 function PlanoFinanceiro(){
+  this._id;
   this.estoqueInicial = new EstoqueInicial();
   this.vendas = [];
   this.compras = [];
