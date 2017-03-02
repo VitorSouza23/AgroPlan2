@@ -37,70 +37,52 @@ angular.module('starter.services.plano-de-negocios', ['starter.services.utilitar
     remontarPlanoDeNegocio: function(planoDeNegocioID){
       console.log(planoDeNegocioID);
       var planoDeNegocioMontado = {};
-      var caminho, objeto;
-
-      var analiseDeMercado = {};
-      var fornecedores = [];
-      var concorrentes = [];
-      var cliente = {};
-
-      var avaliacaoDoPlano = {};
-
-      var avaliacaoEstrategica = {};
-
-      var construcaoDeCenarios = {};
-
-      var planoDeMarketing = {};
-      var produtos = [];
-      var localizacao = {};
-
-      var planoFinanceiro = {};
-      var equipamentos = [];
-      var maquinas = [];
-      var moveis = [];
-      var utensilios = [];
-      var veiculos = [];
-      var vendas = [];
-      var compras = [];
-
-      var planoOperacional = {};
-      var cargos = [];
-
-      var roteiroDeInformacao = {};
-
-      var sumarioExecutivo = {};
-      var socios = [];
+      var listaDePromises = [];
 
       //analiseDeMercado
       if(planoDeNegocioID.analiseDeMercadoID != undefined){
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = planoDeNegocioID.analiseDeMercadoID;
-        analiseDeMercado = BancoDeDados.recuperarComId(caminho, objeto);
+        listaDePromises.push(BancoDeDados.recuperarComId(caminho, objeto));
+      }else{
+        listaDePromises.push($q.defer());
       }
 
       //avaliacaoDoPlano
       if(planoDeNegocioID.avaliacaoDoPlanoID != undefined){
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/avaliacaoPlano?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = planoDeNegocioID.avaliacaoDoPlanoID;
-        avaliacaoDoPlano = BancoDeDados.recuperarComId(caminho, objeto);
+        listaDePromises.push(BancoDeDados.recuperarComId(caminho, objeto));
+
+      }else{
+        listaDePromises.push($q.defer());
       }
       //avaliacaoEstrategica
       if(planoDeNegocioID.avaliacaoEstrategicaID != undefined){
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/avaliacaoEstrategica?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = planoDeNegocioID.avaliacaoEstrategicaID;
-        avaliacaoEstrategica = BancoDeDados.recuperarComId(caminho, objeto);
+        listaDePromises.push(BancoDeDados.recuperarComId(caminho, objeto));
+
+      }else{
+        listaDePromises.push($q.defer());
       }
       //construcaoDeCenarios
       if(planoDeNegocioID.construcaoDeCenariosID != undefined){
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/construcaoCenario?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = planoDeNegocioID.construcaoDeCenariosID;
-        construcaoDeCenarios = BancoDeDados.recuperarComId(caminho, objeto);
+        listaDePromises.push(BancoDeDados.recuperarComId(caminho, objeto));
+
+      }else{
+        listaDePromises.push($q.defer());
       }
       //planoDeMarketing
       if(planoDeNegocioID.planoDeMarketingID != undefined){
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoMarketing?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = planoDeNegocioID.planoDeMarketingID;
-        planoDeMarketing = BancoDeDados.recuperarComId(caminho, objeto);
+        listaDePromises.push(BancoDeDados.recuperarComId(caminho, objeto));
+
+      }else{
+        listaDePromises.push($q.defer());
       }
 
 
@@ -108,14 +90,20 @@ angular.module('starter.services.plano-de-negocios', ['starter.services.utilitar
       if(planoDeNegocioID.planoFinanceiroID != undefined){
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoFinanceiro?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = planoDeNegocioID.planoFinanceiroID;
-        planoFinanceiro = BancoDeDados.recuperarComId(caminho, objeto);
+        listaDePromises.push(BancoDeDados.recuperarComId(caminho, objeto));
+
+      }else{
+        listaDePromises.push($q.defer());
       }
 
       //planoOperacinal
       if(planoDeNegocioID.planoOperacinalID != undefined){
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoOperacional?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = planoDeNegocioID.planoOperacionalID;
-        planoOperacional = BancoDeDados.recuperarComId(caminho, objeto);
+        listaDePromises.push(BancoDeDados.recuperarComId(caminho, objeto));
+
+      }else{
+        listaDePromises.push($q.defer());
       }
 
 
@@ -123,19 +111,23 @@ angular.module('starter.services.plano-de-negocios', ['starter.services.utilitar
       if(planoDeNegocioID.roteiroDeInformacaoID != undefined){
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/roteiroInformacao?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = planoDeNegocioID.roteiroDeInformacaoID;
-        roteiroDeInformacao = BancoDeDados.recuperarComId(caminho, objeto);
+        listaDePromises.push(BancoDeDados.recuperarComId(caminho, objeto));
+
+      }else{
+        listaDePromises.push($q.defer());
       }
       //sumarioExecutivo
       if(planoDeNegocioID.sumarioExecutivoID != undefined){
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/sumarioExecutivo?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = planoDeNegocioID.sumarioExecutivoID;
-        sumarioExecutivo = BancoDeDados.recuperarComId(caminho, objeto);
+        listaDePromises.push(BancoDeDados.recuperarComId(caminho, objeto));
+
+      }else{
+        listaDePromises.push($q.defer());
       }
 
 
-      $q.all([analiseDeMercado, avaliacaoDoPlano, avaliacaoEstrategica, construcaoDeCenarios,
-        planoDeMarketing, planoFinanceiro, planoOperacional, roteiroDeInformacao,
-        sumarioExecutivo]).then(function(dados){
+      $q.all(listaDePromises).then(function(dados){
           console.log(dados);
           planoDeNegocioMontado.analiseDeMercado = dados[0].data[0];
           planoDeNegocioMontado.avaliacaoDoPlano = dados[1].data[0];

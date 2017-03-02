@@ -42,9 +42,12 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
     $rootScope.planoDeNegocio = planoDeNegocio;
     esperarParaMontarPlano(planoDeNegocio);
     //console.log($rootScope.planoDeNegocioMontado);
-    console.log($rootScope.planoDeNegocio);
-    $scope.fecharMenuDeOpcoesDoPlano();
-    $state.go('tab.sumarioExecutivo');
+    setTimeout(function(){
+      console.log($rootScope.planoDeNegocio);
+      $scope.fecharMenuDeOpcoesDoPlano();
+      $state.go('tab.sumarioExecutivo');
+    }, 2000);
+
   }
 
   $scope.abrirMenuDeOpcoesDoPlano = function(planoDeNegocio){
@@ -112,7 +115,7 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
     }).then(function(){
       setTimeout(function(){
         $rootScope.planoDeNegocioMontado = ServicoPlanoDeNegocio.remontarPlanoDeNegocio(planoDeNegocio);
-      }, 1000);
+      }, 2000);
     });
   }
 

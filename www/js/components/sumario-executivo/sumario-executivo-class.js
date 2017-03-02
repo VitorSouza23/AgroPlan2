@@ -1,4 +1,5 @@
 function SumarioExecutivo(){
+  this._id;
   this.principaisPontos;
   this.socios = [];
   this.dadosDoemprendimento = new DadosDoEmprendimento();

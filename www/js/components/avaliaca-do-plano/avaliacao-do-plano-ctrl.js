@@ -37,7 +37,7 @@ angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avalia
           if($scope.avaliacaoDoPlano._id == undefined){
             $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
               console.log(dados);
-              $rootScope.planoDeNegocio.avaliacaoPlanoID._id = dados.data._id;
+              $rootScope.planoDeNegocio.avaliacaoDoPlanoID._id = dados.data._id;
             });
           }else{
             $scope.bancoDeDados.atualizar(caminho, objeto);

@@ -6,13 +6,34 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
   $rootScope){
 
   $scope.sumarioExecutivo = SumarioExecutivo.getSumarioExecutivo();
-
-  $scope.init = function(){
-
-  }
-
   $scope.cnpjOuCpf = SumarioExecutivo.getCnpjOuCpf();
   $scope.escolherCnpjOuCpf = SumarioExecutivo.escolherCnpjOuCpf();
+
+  $scope.init = function(){
+    console.log($rootScope.planoDeNegocioMontado.sumarioExecutivo);
+    if($rootScope.planoDeNegocioMontado.suamarioExecutivo._id != undefined){
+      $scope.sumarioExecutivo._id = $rootScope.planoDeNegocioMontado.sumarioExecutivo._id;
+      $scope.sumarioExecutivoID._id = $rootScope.planoDeNegocioMontado.sumarioExecutivo._id;
+
+      $scope.sumarioExecutivo.dadosDoemprendimento = $rootScope.planoDeNegocioMontado.sumarioExecutivo.dadosDoemprendimento;
+      $scope.sumarioExecutivo.principaisPontos = $rootScope.planoDeNegocioMontado.sumarioExecutivo.principaisPontos;
+      $scope.sumarioExecutivo.missaoDaEmpresa = $rootScope.planoDeNegocioMontado.sumarioExecutivo.missaoDaEmpresa;
+
+      if($scope.sumarioExecutivo.dadosDoemprendimento.cpf == undefined){
+        $scope.escolherCnpjOuCpf = true;
+      }else{
+        $scope.escolherCnpjOuCpf = false;
+      }
+
+      $scope.sumarioExecutivo.formaJuridica = $rootScope.planoDeNegocioMontado.sumarioExecutivo.formaJuridica;
+      $scope.sumarioExecutivo.optantePeloSimples = $rootScope.planoDeNegocioMontado.sumarioExecutivo.optantePeloSimples;
+      $scope.sumarioExecutivo.fontesDeRecursos = $rootScope.planoDeNegocioMontado.sumarioExecutivo.fontesDeRecursos;
+      recuperarSubitens();
+    }
+  }
+
+
+
   $scope.editar = SumarioExecutivo.editar;
   $scope.bancoDeDados = BancoDeDados;
   $scope.sumarioExecutivoID = SumarioExecutivoID;
@@ -118,7 +139,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
         objeto = $scope.sumarioExecutivoID;
         $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
           console.log(dados.data);
-          $rootScope.planoDeNegocioID.sumarioExecutivoID._id = dados.data._id;
+          $rootScope.planoDeNegocio.sumarioExecutivoID._id = dados.data._id;
         });
       }, 1000);
     });
@@ -174,5 +195,47 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
       });
     });
   };
+
+  //Recuperação de dados
+  var arrayPromessasSocios = [];
+
+
+  recuperarSocios = function(){
+    arrayPromessasSocios= [];
+    $scope.sumarioExecutivo.socios = [];
+    $scope.sumarioExecutivoID.idsSocios = [];
+    var objeto = {};
+    $rootScope.planoDeNegocioMontado.sumarioExecutivo.idsSocios.forEach(function(dadoId){
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/socio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      objeto._id = dadoId;
+      arrayPromessasSocios.push(BancoDeDados.recuperarComId(caminho, objeto));
+    });
+    qAllSocio();
+  }
+
+
+  qAllSocio = function(){
+    $q.all(arrayPromessasSocios).then(function(dados){
+      console.log(dados);
+      dados.forEach(function (dado){
+        console.log(dado.data[0]);
+        $scope.sumarioExecutivo.socios.push(dado.data[0]);
+        $scope.sumarioExecutivoID.idsSocios.push(dado.data[0]._id);
+      });
+    });
+  }
+
+
+  recuperarSubitens = function(){
+
+      $ionicLoading.show({
+        template: 'Recuperando Dados... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        duration: 1000
+      }).then(function(){
+        recuperarDadosSocios();
+      });
+
+  };
+
 
 });
