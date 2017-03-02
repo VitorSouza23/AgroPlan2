@@ -1,4 +1,5 @@
 function PlanoOperacional(){
+  this._id;
   this.layout;
   this.capacidadeProdutiva;
   this.capacidadeComercial;

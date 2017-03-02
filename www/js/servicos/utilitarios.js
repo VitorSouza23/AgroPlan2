@@ -179,12 +179,14 @@ angular.module('starter.services.utilitarios', [])
               inherit: false,
               notify: true });
             }else if(index === 2){
-              ServicoPlanoDeNegocio.atualizarPlanoDeNegocio($rootScope.planoDeNegocio);
-              $ionicLoading.show({
-                template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-                duration: 1000
-              });
-              $rootScope.usuario = null;
+              if(  $rootScope.usuario != undefined){
+                ServicoPlanoDeNegocio.atualizarPlanoDeNegocio($rootScope.planoDeNegocio);
+                $ionicLoading.show({
+                  template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+                  duration: 1000
+                });
+              }
+              $rootScope.usuario = undefined;
               $rootScope.isLogin = false;
               $window.location.reload(true);
               $state.go('login', {}, { reload: true,
@@ -199,23 +201,23 @@ angular.module('starter.services.utilitarios', [])
                 $state.go('planoDeNegocio', {}, { reload: true,
                   inherit: false,
                   notify: true });
+                }
+                return true;
               }
-              return true;
-            }
-          });
+            });
 
 
-          // For example's sake, hide the sheet after two seconds
-          $timeout(function() {
-            menu();
-          }, 10000000);
+            // For example's sake, hide the sheet after two seconds
+            $timeout(function() {
+              menu();
+            }, 10000000);
 
-        };
+          };
 
 
 
-        return{
-          show:show
-        }
-      })
-      ;
+          return{
+            show:show
+          }
+        })
+        ;
