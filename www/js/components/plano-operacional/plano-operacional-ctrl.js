@@ -229,11 +229,8 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
         localStorage.setItem("analiseDeMercado", json);
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoOperacional?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = $scope.planoOperacionalID;
-        $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-          console.log(dados.data);
-          $rootScope.planoDeNegocio.planoOperacionalID._id = dados.data._id;
-        });
-      }, 10000);
+        $scope.bancoDeDados.atualizar(caminho, objeto);
+      }, 1000);
     });
 
     $scope.hide = function(){
@@ -333,7 +330,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
   recuperarSubitens = function(){
 
       $ionicLoading.show({
-        template: 'Recuperando Dados... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
         duration: 1000
       }).then(function(){
         recuperarCargos();

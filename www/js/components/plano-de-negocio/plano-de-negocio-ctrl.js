@@ -27,11 +27,7 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
     }else{
       console.log($scope.planoDeNegocio);
       $scope.planoDeNegocio.desativado = false;
-      var novoPlano = new PlanoDeNegocio();
-      novoPlano.idUsuario = $rootScope.usuario._id;
-      novoPlano.nome = $scope.planoDeNegocio.nome;
-      ServicoPlanoDeNegocio.salvarPlanoDeNegocio(novoPlano);
-      esperaParaRecuperarNovoPlano();
+      esperaParaCriarERecuperarNovoPlano();
       $scope.modalNovoPlanoDeNegocio.hide();
 
     }
@@ -40,14 +36,18 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
   $scope.editarPlano = function(planoDeNegocio){
     console.log(planoDeNegocio);
     $rootScope.planoDeNegocio = planoDeNegocio;
-    esperarParaMontarPlano(planoDeNegocio);
-    //console.log($rootScope.planoDeNegocioMontado);
+    ServicoPlanoDeNegocio.remontarPlanoDeNegocio(planoDeNegocio);
+    console.log($rootScope.planoDeNegocioMontado);
+    $ionicLoading.show({
+      template: 'Recuperando Dados... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+      duration: 5000
+    }).then(function(){
     setTimeout(function(){
       console.log($rootScope.planoDeNegocio);
       $scope.fecharMenuDeOpcoesDoPlano();
       $state.go('tab.sumarioExecutivo');
-    }, 2000);
-
+    }, 5000);
+  });
   }
 
   $scope.abrirMenuDeOpcoesDoPlano = function(planoDeNegocio){
@@ -93,11 +93,18 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
     });
   }
 
-  esperaParaRecuperarNovoPlano = function(){
+  esperaParaCriarERecuperarNovoPlano = function(){
     $ionicLoading.show({
       template: 'Criando Novo Plano... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-      duration: 1000
+      duration: 3000
     }).then(function(){
+      setTimeout(function(){
+        var novoPlano = new PlanoDeNegocio();
+        novoPlano.idUsuario = $rootScope.usuario._id;
+        novoPlano.nome = $scope.planoDeNegocio.nome;
+        ServicoPlanoDeNegocio.salvarPlanoDeNegocio(novoPlano);
+      }, 2000);
+
       setTimeout(function(){
         $scope.recuperTodosOsPlanosPorIdUsuario();
       }, 1000);
@@ -108,16 +115,7 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
     };
   }
 
-  esperarParaMontarPlano = function(planoDeNegocio){
-    $ionicLoading.show({
-      template: 'Recuperando Dados... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-      duration: 2000
-    }).then(function(){
-      setTimeout(function(){
-        $rootScope.planoDeNegocioMontado = ServicoPlanoDeNegocio.remontarPlanoDeNegocio(planoDeNegocio);
-      }, 2000);
-    });
-  }
+
 
   $scope.sair = function(){
     $rootScope.usuario = null;

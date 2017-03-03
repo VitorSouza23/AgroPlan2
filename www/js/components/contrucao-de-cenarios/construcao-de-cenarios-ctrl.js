@@ -39,14 +39,7 @@ angular.module('starter.controllers.construcaoDeCenario', [
             localStorage.setItem("avaliacaoEstrategica", json);
             caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/construcaoCenario?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
             objeto = $scope.construcaoDeCenario;
-            if($scope.construcaoDeCenario._id == undefined){
-              $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-                console.log(dados);
-                $rootScope.planoDeNegocio.construcaoDeCenariosID._id = dados.data._id;
-              });
-            }else{
               $scope.bancoDeDados.atualizar(caminho, objeto);
-            }
 
           }, 1000);
         });

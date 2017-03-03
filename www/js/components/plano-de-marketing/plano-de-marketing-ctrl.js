@@ -116,15 +116,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
 
             caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoMarketing?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
             objeto = $scope.planoDeMarketingID;
-            if($scope.planoDeMarketing._id == undefined){
-              $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-                console.log(dados.data);
-                $rootScope.planoDeNegocio.planoDeMarketingID._id = dados.data._id;
-              });
-            }else{
-              $scope.bancoDeDados.atualizar(caminho, objeto)
-            }
-
+              $scope.bancoDeDados.atualizar(caminho, objeto);
           }, 1000);
         });
 
@@ -241,7 +233,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
       recuperarSubitens = function(){
 
         $ionicLoading.show({
-          template: 'Recuperando Dados... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+          template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
           duration: 1000
         }).then(function(){
           recuperarPordutos();

@@ -119,6 +119,9 @@ angular.module('starter.services.utilitarios', [])
     return $http.get(caminho + "&q="+jsonString, {cache : false});;
   }
 
+  var salvarPromessa = function(caminho, objeto){
+    return $http.post(caminho, objeto) ;
+  };
 
   ;
 
@@ -131,7 +134,8 @@ angular.module('starter.services.utilitarios', [])
     pesquisarUsuario:pesquisarUsuario,
     pesquisarCPFCadastrado:pesquisarCPFCadastrado,
     recuperarComIdUsuario:recuperarComIdUsuario,
-    recuperarComId:recuperarComId
+    recuperarComId:recuperarComId,
+    salvarPromessa:salvarPromessa
 
   }
 

@@ -39,23 +39,13 @@ angular.module('starter.controllers.roteiroParaColeta', ['starter.services.rotei
           setTimeout(function(){
             caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/roteiroInformacao?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
             objeto = $scope.roteiroParaColeta;
-            if($scope.roteiroParaColeta._id == undefined){
-              $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-                console.log(dados)
-                $rootScope.planoDeNegocio.roteiroDeInformacaoID._id = dados.data._id;;
-              });
-            }else{
               $scope.bancoDeDados.atualizar(caminho, objeto);
-            }
 
           }, 1000);
         });
 
         $scope.hide = function(){
-          $ionicLoading.hide().then(function(){
-            console.log("The loading indicator is now hidden");
-          });
-
+          $ionicLoading.hide();
         };
       };
     })

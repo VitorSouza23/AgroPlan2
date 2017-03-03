@@ -4,14 +4,66 @@ angular.module('starter.services.plano-de-negocios', ['starter.services.utilitar
 
   return{
     salvarPlanoDeNegocio: function(planoDeNegocio){
-      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoDeNegocio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-      objeto = planoDeNegocio;
+
+      var arrayDePromessas = [];
       var novoPlano;
-      BancoDeDados.salvar(caminho, objeto).then(function(dados){
-        console.log(dados.data);
-        novoPlano = dados.data;
-      })
-      return novoPlano;
+      var promessasResolvidas;
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      objeto = {};
+      arrayDePromessas.push(BancoDeDados.salvarPromessa(caminho, objeto));
+
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/avaliacaoPlano?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      objeto = {};
+      arrayDePromessas.push(BancoDeDados.salvarPromessa(caminho, objeto));
+
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/construcaoCenario?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      objeto = {};
+      arrayDePromessas.push(BancoDeDados.salvarPromessa(caminho, objeto));
+
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/avaliacaoEstrategica?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      objeto = {};
+      arrayDePromessas.push(BancoDeDados.salvarPromessa(caminho, objeto));
+
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoMarketing?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      objeto = {};
+      arrayDePromessas.push(BancoDeDados.salvarPromessa(caminho, objeto));
+
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoFinanceiro?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      objeto = {};
+      arrayDePromessas.push(BancoDeDados.salvarPromessa(caminho, objeto));
+
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoOperacional?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      objeto = {};
+      arrayDePromessas.push(BancoDeDados.salvarPromessa(caminho, objeto));
+
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/roteiroInformacao?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      objeto = {};
+      arrayDePromessas.push(BancoDeDados.salvarPromessa(caminho, objeto));
+
+      caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/sumarioExecutivo?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+      objeto = {};
+      arrayDePromessas.push(BancoDeDados.salvarPromessa(caminho, objeto));
+
+      console.log(arrayDePromessas);
+
+      $q.all(arrayDePromessas).then(function(dados){
+        console.log(dados);
+        planoDeNegocio.analiseDeMercadoID = dados[0].data._id;
+        planoDeNegocio.avaliacaoDoPlanoID = dados[1].data._id;
+        planoDeNegocio.avaliacaoEstrategicaID = dados[2].data._id;
+        planoDeNegocio.construcaoDeCenariosID = dados[3].data._id;
+        planoDeNegocio.planoDeMarketingID = dados[4].data._id;
+        planoDeNegocio.planoFinanceiroID = dados[5].data._id;
+        planoDeNegocio.planoOperacinalID = dados[6].data._id;
+        planoDeNegocio.roteiroDeInformacaoID = dados[7].data._id;
+        planoDeNegocio.sumarioExecutivoID = dados[8].data._id;
+
+        caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoDeNegocio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
+        objeto = planoDeNegocio;
+        return BancoDeDados.salvar(caminho, objeto);
+      }).then(function(result){
+        console.log(result);
+      });
     },
 
     atualizarPlanoDeNegocio: function(planoDeNegocio){
@@ -36,7 +88,7 @@ angular.module('starter.services.plano-de-negocios', ['starter.services.utilitar
 
     remontarPlanoDeNegocio: function(planoDeNegocioID){
       console.log(planoDeNegocioID);
-      var planoDeNegocioMontado = {};
+      $rootScope.planoDeNegocioMontado = {};
       var listaDePromises = [];
 
       //analiseDeMercado
@@ -128,23 +180,22 @@ angular.module('starter.services.plano-de-negocios', ['starter.services.utilitar
 
 
       $q.all(listaDePromises).then(function(dados){
-          console.log(dados);
-          planoDeNegocioMontado.analiseDeMercado = dados[0].data[0];
-          planoDeNegocioMontado.avaliacaoDoPlano = dados[1].data[0];
-          planoDeNegocioMontado.avaliacaoEstrategica = dados[2].data[0];
-          planoDeNegocioMontado.construcaoDeCenarios = dados[3].data[0];
-          planoDeNegocioMontado.planoDeMarketing = dados[4].data[0];
-          planoDeNegocioMontado.planoFinanceiro = dados[5].data[0];
-          planoDeNegocioMontado.planoOperacional = dados[6].data[0];
-          planoDeNegocioMontado.roteiroDeInformacao = dados[7].data[0];
-          planoDeNegocioMontado.sumarioExecutivo = dados[8].data[0];
-        });
+        console.log(dados);
+        $rootScope.planoDeNegocioMontado.analiseDeMercado = dados[0].data[0];
+        $rootScope.planoDeNegocioMontado.avaliacaoDoPlano = dados[1].data[0];
+        $rootScope.planoDeNegocioMontado.avaliacaoEstrategica = dados[2].data[0];
+        $rootScope.planoDeNegocioMontado.construcaoDeCenarios = dados[3].data[0];
+        $rootScope.planoDeNegocioMontado.planoDeMarketing = dados[4].data[0];
+        $rootScope.planoDeNegocioMontado.planoFinanceiro = dados[5].data[0];
+        $rootScope.planoDeNegocioMontado.planoOperacional = dados[6].data[0];
+        $rootScope.planoDeNegocioMontado.roteiroDeInformacao = dados[7].data[0];
+        $rootScope.planoDeNegocioMontado.sumarioExecutivo = dados[8].data[0];
+      });
 
 
-        console.log(planoDeNegocioMontado);
+      console.log($rootScope.planoDeNegocioMontado);
 
-
-        return planoDeNegocioMontado;
-      }
     }
-  });
+  }
+
+});

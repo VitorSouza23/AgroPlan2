@@ -189,13 +189,8 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
 
             caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/analiseMercado?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
             objeto = $scope.analiseDeMercadoID;
-            if($scope.analiseDeMercado._id == undefined){
-              $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-                $rootScope.planoDeNegocio.analiseDeMercadoID._id = dados.data._id;
-              });
-            }else{
-              $scope.bancoDeDados.atualizar(caminho, objeto);
-            }
+            $scope.bancoDeDados.atualizar(caminho, objeto);
+
           }, 1000);
         });
 
@@ -384,7 +379,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       recuperarSubitens = function(){
 
           $ionicLoading.show({
-            template: 'Recuperando Dados... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+            template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
             duration: 1000
           }).then(function(){
             recuperarCliente();

@@ -3,7 +3,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
 
 .controller('SumarioExecutivoCtrl', function($scope, SumarioExecutivo, Socio, $ionicListDelegate,
   $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, SumarioExecutivoID, Modal,
-  $rootScope){
+  $rootScope, $q){
 
   $scope.sumarioExecutivo = SumarioExecutivo.getSumarioExecutivo();
   $scope.cnpjOuCpf = SumarioExecutivo.getCnpjOuCpf();
@@ -11,7 +11,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
 
   $scope.init = function(){
     console.log($rootScope.planoDeNegocioMontado.sumarioExecutivo);
-    if($rootScope.planoDeNegocioMontado.suamarioExecutivo._id != undefined){
+    if($rootScope.planoDeNegocioMontado.sumarioExecutivo._id != undefined){
       $scope.sumarioExecutivo._id = $rootScope.planoDeNegocioMontado.sumarioExecutivo._id;
       $scope.sumarioExecutivoID._id = $rootScope.planoDeNegocioMontado.sumarioExecutivo._id;
 
@@ -123,7 +123,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
     $scope.sumarioExecutivoID.principaisPontos = $scope.sumarioExecutivo.principaisPontos;
     $scope.sumarioExecutivoID.dadosDoemprendimento = $scope.sumarioExecutivo.dadosDoemprendimento;
     $scope.sumarioExecutivoID.missaoDaEmpresa = $scope.sumarioExecutivo.missaoDaEmpresa;
-    $scope.sumarioExecutivoID.fomaJuridica = $scope.sumarioExecutivo.fomaJuridica;
+    $scope.sumarioExecutivoID.fomaJuridica = $scope.sumarioExecutivo.formaJuridica;
     $scope.sumarioExecutivoID.optantePeloSimples = $scope.sumarioExecutivo.optantePeloSimples;
     $scope.sumarioExecutivoID.fontesDeRecursos = $scope.sumarioExecutivo.fontesDeRecursos;
     $ionicLoading.show({
@@ -137,10 +137,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
         localStorage.setItem("suamarioExecutivo", json);
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/sumarioExecutivo?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = $scope.sumarioExecutivoID;
-        $scope.bancoDeDados.salvar(caminho, objeto).then(function(dados){
-          console.log(dados.data);
-          $rootScope.planoDeNegocio.sumarioExecutivoID._id = dados.data._id;
-        });
+        $scope.bancoDeDados.atualizar(caminho, objeto);
       }, 1000);
     });
 
@@ -229,10 +226,10 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
   recuperarSubitens = function(){
 
       $ionicLoading.show({
-        template: 'Recuperando Dados... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+        template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
         duration: 1000
       }).then(function(){
-        recuperarDadosSocios();
+        recuperarSocios();
       });
 
   };
