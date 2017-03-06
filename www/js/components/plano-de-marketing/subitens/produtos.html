@@ -9,11 +9,14 @@
     <div class="list">
       <label class="item item-input item-floating-label">
         <span class="input-label">Nome do Produto</span>
-        <input type="text" placeholder="Nome do Produto" ng-model="produto.nome" autofocus="true">
+        <input list="sugestao" type="text" placeholder="Nome do Produto" ng-model="produto.nome" autofocus="true" ng-change="carregarInformacoesPredefinidasSobreProdutos()">
+        <datalist id="sugestao">
+          <option ng-repeat="item in sugestaoDeProdutos" value="{{ item }}" ></option>
+        </datalist>
       </label>
       <label class="item item-input item-floating-label">
         <span class="input-label">Ciclo de Produção</span>
-        <input type="text" placeholder="Ciclo" ng-model="porduto.cicloDeProducao">
+        <input type="text" placeholder="Ciclo" ng-model="produto.cicloDeProducao">
       </label>
       <label class="item item-input item-floating-label">
         <span class="input-label">Preço</span>

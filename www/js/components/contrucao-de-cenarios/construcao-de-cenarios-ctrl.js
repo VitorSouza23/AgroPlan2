@@ -7,7 +7,7 @@ angular.module('starter.controllers.construcaoDeCenario', [
 
       $scope.init = function(){
         console.log($rootScope.planoDeNegocioMontado.construcaoDeCenarios);
-        if($rootScope.planoDeNegocioMontado.construcaoDeCenarios._id != undefined){
+        if($scope.construcaoDeCenarios._id == undefined){
         $scope.construcaoDeCenario._id = $rootScope.planoDeNegocioMontado.construcaoDeCenarios._id;
         $scope.construcaoDeCenario.provavel = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.provavel;
         $scope.construcaoDeCenario.pessimsita = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.pessimsita;

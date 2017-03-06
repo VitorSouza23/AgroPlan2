@@ -7,8 +7,9 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
     $scope.planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
 
     $scope.init = function(){
+      //$rootScope.verificarSeUsuarioEstaLogado();
       console.log($rootScope.planoDeNegocioMontado.planoDeMarketing);
-      if($rootScope.planoDeNegocioMontado.planoDeMarketing._id != undefined){
+      if($scope.planoDeMarketing._id == undefined){
         $scope.planoDeMarketing._id = $rootScope.planoDeNegocioMontado.planoDeMarketing._id;
         $scope.planoDeMarketing.estrategiasPromocionais = $rootScope.planoDeNegocioMontado.planoDeMarketing.estrategiasPromocionais;
         $scope.planoDeMarketing.estruturaDeComercializacao =  $rootScope.planoDeNegocioMontado.planoDeMarketing.estruturaDeComercializacao;
@@ -116,7 +117,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
 
             caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoMarketing?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
             objeto = $scope.planoDeMarketingID;
-              $scope.bancoDeDados.atualizar(caminho, objeto);
+            $scope.bancoDeDados.atualizar(caminho, objeto);
           }, 1000);
         });
 
@@ -241,6 +242,84 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
         });
 
       };
+
+      //Custumizador de Produtos
+
+      $scope.sugestaoDeProdutos = [
+        'Milho',
+        'Café',
+        'Soja',
+        'Fumo',
+        'Açucar',
+        'Trigo',
+        'Araucária',
+        'Tomate',
+        'Ervilha',
+        'Maçã',
+        'Pinhão',
+        'Pinheiro Americano',
+        'Celulose'
+      ];
+
+      $scope.carregarInformacoesPredefinidasSobreProdutos = function(){
+        console.log($scope.produto.nome);
+        switch ($scope.produto.nome) {
+          case 'Milho':
+          $scope.produto.cicloDeProducao = '3 a 10 Meses';
+          $scope.produto.preco = '24,00 R$/saca 60kg';
+          break;
+          case 'Café':
+          $scope.produto.cicloDeProducao = '3 a 6 Meses';
+          $scope.produto.preco = '500,00 R$/saca 60kg';
+          break;
+          case 'Soja':
+          $scope.produto.cicloDeProducao = '3 Meses';
+          $scope.produto.preco = '70,00 R$/saca 60kg';
+          break;
+          case 'Fumo':
+          $scope.produto.cicloDeProducao = '2 Anos';
+          $scope.produto.preco = '10,00 R$/kg';
+          break;
+          case 'Açucar':
+          $scope.produto.cicloDeProducao = '18 Meses';
+          $scope.produto.preco = '80,00 R$/Saca 50Kg';
+          break;
+          case 'Trigo':
+          $scope.produto.cicloDeProducao = '2 Meses';
+          $scope.produto.preco = '30,00 R$/saca 60kg';
+          break;
+          case 'Araucária':
+          $scope.produto.cicloDeProducao = '12 a 15 Anos';
+          $scope.produto.preco = '40,00 R$/Muda';
+          break;
+          case 'Tomate':
+          $scope.produto.cicloDeProducao = '120 Dias';
+          $scope.produto.preco = '1,75 R$/Kg';
+          break;
+          case 'Ervilha':
+          $scope.produto.cicloDeProducao = '3 Meses';
+          $scope.produto.preco = '2.00 R$/500g';
+          break;
+          case 'Maçã':
+          $scope.produto.cicloDeProducao = '3 Meses';
+          $scope.produto.preco = '4.88 R$/Kg';
+          break;
+          case 'Pinhão':
+          $scope.produto.cicloDeProducao = '1 Ano';
+          $scope.produto.preco = '8,00 R$/Kg';
+          break;
+          case 'Pinheiro Americano':
+          $scope.produto.cicloDeProducao = '20 Anos';
+          $scope.produto.preco = '35,00 R$/Muda';
+          break;
+          case 'Celulose':
+          $scope.produto.cicloDeProducao = '5 Anos';
+          $scope.produto.preco = '730,00 US$/t';
+          break;
+          //default:
+
+        }
+      }
 
 
     });

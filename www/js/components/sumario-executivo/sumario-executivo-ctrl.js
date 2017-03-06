@@ -10,8 +10,9 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
   $scope.escolherCnpjOuCpf = SumarioExecutivo.escolherCnpjOuCpf();
 
   $scope.init = function(){
+    //$rootScope.verificarSeUsuarioEstaLogado();
     console.log($rootScope.planoDeNegocioMontado.sumarioExecutivo);
-    if($rootScope.planoDeNegocioMontado.sumarioExecutivo._id != undefined){
+    if($scope.sumarioExecutivo._id == undefined){
       $scope.sumarioExecutivo._id = $rootScope.planoDeNegocioMontado.sumarioExecutivo._id;
       $scope.sumarioExecutivoID._id = $rootScope.planoDeNegocioMontado.sumarioExecutivo._id;
 

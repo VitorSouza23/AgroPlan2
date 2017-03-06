@@ -5,8 +5,9 @@ angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avalia
   $scope.avaliacaoDoPlano = AvaliacaoDoPlano.getAvaliacaoDoPlano();
 
   $scope.init = function(){
+    //$rootScope.verificarSeUsuarioEstaLogado();
     console.log($rootScope.planoDeNegocioMontado.avaliacaoDoPlano);
-    if($rootScope.planoDeNegocioMontado.avaliacaoDoPlano._id != undefined){
+    if($scope.avaliacaoDoPlano._id == undefined){
       $scope.avaliacaoDoPlano._id = $rootScope.planoDeNegocioMontado.avaliacaoDoPlano._id;
       $scope.avaliacaoDoPlano.avaliacao = $rootScope.planoDeNegocioMontado.avaliacaoDoPlano.avaliacao;
     }

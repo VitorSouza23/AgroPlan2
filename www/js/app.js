@@ -5,7 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ion-floating-menu', 'ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
+'ion-floating-menu', 'ngCordova', 'ngRoute'])
 
 .config(function($ionicConfigProvider) {
   $ionicConfigProvider.tabs.position('bottom'); //posição das abas
@@ -27,7 +28,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       StatusBar.styleDefault();
     }
   });
+
 })
+
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -39,38 +42,38 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   // setup an abstract state for the tabs directive
   .state('login', {
-      url: '/login',
-      templateUrl: 'js/components/tela-de-login/tela-de-login.html',
-      controller: 'LoginCtrl'
+    url: '/login',
+    templateUrl: 'js/components/tela-de-login/tela-de-login.html',
+    controller: 'LoginCtrl'
   })
 
   .state('sobreProjeto', {
-      url: '/sobreProjeto',
-      templateUrl: 'js/components/projeto-sobre/projeto-sobre.html',
-      controller: 'SobreProjetoCtrl'
+    url: '/sobreProjeto',
+    templateUrl: 'js/components/projeto-sobre/projeto-sobre.html',
+    controller: 'SobreProjetoCtrl'
   })
 
   .state('login.cadastro', {
-      url: '/login/cadastro',
-      templateUrl: 'js/components/tela-de-login/subitens/cadastro.html',
-      controller: 'CadastroCtrl'
+    url: '/login/cadastro',
+    templateUrl: 'js/components/tela-de-login/subitens/cadastro.html',
+    controller: 'CadastroCtrl'
   })
 
   .state('planoDeNegocio', {
-      url: '/planoDeNegocio',
-      templateUrl: 'js/components/plano-de-negocio/plano-de-negocio.html',
-      controller: 'PlanoDeNegocioCtrl'
+    url: '/planoDeNegocio',
+    templateUrl: 'js/components/plano-de-negocio/plano-de-negocio.html',
+    controller: 'PlanoDeNegocioCtrl'
   })
 
   .state('planoDeNegocio.novoPlano', {
-      url: '/planoDeNegocio/novoPlanoDeNegocio',
-      templateUrl: 'js/components/plano-de-negocio/subitens/criar-novo-plano.html',
-      controller: 'PlanoDeNegocioCtrl'
+    url: '/planoDeNegocio/novoPlanoDeNegocio',
+    templateUrl: 'js/components/plano-de-negocio/subitens/criar-novo-plano.html',
+    controller: 'PlanoDeNegocioCtrl'
   })
   .state('planoDeNegocio.menuPlano', {
-      url: '/planoDeNegocio/menuPlanoDeNegocio',
-      templateUrl: 'js/components/plano-de-negocio/subitens/menu-de-opcoes.html',
-      controller: 'PlanoDeNegocioCtrl'
+    url: '/planoDeNegocio/menuPlanoDeNegocio',
+    templateUrl: 'js/components/plano-de-negocio/subitens/menu-de-opcoes.html',
+    controller: 'PlanoDeNegocioCtrl'
   })
 
   .state('tab', {
@@ -312,7 +315,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
 
-// if none of the above states are matched, use this as the fallback
-$urlRouterProvider.otherwise('/login');
 
-});
+
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/login');
+
+})
+
+.run(function($rootScope, $state){
+  $rootScope.$on('$locationChangeStart',function(evt){
+    if($rootScope.usuario == undefined || $rootScope.isLogin == false){
+      $rootScope.usuario = undefined;
+      $rootScope.isLogin = false;
+      $state.go('login', {}, { reload: true,
+        inherit: false,
+        notify: true });
+      }
+    });
+
+    $rootScope.$on('$locationChangeSuccess',function(evt){  
+      if($rootScope.usuario == undefined || $rootScope.isLogin == false){
+        $rootScope.usuario = undefined;
+        $rootScope.isLogin = false;
+        $state.go('login', {}, { reload: true,
+          inherit: false,
+          notify: true });
+        }
+      });
+  })
+  ;

@@ -8,8 +8,9 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     $scope.planoFinanceiro = PlanoFinanceiro.getPlanoFinanceiro();
 
     $scope.init = function(){
+      //$rootScope.verificarSeUsuarioEstaLogado();
       console.log($rootScope.planoDeNegocioMontado.planoFinanceiro);
-      if($rootScope.planoDeNegocioMontado.planoFinanceiro != undefined){
+      if($scope.planoFinanceiro == undefined){
         $scope.planoFinanceiro._id = $rootScope.planoDeNegocioMontado.planoFinanceiro._id;
         recuperarSubitens();
       }
@@ -831,7 +832,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       }
 
       qAllEquipamento = function(){
-        $q.all(arrayPromessasFronecedores).then(function(dados){
+        $q.all(arrayPromessasEquipamentos).then(function(dados){
           console.log(dados);
           dados.forEach(function (dado){
             console.log(dado.data[0]);

@@ -5,8 +5,9 @@ angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.av
   $ionicPopup, $timeout, BancoDeDados, $ionicLoading, $rootScope){
     $scope.avaliacaoEstrategica = AvaliacaoEstrategica.getAvaliacaoEstrategica();
     $scope.init = function(){
+      //$rootScope.verificarSeUsuarioEstaLogado();
       console.log($rootScope.planoDeNegocioMontado.avaliacaoEstrategica);
-      if($rootScope.planoDeNegocioMontado.avaliacaoEstrategica._id != undefined){
+      if($scope.avaliacaoEstrategica._id == undefined){
       $scope.avaliacaoEstrategica._id = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica._id;
       $scope.avaliacaoEstrategica.froca = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.forca;
       $scope.avaliacaoEstrategica.fraquesa = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.fraquesa;

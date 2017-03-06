@@ -7,8 +7,9 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
   $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
 
   $scope.init = function(){
+    $rootScope.verificarSeUsuarioEstaLogado();
     console.log($rootScope.planoDeNegocioMontado.planoOperacional);
-    if($rootScope.planoDeNegocioMontado.planoOperacional._id != undefined){
+    if($scope.planoOperacional._id == undefined){
       $scope.planoOperacional._id = $rootScope.planoDeNegocioMontado.planoOperacional._id;
       $scope.planoOperacionalID._id = $rootScope.planoDeNegocioMontado.planoOperacional._id;
 

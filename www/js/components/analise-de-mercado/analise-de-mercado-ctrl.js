@@ -12,8 +12,9 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
     $scope.analiseDeMercadoID = AnaliseDeMercadoID;
 
     $scope.init = function(){
+      //$rootScope.verificarSeUsuarioEstaLogado();
       console.log($rootScope.planoDeNegocioMontado.analiseDeMercado);
-      if($rootScope.planoDeNegocioMontado.analiseDeMercado._id != undefined){
+      if($scope.analiseDeMercado._id == undefined){
         $scope.analiseDeMercado._id = $rootScope.planoDeNegocioMontado.analiseDeMercado._id;
         $scope.analiseDeMercadoID._id = $rootScope.planoDeNegocioMontado.analiseDeMercado._id;
         recuperarSubitens();

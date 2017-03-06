@@ -7,6 +7,11 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
   $scope.planoDeNegocio;
   $scope.planosDeNegocio = [];
   $scope.editar = false;
+
+  $scope.init = function(){
+    //$rootScope.verificarSeUsuarioEstaLogado();
+    $scope.recuperTodosOsPlanosPorIdUsuario()
+  }
   Modal.init('js/components/plano-de-negocio/subitens/criar-novo-plano.html', $scope).then(function(modal){
     $scope.modalNovoPlanoDeNegocio = modal;
   });
