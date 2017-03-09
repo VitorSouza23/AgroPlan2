@@ -261,6 +261,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
         'Celulose'
       ];
 
+
       $scope.carregarInformacoesPredefinidasSobreProdutos = function(){
         console.log($scope.produto.nome);
         switch ($scope.produto.nome) {

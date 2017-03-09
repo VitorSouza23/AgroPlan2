@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
-'ion-floating-menu', 'ngCordova', 'ngRoute'])
+'ion-floating-menu', 'ngCordova'])
 
 .config(function($ionicConfigProvider) {
   $ionicConfigProvider.tabs.position('bottom'); //posição das abas
@@ -333,7 +333,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
       }
     });
 
-    $rootScope.$on('$locationChangeSuccess',function(evt){  
+    $rootScope.$on('$locationChangeSuccess',function(evt){
       if($rootScope.usuario == undefined || $rootScope.isLogin == false){
         $rootScope.usuario = undefined;
         $rootScope.isLogin = false;
