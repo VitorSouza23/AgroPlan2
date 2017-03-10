@@ -3,7 +3,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
 
 .controller('PlanoDeMarketingCtrl', function($scope, PlanoDeMarketing, Produto, $ionicListDelegate,
   $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoDeMarketingID, Modal,
-  $rootScope, $q){
+  $rootScope, $q, $ionicPopover){
     $scope.planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
 
     $scope.init = function(){
@@ -261,6 +261,37 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
         'Celulose'
       ];
 
+      var templatePopover = '<ion-popover-view><ion-content><ion-list><ion-item ng-repeat="item in sugestaoDeProdutos" ng-click="selecionarSugestao(item)">{{item}}</ion-item></ion-list> </ion-content></ion-popover-view>';
+
+      $scope.popover = $ionicPopover.fromTemplate(templatePopover, {
+        scope: $scope
+      });
+
+      $scope.openPopover = function(e) {
+        console.log("abrindo popover");
+        $scope.popover.show(e);
+      };
+      $scope.closePopover = function() {
+        $scope.popover.hide();
+      };
+      //Cleanup the popover when we're done with it!
+      $scope.$on('$destroy', function() {
+        $scope.popover.remove();
+      });
+      // Execute action on hidden popover
+      $scope.$on('popover.hidden', function() {
+        // Execute action
+      });
+      // Execute action on remove popover
+      $scope.$on('popover.removed', function() {
+        // Execute action
+      });
+
+      $scope.selecionarSugestao = function(item){
+        $scope.produto.nome = item;
+        $scope.closePopover();
+        $scope.carregarInformacoesPredefinidasSobreProdutos();
+      }
 
       $scope.carregarInformacoesPredefinidasSobreProdutos = function(){
         console.log($scope.produto.nome);

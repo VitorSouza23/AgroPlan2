@@ -7,14 +7,13 @@
   </ion-header-bar>
   <ion-content>
     <div class="list">
-      <label class="item item-input item-floating-label">
+      <button class="button button-block icon-rigth ion-cube button-energized" ng-click="openPopover($event)">Produtos Sugeridos</button>
+      <label class="item item-input item-floating-label" >
         <span class="input-label">Nome do Produto</span>
-        <input list="sugestao" type="text" placeholder="Nome do Produto" ng-model="produto.nome" autofocus="true" ng-change="carregarInformacoesPredefinidasSobreProdutos()">
-        <datalist id="sugestao">
-          <option ng-repeat="item in sugestaoDeProdutos" value="{{ item }}" ></option>
-        </datalist>
+        <input  type="text" placeholder="Nome do Produto" ng-model="produto.nome" autofocus="true">
       </label>
-      <label class="item item-input item-floating-label">
+
+      <label class="item item-input item-floating-label ">
         <span class="input-label">Ciclo de Produção</span>
         <input type="text" placeholder="Ciclo" ng-model="produto.cicloDeProducao">
       </label>
