@@ -133,6 +133,6 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
 
 
     $scope.gerarPDF = function(){
-      GeradorPDF.criarPDF();
+      GeradorPDF.criarPDF($scope.planoDeNegocio.nome);
     }
   });
