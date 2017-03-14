@@ -12,10 +12,13 @@
           <button class="button button-block button-outline icon-left ion-camera button-calm" ng-click = "tirarFoto()">Tirar Foto</button>
           <button class="button button-block button-outline icon-left ion-images button-energized" ng-click = "pegarFoto()">Abrir Galeria</button>
         </div>
-        <div class="item item-image">
-          <ion-scroll direction="x">
-            <img ng-src="{{planoOperacional.layout}}">
-          </ion-scroll>
+        <div class="list card">
+          <div class="item item-divider">
+            Layout Físico
+          </div>
+          <div class="item item-image">
+            <img src="{{planoOperacional.layout}}">
+          </div>
         </div>
 
         <div class="item item-divider">
