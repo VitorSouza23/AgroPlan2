@@ -60,7 +60,7 @@ angular.module('starter.services.sumarioExecutivo', [])
   var principaisPontos;
   var dadosDoemprendimento;
   var missaoDaEmpresa;
-  var fomaJuridica;
+  var formaJuridica;
   var optantePeloSimples;
   var fontesDeRecursos;
   var idsSocios = [];
@@ -68,7 +68,7 @@ angular.module('starter.services.sumarioExecutivo', [])
     principaisPontos:principaisPontos,
     dadosDoemprendimento:dadosDoemprendimento,
     missaoDaEmpresa:missaoDaEmpresa,
-    fomaJuridica:fomaJuridica,
+    formaJuridica:formaJuridica,
     optantePeloSimples:optantePeloSimples,
     fontesDeRecursos:fontesDeRecursos,
     idsSocios:idsSocios

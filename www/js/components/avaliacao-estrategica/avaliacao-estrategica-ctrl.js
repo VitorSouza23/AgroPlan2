@@ -9,7 +9,7 @@ angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.av
       console.log($rootScope.planoDeNegocioMontado.avaliacaoEstrategica);
       if($scope.avaliacaoEstrategica._id == undefined){
       $scope.avaliacaoEstrategica._id = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica._id;
-      $scope.avaliacaoEstrategica.froca = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.forca;
+      $scope.avaliacaoEstrategica.forca = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.forca;
       $scope.avaliacaoEstrategica.fraquesa = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.fraquesa;
       $scope.avaliacaoEstrategica.oportunidade = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.oportunidade;
       $scope.avaliacaoEstrategica.ameaca = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.ameaca;

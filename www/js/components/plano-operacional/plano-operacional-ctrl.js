@@ -3,7 +3,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
 .controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicListDelegate,
   $ionicHistory, $ionicPopup, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoOperacionalID,
-  Modal, $rootScope, $cordovaCamera){
+  Modal, $rootScope, $cordovaCamera, $q){
     $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
 
     $scope.init = function(){
@@ -282,7 +282,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
         $scope.planoOperacional.cargos = [];
         $scope.planoOperacionalID.idsCargos = [];
         var objeto = {};
-        $rootScope.planoDeNegocioMontado.analiseDeMercado.idsFornecedores.forEach(function(dadoId){
+        $rootScope.planoDeNegocioMontado.planoOperacional.idsCargos.forEach(function(dadoId){
           caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cargos?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
           objeto._id = dadoId;
           arrayPromessasCargos.push(BancoDeDados.recuperarComId(caminho, objeto));

@@ -124,7 +124,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
     $scope.sumarioExecutivoID.principaisPontos = $scope.sumarioExecutivo.principaisPontos;
     $scope.sumarioExecutivoID.dadosDoemprendimento = $scope.sumarioExecutivo.dadosDoemprendimento;
     $scope.sumarioExecutivoID.missaoDaEmpresa = $scope.sumarioExecutivo.missaoDaEmpresa;
-    $scope.sumarioExecutivoID.fomaJuridica = $scope.sumarioExecutivo.formaJuridica;
+    $scope.sumarioExecutivoID.formaJuridica = $scope.sumarioExecutivo.formaJuridica;
     $scope.sumarioExecutivoID.optantePeloSimples = $scope.sumarioExecutivo.optantePeloSimples;
     $scope.sumarioExecutivoID.fontesDeRecursos = $scope.sumarioExecutivo.fontesDeRecursos;
     $ionicLoading.show({

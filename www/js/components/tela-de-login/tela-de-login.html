@@ -13,7 +13,13 @@
         <input type="password" placeholder="Senha" ng-model="usuario.senha" ng-keypress="enter($event)">
       </label>
     </div>
-    <button class="button button-block button-outline button-positive" ng-click="login()">Login</button>
-    <button class="button button-block button-outline button-positive" ng-controller="CadastroCtrl" ng-click="abrirTela()">Cadastrar</button>
+    <button class="button button-block button-positive" ng-click="login()">Login</button>
+    <!--<button class="button button-block button-outline button-positive" ng-controller="CadastroCtrl" ng-click="abrirTela()">Cadastrar</button>-->
+    <ion-item>
+      <p>
+        Não possui cadastro?
+        <a ng-controller="CadastroCtrl" ng-click="abrirTela()">Cadastre-se aqui!</a>
+      </p>
+    </ion-item>
   </ion-content>
 </ion-view>

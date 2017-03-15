@@ -10,7 +10,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     $scope.init = function(){
       //$rootScope.verificarSeUsuarioEstaLogado();
       console.log($rootScope.planoDeNegocioMontado.planoFinanceiro);
-      if($scope.planoFinanceiro == undefined){
+      if($scope.planoFinanceiro._id == undefined){
         $scope.planoFinanceiro._id = $rootScope.planoDeNegocioMontado.planoFinanceiro._id;
         recuperarSubitens();
       }
@@ -836,7 +836,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           console.log(dados);
           dados.forEach(function (dado){
             console.log(dado.data[0]);
-            $scope.planoFinanceiro.equipamentos.push(dado.data[0]);
+            $scope.planoFinanceiro.estoqueInicial.equipamentos.push(dado.data[0]);
             $scope.planoFinanceiroID.idsEquipamentos.push(dado.data[0]._id);
           });
         });
@@ -860,7 +860,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           console.log(dados);
           dados.forEach(function (dado){
             console.log(dado.data[0]);
-            $scope.planoFinanceiro.maquinas.push(dado.data[0]);
+            $scope.planoFinanceiro.estoqueInicial.maquinas.push(dado.data[0]);
             $scope.planoFinanceiroID.idsMaquinas.push(dado.data[0]._id);
           });
         });
@@ -884,7 +884,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           console.log(dados);
           dados.forEach(function (dado){
             console.log(dado.data[0]);
-            $scope.planoFinanceiro.moveis.push(dado.data[0]);
+            $scope.planoFinanceiro.estoqueInicial.moveis.push(dado.data[0]);
             $scope.planoFinanceiroID.idsMoveis.push(dado.data[0]._id);
           });
         });
@@ -908,7 +908,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           console.log(dados);
           dados.forEach(function (dado){
             console.log(dado.data[0]);
-            $scope.planoFinanceiro.utensilios.push(dado.data[0]);
+            $scope.planoFinanceiro.estoqueInicial.utensilios.push(dado.data[0]);
             $scope.planoFinanceiroID.idsUtensilios.push(dado.data[0]._id);
           });
         });
@@ -932,7 +932,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
           console.log(dados);
           dados.forEach(function (dado){
             console.log(dado.data[0]);
-            $scope.planoFinanceiro.veiculos.push(dado.data[0]);
+            $scope.planoFinanceiro.estoqueInicial.veiculos.push(dado.data[0]);
             $scope.planoFinanceiroID.idsVeiculos.push(dado.data[0]._id);
           });
         });

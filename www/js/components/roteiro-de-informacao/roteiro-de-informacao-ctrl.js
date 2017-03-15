@@ -7,7 +7,7 @@ angular.module('starter.controllers.roteiroParaColeta', ['starter.services.rotei
     $scope.init = function(){
       //$rootScope.verificarSeUsuarioEstaLogado();
       console.log($rootScope.planoDeNegocioMontado.roteiroDeInformacao);
-      if($scope.roteiroDeInformacao._id == undefined){
+      if($scope.roteiroParaColeta._id == undefined){
         $scope.roteiroParaColeta._id = $rootScope.planoDeNegocioMontado.roteiroDeInformacao._id;
         $scope.roteiroParaColeta.sumarioExecutivo = $rootScope.planoDeNegocioMontado.roteiroDeInformacao.sumarioExecutivo;
         $scope.roteiroParaColeta.analiseDeMercado = $rootScope.planoDeNegocioMontado.roteiroDeInformacao.analiseDeMercado;

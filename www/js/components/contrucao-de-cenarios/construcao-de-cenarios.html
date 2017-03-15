@@ -5,7 +5,7 @@
           <button class="button button-block button-outline button-positive" ng-click="showConfirm()">
           O que é?
     </div>
-      <div class="item item-divider item-positive">
+      <div class="item item-divider item-balanced">
         Cenário Provável
       </div>
         <label class="item item-input item-floating-label" href="#">
@@ -28,7 +28,7 @@
           <span class="input-label">Gastos com Vendas:</span>
           <input type="text" placeholder="Gastos com Venda" ng-model="construcaoDeCenario.provavel.gastoComVenda">
         </label>
-        <div class="item item-divider item-dark">
+        <div class="item item-divider item-balanced">
           Sub-Total
         </div>
         <label class="item item-input item-floating-label" href="#">
@@ -67,7 +67,7 @@
           <span class="input-label">Gastos com Vendas:</span>
           <input type="text" placeholder="Gastos com Vendas" ng-model="construcaoDeCenario.pessimsita.gastoComVenda">
         </label>
-        <div class="item item-divider item-dark">
+        <div class="item item-divider item-assertive">
           Sub-Total
         </div>
         <label class="item item-input item-floating-label" href="#">
@@ -106,7 +106,7 @@
           <span class="input-label">Gastos com Vendas:</span>
           <input type="text" placeholder="Gastos com Vendas" ng-model="construcaoDeCenario.otimista.gastoComVenda">
         </label>
-        <div class="item item-divider item-dark">
+        <div class="item item-divider item-energized">
           Sub-Total
         </div>
         <label class="item item-input item-floating-label" href="#">
@@ -125,7 +125,7 @@
         <!--Botões Confirmar e Cancelar-->
       <div class="row">
         <div class="col col-100">
-          <button class="button button-block button-outline button-positive" ng-click="salvar()">
+          <button class="button button-block button-positive" ng-click="salvar()">
             Confirmar
           </button>
         </div>

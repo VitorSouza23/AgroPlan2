@@ -186,13 +186,12 @@ angular.module('starter.services.utilitarios', [])
               if(  $rootScope.usuario != undefined){
                 ServicoPlanoDeNegocio.atualizarPlanoDeNegocio($rootScope.planoDeNegocio);
                 $ionicLoading.show({
-                  template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+                  template: 'Saindo... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
                   duration: 1000
                 });
               }
               $rootScope.usuario = undefined;
               $rootScope.isLogin = false;
-              $window.location.reload(true);
               $state.go('login', {}, { reload: true,
                 inherit: false,
                 notify: true });
