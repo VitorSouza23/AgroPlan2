@@ -16,6 +16,12 @@ angular.module('starter.controllers.construcaoDeCenario', [
     }
 
     $scope.bancoDeDados = BancoDeDados;
+
+    $scope.atualizarPagina = function(){
+      $scope.construcaoDeCenario._id = undefined;
+      $scope.init();
+    }
+
     $scope.showConfirm = function() {
       var confirmPopup = $ionicPopup.confirm({
         title: 'Construção de Cenários',

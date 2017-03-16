@@ -20,6 +20,11 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     $scope.bancoDeDados = BancoDeDados;
     $scope.planoFinanceiroID = PlanoFinanceiroID;
 
+    $scope.atualizarPagina = function(){
+      $scope.planoFinanceiro._id = undefined;
+      $scope.init();
+    }
+
     Modal.init('js/components/plano-financeiro/subitens/equipamentos.html', $scope).then(function(modal){
       $scope.modalEquipamento = modal;
     });

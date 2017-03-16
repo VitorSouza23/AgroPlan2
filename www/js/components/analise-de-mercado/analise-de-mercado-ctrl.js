@@ -20,6 +20,10 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
         recuperarSubitens();
       }
     }
+    $scope.atualizarPagina = function(){
+      $scope.analiseDeMercado._id = undefined;
+      $scope.init();
+    }
 
 
     Modal.init('js/components/analise-de-mercado/subitens/concorrentes.html', $scope).then(function(modal){

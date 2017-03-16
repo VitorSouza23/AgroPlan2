@@ -33,6 +33,10 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
     }
   }
 
+  $scope.atualizarPagina = function(){
+    $scope.sumarioExecutivo._id = undefined;
+    $scope.init();
+  }
 
 
   $scope.editar = SumarioExecutivo.editar;

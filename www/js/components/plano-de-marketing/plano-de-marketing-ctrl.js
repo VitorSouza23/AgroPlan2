@@ -21,6 +21,12 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
     $scope.editar = PlanoDeMarketing.editar;
     $scope.bancoDeDados = BancoDeDados;
     $scope.planoDeMarketingID = PlanoDeMarketingID;
+
+    $scope.atualizarPagina = function(){
+      $scope.planoDeMarketing._id = undefined;
+      $scope.init();
+    }
+
     Modal.init('js/components/plano-de-marketing/subitens/produtos.html', $scope).then(function(modal){
       $scope.modalProduto = modal;
     });

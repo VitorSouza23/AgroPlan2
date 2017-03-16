@@ -19,6 +19,11 @@ angular.module('starter.controllers.roteiroParaColeta', ['starter.services.rotei
 
     $scope.bancoDeDados = BancoDeDados;
 
+    $scope.atualizarPagina = function(){
+      $scope.roteiroParaColeta._id = undefined;
+      $scope.init();
+    }
+
     $scope.showConfirm = function() {
       var confirmPopup = $ionicPopup.confirm({
         title: 'Roteiro para Coleta de Informação',

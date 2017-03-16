@@ -1,10 +1,11 @@
 <ion-view view-title="Construção de Cenários">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon ion-help" ng-click="showConfirm()"></button>
+    <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
+  </ion-nav-buttons>
   <ion-content ng-init="init()">
     <div class="list">
-      <div class="col col-100">
-          <button class="button button-block button-outline button-positive" ng-click="showConfirm()">
-          O que é?
-    </div>
+      
       <div class="item item-divider item-balanced">
         Cenário Provável
       </div>

@@ -14,6 +14,10 @@ angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avalia
   }
   $scope.bancoDeDados = BancoDeDados;
 
+  $scope.atualizarPagina = function(){
+    $scope.avaliacaoDoPlano._id = undefined;
+    $scope.init();
+  }
   $scope.showConfirm = function() {
     var confirmPopup = $ionicPopup.confirm({
       title: 'Avaliação do Plano',

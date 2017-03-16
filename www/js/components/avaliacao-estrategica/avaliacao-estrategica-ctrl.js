@@ -27,6 +27,11 @@ angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.av
       $ionicHistory.goBack();
     };
 
+    $scope.atualizarPagina = function(){
+      $scope.avaliacaoEstrategica._id = undefined;
+      $scope.init();
+    }
+
     $scope.salvar = function(){
       var caminho;
       var objeto;

@@ -1,12 +1,12 @@
 <ion-view view-title="Plano de Marketing">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon ion-help" ng-click="showConfirm()"></button>
+    <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
+  </ion-nav-buttons>
   <ion-content ng-init="init()">
     <!--Principais Produtos-->
     <div class="list">
       <div class="list">
-        <div class="col col-100">
-          <button class="button button-block button-outline button-positive" ng-click="showConfirm()">
-            O que é?
-          </div>
           <div class="item item-divider">
             Principais Produtos
           </div>
