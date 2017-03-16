@@ -10,7 +10,10 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
 
   $scope.init = function(){
     //$rootScope.verificarSeUsuarioEstaLogado();
-    $scope.recuperTodosOsPlanosPorIdUsuario()
+    $scope.recuperTodosOsPlanosPorIdUsuario();
+    setTimeout(function(){
+      $scope.$broadcast('scroll.refreshComplete');
+    }, 1000);
   }
   Modal.init('js/components/plano-de-negocio/subitens/criar-novo-plano.html', $scope).then(function(modal){
     $scope.modalNovoPlanoDeNegocio = modal;

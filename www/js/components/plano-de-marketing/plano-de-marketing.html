@@ -4,6 +4,10 @@
     <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
   </ion-nav-buttons>
   <ion-content ng-init="init()">
+    <ion-refresher
+    pulling-text="Puxe para atualizar..."
+    on-refresh="atualizarPagina()">
+  </ion-refresher>
     <!--Principais Produtos-->
     <div class="list">
       <div class="list">

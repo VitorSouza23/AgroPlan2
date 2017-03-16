@@ -20,6 +20,7 @@ angular.module('starter.controllers.construcaoDeCenario', [
     $scope.atualizarPagina = function(){
       $scope.construcaoDeCenario._id = undefined;
       $scope.init();
+      $scope.$broadcast('scroll.refreshComplete');
     }
 
     $scope.showConfirm = function() {

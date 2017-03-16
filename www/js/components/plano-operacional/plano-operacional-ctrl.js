@@ -26,6 +26,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     $scope.atualizarPagina = function(){
       $scope.planoOperacional._id = undefined;
       $scope.init();
+      $scope.$broadcast('scroll.refreshComplete');
     }
 
 

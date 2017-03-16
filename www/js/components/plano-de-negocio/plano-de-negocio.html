@@ -1,15 +1,19 @@
 <ion-view view-title="AgroPlan" name="planoDeNegocio">
   <ion-content class="padding" ng-init="init()">
+    <ion-refresher
+    pulling-text="Puxe para atualizar..."
+    on-refresh="init()">
+  </ion-refresher>
     <div class="card">
       <div class="item item-divider">
         Seja Bem-Vindo!
       </div>
       <div class="item item-text-wrap">
         <p>
-          Usuário: {{usuario.nome}}
+          <h2>Usuário: {{usuario.nome}}</h2>
         </p>
         <p>
-          CPF: {{usuario.cpf}}
+          <h2>CPF: {{usuario.cpf}}</h2>
         </p>
       </div>
     </div>

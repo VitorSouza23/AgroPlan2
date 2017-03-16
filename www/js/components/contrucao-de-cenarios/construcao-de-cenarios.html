@@ -4,8 +4,12 @@
     <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
   </ion-nav-buttons>
   <ion-content ng-init="init()">
+    <ion-refresher
+    pulling-text="Puxe para atualizar..."
+    on-refresh="atualizarPagina()">
+  </ion-refresher>
     <div class="list">
-      
+
       <div class="item item-divider item-balanced">
         Cenário Provável
       </div>

@@ -30,6 +30,7 @@ angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.av
     $scope.atualizarPagina = function(){
       $scope.avaliacaoEstrategica._id = undefined;
       $scope.init();
+      $scope.$broadcast('scroll.refreshComplete');
     }
 
     $scope.salvar = function(){

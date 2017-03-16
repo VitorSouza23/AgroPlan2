@@ -25,6 +25,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
     $scope.atualizarPagina = function(){
       $scope.planoDeMarketing._id = undefined;
       $scope.init();
+      $scope.$broadcast('scroll.refreshComplete');
     }
 
     Modal.init('js/components/plano-de-marketing/subitens/produtos.html', $scope).then(function(modal){

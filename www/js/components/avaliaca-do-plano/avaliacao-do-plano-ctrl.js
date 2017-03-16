@@ -17,6 +17,7 @@ angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avalia
   $scope.atualizarPagina = function(){
     $scope.avaliacaoDoPlano._id = undefined;
     $scope.init();
+    $scope.$broadcast('scroll.refreshComplete');
   }
   $scope.showConfirm = function() {
     var confirmPopup = $ionicPopup.confirm({

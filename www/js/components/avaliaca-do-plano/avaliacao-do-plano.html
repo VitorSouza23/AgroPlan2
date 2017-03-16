@@ -4,22 +4,26 @@
     <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
   </ion-nav-buttons>
   <ion-content ng-init="init()">
-    <div class="list">
-      <div class="item item-divider">
-        Aavalição
+    <ion-refresher
+    pulling-text="Puxe para atualizar..."
+    on-refresh="atualizarPagina()">
+  </ion-refresher>
+  <div class="list">
+    <div class="item item-divider">
+      Aavalição
+    </div>
+    <label class="item item-input item-floating-label" href="#">
+      <span class="input-label">Avaliação do Plano</span>
+      <input type="text"  placeholder="Avaliação" ng-model="avaliacaoDoPlano.avaliacao">
+    </label>
+    <!--Botões Confirmar e Cancelar-->
+    <div class="row">
+      <div class="col col-100">
+        <button class="button button-block button-positive" ng-click="salvar()">
+          Confirmar
+        </button>
       </div>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Avaliação do Plano</span>
-          <input type="text"  placeholder="Avaliação" ng-model="avaliacaoDoPlano.avaliacao">
-        </label>
-        <!--Botões Confirmar e Cancelar-->
-      <div class="row">
-        <div class="col col-100">
-          <button class="button button-block button-positive" ng-click="salvar()">
-            Confirmar
-          </button>
-        </div>
-      </div>
+    </div>
 
   </ion-content>
 </ion-view>

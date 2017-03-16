@@ -1,8 +1,6 @@
 angular.module('starter.controllers.analiseDeMercado', ['starter.services.analiseDeMercado',
 'starter.services.utilitarios'])
 
-
-
 .controller('AnaliseDeMercadoCtrl', function($scope, AnaliseDeMercado, AnaliseDeMercadoID,
   Concorrente, Fornecedor, $ionicListDelegate, $ionicHistory,$ionicPopup, $timeout,
   BancoDeDados,$ionicLoading, Modal, $rootScope, $q){
@@ -23,6 +21,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
     $scope.atualizarPagina = function(){
       $scope.analiseDeMercado._id = undefined;
       $scope.init();
+      $scope.$broadcast('scroll.refreshComplete');
     }
 
 

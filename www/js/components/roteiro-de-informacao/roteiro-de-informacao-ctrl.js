@@ -22,6 +22,7 @@ angular.module('starter.controllers.roteiroParaColeta', ['starter.services.rotei
     $scope.atualizarPagina = function(){
       $scope.roteiroParaColeta._id = undefined;
       $scope.init();
+      $scope.$broadcast('scroll.refreshComplete');
     }
 
     $scope.showConfirm = function() {

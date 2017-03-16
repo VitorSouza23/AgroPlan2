@@ -23,6 +23,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
     $scope.atualizarPagina = function(){
       $scope.planoFinanceiro._id = undefined;
       $scope.init();
+      $scope.$broadcast('scroll.refreshComplete');
     }
 
     Modal.init('js/components/plano-financeiro/subitens/equipamentos.html', $scope).then(function(modal){
