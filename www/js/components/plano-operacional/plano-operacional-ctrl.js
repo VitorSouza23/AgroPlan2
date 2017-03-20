@@ -335,4 +335,14 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
       };
 
+      $scope.removerImagem = function(){
+        $scope.planoOperacionalID.idImagem = undefined;
+        $scope.planoOperacional.layout = null;
+      }
+
+      $scope.opcoesDeSlideBox = {
+        loop: false,
+        effect: 'fade',
+        speed: 500,
+      }
     })
