@@ -150,7 +150,7 @@ angular.module('starter.services.planoFinanceiro', [])
 
   var idsCompras = [];
   var idsVendas = [];
-
+  var _id;
   return{
     idsEquipamentos:idsEquipamentos,
     idsMaquinas:idsMaquinas,
@@ -158,7 +158,8 @@ angular.module('starter.services.planoFinanceiro', [])
     idsUtensilios:idsUtensilios,
     idsVeiculos:idsVeiculos,
     idsCompras:idsCompras,
-    idsVendas:idsVendas
+    idsVendas:idsVendas,
+    _id:_id
   }
 })
 ;

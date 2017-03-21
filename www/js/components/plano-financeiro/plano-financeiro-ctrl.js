@@ -12,6 +12,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
       console.log($rootScope.planoDeNegocioMontado.planoFinanceiro);
       if($scope.planoFinanceiro._id == undefined){
         $scope.planoFinanceiro._id = $rootScope.planoDeNegocioMontado.planoFinanceiro._id;
+        $scope.planoFinanceiroID._id = $rootScope.planoDeNegocioMontado.planoFinanceiro._id;
         recuperarSubitens();
       }
     }

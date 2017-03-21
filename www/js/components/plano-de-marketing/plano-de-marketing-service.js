@@ -45,6 +45,7 @@ angular.module('starter.services.planoDeMarketing', [])
 })
 
 .factory('PlanoDeMarketingID', function(){
+  var _id;
   var estrategiasPromocionais;
   var estruturaDeComercializacao;
   var idsProdutos = [];
@@ -56,6 +57,6 @@ angular.module('starter.services.planoDeMarketing', [])
     estruturaDeComercializacao:estruturaDeComercializacao,
     idsProdutos:idsProdutos,
     idLocalizacao:idLocalizacao,
-    
+    _id:_id
   }
 })

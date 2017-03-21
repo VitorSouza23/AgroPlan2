@@ -2,7 +2,7 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
 'starter.services.plano-de-negocios'])
 
 .controller('PlanoDeNegocioCtrl', function($scope, $state, $rootScope, ServicoPlanoDeNegocio, Modal,
-   BancoDeDados, $window, $ionicPopup, $ionicLoading, GeradorPDF) {
+   BancoDeDados, $window, $ionicPopup, $ionicLoading) {
   $scope.usuario = $rootScope.usuario;
   $scope.planoDeNegocio;
   $scope.planosDeNegocio = [];
@@ -134,8 +134,4 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
       notify: true });
     }
 
-
-    $scope.gerarPDF = function(){
-      GeradorPDF.criarPDF($scope.planoDeNegocio.nome);
-    }
   });

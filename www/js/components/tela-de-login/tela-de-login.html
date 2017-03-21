@@ -9,9 +9,13 @@
       <label class="item item-input">
         <input type="tel" placeholder="CPF (Somente números!)" ng-model="usuario.cpf" ng-keypress="enter($event)" maxlength="11">
       </label>
+      <div class="form-error" ng-if="mensagemDeErroLogin.camposIncorretos">*CPF incorreto ou não combina com a senha!</div>
+      <div class="form-error" ng-if="mensagemDeErroLogin.cpfVazio">*Campo do CPF vazio!</div>
       <label class="item item-input">
         <input type="password" placeholder="Senha" ng-model="usuario.senha" ng-keypress="enter($event)">
       </label>
+      <div class="form-error" ng-if="mensagemDeErroLogin.camposIncorretos">*Senha incorreta!</div>
+      <div class="form-error" ng-if="mensagemDeErroLogin.senhaVazia">*Campo da Senha vazio!</div>
     </div>
     <button class="button button-block button-positive" ng-click="login()">Login</button>
     <!--<button class="button button-block button-outline button-positive" ng-controller="CadastroCtrl" ng-click="abrirTela()">Cadastrar</button>-->

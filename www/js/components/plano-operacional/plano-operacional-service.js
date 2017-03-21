@@ -52,6 +52,7 @@ angular.module('starter.services.planoOperacional', [])
   var processosOperacionais;
   var idsCargos = [];
   var idImagem;
+  var _id;
   return{
     capacidadeProdutiva:capacidadeProdutiva,
     capacidadeComercial:capacidadeComercial,
@@ -59,6 +60,7 @@ angular.module('starter.services.planoOperacional', [])
     capacidadeProdutivaInicial:capacidadeProdutivaInicial,
     processosOperacionais:processosOperacionais,
     idsCargos:idsCargos,
-    idImagem:idImagem
+    idImagem:idImagem,
+    _id:_id
   }
 })

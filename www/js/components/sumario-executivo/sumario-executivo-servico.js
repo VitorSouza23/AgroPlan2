@@ -64,6 +64,7 @@ angular.module('starter.services.sumarioExecutivo', [])
   var optantePeloSimples;
   var fontesDeRecursos;
   var idsSocios = [];
+  var _id;
   return{
     principaisPontos:principaisPontos,
     dadosDoemprendimento:dadosDoemprendimento,
@@ -71,6 +72,7 @@ angular.module('starter.services.sumarioExecutivo', [])
     formaJuridica:formaJuridica,
     optantePeloSimples:optantePeloSimples,
     fontesDeRecursos:fontesDeRecursos,
-    idsSocios:idsSocios
+    idsSocios:idsSocios,
+    _id:_id
   }
 });

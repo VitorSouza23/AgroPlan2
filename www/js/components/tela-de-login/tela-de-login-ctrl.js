@@ -15,7 +15,16 @@ angular.module('starter.controllers.login', ['starter.services','starter.service
     }
   }
 
+  $scope.mensagemDeErroLogin = {
+    cpfVazio: false,
+    senhaVazia: false,
+    camposIncorretos: false
+  }
+
   $scope.login = function(){
+    $scope.mensagemDeErroLogin.cpfVazio = false;
+    $scope.mensagemDeErroLogin.senhaVazia = false;
+    $scope.camposIncorretos = false;
     if(!angular.equals($scope.usuario, {})){
       ServicoLogin.fazerLogin($scope.usuario).then(function(dados){
         //console.log(dados);
@@ -35,9 +44,16 @@ angular.module('starter.controllers.login', ['starter.services','starter.service
             title: 'Falha no Login!',
             template: 'O CPF ou Senha incorretos!'
           });
+          $scope.mensagemDeErroLogin.camposIncorretos = true;
         }
       });
     }else{
+      if($scope.usuario.cpf == undefined){
+        $scope.mensagemDeErroLogin.cpfVazio = true;
+      }
+      if($scope.usuario.senha == undefined){
+        $scope.mensagemDeErroLogin.senhaVazia = true;
+      }
       var alertPopup = $ionicPopup.alert({
         title: 'Falha no Login! (Campos Vazios)',
         template: 'Por favor, corrija os campos vazios!'

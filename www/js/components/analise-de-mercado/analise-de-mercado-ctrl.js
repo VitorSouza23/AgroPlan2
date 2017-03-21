@@ -350,12 +350,13 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
         var objeto = {};
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/cliente?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto._id = $rootScope.planoDeNegocioMontado.analiseDeMercado.idCliente;
-        BancoDeDados.recuperarComId(caminho, objeto).then(function(dados){
-          console.log(dados);
-          $scope.analiseDeMercado.cliente = dados.data[0];
-          $scope.analiseDeMercadoID.idCliente = dados.data[0]._id;
-        });
-
+        if($rootScope.planoDeNegocioMontado.analiseDeMercado.idCliente != undefined){
+          BancoDeDados.recuperarComId(caminho, objeto).then(function(dados){
+            console.log(dados);
+            $scope.analiseDeMercado.cliente = dados.data[0];
+            $scope.analiseDeMercadoID.idCliente = dados.data[0]._id;
+          });
+        }
       }
 
       qAllFornecedor = function(){
@@ -382,14 +383,14 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
 
       recuperarSubitens = function(){
 
-          $ionicLoading.show({
-            template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-            duration: 1000
-          }).then(function(){
-            recuperarCliente();
-            recuperarConcorrentes();
-            recuperarFornecedores();
-          });
+        $ionicLoading.show({
+          template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+          duration: 1000
+        }).then(function(){
+          recuperarCliente();
+          recuperarConcorrentes();
+          recuperarFornecedores();
+        });
 
       };
 

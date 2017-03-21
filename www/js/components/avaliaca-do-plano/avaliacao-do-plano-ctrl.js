@@ -10,7 +10,7 @@ angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avalia
     if($scope.avaliacaoDoPlano._id == undefined){
       $scope.avaliacaoDoPlano._id = $rootScope.planoDeNegocioMontado.avaliacaoDoPlano._id;
       $scope.avaliacaoDoPlano.avaliacao = $rootScope.planoDeNegocioMontado.avaliacaoDoPlano.avaliacao;
-    }
+  }
   }
   $scope.bancoDeDados = BancoDeDados;
 

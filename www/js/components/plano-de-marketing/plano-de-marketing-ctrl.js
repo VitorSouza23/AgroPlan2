@@ -9,8 +9,9 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
     $scope.init = function(){
       //$rootScope.verificarSeUsuarioEstaLogado();
       console.log($rootScope.planoDeNegocioMontado.planoDeMarketing);
-      if($scope.planoDeMarketing._id == undefined){
+        if($scope.planoDeMarketing._id == undefined){
         $scope.planoDeMarketing._id = $rootScope.planoDeNegocioMontado.planoDeMarketing._id;
+        $scope.planoDeMarketingID._id = $rootScope.planoDeNegocioMontado.planoDeMarketing._id;
         $scope.planoDeMarketing.estrategiasPromocionais = $rootScope.planoDeNegocioMontado.planoDeMarketing.estrategiasPromocionais;
         $scope.planoDeMarketing.estruturaDeComercializacao =  $rootScope.planoDeNegocioMontado.planoDeMarketing.estruturaDeComercializacao;
         $scope.planoDeMarketing.localizacaoDoNegocio = $rootScope.planoDeNegocioMontado.planoDeMarketing.localizacaoDoNegocio;

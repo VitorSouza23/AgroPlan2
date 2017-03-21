@@ -7,12 +7,12 @@ angular.module('starter.controllers.construcaoDeCenario', [
 
       $scope.init = function(){
         console.log($rootScope.planoDeNegocioMontado.construcaoDeCenarios);
-        if($scope.construcaoDeCenario._id == undefined){
+        
         $scope.construcaoDeCenario._id = $rootScope.planoDeNegocioMontado.construcaoDeCenarios._id;
         $scope.construcaoDeCenario.provavel = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.provavel;
         $scope.construcaoDeCenario.pessimsita = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.pessimsita;
         $scope.construcaoDeCenario.otimista = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.otimista;
-      }
+
     }
 
     $scope.bancoDeDados = BancoDeDados;

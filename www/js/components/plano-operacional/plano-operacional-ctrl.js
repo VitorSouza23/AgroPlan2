@@ -301,13 +301,14 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
         var objeto = {};
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/imagem?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto._id = $rootScope.planoDeNegocioMontado.planoOperacional.idImagem;
-        BancoDeDados.recuperarComId(caminho, objeto).then(function(dados){
-          console.log(dados);
+        if($rootScope.planoDeNegocioMontado.planoOperacional.idImagem != undefined){
+          BancoDeDados.recuperarComId(caminho, objeto).then(function(dados){
+            console.log(dados);
 
-          $scope.planoOperacional.layout = dados.data[0].imagem;
-          $scope.planoOperacionalID.idImagem = dados.data[0]._id;
-        });
-
+            $scope.planoOperacional.layout = dados.data[0].imagem;
+            $scope.planoOperacionalID.idImagem = dados.data[0]._id;
+          });
+        }
       }
 
       qAllCargo = function(){
