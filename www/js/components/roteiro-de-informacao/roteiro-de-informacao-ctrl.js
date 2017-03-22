@@ -4,17 +4,23 @@ angular.module('starter.controllers.roteiroParaColeta', ['starter.services.rotei
   $ionicPopup, $timeout, BancoDeDados, $ionicLoading, $rootScope){
     $scope.roteiroParaColeta = RoteiroParaColeta.getRoteiroParaColeta();
 
+    ionic.on('$locationChangeStart', function(){
+      $scope.init();
+    })
+
     $scope.init = function(){
+
       //$rootScope.verificarSeUsuarioEstaLogado();
       console.log($rootScope.planoDeNegocioMontado.roteiroDeInformacao);
-      if($scope.roteiroParaColeta._id == undefined){
+
+        $scope.roteiroParaColeta = RoteiroParaColeta.getRoteiroParaColeta();
         $scope.roteiroParaColeta._id = $rootScope.planoDeNegocioMontado.roteiroDeInformacao._id;
         $scope.roteiroParaColeta.sumarioExecutivo = $rootScope.planoDeNegocioMontado.roteiroDeInformacao.sumarioExecutivo;
         $scope.roteiroParaColeta.analiseDeMercado = $rootScope.planoDeNegocioMontado.roteiroDeInformacao.analiseDeMercado;
         $scope.roteiroParaColeta.planoDeMarketing = $rootScope.planoDeNegocioMontado.roteiroDeInformacao.planoDeMarketing;
         $scope.roteiroParaColeta.planoOperacional = $rootScope.planoDeNegocioMontado.roteiroDeInformacao.planoOperacional;
         $scope.roteiroParaColeta.planoFinancerio = $rootScope.planoDeNegocioMontado.roteiroDeInformacao.planoFinancerio;
-      }
+      
     }
 
     $scope.bancoDeDados = BancoDeDados;

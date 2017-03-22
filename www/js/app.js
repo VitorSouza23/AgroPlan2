@@ -60,12 +60,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('planoDeNegocio', {
+    cache: false,
     url: '/planoDeNegocio',
     templateUrl: 'js/components/plano-de-negocio/plano-de-negocio.html',
     controller: 'PlanoDeNegocioCtrl'
   })
 
   .state('planoDeNegocio.novoPlano', {
+    cache: false,
     url: '/planoDeNegocio/novoPlanoDeNegocio',
     templateUrl: 'js/components/plano-de-negocio/subitens/criar-novo-plano.html',
     controller: 'PlanoDeNegocioCtrl'
@@ -83,6 +85,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.analiseMercado', {
+    cache: false,
     url: '/analiseMercado',
 
     views: {
@@ -94,6 +97,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.fornecedores', {
+    cache: false,
     url: '/analiseMercado/fornecedores',
 
     views: {
@@ -105,6 +109,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.concorrentes', {
+    cache: false,
     url: '/analiseMercado/concorrentes',
 
     views: {
@@ -116,6 +121,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.sumarioExecutivo', {
+    cache: false,
     url: '/sumarioExecutivo',
 
     views: {
@@ -127,6 +133,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.socios', {
+    cache: false,
     url: '/sumarioExecutivo/socios',
 
     views: {
@@ -138,6 +145,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.planoMarketing', {
+    cache: false,
     url: '/planoMarketing',
 
     views: {
@@ -149,6 +157,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.produtos', {
+    cache: false,
     url: '/planoMarketing/produtos',
 
     views: {
@@ -160,6 +169,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.planoOperacional', {
+    cache: false,
     url: '/planoOperacional',
 
     views: {
@@ -171,6 +181,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.cargos', {
+    cache: false,
     url: '/planoOperacional/cargos',
 
     views: {
@@ -182,6 +193,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.planoFinanceiro', {
+    cache: false,
     url: '/planoFinanceiro',
 
     views: {
@@ -193,6 +205,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.maquina', {
+    cache: false,
     url: '/planoFinanceiro/maquinas',
 
     views: {
@@ -204,6 +217,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.movel', {
+    cache: false,
     url: '/planoFinanceiro/moveis',
 
     views: {
@@ -215,6 +229,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.utensilio', {
+    cache: false,
     url: '/planoFinanceiro/utensilios',
 
     views: {
@@ -226,6 +241,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.veiculo', {
+    cache: false,
     url: '/planoFinanceiro/veiculos',
 
     views: {
@@ -237,6 +253,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.compra', {
+    cache: false,
     url: '/planoFinanceiro/compras',
 
     views: {
@@ -248,6 +265,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.venda', {
+    cache: false,
     url: '/planoFinanceiro/vendas',
 
     views: {
@@ -259,6 +277,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.equipamento', {
+    cache: false,
     url: '/planoFinanceiro/equipamentos',
 
     views: {
@@ -270,6 +289,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.construcaoCenarios', {
+    cache: false,
     url: '/construcaoCenarios',
 
     views: {
@@ -282,6 +302,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
 
 
   .state('tab.avaliacaoEstrategica', {
+    cache: false,
     url: '/avaliacaoEstrategica',
 
     views: {
@@ -293,6 +314,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.roteiroInformacao', {
+    cache: false,
     url: '/roteiroInformacao',
 
     views: {
@@ -304,6 +326,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
   })
 
   .state('tab.avaliacaoDoPlano', {
+    cache: false,
     url: '/avaliacaoDoPlano',
 
     views: {
@@ -324,6 +347,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
 
 .run(function($rootScope, $state){
   $rootScope.$on('$locationChangeStart',function(evt){
+
     if($rootScope.usuario == undefined || $rootScope.isLogin == false){
       $rootScope.usuario = undefined;
       $rootScope.isLogin = false;
@@ -331,9 +355,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
         inherit: false,
         notify: true });
       }
+
     });
 
     $rootScope.$on('$locationChangeSuccess',function(evt){
+
       if($rootScope.usuario == undefined || $rootScope.isLogin == false){
         $rootScope.usuario = undefined;
         $rootScope.isLogin = false;
@@ -341,6 +367,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
           inherit: false,
           notify: true });
         }
+
       });
   })
   ;

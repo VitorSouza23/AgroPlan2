@@ -4,13 +4,19 @@ angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avalia
   $ionicPopup, $timeout, BancoDeDados, $ionicLoading, $rootScope){
   $scope.avaliacaoDoPlano = AvaliacaoDoPlano.getAvaliacaoDoPlano();
 
+  ionic.on('$locationChangeStart', function(){
+    $scope.init();
+  })
+
   $scope.init = function(){
+
     //$rootScope.verificarSeUsuarioEstaLogado();
     console.log($rootScope.planoDeNegocioMontado.avaliacaoDoPlano);
-    if($scope.avaliacaoDoPlano._id == undefined){
+
+      $scope.avaliacaoDoPlano = AvaliacaoDoPlano.getAvaliacaoDoPlano();
       $scope.avaliacaoDoPlano._id = $rootScope.planoDeNegocioMontado.avaliacaoDoPlano._id;
       $scope.avaliacaoDoPlano.avaliacao = $rootScope.planoDeNegocioMontado.avaliacaoDoPlano.avaliacao;
-  }
+
   }
   $scope.bancoDeDados = BancoDeDados;
 

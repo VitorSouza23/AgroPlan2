@@ -5,10 +5,15 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
   $ionicHistory, $ionicPopup, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoOperacionalID,
   Modal, $rootScope, $cordovaCamera, $q){
     $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
+    ionic.on('$locationChangeStart', function(){
+      $scope.init();
+    })
 
     $scope.init = function(){
+
       console.log($rootScope.planoDeNegocioMontado.planoOperacional);
-      if($scope.planoOperacional._id == undefined){
+
+        $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
         $scope.planoOperacional._id = $rootScope.planoDeNegocioMontado.planoOperacional._id;
         $scope.planoOperacionalID._id = $rootScope.planoDeNegocioMontado.planoOperacional._id;
         $scope.planoOperacionalID.idImagem = $rootScope.planoDeNegocioMontado.planoOperacional.idImagem;
@@ -20,7 +25,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
         $scope.planoOperacional.processosOperacionais = $rootScope.planoDeNegocioMontado.planoOperacional.processosOperacionais;
 
         recuperarSubitens();
-      }
+      
     }
 
     $scope.atualizarPagina = function(){

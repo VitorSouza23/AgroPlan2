@@ -5,14 +5,24 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
   $ionicHistory, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, SumarioExecutivoID, Modal,
   $rootScope, $q){
 
+
+
   $scope.sumarioExecutivo = SumarioExecutivo.getSumarioExecutivo();
   $scope.cnpjOuCpf = SumarioExecutivo.getCnpjOuCpf();
   $scope.escolherCnpjOuCpf = SumarioExecutivo.escolherCnpjOuCpf();
 
+  ionic.on('$locationChangeSuccess', function(){
+    $scope.init();
+  })
+
+  /*ionic.on('$locationChangeStart', function(){
+    $scope.init();
+  })*/
+
   $scope.init = function(){
     //$rootScope.verificarSeUsuarioEstaLogado();
     console.log($rootScope.planoDeNegocioMontado.sumarioExecutivo);
-    if($scope.sumarioExecutivo._id == undefined){
+
       $scope.sumarioExecutivo._id = $rootScope.planoDeNegocioMontado.sumarioExecutivo._id;
       $scope.sumarioExecutivoID._id = $rootScope.planoDeNegocioMontado.sumarioExecutivo._id;
 
@@ -30,7 +40,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
       $scope.sumarioExecutivo.optantePeloSimples = $rootScope.planoDeNegocioMontado.sumarioExecutivo.optantePeloSimples;
       $scope.sumarioExecutivo.fontesDeRecursos = $rootScope.planoDeNegocioMontado.sumarioExecutivo.fontesDeRecursos;
       recuperarSubitens();
-    }
+
   }
 
   $scope.atualizarPagina = function(){

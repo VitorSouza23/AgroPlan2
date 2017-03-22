@@ -6,10 +6,16 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
   $rootScope, $q, $ionicPopover){
     $scope.planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
 
+    ionic.on('$locationChangeStart', function(){
+      $scope.init();
+    })
+
     $scope.init = function(){
+
       //$rootScope.verificarSeUsuarioEstaLogado();
       console.log($rootScope.planoDeNegocioMontado.planoDeMarketing);
-        if($scope.planoDeMarketing._id == undefined){
+
+        $scope.planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
         $scope.planoDeMarketing._id = $rootScope.planoDeNegocioMontado.planoDeMarketing._id;
         $scope.planoDeMarketingID._id = $rootScope.planoDeNegocioMontado.planoDeMarketing._id;
         $scope.planoDeMarketing.estrategiasPromocionais = $rootScope.planoDeNegocioMontado.planoDeMarketing.estrategiasPromocionais;
@@ -17,7 +23,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
         $scope.planoDeMarketing.localizacaoDoNegocio = $rootScope.planoDeNegocioMontado.planoDeMarketing.localizacaoDoNegocio;
         recuperarSubitens();
       }
-    }
+
 
     $scope.editar = PlanoDeMarketing.editar;
     $scope.bancoDeDados = BancoDeDados;
@@ -171,7 +177,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
       function salvarLocalizacao(){
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/localizacao?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto = $scope.planoDeMarketing.localizacaoDoNegocio;
-        if($scope.planoDeMarketing.localizacaoDoNegocio._id == undefined){
+        if($scope.planoDeMarketing.localizacaoDoNegocio == undefined){
           $scope.bancoDeDados.salvar(caminho, objeto).then(function(response){
             $scope.planoDeMarketingID.idLocalizacao = response.data._id;
             console.log(response);

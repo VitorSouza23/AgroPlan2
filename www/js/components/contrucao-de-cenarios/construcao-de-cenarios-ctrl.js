@@ -5,9 +5,14 @@ angular.module('starter.controllers.construcaoDeCenario', [
     $ionicHistory, $ionicPopup, $timeout, BancoDeDados, $ionicLoading, $rootScope){
       $scope.construcaoDeCenario = ConstrucaoDeCenario.getConstrucaoDeCenario();
 
+      ionic.on('$locationChangeStart', function(){
+        $scope.init();
+      })
+
       $scope.init = function(){
+
         console.log($rootScope.planoDeNegocioMontado.construcaoDeCenarios);
-        
+        $scope.construcaoDeCenario = ConstrucaoDeCenario.getConstrucaoDeCenario();
         $scope.construcaoDeCenario._id = $rootScope.planoDeNegocioMontado.construcaoDeCenarios._id;
         $scope.construcaoDeCenario.provavel = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.provavel;
         $scope.construcaoDeCenario.pessimsita = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.pessimsita;

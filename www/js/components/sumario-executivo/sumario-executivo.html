@@ -1,9 +1,9 @@
-<ion-view view-title="Sumário Executivo">
+<ion-view view-title="Sumário Executivo" ng-init="init()">
   <ion-nav-buttons side="right">
     <button class="button button-icon ion-help" ng-click="showConfirm()"></button>
     <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
   </ion-nav-buttons>
-  <ion-content ng-init="init()">
+  <ion-content>
     <ion-refresher
     pulling-text="Puxe para atualizar..."
     on-refresh="atualizarPagina()">

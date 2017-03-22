@@ -9,14 +9,28 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
     $scope.bancoDeDados = BancoDeDados;
     $scope.analiseDeMercadoID = AnaliseDeMercadoID;
 
+    ionic.on('$locationChangeStart', function(){
+      $scope.init();
+    })
+
     $scope.init = function(){
+
       //$rootScope.verificarSeUsuarioEstaLogado();
       console.log($rootScope.planoDeNegocioMontado.analiseDeMercado);
-      if($scope.analiseDeMercado._id == undefined){
-        $scope.analiseDeMercado._id = $rootScope.planoDeNegocioMontado.analiseDeMercado._id;
-        $scope.analiseDeMercadoID._id = $rootScope.planoDeNegocioMontado.analiseDeMercado._id;
-        recuperarSubitens();
-      }
+
+        $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
+        $ionicLoading.show({
+          template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+          duration: 1000
+        }).then(function(){
+          setTimeout(function(){
+            $scope.analiseDeMercado._id = $rootScope.planoDeNegocioMontado.analiseDeMercado._id;
+            $scope.analiseDeMercadoID._id = $rootScope.planoDeNegocioMontado.analiseDeMercado._id;
+            recuperarSubitens();
+          }, 1000);
+
+        });
+
     }
     $scope.atualizarPagina = function(){
       $scope.analiseDeMercado._id = undefined;
@@ -382,16 +396,15 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
       }
 
       recuperarSubitens = function(){
-
-        $ionicLoading.show({
-          template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-          duration: 1000
-        }).then(function(){
+        if($rootScope.planoDeNegocioMontado.analiseDeMercado.idCliente != undefined){
           recuperarCliente();
+        }
+        if($rootScope.planoDeNegocioMontado.analiseDeMercado.idsConcorrentes != undefined){
           recuperarConcorrentes();
+        }
+        if($rootScope.planoDeNegocioMontado.analiseDeMercado.idsFornecedores != undefined){
           recuperarFornecedores();
-        });
-
+        }
       };
 
 
