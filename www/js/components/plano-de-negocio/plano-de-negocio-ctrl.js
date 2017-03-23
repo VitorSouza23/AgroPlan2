@@ -1,12 +1,16 @@
 angular.module('starter.controllers.planoDeNegocio', ['starter.services',
-'starter.services.plano-de-negocios'])
+'starter.services.plano-de-negocios', 'starter.services.gerador-relatorio'])
 
 .controller('PlanoDeNegocioCtrl', function($scope, $state, $rootScope, ServicoPlanoDeNegocio, Modal,
-   BancoDeDados, $window, $ionicPopup, $ionicLoading) {
+   BancoDeDados, $window, $ionicPopup, $ionicLoading, GeradorDeRelatorio) {
   $scope.usuario = $rootScope.usuario;
   $scope.planoDeNegocio;
   $scope.planosDeNegocio = [];
   $scope.editar = false;
+
+  ionic.on('$locationChangeStart', function(){
+    $scope.init();
+  })
 
   $scope.init = function(){
     //$rootScope.verificarSeUsuarioEstaLogado();
@@ -132,6 +136,10 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
     $state.go('login', {}, { reload: true,
       inherit: false,
       notify: true });
+    }
+
+    $scope.gerarRelatorio = function(){
+      GeradorDeRelatorio.gerarRelatorio();
     }
 
   });

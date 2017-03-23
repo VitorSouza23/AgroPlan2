@@ -4,7 +4,7 @@ angular.module('starter.controllers', ['starter.services','starter.controllers.s
 'starter.controllers.construcaoDeCenario', 'starter.controllers.avaliacaoEstrategica',
 'starter.controllers.roteiroParaColeta', 'starter.controllers.avaliacaoDoPlano',
 'starter.controllers.login', 'starter.controllers.sobreProjeto',
-'starter.controllers.planoDeNegocio'])
+'starter.controllers.planoDeNegocio', 'starter.controllers.geradorRelatorio'])
 
 
 .controller('MenuCtrl', function($scope, Menu) {
