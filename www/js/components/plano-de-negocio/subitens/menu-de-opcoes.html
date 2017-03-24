@@ -1,25 +1,25 @@
 <ion-modal-view >
-  <ion-header-bar class="bar-balanced">
-    <h1 class="title">{{planoDeNegocio.nome}}</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="fecharMenuDeOpcoesDoPlano()">Fechar</button>
-    </div>
-  </ion-header-bar>
-  <ion-content>
-    <div class="list">
+    <ion-header-bar class="bar-balanced">
+        <h1 class="title">{{planoDeNegocio.nome}}</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="fecharMenuDeOpcoesDoPlano()">Fechar</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
 
-      <button class="button button-block icon-rigth ion-compose button-positive" ng-click="alterarNomeDoPlanoDeNegocio(planoDeNegocio)">
-        Mudar Nome
-      </button>
-      <button class="button button-block icon-rigth ion-edit button-balanced" ng-click="editarPlano(planoDeNegocio)">
-        Editar Plano
-      </button>
-      <button class="button button-block icon-rigth ion-document-text button-positive" ng-click="gerarRelatorio()">
-        Gerar Documento Final
-      </button>
-      <button class="button button-block icon-rigth ion-trash-a button-assertive" ng-click="excluirPlanoDeNegocio(planoDeNegocio)">
-        Excluir
-      </button>
-    </div>
-  </ion-content>
+            <button class="button button-block icon-rigth ion-compose button-positive" ng-click="alterarNomeDoPlanoDeNegocio(planoDeNegocio)">
+                Mudar Nome
+            </button>
+            <button class="button button-block icon-rigth ion-edit button-balanced" ng-click="editarPlano(planoDeNegocio)">
+                Editar Plano
+            </button>
+            <button class="button button-block icon-rigth ion-document-text button-positive" ng-click="gerarRelatorio()">
+                Gerar Documento Final
+            </button>
+            <button class="button button-block icon-rigth ion-trash-a button-assertive" ng-click="excluirPlanoDeNegocio(planoDeNegocio)">
+                Excluir
+            </button>
+        </div>
+    </ion-content>
 </ion-modal-view>

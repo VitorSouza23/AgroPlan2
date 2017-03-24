@@ -1,45 +1,45 @@
 <ion-view view-title="Análise FOFA">
-  <ion-nav-buttons side="right">
-    <button class="button button-icon ion-help" ng-click="showConfirm()"></button>
-    <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
-  </ion-nav-buttons>
-  <ion-content ng-init="init()">
-    <ion-refresher
-    pulling-text="Puxe para atualizar..."
-    on-refresh="atualizarPagina()">
-  </ion-refresher>
-    <div class="list">
-      <div class="item item-divider">
-        Ambiente Interno
-      </div>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Forças:</span>
-          <input type="text" placeholder="Forças"  ng-model="avaliacaoEstrategica.forca">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Fraquezas:</span>
-          <input type="text" placeholder="Fraquesas" ng-model="avaliacaoEstrategica.fraquesa">
-        </label>
-        <div class="item item-divider">
-          Ambiente Externo
-        </div>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Oportunidades:</span>
-          <input type="text" placeholder="Oportunidades" ng-model="avaliacaoEstrategica.oportunidade">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Ameaças:</span>
-          <input type="text" placeholder="Ameaças" ng-model="avaliacaoEstrategica.ameaca">
-        </label>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-help" ng-click="showConfirm()"></button>
+        <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
+    </ion-nav-buttons>
+    <ion-content ng-init="init()">
+        <ion-refresher
+            pulling-text="Puxe para atualizar..."
+            on-refresh="atualizarPagina()">
+        </ion-refresher>
+        <div class="list">
+            <div class="item item-divider">
+                Ambiente Interno
+            </div>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Forças:</span>
+                <input type="text" placeholder="Forças"  ng-model="avaliacaoEstrategica.forca">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Fraquezas:</span>
+                <input type="text" placeholder="Fraquesas" ng-model="avaliacaoEstrategica.fraquesa">
+            </label>
+            <div class="item item-divider">
+                Ambiente Externo
+            </div>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Oportunidades:</span>
+                <input type="text" placeholder="Oportunidades" ng-model="avaliacaoEstrategica.oportunidade">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Ameaças:</span>
+                <input type="text" placeholder="Ameaças" ng-model="avaliacaoEstrategica.ameaca">
+            </label>
 
-        <!--Botões Confirmar e Cancelar-->
-      <div class="row">
-        <div class="col col-100">
-          <button class="button button-block button-positive" ng-click="salvar()">
-            Confirmar
-          </button>
-        </div>
-      </div>
+            <!--Botões Confirmar e Cancelar-->
+            <div class="row">
+                <div class="col col-100">
+                    <button class="button button-block button-positive" ng-click="salvar()">
+                        Confirmar
+                    </button>
+                </div>
+            </div>
 
-  </ion-content>
+    </ion-content>
 </ion-view>

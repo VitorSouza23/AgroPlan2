@@ -1,13 +1,15 @@
+/* global angular, err, Camera */
+
 angular.module('starter.controllers.planoOperacional', ['starter.services.planoOperacional',
 'ionic', 'starter.services.utilitarios'])
 
 .controller('PlanoOperacionalCtrl', function($scope, PlanoOperacional, Cargo, $ionicListDelegate,
-  $ionicHistory, $ionicPopup, $ionicPopup, $timeout, BancoDeDados,$ionicLoading, PlanoOperacionalID,
+  $ionicHistory, $ionicPopup, $ionicPopup, BancoDeDados,$ionicLoading, PlanoOperacionalID,
   Modal, $rootScope, $cordovaCamera, $q){
     $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
     ionic.on('$locationChangeStart', function(){
       $scope.init();
-    })
+    });
 
     $scope.init = function(){
 
@@ -26,13 +28,13 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
         recuperarSubitens();
       
-    }
+    };
 
     $scope.atualizarPagina = function(){
       $scope.planoOperacional._id = undefined;
       $scope.init();
       $scope.$broadcast('scroll.refreshComplete');
-    }
+    };
 
 
     $scope.dadosImagem;
@@ -46,11 +48,12 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
     });
 
     $scope.showConfirm = function() {
-      var confirmPopup = $ionicPopup.confirm({
+      $ionicPopup.confirm({
         title: 'Plano Operacional',
         template: 'É onde será informado o funcionamento de seu negócio.',
         cancelText: 'Sair'
-      })};
+      });
+  };
 
       var tipoDestinoCaminhoFoto;
       $scope.addCargo = function(){
@@ -108,7 +111,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
       };
 
       function sucessoAoPegarFoto(imageData){
-        if(tipoDestinoCaminhoFoto == 1 || tipoDestinoCaminhoFoto == 2){
+        if(tipoDestinoCaminhoFoto === 1 || tipoDestinoCaminhoFoto === 2){
           $scope.planoOperacional.layout = imageData;
         }else {
           $scope.planoOperacional.layout = "data:image/jpeg;base64," + imageData;
@@ -134,18 +137,18 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
           targetHeight: 300,
           saveToPhotoAlbum: true,
           correctOrientation: true
-        }
+        };
 
         $cordovaCamera.getPicture(imagemConfig).then(function(imageData) {
           $scope.dadosImagem = imageData;
           $scope.planoOperacional.layout = "data:image/jpeg;base64," + imageData;
           $scope.imagemJSON = JSON.stringify({
             imagem: $scope.planoOperacional.layout
-          })
+          });
 
           var caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/imagem?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
           var objeto = $scope.imagemJSON;
-          if($scope.planoOperacionalID.idImagem == undefined){
+          if($scope.planoOperacionalID.idImagem === undefined){
             $scope.bancoDeDados.salvar(caminho, objeto).then(function(response){
               $scope.planoOperacionalID.idImagem = response.data._id;
               console.log(response);
@@ -159,7 +162,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
         }, function(err) {
           alert('Erro ao obter imagem!');
         });
-      }
+      };
 
 
       $scope.pegarFoto = function () {
@@ -172,18 +175,18 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
           targetHeight: 300,
           saveToPhotoAlbum: true,
           correctOrientation: true
-        }
+        };
 
         $cordovaCamera.getPicture(imagemGaleria).then(function(imageData) {
           $scope.dadosImagem = imageData;
           $scope.planoOperacional.layout = "data:image/jpeg;base64," + imageData;
           $scope.imagemJSON = JSON.stringify({
             imagem: $scope.planoOperacional.layout
-          })
+          });
 
           var caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/imagem?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
           var objeto = $scope.imagemJSON;
-          if($scope.planoOperacionalID.idImagem == undefined){
+          if($scope.planoOperacionalID.idImagem === undefined){
             $scope.bancoDeDados.salvar(caminho, objeto).then(function(response){
               $scope.planoOperacionalID.idImagem = response.data._id;
               console.log(response);
@@ -195,12 +198,12 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
         }, function(err) {
           alert('Erro ao obter imagem!');
         });
-      }
+      };
 
 
       $scope.mostrarReordem = function(){
         $scope.reordenar = !$scope.reordenar;
-      }
+      };
 
       $scope.moverCargo = function(item, fromIndex, toIndex) {
         $scope.planoOperacional.cargos.splice(fromIndex, 1);
@@ -285,7 +288,6 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
       //Recuperação de dados
       var arrayPromessasCargos = [];
-      var promessaCliente = {};
 
       recuperarCargos = function(){
         arrayPromessasCargos = [];
@@ -298,7 +300,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
           arrayPromessasCargos.push(BancoDeDados.recuperarComId(caminho, objeto));
         });
         qAllCargo();
-      }
+      };
 
 
       recuperarLayout= function(){
@@ -306,7 +308,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
         var objeto = {};
         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/imagem?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
         objeto._id = $rootScope.planoDeNegocioMontado.planoOperacional.idImagem;
-        if($rootScope.planoDeNegocioMontado.planoOperacional.idImagem != undefined){
+        if($rootScope.planoDeNegocioMontado.planoOperacional.idImagem !== undefined){
           BancoDeDados.recuperarComId(caminho, objeto).then(function(dados){
             console.log(dados);
 
@@ -314,7 +316,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
             $scope.planoOperacionalID.idImagem = dados.data[0]._id;
           });
         }
-      }
+      };
 
       qAllCargo = function(){
         $q.all(arrayPromessasCargos).then(function(dados){
@@ -326,7 +328,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
             $scope.planoOperacionalID.idsCargos.push(dado.data[0]._id);
           });
         });
-      }
+      };
 
       recuperarSubitens = function(){
 
@@ -344,11 +346,11 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
       $scope.removerImagem = function(){
         $scope.planoOperacionalID.idImagem = undefined;
         $scope.planoOperacional.layout = null;
-      }
+      };
 
       $scope.opcoesDeSlideBox = {
         loop: false,
         effect: 'fade',
-        speed: 500,
-      }
-    })
+        speed: 500
+      };
+    });

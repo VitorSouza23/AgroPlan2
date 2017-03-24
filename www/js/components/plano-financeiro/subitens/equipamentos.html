@@ -1,36 +1,36 @@
 <ion-modal-view >
-  <ion-header-bar class="bar-calm">
-    <h1 class="title">Equipamento</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="modalEquipamento.hide()">Fechar</button>
-    </div>
-  </ion-header-bar>
-  <ion-content>
-    <div class="list">
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Descrição</span>
-        <input type="text" placeholder="Descrição" ng-model="equipamento.descricao" autofocus="true">
-      </label>
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Quantidade</span>
-        <input type="number" placeholder="Quantidade" ng-model="equipamento.quantidade" min="0">
-      </label>
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Valor Unitário</span>
-        <input type="number" placeholder="Valor Unitário" min="0" ng-model="equipamento.valorUnitario">
-      </label>
-      <div class="row">
-        <div class="col col-60">
-          <button class="button button-block icon-rigth ion-checkmark button-positive" ng-click="addEquipamento()">
-            Confirmar
-          </button>
+    <ion-header-bar class="bar-calm">
+        <h1 class="title">Equipamento</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="modalEquipamento.hide()">Fechar</button>
         </div>
-        <div class="col">
-          <button class="button button-block icon-rigth ion-trash-a button-assertive" ng-click="excluirEquipamentoPermanentemente()">
-            Excluir
-          </button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Descrição</span>
+                <input type="text" placeholder="Descrição" ng-model="equipamento.descricao" autofocus="true">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Quantidade</span>
+                <input type="number" placeholder="Quantidade" ng-model="equipamento.quantidade" min="0">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Valor Unitário</span>
+                <input type="number" placeholder="Valor Unitário" min="0" ng-model="equipamento.valorUnitario">
+            </label>
+            <div class="row">
+                <div class="col col-60">
+                    <button class="button button-block icon-rigth ion-checkmark button-positive" ng-click="addEquipamento()">
+                        Confirmar
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="button button-block icon-rigth ion-trash-a button-assertive" ng-click="excluirEquipamentoPermanentemente()">
+                        Excluir
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </ion-content>
+    </ion-content>
 </ion-modal-view>

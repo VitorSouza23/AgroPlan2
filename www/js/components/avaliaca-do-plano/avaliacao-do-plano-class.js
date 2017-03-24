@@ -1,5 +1,5 @@
-function AvaliacaoDoPlano(){
-  this._id;
-  this.avalicao;
-  this.desativado = false;
+function AvaliacaoDoPlano() {
+    this._id;
+    this.avalicao;
+    this.desativado = false;
 }

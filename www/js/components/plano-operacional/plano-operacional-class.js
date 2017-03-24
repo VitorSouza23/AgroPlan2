@@ -1,35 +1,35 @@
-function PlanoOperacional(){
-  this._id;
-  this.layout;
-  this.capacidadeProdutiva;
-  this.capacidadeComercial;
-  this.capacidadeComercialInicial;
-  this.capacidadeProdutivaInicial;
-  this.processosOperacionais;
-  this.cargos = [];
-  this.desativado = false;
+function PlanoOperacional() {
+    this._id;
+    this.layout;
+    this.capacidadeProdutiva;
+    this.capacidadeComercial;
+    this.capacidadeComercialInicial;
+    this.capacidadeProdutivaInicial;
+    this.processosOperacionais;
+    this.cargos = [];
+    this.desativado = false;
 
-  this.addCargo = function(cargo){
-    this.cargos.push(cargo);
-  };
+    this.addCargo = function (cargo) {
+        this.cargos.push(cargo);
+    };
 
-  this.removerCargo = function(cargo){
-    var pos = this.cargos.indexOf(cargo);
-    this.cargos.splice(pos,1);
-  };
+    this.removerCargo = function (cargo) {
+        var pos = this.cargos.indexOf(cargo);
+        this.cargos.splice(pos, 1);
+    };
 
-  this.editarCargo = function(cargo){
-    var pos = this.cargos.indexOf(cargo);
-    this.cargos[pos] = cargo;
-  };
+    this.editarCargo = function (cargo) {
+        var pos = this.cargos.indexOf(cargo);
+        this.cargos[pos] = cargo;
+    };
 
 }
 
-function Cargo(){
-  this._id;
-  this.nome;
-  this.salarioBase;
-  this.qualificacoes;
-  this.idUsuario;
-  this.desativado = false;
+function Cargo() {
+    this._id;
+    this.nome;
+    this.salarioBase;
+    this.qualificacoes;
+    this.idUsuario;
+    this.desativado = false;
 }

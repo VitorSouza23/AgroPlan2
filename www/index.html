@@ -1,113 +1,112 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-  <title></title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title></title>
 
-  <link rel="manifest" href="manifest.json">
+        <link rel="manifest" href="manifest.json">
 
-  <!-- un-comment this code to enable service worker
-  <script>
-  if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js')
-  .then(() => console.log('service worker installed'))
-  .catch(err => console.log('Error', err));
-}
-</script>-->
-
-
-<!-- compiled css output -->
-<link href="css/ionic.app.css" rel="stylesheet">
-<link href="lib/ion-floating-menu/dist/ion-floating-menu.css" rel="stylesheet" type="text/css">
-<link href="css/style.css" rel="stylesheet">
-<!-- ionic/angularjs js -->
-<script src="lib/ionic/js/ionic.bundle.js"></script>
-<script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
-<script src="cordova.js"></script>
+        <!-- un-comment this code to enable service worker
+        <script>
+        if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('service worker installed'))
+        .catch(err => console.log('Error', err));
+      }
+      </script>-->
 
 
-<!-- cordova script (this will be a 404 during development) -->
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-<script src="lib/ion-floating-menu/dist/ion-floating-menu.js" type="text/javascript"></script>
+        <!-- compiled css output -->
+        <link href="css/ionic.app.css" rel="stylesheet">
+        <link href="lib/ion-floating-menu/dist/ion-floating-menu.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet">
+        <!-- ionic/angularjs js -->
+        <script src="lib/ionic/js/ionic.bundle.js"></script>
+        <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
 
 
-
-<!-- your app's js -->
-<script src="js/components/analise-de-mercado/analise-de-mercado-class.js"></script>
-<script src="js/components/analise-de-mercado/analise-de-mercado-ctrl.js"></script>
-<script src="js/components/analise-de-mercado/analise-de-mercado-service.js"></script>
-
-<script src="js/components/avaliaca-do-plano/avaliacao-do-plano-class.js"></script>
-<script src="js/components/avaliaca-do-plano/avaliacao-do-plano-ctrl.js"></script>
-<script src="js/components/avaliaca-do-plano/avaliacao-do-plano-servico.js"></script>
-
-<script src="js/components/avaliacao-estrategica/avaliacao-estrategica-class.js"></script>
-<script src="js/components/avaliacao-estrategica/avaliacao-estrategica-ctrl.js"></script>
-<script src="js/components/avaliacao-estrategica/avaliacao-estrategica-service.js"></script>
-
-<script src="js/components/contrucao-de-cenarios/construcao-de-cenarios-class.js"></script>
-<script src="js/components/contrucao-de-cenarios/construcao-de-cenarios-ctrl.js"></script>
-<script src="js/components/contrucao-de-cenarios/construcao-de-cenarios-service.js"></script>
-
-<script src="js/components/plano-de-marketing/plano-de-marketing-class.js"></script>
-<script src="js/components/plano-de-marketing/plano-de-marketing-ctrl.js"></script>
-<script src="js/components/plano-de-marketing/plano-de-marketing-service.js"></script>
-
-<script src="js/components/plano-financeiro/plano-financeiro-class.js"></script>
-<script src="js/components/plano-financeiro/plano-financeiro-ctrl.js"></script>
-<script src="js/components/plano-financeiro/plano-financeiro-service.js"></script>
-
-<script src="js/components/plano-operacional/plano-operacional-class.js"></script>
-<script src="js/components/plano-operacional/plano-operacional-ctrl.js"></script>
-<script src="js/components/plano-operacional/plano-operacional-service.js"></script>
-
-<script src="js/components/roteiro-de-informacao/roteiro-de-informacao-class.js"></script>
-<script src="js/components/roteiro-de-informacao/roteiro-de-informacao-ctrl.js"></script>
-<script src="js/components/roteiro-de-informacao/roteiro-de-informacao-servico.js"></script>
-
-<script src="js/components/sumario-executivo/sumario-executivo-class.js"></script>
-<script src="js/components/sumario-executivo/sumario-executivo-ctrl.js"></script>
-<script src="js/components/sumario-executivo/sumario-executivo-servico.js"></script>
-
-<script src="js/components/tela-de-login/tela-de-login-class.js"></script>
-<script src="js/components/tela-de-login/tela-de-login-ctrl.js"></script>
-<script src="js/components/tela-de-login/tela-de-login-service.js"></script>
-
-<script src="js/components/plano-de-negocio/plano-de-negocio-class.js"></script>
-<script src="js/components/plano-de-negocio/plano-de-negocio-ctrl.js"></script>
-<script src="js/components/plano-de-negocio/plano-de-negocio-service.js"></script>
-
-
-<script src="js/components/projeto-sobre/projeto-sobre-ctrl.js"></script>
-
-<script src="js/components/gerador-relatorio/gerador-relatorio-controller.js"></script>
-<script src="js/components/gerador-relatorio/gerador-relatorio-service.js"></script>
-
-
-<script src="js/servicos/utilitarios.js"></script>
-
-
-<script src="js/controllers.js"></script>
-<script src="js/services.js"></script>
-<script src="js/app.js"></script>
+        <!-- cordova script (this will be a 404 during development) -->
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script src="lib/ion-floating-menu/dist/ion-floating-menu.js" type="text/javascript"></script>
 
 
 
-</head>
-<body ng-app="starter">
-  <!--
-  The nav bar that will be updated as we navigate between views.
--->
-<ion-nav-bar class="bar-stable">
-  <ion-nav-back-button>
-  </ion-nav-back-button>
-</ion-nav-bar>
-<!--
-The views will be rendered in the <ion-nav-view> directive below
-Templates are in the /templates folder (but you could also
-have templates inline in this html file if you'd like).
--->
-<ion-nav-view></ion-nav-view>
+        <!-- your app's js -->
+        <script src="js/components/analise-de-mercado/analise-de-mercado-class.js"></script>
+        <script src="js/components/analise-de-mercado/analise-de-mercado-ctrl.js"></script>
+        <script src="js/components/analise-de-mercado/analise-de-mercado-service.js"></script>
+
+        <script src="js/components/avaliaca-do-plano/avaliacao-do-plano-class.js"></script>
+        <script src="js/components/avaliaca-do-plano/avaliacao-do-plano-ctrl.js"></script>
+        <script src="js/components/avaliaca-do-plano/avaliacao-do-plano-servico.js"></script>
+
+        <script src="js/components/avaliacao-estrategica/avaliacao-estrategica-class.js"></script>
+        <script src="js/components/avaliacao-estrategica/avaliacao-estrategica-ctrl.js"></script>
+        <script src="js/components/avaliacao-estrategica/avaliacao-estrategica-service.js"></script>
+
+        <script src="js/components/contrucao-de-cenarios/construcao-de-cenarios-class.js"></script>
+        <script src="js/components/contrucao-de-cenarios/construcao-de-cenarios-ctrl.js"></script>
+        <script src="js/components/contrucao-de-cenarios/construcao-de-cenarios-service.js"></script>
+
+        <script src="js/components/plano-de-marketing/plano-de-marketing-class.js"></script>
+        <script src="js/components/plano-de-marketing/plano-de-marketing-ctrl.js"></script>
+        <script src="js/components/plano-de-marketing/plano-de-marketing-service.js"></script>
+
+        <script src="js/components/plano-financeiro/plano-financeiro-class.js"></script>
+        <script src="js/components/plano-financeiro/plano-financeiro-ctrl.js"></script>
+        <script src="js/components/plano-financeiro/plano-financeiro-service.js"></script>
+
+        <script src="js/components/plano-operacional/plano-operacional-class.js"></script>
+        <script src="js/components/plano-operacional/plano-operacional-ctrl.js"></script>
+        <script src="js/components/plano-operacional/plano-operacional-service.js"></script>
+
+        <script src="js/components/roteiro-de-informacao/roteiro-de-informacao-class.js"></script>
+        <script src="js/components/roteiro-de-informacao/roteiro-de-informacao-ctrl.js"></script>
+        <script src="js/components/roteiro-de-informacao/roteiro-de-informacao-servico.js"></script>
+
+        <script src="js/components/sumario-executivo/sumario-executivo-class.js"></script>
+        <script src="js/components/sumario-executivo/sumario-executivo-ctrl.js"></script>
+        <script src="js/components/sumario-executivo/sumario-executivo-servico.js"></script>
+
+        <script src="js/components/tela-de-login/tela-de-login-class.js"></script>
+        <script src="js/components/tela-de-login/tela-de-login-ctrl.js"></script>
+        <script src="js/components/tela-de-login/tela-de-login-service.js"></script>
+
+        <script src="js/components/plano-de-negocio/plano-de-negocio-class.js"></script>
+        <script src="js/components/plano-de-negocio/plano-de-negocio-ctrl.js"></script>
+        <script src="js/components/plano-de-negocio/plano-de-negocio-service.js"></script>
+
+
+        <script src="js/components/projeto-sobre/projeto-sobre-ctrl.js"></script>
+
+        <script src="js/components/gerador-relatorio/gerador-relatorio-controller.js"></script>
+        <script src="js/components/gerador-relatorio/gerador-relatorio-service.js"></script>
+
+
+        <script src="js/servicos/utilitarios.js"></script>
+
+
+        <script src="js/controllers.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/app.js"></script>
+
+
+
+    </head>
+    <body ng-app="starter">
+        <!--
+        The nav bar that will be updated as we navigate between views.
+        -->
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <!--
+    The views will be rendered in the <ion-nav-view> directive below
+    Templates are in the /templates folder (but you could also
+    have templates inline in this html file if you'd like).
+    -->
+    <ion-nav-view></ion-nav-view>
 </body>
 </html>

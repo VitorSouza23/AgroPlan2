@@ -1,199 +1,199 @@
 <ion-view view-title="Plano Financeiro">
-  <ion-nav-buttons side="right">
-    <button class="button button-icon ion-help" ng-click="showConfirm()"></button>
-    <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
-  </ion-nav-buttons>
-  <ion-content ng-init="init()">
-    <ion-refresher
-    pulling-text="Puxe para atualizar..."
-    on-refresh="atualizarPagina()">
-  </ion-refresher>
-    <!--Principais Produtos-->
-    <div class="list">
-      <div class="list">
-          <div class="item item-divider item-assertive">
-            Principais Itens
-          </div>
-          <div class="button-bar">
-            <div class="col col-60">
-              <button  class="button button-block button-outline icon-left ion-plus-circled button-assertive" ng-click="openEquipamentos()">Equipamento</button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-navicon button-assertive" ng-click="mostrarReordemEquipamento()"></button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosEquipamentos()"></button>
-            </div>
-          </div>
-          <ion-list show-reorder="reordenarEquipamento">
-            <ion-item ng-repeat="equipamento in planoFinanceiro.estoqueInicial.equipamentos">
-              <div class="row">
-                <div class="col col-90">
-                  {{equipamento.descricao}}
-                  <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarEquipamento(equipamento)"></ion-option-button>
-                  <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverEquipamento(equimapmento)"></ion-option-button>
-                  <ion-reorder-button class="ion-navicon" on-reorder="moverEquipamento(equipamento, $fromIndex, $toIndex)"></ion-reorder-button>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-help" ng-click="showConfirm()"></button>
+        <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
+    </ion-nav-buttons>
+    <ion-content ng-init="init()">
+        <ion-refresher
+            pulling-text="Puxe para atualizar..."
+            on-refresh="atualizarPagina()">
+        </ion-refresher>
+        <!--Principais Produtos-->
+        <div class="list">
+            <div class="list">
+                <div class="item item-divider item-assertive">
+                    Principais Itens
                 </div>
-              </div>
-            </ion-item>
-          </ion-list>
-
-          <div class="button-bar">
-            <div class="col col-60">
-              <button  class="button button-block button-outline icon-left ion-plus-circled button-assertive" ng-click="openMaquinas()">Maquina</button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-navicon button-assertive" ng-click="mostrarReordemMaquina()"></button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosMaquinas()"></button>
-            </div>
-          </div>
-          <ion-list show-reorder="reordenarMaquina">
-            <ion-item ng-repeat="maquina in planoFinanceiro.estoqueInicial.maquinas">
-              <div class="row">
-                <div class="col col-90">
-                  {{maquina.descricao}}
-                  <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarMaquina(maquina)"></ion-option-button>
-                  <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverMaquina(maquina)"></ion-option-button>
-                  <ion-reorder-button class="ion-navicon" on-reorder="moverMaquina(maquina, $fromIndex, $toIndex)"></ion-reorder-button>
+                <div class="button-bar">
+                    <div class="col col-60">
+                        <button  class="button button-block button-outline icon-left ion-plus-circled button-assertive" ng-click="openEquipamentos()">Equipamento</button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-navicon button-assertive" ng-click="mostrarReordemEquipamento()"></button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosEquipamentos()"></button>
+                    </div>
                 </div>
-              </div>
-            </ion-item>
-          </ion-list>
+                <ion-list show-reorder="reordenarEquipamento">
+                    <ion-item ng-repeat="equipamento in planoFinanceiro.estoqueInicial.equipamentos">
+                        <div class="row">
+                            <div class="col col-90">
+                                {{equipamento.descricao}}
+                                <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarEquipamento(equipamento)"></ion-option-button>
+                                <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverEquipamento(equimapmento)"></ion-option-button>
+                                <ion-reorder-button class="ion-navicon" on-reorder="moverEquipamento(equipamento, $fromIndex, $toIndex)"></ion-reorder-button>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
 
-          <div class="button-bar">
-            <div class="col col-60">
-              <button  class="button button-full button-outline icon-left ion-plus-circled button-assertive" ng-click="openMoveis()">Móvel</button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-navicon button-assertive" ng-click="mostrarReordemMovel()"></button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosMoveis()"></button>
-            </div>
-          </div>
-          <ion-list show-reorder="reordenarMovel">
-            <ion-item ng-repeat="movel in planoFinanceiro.estoqueInicial.moveis">
-              <div class="row">
-                <div class="col col-90">
-                  {{movel.descricao}}
-                  <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarMovel(movel)"></ion-option-button>
-                  <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverMovel(movel)"></ion-option-button>
-                  <ion-reorder-button class="ion-navicon" on-reorder="moverMovel(movel, $fromIndex, $toIndex)"></ion-reorder-button>
+                <div class="button-bar">
+                    <div class="col col-60">
+                        <button  class="button button-block button-outline icon-left ion-plus-circled button-assertive" ng-click="openMaquinas()">Maquina</button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-navicon button-assertive" ng-click="mostrarReordemMaquina()"></button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosMaquinas()"></button>
+                    </div>
                 </div>
-              </div>
-            </ion-item>
-          </ion-list>
+                <ion-list show-reorder="reordenarMaquina">
+                    <ion-item ng-repeat="maquina in planoFinanceiro.estoqueInicial.maquinas">
+                        <div class="row">
+                            <div class="col col-90">
+                                {{maquina.descricao}}
+                                <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarMaquina(maquina)"></ion-option-button>
+                                <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverMaquina(maquina)"></ion-option-button>
+                                <ion-reorder-button class="ion-navicon" on-reorder="moverMaquina(maquina, $fromIndex, $toIndex)"></ion-reorder-button>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
 
-          <div class="button-bar">
-            <div class="col col-60">
-              <button  class="button button-block button-outline icon-left ion-plus-circled button-assertive" ng-click="openUtensilios()">Utensílio</button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-navicon button-assertive" ng-click="mostrarReordemUtensilio()"></button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosUtensilios()"></button>
-            </div>
-          </div>
-          <ion-list show-reorder="reordenarUtensilio">
-            <ion-item ng-repeat="utensilio in planoFinanceiro.estoqueInicial.utensilios">
-              <div class="row">
-                <div class="col col-90">
-                  {{utensilio.descricao}}
-                  <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarUtensilio(utensilio)"></ion-option-button>
-                  <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverUtensilio(utensilio)"></ion-option-button>
-                  <ion-reorder-button class="ion-navicon" on-reorder="moverUtensilio(utensilio, $fromIndex, $toIndex)"></ion-reorder-button>
+                <div class="button-bar">
+                    <div class="col col-60">
+                        <button  class="button button-full button-outline icon-left ion-plus-circled button-assertive" ng-click="openMoveis()">Móvel</button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-navicon button-assertive" ng-click="mostrarReordemMovel()"></button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosMoveis()"></button>
+                    </div>
                 </div>
-              </div>
-            </ion-item>
-          </ion-list>
+                <ion-list show-reorder="reordenarMovel">
+                    <ion-item ng-repeat="movel in planoFinanceiro.estoqueInicial.moveis">
+                        <div class="row">
+                            <div class="col col-90">
+                                {{movel.descricao}}
+                                <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarMovel(movel)"></ion-option-button>
+                                <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverMovel(movel)"></ion-option-button>
+                                <ion-reorder-button class="ion-navicon" on-reorder="moverMovel(movel, $fromIndex, $toIndex)"></ion-reorder-button>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
 
-          <div class="button-bar">
-            <div class="col col-60">
-              <button  class="button button-block button-outline icon-left ion-plus-circled button-assertive" ng-click="openVeiculos()">Veículo</button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-navicon button-assertive" ng-click="mostrarReordemVeiculo()"></button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosVeiculos()"></button>
-            </div>
-          </div>
-          <ion-list show-reorder="reordenarVeiculo">
-            <ion-item ng-repeat="veiculo in planoFinanceiro.estoqueInicial.veiculos">
-              <div class="row">
-                <div class="col col-90">
-                  {{veiculo.descricao}}
-                  <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarVeiculo(veiculo)"></ion-option-button>
-                  <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverVeiculo(veiculo)"></ion-option-button>
-                  <ion-reorder-button class="ion-navicon" on-reorder="moverVeiculo(veiculo, $fromIndex, $toIndex)"></ion-reorder-button>
+                <div class="button-bar">
+                    <div class="col col-60">
+                        <button  class="button button-block button-outline icon-left ion-plus-circled button-assertive" ng-click="openUtensilios()">Utensílio</button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-navicon button-assertive" ng-click="mostrarReordemUtensilio()"></button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosUtensilios()"></button>
+                    </div>
                 </div>
-              </div>
-            </ion-item>
-          </ion-list>
+                <ion-list show-reorder="reordenarUtensilio">
+                    <ion-item ng-repeat="utensilio in planoFinanceiro.estoqueInicial.utensilios">
+                        <div class="row">
+                            <div class="col col-90">
+                                {{utensilio.descricao}}
+                                <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarUtensilio(utensilio)"></ion-option-button>
+                                <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverUtensilio(utensilio)"></ion-option-button>
+                                <ion-reorder-button class="ion-navicon" on-reorder="moverUtensilio(utensilio, $fromIndex, $toIndex)"></ion-reorder-button>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
 
-          <div class="item item-divider item-balanced">
-            Caixa Mínimo
-          </div>
-          <div class="button-bar">
-            <div class="col col-60">
-              <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openCompras()">Compras</button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordemCompra()"></button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosCompras()"></button>
-            </div>
-          </div>
-          <ion-list show-reorder="reordenarCompra">
-            <ion-item ng-repeat="compra in planoFinanceiro.compras">
-              <div class="row">
-                <div class="col col-90">
-                  Prazo de {{compra.dias}} dias
-                  <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarCompra(compra)"></ion-option-button>
-                  <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverCompra(compra)"></ion-option-button>
-                  <ion-reorder-button class="ion-navicon" on-reorder="moverCompra(compra, $fromIndex, $toIndex)"></ion-reorder-button>
+                <div class="button-bar">
+                    <div class="col col-60">
+                        <button  class="button button-block button-outline icon-left ion-plus-circled button-assertive" ng-click="openVeiculos()">Veículo</button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-navicon button-assertive" ng-click="mostrarReordemVeiculo()"></button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosVeiculos()"></button>
+                    </div>
                 </div>
-              </div>
-            </ion-item>
-          </ion-list>
+                <ion-list show-reorder="reordenarVeiculo">
+                    <ion-item ng-repeat="veiculo in planoFinanceiro.estoqueInicial.veiculos">
+                        <div class="row">
+                            <div class="col col-90">
+                                {{veiculo.descricao}}
+                                <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarVeiculo(veiculo)"></ion-option-button>
+                                <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverVeiculo(veiculo)"></ion-option-button>
+                                <ion-reorder-button class="ion-navicon" on-reorder="moverVeiculo(veiculo, $fromIndex, $toIndex)"></ion-reorder-button>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
 
-          <div class="button-bar">
-            <div class="col col-60">
-              <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openVendas()">Vendas</button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordemVenda()"></button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosVendas()"></button>
-            </div>
-          </div>
-          <ion-list show-reorder="reordenarVenda">
-            <ion-item ng-repeat="venda in planoFinanceiro.vendas">
-              <div class="row">
-                <div class="col col-90">
-                  Prazo de {{venda.dias}} dias
-                  <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarVenda(venda)"></ion-option-button>
-                  <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverVenda(venda)"></ion-option-button>
-                  <ion-reorder-button class="ion-navicon" on-reorder="moverVenda(venda, $fromIndex, $toIndex)"></ion-reorder-button>
+                <div class="item item-divider item-balanced">
+                    Caixa Mínimo
                 </div>
-              </div>
-            </ion-item>
-          </ion-list>
+                <div class="button-bar">
+                    <div class="col col-60">
+                        <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openCompras()">Compras</button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordemCompra()"></button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosCompras()"></button>
+                    </div>
+                </div>
+                <ion-list show-reorder="reordenarCompra">
+                    <ion-item ng-repeat="compra in planoFinanceiro.compras">
+                        <div class="row">
+                            <div class="col col-90">
+                                Prazo de {{compra.dias}} dias
+                                <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarCompra(compra)"></ion-option-button>
+                                <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverCompra(compra)"></ion-option-button>
+                                <ion-reorder-button class="ion-navicon" on-reorder="moverCompra(compra, $fromIndex, $toIndex)"></ion-reorder-button>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+
+                <div class="button-bar">
+                    <div class="col col-60">
+                        <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openVendas()">Vendas</button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordemVenda()"></button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosVendas()"></button>
+                    </div>
+                </div>
+                <ion-list show-reorder="reordenarVenda">
+                    <ion-item ng-repeat="venda in planoFinanceiro.vendas">
+                        <div class="row">
+                            <div class="col col-90">
+                                Prazo de {{venda.dias}} dias
+                                <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarVenda(venda)"></ion-option-button>
+                                <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverVenda(venda)"></ion-option-button>
+                                <ion-reorder-button class="ion-navicon" on-reorder="moverVenda(venda, $fromIndex, $toIndex)"></ion-reorder-button>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
 
 
-          <!--Botões Confirmar e Cancelar-->
-          <div class="row">
-            <div class="col col-100">
-              <button class="button button-block button-positive" ng-click="salvar()">
-                Confirmar
-              </button>
-            </div>
+                <!--Botões Confirmar e Cancelar-->
+                <div class="row">
+                    <div class="col col-100">
+                        <button class="button button-block button-positive" ng-click="salvar()">
+                            Confirmar
+                        </button>
+                    </div>
 
-          </div>
-        </ion-content>
-      </ion-view>
+                </div>
+                </ion-content>
+                </ion-view>

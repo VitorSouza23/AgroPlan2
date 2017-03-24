@@ -1,92 +1,92 @@
 <ion-view view-title="Plano de Marketing">
-  <ion-nav-buttons side="right">
-    <button class="button button-icon ion-help" ng-click="showConfirm()"></button>
-    <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
-  </ion-nav-buttons>
-  <ion-content ng-init="init()">
-    <ion-refresher
-    pulling-text="Puxe para atualizar..."
-    on-refresh="atualizarPagina()">
-  </ion-refresher>
-    <!--Principais Produtos-->
-    <div class="list">
-      <div class="list">
-          <div class="item item-divider">
-            Principais Produtos
-          </div>
-          <div class="button-bar">
-            <div class="col col-60">
-              <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openProdutos()">Produto</button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordem()"></button>
-            </div>
-            <div class="col col-5">
-              <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosProdutos()"></button>
-            </div>
-          </div>
-          <ion-list show-reorder="reordenar">
-            <ion-item ng-repeat="produto in planoDeMarketing.produtos">
-              <div class="row">
-                <div class="col col-90">
-                  {{produto.nome}}
-                  <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarProduto(produto)"></ion-option-button>
-                  <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverProduto(produto)"></ion-option-button>
-                  <ion-reorder-button class="ion-navicon" on-reorder="moverProduto(produto, $fromIndex, $toIndex)"></ion-reorder-button>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-help" ng-click="showConfirm()"></button>
+        <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
+    </ion-nav-buttons>
+    <ion-content ng-init="init()">
+        <ion-refresher
+            pulling-text="Puxe para atualizar..."
+            on-refresh="atualizarPagina()">
+        </ion-refresher>
+        <!--Principais Produtos-->
+        <div class="list">
+            <div class="list">
+                <div class="item item-divider">
+                    Principais Produtos
                 </div>
-              </div>
-            </ion-item>
-          </ion-list>
+                <div class="button-bar">
+                    <div class="col col-60">
+                        <button  class="button button-block button-outline icon-left ion-plus-circled button-balanced" ng-click="openProdutos()">Produto</button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-navicon button-balanced" ng-click="mostrarReordem()"></button>
+                    </div>
+                    <div class="col col-5">
+                        <button  class="button button-block button-outline icon-center ion-android-archive button-stable" ng-click="recuperarDadosProdutos()"></button>
+                    </div>
+                </div>
+                <ion-list show-reorder="reordenar">
+                    <ion-item ng-repeat="produto in planoDeMarketing.produtos">
+                        <div class="row">
+                            <div class="col col-90">
+                                {{produto.nome}}
+                                <ion-option-button class="button-positive ion-edit" ng-click="botaoEditarProduto(produto)"></ion-option-button>
+                                <ion-option-button class="ion-minus-circled button-assertive" ng-click="botaoRemoverProduto(produto)"></ion-option-button>
+                                <ion-reorder-button class="ion-navicon" on-reorder="moverProduto(produto, $fromIndex, $toIndex)"></ion-reorder-button>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
 
-          <!--Estudo de Estratégias-->
-          <div class="item item-divider">
-            Estratégias e Estruturas
-          </div>
-          <label class="item item-input item-floating-label" href="#">
-            <span class="input-label">Estratégias Promocionais</span>
-            <input type="text" placeholder="Estratégias Promocionais" ng-model="planoDeMarketing.estrategiasPromocionais">
-          </label>
-          <label class="item item-input item-floating-label" href="#">
-            <span class="input-label">Estrutura de Comercialização</span>
-            <input type="text" placeholder="Estrutura de Comercialização" ng-model="planoDeMarketing.estruturaDeComercializacao">
-          </label>
+                <!--Estudo de Estratégias-->
+                <div class="item item-divider">
+                    Estratégias e Estruturas
+                </div>
+                <label class="item item-input item-floating-label" href="#">
+                    <span class="input-label">Estratégias Promocionais</span>
+                    <input type="text" placeholder="Estratégias Promocionais" ng-model="planoDeMarketing.estrategiasPromocionais">
+                </label>
+                <label class="item item-input item-floating-label" href="#">
+                    <span class="input-label">Estrutura de Comercialização</span>
+                    <input type="text" placeholder="Estrutura de Comercialização" ng-model="planoDeMarketing.estruturaDeComercializacao">
+                </label>
 
-          <div class="item item-divider">
-            Estudo da Localização
-          </div>
-          <label class="item item-input item-floating-label" href="#">
-            <span class="input-label">Endereço</span>
-            <input type="text" placeholder="Endereço" ng-model="planoDeMarketing.localizacaoDoNegocio.endereco">
-          </label>
-          <label class="item item-input item-floating-label" href="#">
-            <span class="input-label">Bairro</span>
-            <input type="text" placeholder="Bairro" ng-model="planoDeMarketing.localizacaoDoNegocio.bairro">
-          </label>
-          <label class="item item-input item-floating-label" href="#">
-            <span class="input-label">Cidade</span>
-            <input type="text" placeholder="Cidade" ng-model="planoDeMarketing.localizacaoDoNegocio.cidade">
-          </label>
-          <label class="item item-input item-floating-label" href="#">
-            <span class="input-label">Estado</span>
-            <input type="text" placeholder="Estado" ng-model="planoDeMarketing.localizacaoDoNegocio.estado">
-          </label>
-          <label class="item item-input item-floating-label" href="#">
-            <span class="input-label">Telefone</span>
-            <input type="text" placeholder="Telefone" ng-model="planoDeMarketing.localizacaoDoNegocio.telefone">
-          </label>
-          <label class="item item-input item-floating-label" href="#">
-            <span class="input-label">Considerações</span>
-            <input type="text" placeholder="Considerações" ng-model="planoDeMarketing.localizacaoDoNegocio.consideracoese">
-          </label>
+                <div class="item item-divider">
+                    Estudo da Localização
+                </div>
+                <label class="item item-input item-floating-label" href="#">
+                    <span class="input-label">Endereço</span>
+                    <input type="text" placeholder="Endereço" ng-model="planoDeMarketing.localizacaoDoNegocio.endereco">
+                </label>
+                <label class="item item-input item-floating-label" href="#">
+                    <span class="input-label">Bairro</span>
+                    <input type="text" placeholder="Bairro" ng-model="planoDeMarketing.localizacaoDoNegocio.bairro">
+                </label>
+                <label class="item item-input item-floating-label" href="#">
+                    <span class="input-label">Cidade</span>
+                    <input type="text" placeholder="Cidade" ng-model="planoDeMarketing.localizacaoDoNegocio.cidade">
+                </label>
+                <label class="item item-input item-floating-label" href="#">
+                    <span class="input-label">Estado</span>
+                    <input type="text" placeholder="Estado" ng-model="planoDeMarketing.localizacaoDoNegocio.estado">
+                </label>
+                <label class="item item-input item-floating-label" href="#">
+                    <span class="input-label">Telefone</span>
+                    <input type="text" placeholder="Telefone" ng-model="planoDeMarketing.localizacaoDoNegocio.telefone">
+                </label>
+                <label class="item item-input item-floating-label" href="#">
+                    <span class="input-label">Considerações</span>
+                    <input type="text" placeholder="Considerações" ng-model="planoDeMarketing.localizacaoDoNegocio.consideracoese">
+                </label>
 
-          <!--Botões Confirmar e Cancelar-->
-          <div class="row">
-            <div class="col col-100">
-              <button class="button button-block button-positive" ng-click="salvar()">
-                Confirmar
-              </button>
-            </div>
+                <!--Botões Confirmar e Cancelar-->
+                <div class="row">
+                    <div class="col col-100">
+                        <button class="button button-block button-positive" ng-click="salvar()">
+                            Confirmar
+                        </button>
+                    </div>
 
-          </div>
-        </ion-content>
-      </ion-view>
+                </div>
+                </ion-content>
+                </ion-view>

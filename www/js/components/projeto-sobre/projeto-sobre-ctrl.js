@@ -1,3 +1,5 @@
+/* global angular */
+
 angular.module('starter.controllers.sobreProjeto', ["starter.services.utilitarios"])
 
 .controller('SobreProjetoCtrl', function($scope, $ionicHistory) {

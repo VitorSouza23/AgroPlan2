@@ -1,78 +1,81 @@
+/* global angular */
+
 angular.module('starter.services.analiseDeMercado', [])
-.service('AnaliseDeMercado', function(){
-  this.editar = false;
-  this.reordenar = false;
-  this.analiseDeMercado = new AnaliseDeMercado();
+        .service('AnaliseDeMercado', function () {
+            this.editar = false;
+            this.reordenar = false;
+            this.analiseDeMercado = new AnaliseDeMercado();
 
-  this.getEditar = function(){
-    return this.editar;
-  }
+            this.getEditar = function () {
+                return this.editar;
+            };
 
-  this.setEditar = function(e){
-    this.editar = e;
-  }
+            this.setEditar = function (e) {
+                this.editar = e;
+            };
 
-  this.getReordenar = function(){
-    return this.reordenar;
-  }
+            this.getReordenar = function () {
+                return this.reordenar;
+            };
 
-  this.setReordenar = function(r){
-    this.reordenar = r;
-  }
+            this.setReordenar = function (r) {
+                this.reordenar = r;
+            };
 
-  this.getAnaliseDeMercado = function(){
-    return this.analiseDeMercado;
-  }
-  this.setAnaliseDeMercado = function(analiseDeMercado){
-    this.analiseDeMercado = analiseDeMercado;
-  }
+            this.getAnaliseDeMercado = function () {
+                return this.analiseDeMercado;
+            };
 
-  this.novaAnaliseDeMercado = function(){
-    return new AnaliseDeMercado();
-  }
-})
+            this.setAnaliseDeMercado = function (analiseDeMercado) {
+                this.analiseDeMercado = analiseDeMercado;
+            };
 
-.service('Fornecedor', function(){
-  this.fornecedor = new Fornecedor();
+            this.novaAnaliseDeMercado = function () {
+                return new AnaliseDeMercado();
+            };
+        })
 
-  this.getFornecedor = function(){
-    return this.fornecedor;
-  }
+        .service('Fornecedor', function () {
+            this.fornecedor = new Fornecedor();
 
-  this.setFornecedor = function(fornecedor){
-    this.fornecedor = fornecedor;
-  }
+            this.getFornecedor = function () {
+                return this.fornecedor;
+            };
 
-  this.novoFornecedor = function(){
-    return this.fornecedor = new Fornecedor();
-  }
-})
+            this.setFornecedor = function (fornecedor) {
+                this.fornecedor = fornecedor;
+            };
 
-.service('Concorrente', function(){
-  this.concorrente = new Concorrente();
+            this.novoFornecedor = function () {
+                return this.fornecedor = new Fornecedor();
+            };
+        })
 
-  this.getConcorrente = function(){
-    return this.concorrente;
-  }
+        .service('Concorrente', function () {
+            this.concorrente = new Concorrente();
 
-  this.setConcorrente = function(concorrente){
-    this.concorrente = concorrente;
-  }
+            this.getConcorrente = function () {
+                return this.concorrente;
+            };
 
-  this.novoConcorrente = function(){
-    return this.concorrente = new Concorrente();
-  }
-})
+            this.setConcorrente = function (concorrente) {
+                this.concorrente = concorrente;
+            };
 
-.factory('AnaliseDeMercadoID', function(){
-  var _id;
-  var idCliente;
-  var idsFornecedores = [];
-  var idsConcorrentes = [];
-  return{
-    _id : _id,
-    idCliente : idCliente,
-    idsFornecedores : idsFornecedores,
-    idsConcorrentes : idsConcorrentes
-  }
-})
+            this.novoConcorrente = function () {
+                return this.concorrente = new Concorrente();
+            };
+        })
+
+        .factory('AnaliseDeMercadoID', function () {
+            var _id;
+            var idCliente;
+            var idsFornecedores = [];
+            var idsConcorrentes = [];
+            return{
+                _id: _id,
+                idCliente: idCliente,
+                idsFornecedores: idsFornecedores,
+                idsConcorrentes: idsConcorrentes
+            };
+        });

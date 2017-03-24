@@ -1,140 +1,140 @@
 <ion-view view-title="Construção de Cenários">
-  <ion-nav-buttons side="right">
-    <button class="button button-icon ion-help" ng-click="showConfirm()"></button>
-    <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
-  </ion-nav-buttons>
-  <ion-content ng-init="init()">
-    <ion-refresher
-    pulling-text="Puxe para atualizar..."
-    on-refresh="atualizarPagina()">
-  </ion-refresher>
-    <div class="list">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-help" ng-click="showConfirm()"></button>
+        <button class="button button-icon ion-loop" ng-click="atualizarPagina()"></button>
+    </ion-nav-buttons>
+    <ion-content ng-init="init()">
+        <ion-refresher
+            pulling-text="Puxe para atualizar..."
+            on-refresh="atualizarPagina()">
+        </ion-refresher>
+        <div class="list">
 
-      <div class="item item-divider item-balanced">
-        Cenário Provável
-      </div>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Receita Total:</span>
-          <input type="text" placeholder="Receita Total" ng-model="construcaoDeCenario.provavel.receitaTotal">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Custos Variáveis Totais:</span>
-          <input type="text" placeholder="Custos Vairiáveis Totais" ng-model="construcaoDeCenario.provavel.custoVariaveisTotais">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Custo com Materiais:</span>
-          <input type="text" placeholder="Custo com Materiais" ng-model="construcaoDeCenario.provavel.custoComMateriais">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Imposto Sobre Venda:</span>
-          <input type="text" placeholder="Imposto Sobre Venda" ng-model="construcaoDeCenario.provavel.impostoSobreVenda">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Gastos com Vendas:</span>
-          <input type="text" placeholder="Gastos com Venda" ng-model="construcaoDeCenario.provavel.gastoComVenda">
-        </label>
-        <div class="item item-divider item-balanced">
-          Sub-Total
-        </div>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Margem de Contribuição:</span>
-          <input type="text" placeholder="Margem de Contribuição" ng-model="construcaoDeCenario.provavel.margemDeContribuicao">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Custo Fixo Total:</span>
-          <input type="text" placeholder="Custo Fixo Total" ng-model="construcaoDeCenario.provavel.custoFixoTotal">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Lucro/Prejuízo Operacional:</span>
-          <input type="text" placeholder="Lucro/Prejuíso Operacional" ng-model="construcaoDeCenario.provavel.lucroPrejuisoOperacional">
-        </label>
+            <div class="item item-divider item-balanced">
+                Cenário Provável
+            </div>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Receita Total:</span>
+                <input type="text" placeholder="Receita Total" ng-model="construcaoDeCenario.provavel.receitaTotal">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Custos Variáveis Totais:</span>
+                <input type="text" placeholder="Custos Vairiáveis Totais" ng-model="construcaoDeCenario.provavel.custoVariaveisTotais">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Custo com Materiais:</span>
+                <input type="text" placeholder="Custo com Materiais" ng-model="construcaoDeCenario.provavel.custoComMateriais">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Imposto Sobre Venda:</span>
+                <input type="text" placeholder="Imposto Sobre Venda" ng-model="construcaoDeCenario.provavel.impostoSobreVenda">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Gastos com Vendas:</span>
+                <input type="text" placeholder="Gastos com Venda" ng-model="construcaoDeCenario.provavel.gastoComVenda">
+            </label>
+            <div class="item item-divider item-balanced">
+                Sub-Total
+            </div>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Margem de Contribuição:</span>
+                <input type="text" placeholder="Margem de Contribuição" ng-model="construcaoDeCenario.provavel.margemDeContribuicao">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Custo Fixo Total:</span>
+                <input type="text" placeholder="Custo Fixo Total" ng-model="construcaoDeCenario.provavel.custoFixoTotal">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Lucro/Prejuízo Operacional:</span>
+                <input type="text" placeholder="Lucro/Prejuíso Operacional" ng-model="construcaoDeCenario.provavel.lucroPrejuisoOperacional">
+            </label>
 
-        <div class="item item-divider item-assertive">
-          Cenário Pessimista
-        </div>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Receita Total:</span>
-          <input type="text" placeholder="Receita Total" ng-model="construcaoDeCenario.pessimsita.receitaTotal">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Custos Variáveis Totais:</span>
-          <input type="text" placeholder="Custo Variáveis Totoais" ng-model="construcaoDeCenario.pessimsita.custoVariaveisTotais">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Custo com Materiais:</span>
-          <input type="text" placeholder="Custo com Materiais" ng-model="construcaoDeCenario.pessimsita.custoComMateriais">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Imposto Sobre Venda:</span>
-          <input type="text" placeholder="Imposto Sobre Venda" ng-model="construcaoDeCenario.pessimista.impostoSobreVenda">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Gastos com Vendas:</span>
-          <input type="text" placeholder="Gastos com Vendas" ng-model="construcaoDeCenario.pessimsita.gastoComVenda">
-        </label>
-        <div class="item item-divider item-assertive">
-          Sub-Total
-        </div>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Margem de Contribuição:</span>
-          <input type="text" placeholder="Margem de Contribuição" ng-model="construcaoDeCenario.pessimsita.margemDeContribuicao">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Custo Fixo Total:</span>
-          <input type="text" placeholder="Custo Fixo Total" ng-model="construcaoDeCenario.pessimsita.custoFixoTotal">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Lucro/Prejuízo Operacional:</span>
-          <input type="text" placeholder="Lucro/Prejuíso Operacional" ng-model="construcaoDeCenario.pessimsita.lucroPrejuisoOperacional">
-        </label>
+            <div class="item item-divider item-assertive">
+                Cenário Pessimista
+            </div>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Receita Total:</span>
+                <input type="text" placeholder="Receita Total" ng-model="construcaoDeCenario.pessimsita.receitaTotal">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Custos Variáveis Totais:</span>
+                <input type="text" placeholder="Custo Variáveis Totoais" ng-model="construcaoDeCenario.pessimsita.custoVariaveisTotais">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Custo com Materiais:</span>
+                <input type="text" placeholder="Custo com Materiais" ng-model="construcaoDeCenario.pessimsita.custoComMateriais">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Imposto Sobre Venda:</span>
+                <input type="text" placeholder="Imposto Sobre Venda" ng-model="construcaoDeCenario.pessimista.impostoSobreVenda">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Gastos com Vendas:</span>
+                <input type="text" placeholder="Gastos com Vendas" ng-model="construcaoDeCenario.pessimsita.gastoComVenda">
+            </label>
+            <div class="item item-divider item-assertive">
+                Sub-Total
+            </div>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Margem de Contribuição:</span>
+                <input type="text" placeholder="Margem de Contribuição" ng-model="construcaoDeCenario.pessimsita.margemDeContribuicao">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Custo Fixo Total:</span>
+                <input type="text" placeholder="Custo Fixo Total" ng-model="construcaoDeCenario.pessimsita.custoFixoTotal">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Lucro/Prejuízo Operacional:</span>
+                <input type="text" placeholder="Lucro/Prejuíso Operacional" ng-model="construcaoDeCenario.pessimsita.lucroPrejuisoOperacional">
+            </label>
 
-        <div class="item item-divider item-energized">
-          Cenário Otimista
-        </div>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Receita Total:</span>
-          <input type="text" placeholder="Receita Total" ng-model="construcaoDeCenario.otimista.receitaTotal">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Custos Variáveis Totais:</span>
-          <input type="text" placeholder="Custos Variáveis Totais" ng-model="construcaoDeCenario.otimista.custoVariaveisTotais">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Custo com Materiais:</span>
-          <input type="text" placeholder="Custo com Materiais" ng-model="construcaoDeCenario.otimista.custoComMateriais">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Imposto Sobre Venda:</span>
-          <input type="text" placeholder="Imposto Sobre Venda" ng-model="construcaoDeCenario.otimista.impostoSobreVenda">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Gastos com Vendas:</span>
-          <input type="text" placeholder="Gastos com Vendas" ng-model="construcaoDeCenario.otimista.gastoComVenda">
-        </label>
-        <div class="item item-divider item-energized">
-          Sub-Total
-        </div>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Margem de Contribuição:</span>
-          <input type="text" placeholder="Margem de Contribuição" ng-model="construcaoDeCenario.otimista.margemDeContribuicao">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Custo Fixo Total:</span>
-          <input type="text" placeholder="Custo Fixo Total" ng-model="construcaoDeCenario.otimista.custoFixoTotal">
-        </label>
-        <label class="item item-input item-floating-label" href="#">
-          <span class="input-label">Lucro/Prejuízo Operacional:</span>
-          <input type="text" placeholder="Lucro/Prejuíso Operacional" ng-model="construcaoDeCenario.otimista.lucroPrejuisoOperacional">
-        </label>
+            <div class="item item-divider item-energized">
+                Cenário Otimista
+            </div>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Receita Total:</span>
+                <input type="text" placeholder="Receita Total" ng-model="construcaoDeCenario.otimista.receitaTotal">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Custos Variáveis Totais:</span>
+                <input type="text" placeholder="Custos Variáveis Totais" ng-model="construcaoDeCenario.otimista.custoVariaveisTotais">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Custo com Materiais:</span>
+                <input type="text" placeholder="Custo com Materiais" ng-model="construcaoDeCenario.otimista.custoComMateriais">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Imposto Sobre Venda:</span>
+                <input type="text" placeholder="Imposto Sobre Venda" ng-model="construcaoDeCenario.otimista.impostoSobreVenda">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Gastos com Vendas:</span>
+                <input type="text" placeholder="Gastos com Vendas" ng-model="construcaoDeCenario.otimista.gastoComVenda">
+            </label>
+            <div class="item item-divider item-energized">
+                Sub-Total
+            </div>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Margem de Contribuição:</span>
+                <input type="text" placeholder="Margem de Contribuição" ng-model="construcaoDeCenario.otimista.margemDeContribuicao">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Custo Fixo Total:</span>
+                <input type="text" placeholder="Custo Fixo Total" ng-model="construcaoDeCenario.otimista.custoFixoTotal">
+            </label>
+            <label class="item item-input item-floating-label" href="#">
+                <span class="input-label">Lucro/Prejuízo Operacional:</span>
+                <input type="text" placeholder="Lucro/Prejuíso Operacional" ng-model="construcaoDeCenario.otimista.lucroPrejuisoOperacional">
+            </label>
 
-        <!--Botões Confirmar e Cancelar-->
-      <div class="row">
-        <div class="col col-100">
-          <button class="button button-block button-positive" ng-click="salvar()">
-            Confirmar
-          </button>
-        </div>
+            <!--Botões Confirmar e Cancelar-->
+            <div class="row">
+                <div class="col col-100">
+                    <button class="button button-block button-positive" ng-click="salvar()">
+                        Confirmar
+                    </button>
+                </div>
 
-      </div>
-  </ion-content>
+            </div>
+    </ion-content>
 </ion-view>

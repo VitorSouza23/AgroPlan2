@@ -1,5 +1,5 @@
-function AvaliacaoEstrategica(){
-  this._id;
+function AvaliacaoEstrategica() {
+    this._id;
     this.forca;
     this.fraquesa;
     this.oprotunidade;

@@ -1,5 +1,5 @@
-function Usuario(){
-  this.cpf;
-  this.nome;
-  this.senha;
+function Usuario() {
+    this.cpf;
+    this.nome;
+    this.senha;
 }

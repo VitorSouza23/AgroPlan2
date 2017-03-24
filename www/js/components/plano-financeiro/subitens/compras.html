@@ -1,32 +1,32 @@
 <ion-modal-view >
-  <ion-header-bar class="bar-balanced">
-    <h1 class="title">Compra</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="modalCompra.hide()">Fechar</button>
-    </div>
-  </ion-header-bar>
-  <ion-content>
-    <div class="list">
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Dias de Prazo para Pagamento</span>
-        <input type="number" placeholder="Dias de Prazo para Pagamento" ng-model="compra.dias" autofocus="true" min="0">
-      </label>
-      <label class="item item-input item-floating-label">
-        <span class="input-label">Porcentagem de Vendas com esse Praso</span>
-        <input type="number" placeholder="Porcentagem de Vendas com esse Praso" ng-model="compra.porcentagem" min="0">
-      </label>
-      <div class="row">
-        <div class="col col-60">
-          <button class="button button-block icon-rigth ion-checkmark button-positive" ng-click="addCompra()">
-            Confirmar
-          </button>
+    <ion-header-bar class="bar-balanced">
+        <h1 class="title">Compra</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="modalCompra.hide()">Fechar</button>
         </div>
-        <div class="col">
-          <button class="button button-block icon-rigth ion-trash-a button-assertive" ng-click="excluirCompraPermanentemente()">
-            Excluir
-          </button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Dias de Prazo para Pagamento</span>
+                <input type="number" placeholder="Dias de Prazo para Pagamento" ng-model="compra.dias" autofocus="true" min="0">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Porcentagem de Vendas com esse Praso</span>
+                <input type="number" placeholder="Porcentagem de Vendas com esse Praso" ng-model="compra.porcentagem" min="0">
+            </label>
+            <div class="row">
+                <div class="col col-60">
+                    <button class="button button-block icon-rigth ion-checkmark button-positive" ng-click="addCompra()">
+                        Confirmar
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="button button-block icon-rigth ion-trash-a button-assertive" ng-click="excluirCompraPermanentemente()">
+                        Excluir
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </ion-content>
+    </ion-content>
 </ion-modal-view>
