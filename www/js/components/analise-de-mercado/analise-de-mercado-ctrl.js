@@ -332,7 +332,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
             //Recuperação de dados
             var arrayPromessasFronecedores = [];
             var arrayPromessasConcorrentes = [];
-            var promessaCliente = {};
+            
 
             recuperarFornecedores = function () {
                 arrayPromessasFronecedores = [];

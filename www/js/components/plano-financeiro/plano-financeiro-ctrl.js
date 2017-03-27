@@ -58,7 +58,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
             });
 
             $scope.showConfirm = function () {
-                var confirmPopup = $ionicPopup.confirm({
+                $ionicPopup.confirm({
                     title: 'Plano Financeiro',
                     template: 'É onde o usuário irá informar o total de recursos a serem investidos para que o negócio comece a funcionar.',
                     cancelText: 'Sair'
