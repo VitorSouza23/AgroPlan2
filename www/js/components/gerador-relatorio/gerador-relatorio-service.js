@@ -2,7 +2,7 @@
 
 angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de-negocios', 'starter.services.utilitarios'])
         .factory('GeradorDeRelatorio', function ($cordovaPrinter, ServicoPlanoDeNegocio, $rootScope
-                , RecuperarPartes) {
+                , RecuperarPartes, $q) {
             return{
                 gerarRelatorio: function () {
                     console.log($cordovaPrinter);
@@ -14,7 +14,8 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
 
                     ServicoPlanoDeNegocio.remontarPlanoDeNegocio(planoDeNegocioID);
                     var planoParaRelatorio;
-                    return setTimeout(function () {
+                    var defered = $q.defer();
+                    setTimeout(function () {
                         planoParaRelatorio = $rootScope.planoDeNegocioMontado;
                         planoParaRelatorio.analiseDeMercado = RecuperarPartes.recuperarAnaliseDeMercado($rootScope.planoDeNegocioMontado.analiseDeMercado);
                         planoParaRelatorio.planoDeMarketing = RecuperarPartes.recuperarPlanoDeMarketing($rootScope.planoDeNegocioMontado.planoDeMarketing);
@@ -22,8 +23,10 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                         planoParaRelatorio.planoOperacional = RecuperarPartes.recuperarPlanoOperacional($rootScope.planoDeNegocioMontado.planoOperacional);
                         planoParaRelatorio.sumarioExecutivo = RecuperarPartes.recuperarSumarioExecutivo($rootScope.planoDeNegocioMontado.sumarioExecutivo);
                         console.log(planoParaRelatorio);
-                        return planoParaRelatorio;
+                        defered.resolve(planoParaRelatorio);
                     }, 1000);
+                    return defered.promise;
+
                 }
             };
         });

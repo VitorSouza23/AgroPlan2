@@ -36,10 +36,19 @@ function AnaliseDeMercado() {
         //fornecedor._id = null;
         this.fornecedores[pos] = fornecedor;
     };
+    
+    this.novoCliente = function (clienteAux){
+        this.cliente = new Cliente();
+        this.cliente._id = clienteAux._id;
+        this.cliente.publicoAlvo = clienteAux.publicoAlvo;
+        this.cliente.comportamentoDosClientes = clienteAux.comportamentoDosClientes;
+        this.cliente.areaDeAbrangencia = clienteAux.areaDeAbrangencia;
+        this.cliente.idUsuario = clienteAux.idUsuario;
+        this.cliente.desativado = clienteAux.desativado;
+    };
 
 
-}
-;
+};
 
 function Cliente() {
     this._id;
@@ -48,8 +57,7 @@ function Cliente() {
     this.areaDeAbrangencia;
     this.idUsuario;
     this.desativado = false;
-}
-;
+};
 
 function Concorrente() {
     this._id;
@@ -64,8 +72,7 @@ function Concorrente() {
     this.observacoes;
     this.idUsuario;
     this.desativado = false;
-}
-;
+};
 
 function Fornecedor() {
     this._id;

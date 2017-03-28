@@ -5,25 +5,40 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
 
         .controller('PlanoDeMarketingCtrl', function ($scope, PlanoDeMarketing, Produto, $ionicListDelegate,
                 $ionicHistory, $ionicPopup, BancoDeDados, $ionicLoading, PlanoDeMarketingID, Modal,
-                $rootScope, $q, $ionicPopover) {
+                $rootScope, $ionicPopover, RecuperarPartes) {
             $scope.planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
 
             ionic.on('$locationChangeStart', function () {
                 $scope.init();
             });
 
+            ionic.on('$locationChangeSuccess', function () {
+                $scope.init();
+            });
+            
             $scope.init = function () {
 
                 //$rootScope.verificarSeUsuarioEstaLogado();
                 console.log($rootScope.planoDeNegocioMontado.planoDeMarketing);
 
                 $scope.planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
-                $scope.planoDeMarketing._id = $rootScope.planoDeNegocioMontado.planoDeMarketing._id;
-                $scope.planoDeMarketingID._id = $rootScope.planoDeNegocioMontado.planoDeMarketing._id;
-                $scope.planoDeMarketing.estrategiasPromocionais = $rootScope.planoDeNegocioMontado.planoDeMarketing.estrategiasPromocionais;
-                $scope.planoDeMarketing.estruturaDeComercializacao = $rootScope.planoDeNegocioMontado.planoDeMarketing.estruturaDeComercializacao;
-                $scope.planoDeMarketing.localizacaoDoNegocio = $rootScope.planoDeNegocioMontado.planoDeMarketing.localizacaoDoNegocio;
-                recuperarSubitens();
+                var planoDeMarketingAux = RecuperarPartes.recuperarPlanoDeMarketing($rootScope.planoDeNegocioMontado.planoDeMarketing);
+                $ionicLoading.show({
+                    template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+                    duration: 1500
+                }).then(function () {
+                    setTimeout(function () {
+                        console.log(planoDeMarketingAux);
+                        $scope.planoDeMarketing._id = planoDeMarketingAux._id;
+                        $scope.planoDeMarketingID._id = planoDeMarketingAux._id;
+                        $scope.planoDeMarketing.estrategiasPromocionais = planoDeMarketingAux.estrategiasPromocionais;
+                        $scope.planoDeMarketing.estruturaDeComercializacao = planoDeMarketingAux.estruturaDeComercializacao;
+                        $scope.planoDeMarketing.localizacaoDoNegocio = planoDeMarketingAux.localizacaoDoNegocio;
+                        $scope.planoDeMarketing.produtos = planoDeMarketingAux.produtos;
+                        $scope.planoDeMarketingID.idsProdutos = planoDeMarketingAux.idsProdutos;
+                        $scope.planoDeMarketingID.idLocalizacao = planoDeMarketingAux.idLocalizacao;
+                    }, 1000);
+                });
             };
 
 
@@ -42,7 +57,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
             });
 
             $scope.showConfirm = function () {
-                var confirmPopup = $ionicPopup.confirm({
+                $ionicPopup.confirm({
                     title: 'Plano de Marketing',
                     template: 'É onde o usuário informará todos os detalhes dos itens a serem cultivados e vendidos.',
                     cancelText: 'Sair'
@@ -181,7 +196,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
             function salvarLocalizacao() {
                 caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/localizacao?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
                 objeto = $scope.planoDeMarketing.localizacaoDoNegocio;
-                if ($scope.planoDeMarketing.localizacaoDoNegocio === undefined) {
+                if ($scope.planoDeMarketing.localizacaoDoNegocio._id === undefined) {
                     $scope.bancoDeDados.salvar(caminho, objeto).then(function (response) {
                         $scope.planoDeMarketingID.idLocalizacao = response.data._id;
                         console.log(response);
@@ -207,58 +222,6 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
                         console.log($scope.planoDeMarketingID.idsProdutos);
                     });
                 });
-            };
-
-            //Recuperação de dados
-            var arrayPromessasProdutos = [];
-
-            recuperarPordutos = function () {
-                arrayPromessasProdutos = [];
-                $scope.planoDeMarketing.produtos = [];
-                $scope.planoDeMarketingID.idsProdutos = [];
-                var objeto = {};
-                $rootScope.planoDeNegocioMontado.planoDeMarketing.idsProdutos.forEach(function (dadoId) {
-                    caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/produto?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-                    objeto._id = dadoId;
-                    arrayPromessasProdutos.push(BancoDeDados.recuperarComId(caminho, objeto));
-                });
-                qAllProduto();
-            };
-
-            qAllProduto = function () {
-                $q.all(arrayPromessasProdutos).then(function (dados) {
-                    console.log(dados);
-                    dados.forEach(function (dado) {
-                        console.log(dado.data[0]);
-                        $scope.planoDeMarketing.produtos.push(dado.data[0]);
-                        $scope.planoDeMarketingID.idsProdutos.push(dado.data[0]._id);
-                    });
-                });
-            };
-
-            recuperarLocalizacao = function () {
-
-                var objeto = {};
-                caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/localizacao?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
-                objeto._id = $rootScope.planoDeNegocioMontado.planoDeMarketing.idLocalizacao;
-                BancoDeDados.recuperarComId(caminho, objeto).then(function (dados) {
-                    console.log(dados);
-                    $scope.planoDeMarketing.localizacaoDoNegocio = dados.data[0];
-                    $scope.planoDeMarketingID.idLocalizacao = dados.data[0]._id;
-                });
-
-            };
-
-            recuperarSubitens = function () {
-
-                $ionicLoading.show({
-                    template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-                    duration: 1000
-                }).then(function () {
-                    recuperarPordutos();
-                    recuperarLocalizacao();
-                });
-
             };
 
             //Custumizador de Produtos

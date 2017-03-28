@@ -651,6 +651,9 @@ angular.module('starter.services.utilitarios', [])
                 recuperarSubitens();
                 return sumarioExecutivo;
             };
+            
+            
+            
 
             return{
                 recuperarAnaliseDeMercado: recuperarAnaliseDeMercado,
