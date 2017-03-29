@@ -141,9 +141,7 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
 
             $scope.gerarRelatorio = function (planoDeNegocio) {
                 //GeradorDeRelatorio.gerarRelatorio();
-                GeradorDeRelatorio.recuperarPlano(planoDeNegocio).then(function (dados){
-                    console.log(dados);
-                })
+                GeradorDeRelatorio.gerarRelatorioPDF(planoDeNegocio);
             };
 
         });
