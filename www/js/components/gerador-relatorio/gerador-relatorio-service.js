@@ -5,7 +5,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                 , RecuperarPartes, $q) {
 
             var binaryArray = null;
-            var currentfileEntry = null;
+            var appDirectory = null;
             var gerarRelatorioPDF = function (planoDeNegocio) {
                 //recuperarPlano(planoDeNegocio).then(function (dados) {
                 //console.log(dados);
@@ -50,37 +50,42 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                     pdfMake.createPdf(dd).getBuffer(function (buffer) {
                         var utf8 = new Uint8Array(buffer); // Convert to UTF-8...                
                         binaryArray = utf8.buffer; // Convert to Binary...
-                        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+                        window.requestFileSystem(LocalFileSystem.PERSISTENT, 1, function (fileSys) {
+                            fileSys.root.getDirectory('AgroPlanPDF', {create: true, exclusive: false}, function (directory) {
+                                appDirectory = directory;
+                                console.log("App directory initialized.");
+                            }, fail);
+                        }, fail);
+                        save(binaryArray, "Test.pdf");
                     });
                 }
                 // });
             };
 
-            function fail(error) {
-                alert(error.code);
-            };
+            function save(data, savefile) {
+                var html = savefile;
+                appDirectory.getFile(html, {create: true, exclusive: false}, function (fileEntry) {
+                    fileEntry.createWriter(win, fail);
+                }, fail);
 
-            function gotFS(fileSystem) {
-                var fileName = "your-file.pdf";
-                fileSystem.root.getFile(fileName, {
-                    create: true,
-                    exclusive: false
-                }, gotFileEntry, fail);
-            }
-
-            function gotFileEntry(fileEntry) {
-                currentfileEntry = fileEntry;
-                fileEntry.createWriter(gotFileWriter, fail);
-            }
-
-            function gotFileWriter(writer) {
-                writer.onwrite = function (evt) {
-                    var downloading = false;
-                    alert("The file was written successfully");
-                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+                function win(writer) {
+                    writer.onwriteend = function (evt) {
+                        if (writer.length === 0) {
+                            writer.write(data);
+                        } else {
+                        }
+                    };
+                    writer.truncate(0);
+                    console.log("Write success");
+                    alert("Saving is successful.");
                 };
-                writer.write(binaryArray);
             }
+            
+            function fail(error) {
+                alert("Writer Error: " + error.code);
+            }
+
+
 
             var gerarRelatorio = function () {
                 console.log($cordovaPrinter);
