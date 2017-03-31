@@ -41,12 +41,10 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                     }
                 };
 
-                //pdfMake.createPdf(dd).open();
                 if (!window.cordova) {
                     pdfMake.createPdf(dd).open();
 
                 } else {
-
                     pdfMake.createPdf(dd).getBuffer(function (buffer) {
                         var utf8 = new Uint8Array(buffer); // Convert to UTF-8...                
                         binaryArray = utf8.buffer; // Convert to Binary...
@@ -72,7 +70,6 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                     writer.onwriteend = function (evt) {
                         if (writer.length === 0) {
                             writer.write(data);
-                        } else {
                         }
                     };
                     writer.truncate(0);
