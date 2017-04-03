@@ -24,7 +24,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
             $scope.init = function () {
                 console.log($rootScope.planoDeNegocioMontado.sumarioExecutivo);
                 $scope.sumarioExecutivo = SumarioExecutivo.getSumarioExecutivo();
-
+                $scope.sumarioExecutivoID = SumarioExecutivoID;
                 var sumarioExecutivoAux = RecuperarPartes.recuperarSumarioExecutivo($rootScope.planoDeNegocioMontado.sumarioExecutivo);
                 $ionicLoading.show({
                     template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
@@ -51,7 +51,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
                         
                         $scope.sumarioExecutivo.socios = sumarioExecutivoAux.socios;
                         $scope.sumarioExecutivoID.idsSocios = sumarioExecutivoAux.idSocios;
-                        
+                        console.log($scope.sumarioExecutivoID);
                     }, 1000);
 
                 });

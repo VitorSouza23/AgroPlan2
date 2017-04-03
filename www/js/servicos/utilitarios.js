@@ -370,7 +370,7 @@ angular.module('starter.services.utilitarios', [])
                 var arrayPromessasVeiculos = [];
                 var arrayPromessasVendas = [];
                 var arrayPromessasCompras = [];
-                
+
                 planoFinanceiro.estoqueInicial = {
                     equipamentos: [],
                     maquinas: [],
@@ -643,17 +643,17 @@ angular.module('starter.services.utilitarios', [])
                 };
 
                 recuperarSubitens = function () {
-                    if(sumarioExecutivo.idsSocios !== undefined){
+                    if (sumarioExecutivo.idsSocios !== undefined) {
                         recuperarSocios();
                     }
                 };
-                
+
                 recuperarSubitens();
                 return sumarioExecutivo;
             };
-            
-            
-            
+
+
+
 
             return{
                 recuperarAnaliseDeMercado: recuperarAnaliseDeMercado,

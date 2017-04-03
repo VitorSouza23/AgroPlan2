@@ -12,8 +12,8 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
             $scope.analiseDeMercadoID = AnaliseDeMercadoID;
 
             ionic.on('$locationChangeStart', function () {
-             $scope.init();
-             });
+                $scope.init();
+            });
 
             ionic.on('$locationChangeSuccess', function () {
                 $scope.init();
@@ -24,6 +24,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
                 console.log($rootScope.planoDeNegocioMontado.analiseDeMercado);
 
                 $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
+                $scope.analiseDeMercadoID = AnaliseDeMercadoID;
                 var analiseDeMercadoAux = RecuperarPartes.recuperarAnaliseDeMercado($rootScope.planoDeNegocioMontado.analiseDeMercado);
                 $ionicLoading.show({
                     template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',

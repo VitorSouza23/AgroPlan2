@@ -23,6 +23,7 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
                 console.log($rootScope.planoDeNegocioMontado.planoFinanceiro);
 
                 $scope.planoFinanceiro = PlanoFinanceiro.getPlanoFinanceiro();
+                $scope.planoFinanceiroID = PlanoFinanceiroID;
                 var planoFinanceiroAux = RecuperarPartes.recuperarPlanoFinanceiro($rootScope.planoDeNegocioMontado.planoFinanceiro);
                 $ionicLoading.show({
                     template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',

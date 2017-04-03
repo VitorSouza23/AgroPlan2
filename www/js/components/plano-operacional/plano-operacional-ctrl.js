@@ -20,6 +20,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
                 console.log($rootScope.planoDeNegocioMontado.planoOperacional);
 
                 $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
+                $scope.planoOperacionalID = PlanoOperacionalID;
                 var planoOperacionalAux = RecuperarPartes.recuperarPlanoOperacional($rootScope.planoDeNegocioMontado.planoOperacional);
                 $ionicLoading.show({
                     template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',

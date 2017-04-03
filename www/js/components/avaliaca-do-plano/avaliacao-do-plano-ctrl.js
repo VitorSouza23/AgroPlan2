@@ -3,7 +3,7 @@
 angular.module('starter.controllers.avaliacaoDoPlano', ['starter.services.avaliacaoDoPlano',
     'starter.services.utilitarios'])
         .controller('AvaliacaoDoPlanoCtrl', function ($scope, AvaliacaoDoPlano, $ionicHistory,
-                $ionicPopup, $timeout, BancoDeDados, $ionicLoading, $rootScope) {
+                $ionicPopup, BancoDeDados, $ionicLoading, $rootScope) {
             $scope.avaliacaoDoPlano = AvaliacaoDoPlano.getAvaliacaoDoPlano();
 
             ionic.on('$locationChangeStart', function () {
