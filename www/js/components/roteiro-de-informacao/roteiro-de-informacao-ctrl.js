@@ -9,18 +9,25 @@ angular.module('starter.controllers.roteiroParaColeta', ['starter.services.rotei
             });
 
             $scope.init = function () {
-
-                //$rootScope.verificarSeUsuarioEstaLogado();
                 console.log($rootScope.planoDeNegocioMontado.roteiroDeInformacao);
-
                 $scope.roteiroParaColeta = RoteiroParaColeta.getRoteiroParaColeta();
-                $scope.roteiroParaColeta._id = $rootScope.planoDeNegocioMontado.roteiroDeInformacao._id;
-                $scope.roteiroParaColeta.sumarioExecutivo = $rootScope.planoDeNegocioMontado.roteiroDeInformacao.sumarioExecutivo;
-                $scope.roteiroParaColeta.analiseDeMercado = $rootScope.planoDeNegocioMontado.roteiroDeInformacao.analiseDeMercado;
-                $scope.roteiroParaColeta.planoDeMarketing = $rootScope.planoDeNegocioMontado.roteiroDeInformacao.planoDeMarketing;
-                $scope.roteiroParaColeta.planoOperacional = $rootScope.planoDeNegocioMontado.roteiroDeInformacao.planoOperacional;
-                $scope.roteiroParaColeta.planoFinancerio = $rootScope.planoDeNegocioMontado.roteiroDeInformacao.planoFinancerio;
-
+                var roteiroDeInformacaoAux = $rootScope.planoDeNegocioMontado.roteiroDeInformacao;
+                $scope.roteiroParaColeta._id = roteiroDeInformacaoAux._id;
+                if(roteiroDeInformacaoAux.sumarioExecutivo !== undefined){
+                    $scope.roteiroParaColeta.sumarioExecutivo = roteiroDeInformacaoAux.sumarioExecutivo;
+                }
+                if(roteiroDeInformacaoAux.analiseDeMercado !== undefined){
+                    $scope.roteiroParaColeta.analiseDeMercado = roteiroDeInformacaoAux.analiseDeMercado;
+                }
+                if(roteiroDeInformacaoAux.planoDeMarketing !== undefined){
+                    $scope.roteiroParaColeta.planoDeMarketing = roteiroDeInformacaoAux.planoDeMarketing;
+                }
+                if(roteiroDeInformacaoAux.planoOperacional !== undefined){
+                    $scope.roteiroParaColeta.planoOperacional = roteiroDeInformacaoAux.planoOperacional;
+                }
+                if(roteiroDeInformacaoAux.planoFinancerio !== undefined){
+                    $scope.roteiroParaColeta.planoFinancerio = roteiroDeInformacaoAux.planoFinancerio;
+                }
             };
 
             $scope.bancoDeDados = BancoDeDados;

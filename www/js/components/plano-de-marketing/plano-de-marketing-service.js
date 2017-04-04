@@ -61,4 +61,36 @@ angular.module('starter.services.planoDeMarketing', [])
                 idLocalizacao: idLocalizacao,
                 _id: _id
             };
+        })
+        .factory('MontadorPlanoDeMarketing', function (PlanoDeMarketing, PlanoDeMarketingID) {
+            return{
+                montar: function (planoDeMarketingAux) {
+                    var planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
+                    planoDeMarketing._id = planoDeMarketingAux._id;
+                    if (planoDeMarketingAux.estrategiasPromocionais !== undefined) {
+                        planoDeMarketing.estrategiasPromocionais = planoDeMarketingAux.estrategiasPromocionais;
+                    }
+                    if (planoDeMarketingAux.estruturaDeComercializacao !== undefined) {
+                        planoDeMarketing.estruturaDeComercializacao = planoDeMarketingAux.estruturaDeComercializacao;
+                    }
+                    if (planoDeMarketingAux.localizacaoDoNegocio !== undefined) {
+                        planoDeMarketing.localizacaoDoNegocio = planoDeMarketingAux.localizacaoDoNegocio;
+                    }
+                    if (planoDeMarketingAux.produtos !== undefined) {
+                        planoDeMarketing.produtos = planoDeMarketingAux.produtos;
+                    }
+                    return planoDeMarketing;
+                },
+                montarID: function (planoDeMarketingAux) {
+                    var planoDeMarketingID = PlanoDeMarketingID;
+                    planoDeMarketingID._id = planoDeMarketingAux._id;
+                    if (planoDeMarketingAux.idsProdutos !== undefined) {
+                        planoDeMarketingID.idsProdutos = planoDeMarketingAux.idsProdutos;
+                    }
+                    if (planoDeMarketingAux.idLocalizacao !== undefined) {
+                        planoDeMarketingID.idLocalizacao = planoDeMarketingAux.idLocalizacao;
+                    }
+                    return planoDeMarketingID;
+                }
+            };
         });

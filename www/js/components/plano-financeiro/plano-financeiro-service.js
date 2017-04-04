@@ -165,4 +165,60 @@ angular.module('starter.services.planoFinanceiro', [])
                 _id: _id
             };
         })
-        ;
+        
+        .factory('MontadorPlanoFinanceiro', function (PlanoFinanceiro, PlanoFinanceiroID){
+            return {
+                montar: function(planoFinanceiroAux){
+                  var planoFinanceiro = PlanoFinanceiro.getPlanoFinanceiro();
+                  planoFinanceiro._id = planoFinanceiroAux._id;
+                  if(planoFinanceiroAux.estoqueInicial.equipamentos !== undefined){
+                      planoFinanceiro.estoqueInicial.equipamentos = planoFinanceiroAux.estoqueInicial.equipamentos;
+                  }
+                  if(planoFinanceiroAux.estoqueInicial.maquinas !== undefined){
+                      planoFinanceiro.estoqueInicial.maquinas = planoFinanceiroAux.estoqueInicial.maquinas;
+                  }
+                  if(planoFinanceiroAux.estoqueInicial.moveis !== undefined){
+                      planoFinanceiro.estoqueInicial.moveis = planoFinanceiroAux.estoqueInicial.moveis;
+                  }
+                  if(planoFinanceiroAux.estoqueInicial.utensilios !== undefined){
+                      planoFinanceiro.estoqueInicial.utensilios = planoFinanceiroAux.estoqueInicial.utensilios;
+                  }
+                  if(planoFinanceiroAux.estoqueInicial.veiculos !== undefined){
+                      planoFinanceiro.estoqueInicial.veiculos = planoFinanceiroAux.estoqueInicial.veiculos;
+                  }
+                  if(planoFinanceiroAux.vendas !== undefined){
+                      planoFinanceiro.vendas = planoFinanceiroAux.vendas;
+                  }
+                  if(planoFinanceiroAux.compras !== undefined){
+                      planoFinanceiro.compras = planoFinanceiroAux.compras;
+                  }
+                  return planoFinanceiro;
+                },
+                montarID: function (planoFinanceiroAux){
+                    var planoFinanceiroID = PlanoFinanceiroID;
+                    planoFinanceiroID._id = planoFinanceiroAux._id;
+                    if(planoFinanceiroAux.idsEquipamentos !== undefined){
+                        planoFinanceiroID.idsEquipamentos = planoFinanceiroAux.idsEquipamentos;
+                    }
+                    if(planoFinanceiroAux.idsMaquinas !== undefined){
+                        planoFinanceiroID.idsMaquinas = planoFinanceiroAux.idsMaquinas;
+                    }
+                    if(planoFinanceiroAux.idsMoveis !== undefined){
+                        planoFinanceiroID.idsMoveis = planoFinanceiroAux.idsMoveis;
+                    }
+                    if(planoFinanceiroAux.idsUtensilios !== undefined){
+                        planoFinanceiroID.idsUtensilios = planoFinanceiroAux.idsUtensilios;
+                    }
+                    if(planoFinanceiroAux.idsVeiculos !== undefined){
+                        planoFinanceiroID.idsVeiculos = planoFinanceiroAux.idsVeiculos;
+                    }
+                    if(planoFinanceiroAux.idsVendas !== undefined){
+                        planoFinanceiroID.idsVendas = planoFinanceiroAux.idsVendas;
+                    }
+                    if(planoFinanceiroAux.idsCompras !== undefined){
+                        planoFinanceiroID.idsCompras = planoFinanceiroAux.idsCompras;
+                    }
+                    return planoFinanceiroID;
+                }
+            };
+        });

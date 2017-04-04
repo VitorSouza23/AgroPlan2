@@ -65,4 +65,48 @@ angular.module('starter.services.planoOperacional', [])
                 idImagem: idImagem,
                 _id: _id
             };
+        })
+
+        .factory('MonstadorPlanoOperacional', function (PlanoOperacional, PlanoOperacionalID) {
+            return{
+                montar: function (planoOperacionalAux) {
+                    var planoOperacional = PlanoOperacional.getPlanoOperacional();
+                    planoOperacional._id = planoOperacionalAux._id;
+                    if (planoOperacionalAux.capacidadeProdutiva !== undefined) {
+                        planoOperacional.capacidadeProdutiva = planoOperacionalAux.capacidadeProdutiva;
+                    }
+                    if (planoOperacionalAux.capacidadeComercial !== undefined) {
+                        planoOperacional.capacidadeComercial = planoOperacionalAux.capacidadeComercial;
+                    }
+                    if (planoOperacionalAux.capacidadeProdutivaInicial !== undefined) {
+                        planoOperacional.capacidadeProdutivaInicial = planoOperacionalAux.capacidadeProdutivaInicial;
+                    }
+                    if (planoOperacionalAux.capacidadeComercialInicial !== undefined) {
+                        planoOperacional.capacidadeComercialInicial = planoOperacionalAux.capacidadeComercialInicial;
+                    }
+                    if (planoOperacionalAux.processosOperacionais !== undefined) {
+                        planoOperacional.processosOperacionais = planoOperacionalAux.processosOperacionais;
+                    }
+                    if (planoOperacionalAux.layout !== undefined) {
+                        planoOperacional.layout = planoOperacionalAux.layout;
+                    }
+                    if (planoOperacionalAux.cargos !== undefined) {
+                        planoOperacional.cargos = planoOperacionalAux.cargos;
+                    }
+
+                    return planoOperacional;
+                },
+                montarID: function (planoOperacionalAux) {
+                    var planoOperacionalID = PlanoOperacionalID;
+                    planoOperacionalID._id = planoOperacionalAux._id;
+                    if (planoOperacionalAux.idImagem !== undefined) {
+                        planoOperacionalID.idImagem = planoOperacionalAux.idImagem;
+                    }
+                    if (planoOperacionalAux.idsCargos !== undefined) {
+                        planoOperacionalID.idsCargos = planoOperacionalAux.idsCargos;
+                    }
+
+                    return planoOperacionalID;
+                }
+            };
         });

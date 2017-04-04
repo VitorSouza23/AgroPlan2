@@ -5,7 +5,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
 
         .controller('SumarioExecutivoCtrl', function ($scope, SumarioExecutivo, Socio, $ionicListDelegate,
                 $ionicHistory, $ionicPopup, BancoDeDados, $ionicLoading, SumarioExecutivoID, Modal,
-                $rootScope, $q, RecuperarPartes) {
+                $rootScope, $q, RecuperarPartes, MontadorSumarioExecutivo) {
 
 
 
@@ -24,38 +24,26 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
             $scope.init = function () {
                 console.log($rootScope.planoDeNegocioMontado.sumarioExecutivo);
                 $scope.sumarioExecutivo = SumarioExecutivo.getSumarioExecutivo();
-                $scope.sumarioExecutivoID = SumarioExecutivoID;
                 var sumarioExecutivoAux = RecuperarPartes.recuperarSumarioExecutivo($rootScope.planoDeNegocioMontado.sumarioExecutivo);
+                console.log(sumarioExecutivoAux);
                 $ionicLoading.show({
                     template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
                     duration: 1500
                 }).then(function () {
                     setTimeout(function () {
-                        $scope.sumarioExecutivo._id = sumarioExecutivoAux._id;
-                        $scope.sumarioExecutivoID._id = sumarioExecutivoAux._id;
-
-                        $scope.sumarioExecutivo.dadosDoemprendimento = sumarioExecutivoAux.dadosDoemprendimento;
-                        $scope.sumarioExecutivo.principaisPontos = sumarioExecutivoAux.principaisPontos;
-                        $scope.sumarioExecutivo.missaoDaEmpresa = sumarioExecutivoAux.missaoDaEmpresa;
-
-                        if ($scope.sumarioExecutivo.dadosDoemprendimento !== undefined) {
+                        $scope.sumarioExecutivo = MontadorSumarioExecutivo.montar(sumarioExecutivoAux);
+                        $scope.sumarioExecutivoID = MontadorSumarioExecutivo.montarID(sumarioExecutivoAux);
+                        if (sumarioExecutivoAux.dadosDoemprendimento !== undefined) {
                             if ($scope.sumarioExecutivo.dadosDoemprendimento.cpf === undefined) {
                                 $scope.escolherCnpjOuCpf = true;
                             } else {
                                 $scope.escolherCnpjOuCpf = false;
                             }
                         }
-                        $scope.sumarioExecutivo.formaJuridica = sumarioExecutivoAux.formaJuridica;
-                        $scope.sumarioExecutivo.optantePeloSimples = sumarioExecutivoAux.optantePeloSimples;
-                        $scope.sumarioExecutivo.fontesDeRecursos = sumarioExecutivoAux.fontesDeRecursos;
-                        
-                        $scope.sumarioExecutivo.socios = sumarioExecutivoAux.socios;
-                        $scope.sumarioExecutivoID.idsSocios = sumarioExecutivoAux.idSocios;
                         console.log($scope.sumarioExecutivoID);
                     }, 1000);
 
                 });
-
             };
 
             $scope.atualizarPagina = function () {
@@ -184,6 +172,7 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
 
 
             function salvarSocio(socio) {
+                console.log($scope.sumarioExecutivoID);
                 caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/socio?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
                 $scope.bancoDeDados.salvar(caminho, socio).then(function (dados) {
                     console.log(dados.data);

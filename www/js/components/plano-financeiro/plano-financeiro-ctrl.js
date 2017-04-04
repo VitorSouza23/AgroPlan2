@@ -5,7 +5,8 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
 
         .controller('PlanoFinanceiroCtrl', function ($scope, PlanoFinanceiro, Equipamento, Utensilio, Movel,
                 Maquina, Veiculo, Compra, Venda, $ionicListDelegate, $ionicHistory, $ionicPopup,
-                BancoDeDados, $ionicLoading, PlanoFinanceiroID, Modal, $rootScope, $q, RecuperarPartes) {
+                BancoDeDados, $ionicLoading, PlanoFinanceiroID, Modal, $rootScope, $q, RecuperarPartes,
+                MontadorPlanoFinanceiro) {
 
             $scope.planoFinanceiro = PlanoFinanceiro.getPlanoFinanceiro();
 
@@ -18,38 +19,17 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
             });
 
             $scope.init = function () {
-
-                //$rootScope.verificarSeUsuarioEstaLogado();
                 console.log($rootScope.planoDeNegocioMontado.planoFinanceiro);
-
-                $scope.planoFinanceiro = PlanoFinanceiro.getPlanoFinanceiro();
-                $scope.planoFinanceiroID = PlanoFinanceiroID;
                 var planoFinanceiroAux = RecuperarPartes.recuperarPlanoFinanceiro($rootScope.planoDeNegocioMontado.planoFinanceiro);
                 $ionicLoading.show({
                     template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
                     duration: 1500
                 }).then(function () {
                     setTimeout(function () {
-                        $scope.planoFinanceiro._id = planoFinanceiroAux._id;
-                        $scope.planoFinanceiroID._id = planoFinanceiroAux._id;
-                        $scope.planoFinanceiro.estoqueInicial.equipamentos = planoFinanceiroAux.estoqueInicial.equipamentos;
-                        $scope.planoFinanceiro.estoqueInicial.maquinas = planoFinanceiroAux.estoqueInicial.maquinas;
-                        $scope.planoFinanceiro.estoqueInicial.moveis = planoFinanceiroAux.estoqueInicial.moveis;
-                        $scope.planoFinanceiro.estoqueInicial.utensilios = planoFinanceiroAux.estoqueInicial.utensilios;
-                        $scope.planoFinanceiro.estoqueInicial.veiculos = planoFinanceiroAux.estoqueInicial.veiculos;
-                        $scope.planoFinanceiro.vendas = planoFinanceiroAux.vendas;
-                        $scope.planoFinanceiro.compras = planoFinanceiroAux.compras;
-                        $scope.planoFinanceiroID.idsEquipamentos = planoFinanceiroAux.idsEquipamentos;
-                        $scope.planoFinanceiroID.idsMaquinas = planoFinanceiroAux.idsMaquinas;
-                        $scope.planoFinanceiroID.idsMoveis = planoFinanceiroAux.idsMoveis;
-                        $scope.planoFinanceiroID.idsUtensilios = planoFinanceiroAux.idsUtensilios;
-                        $scope.planoFinanceiroID.idsVeiculos = planoFinanceiroAux.idsVeiculos;
-                        $scope.planoFinanceiroID.idsVendas = planoFinanceiroAux.idsVendas;
-                        $scope.planoFinanceiroID.idsCompras = planoFinanceiroAux.idsCompras;
+                        $scope.planoFinanceiro = MontadorPlanoFinanceiro.montar(planoFinanceiroAux);
+                        $scope.planoFinanceiroID = MontadorPlanoFinanceiro.montarID(planoFinanceiroAux);
                     }, 1000);
-
                 });
-
             };
 
             $scope.editar = PlanoFinanceiro.getEditar();

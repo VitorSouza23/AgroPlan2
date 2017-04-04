@@ -5,7 +5,7 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
 
         .controller('PlanoDeMarketingCtrl', function ($scope, PlanoDeMarketing, Produto, $ionicListDelegate,
                 $ionicHistory, $ionicPopup, BancoDeDados, $ionicLoading, PlanoDeMarketingID, Modal,
-                $rootScope, $ionicPopover, RecuperarPartes) {
+                $rootScope, $ionicPopover, RecuperarPartes, MontadorPlanoDeMarketing) {
             $scope.planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
 
             ionic.on('$locationChangeStart', function () {
@@ -21,7 +21,6 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
                 //$rootScope.verificarSeUsuarioEstaLogado();
                 console.log($rootScope.planoDeNegocioMontado.planoDeMarketing);
 
-                $scope.planoDeMarketing = PlanoDeMarketing.getPlanoDeMarketing();
                 var planoDeMarketingAux = RecuperarPartes.recuperarPlanoDeMarketing($rootScope.planoDeNegocioMontado.planoDeMarketing);
                 $ionicLoading.show({
                     template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
@@ -29,14 +28,8 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
                 }).then(function () {
                     setTimeout(function () {
                         console.log(planoDeMarketingAux);
-                        $scope.planoDeMarketing._id = planoDeMarketingAux._id;
-                        $scope.planoDeMarketingID._id = planoDeMarketingAux._id;
-                        $scope.planoDeMarketing.estrategiasPromocionais = planoDeMarketingAux.estrategiasPromocionais;
-                        $scope.planoDeMarketing.estruturaDeComercializacao = planoDeMarketingAux.estruturaDeComercializacao;
-                        $scope.planoDeMarketing.localizacaoDoNegocio = planoDeMarketingAux.localizacaoDoNegocio;
-                        $scope.planoDeMarketing.produtos = planoDeMarketingAux.produtos;
-                        $scope.planoDeMarketingID.idsProdutos = planoDeMarketingAux.idsProdutos;
-                        $scope.planoDeMarketingID.idLocalizacao = planoDeMarketingAux.idLocalizacao;
+                        $scope.planoDeMarketing = MontadorPlanoDeMarketing.montar(planoDeMarketingAux);
+                        $scope.planoDeMarketingID = MontadorPlanoDeMarketing.montarID(planoDeMarketingAux);
                     }, 1000);
                 });
             };

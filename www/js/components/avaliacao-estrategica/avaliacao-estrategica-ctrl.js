@@ -17,11 +17,20 @@ angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.av
                 console.log($rootScope.planoDeNegocioMontado.avaliacaoEstrategica);
 
                 $scope.avaliacaoEstrategica = AvaliacaoEstrategica.getAvaliacaoEstrategica();
-                $scope.avaliacaoEstrategica._id = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica._id;
-                $scope.avaliacaoEstrategica.forca = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.forca;
-                $scope.avaliacaoEstrategica.fraquesa = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.fraquesa;
-                $scope.avaliacaoEstrategica.oportunidade = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.oportunidade;
-                $scope.avaliacaoEstrategica.ameaca = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica.ameaca;
+                var avaliacaoEstrategicaAux = $rootScope.planoDeNegocioMontado.avaliacaoEstrategica;
+                $scope.avaliacaoEstrategica._id = avaliacaoEstrategicaAux._id;
+                if(avaliacaoEstrategicaAux.forca !== undefined){
+                    $scope.avaliacaoEstrategica.forca = avaliacaoEstrategicaAux.forca;
+                }
+                if(avaliacaoEstrategicaAux.fraquesa !== undefined){
+                    $scope.avaliacaoEstrategica.fraquesa = avaliacaoEstrategicaAux.fraquesa;
+                }
+                if(avaliacaoEstrategicaAux.oportunidade){
+                    $scope.avaliacaoEstrategica.oportunidade = avaliacaoEstrategicaAux.oportunidade;
+                }
+                if(avaliacaoEstrategicaAux.ameaca !== undefined){
+                    $scope.avaliacaoEstrategica.ameaca = avaliacaoEstrategicaAux.ameaca;
+                }
             };
 
             $scope.bancoDeDados = BancoDeDados;

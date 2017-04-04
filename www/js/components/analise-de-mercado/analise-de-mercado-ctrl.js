@@ -5,7 +5,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
 
         .controller('AnaliseDeMercadoCtrl', function ($scope, AnaliseDeMercado, AnaliseDeMercadoID,
                 Concorrente, Fornecedor, $ionicListDelegate, $ionicHistory, $ionicPopup,
-                BancoDeDados, $ionicLoading, Modal, $rootScope, RecuperarPartes) {
+                BancoDeDados, $ionicLoading, Modal, $rootScope, RecuperarPartes, MontadorAnaliseDeMercado) {
             $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
             $scope.editar = AnaliseDeMercado.editar;
             $scope.bancoDeDados = BancoDeDados;
@@ -23,8 +23,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
             $scope.init = function () {
                 console.log($rootScope.planoDeNegocioMontado.analiseDeMercado);
 
-                $scope.analiseDeMercado = AnaliseDeMercado.getAnaliseDeMercado();
-                $scope.analiseDeMercadoID = AnaliseDeMercadoID;
+
                 var analiseDeMercadoAux = RecuperarPartes.recuperarAnaliseDeMercado($rootScope.planoDeNegocioMontado.analiseDeMercado);
                 $ionicLoading.show({
                     template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
@@ -32,13 +31,8 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
                 }).then(function () {
                     setTimeout(function () {
                         console.log(analiseDeMercadoAux);
-                        $scope.analiseDeMercado._id = analiseDeMercadoAux._id;
-                        $scope.analiseDeMercadoID._id = analiseDeMercadoAux._id;
-                        $scope.analiseDeMercado.concorrentes = analiseDeMercadoAux.concorrentes;
-                        $scope.analiseDeMercado.fornecedores = analiseDeMercadoAux.fornecedores;
-                        $scope.analiseDeMercado.novoCliente(analiseDeMercadoAux.cliente);
-                        $scope.analiseDeMercadoID.idsConcorrentes = analiseDeMercadoAux.idsConcorrentes;
-                        $scope.analiseDeMercadoID.idsFornecedores = analiseDeMercadoAux.idsFornecedores;
+                        $scope.analiseDeMercado = MontadorAnaliseDeMercado.montar(analiseDeMercadoAux);
+                        $scope.analiseDeMercadoID = MontadorAnaliseDeMercado.montarID(analiseDeMercadoAux);
                     }, 1000);
 
                 });

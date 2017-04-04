@@ -15,11 +15,18 @@ angular.module('starter.controllers.construcaoDeCenario', [
 
                 console.log($rootScope.planoDeNegocioMontado.construcaoDeCenarios);
                 $scope.construcaoDeCenario = ConstrucaoDeCenario.getConstrucaoDeCenario();
-                $scope.construcaoDeCenario._id = $rootScope.planoDeNegocioMontado.construcaoDeCenarios._id;
-                $scope.construcaoDeCenario.provavel = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.provavel;
-                $scope.construcaoDeCenario.pessimsita = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.pessimsita;
-                $scope.construcaoDeCenario.otimista = $rootScope.planoDeNegocioMontado.construcaoDeCenarios.otimista;
-
+                var construcaoDeCenariosAux = $rootScope.planoDeNegocioMontado.construcaoDeCenarios;
+                $scope.construcaoDeCenario._id = construcaoDeCenariosAux._id;
+                if(construcaoDeCenariosAux.provavel !== undefined){
+                    $scope.construcaoDeCenario.provavel = construcaoDeCenariosAux.provavel;
+                }
+                if(construcaoDeCenariosAux.pessimsita !== undefined){
+                    $scope.construcaoDeCenario.pessimsita = construcaoDeCenariosAux.pessimsita;
+                }
+                if(construcaoDeCenariosAux.otimista !== undefined){
+                    $scope.construcaoDeCenario.otimista = construcaoDeCenariosAux.otimista;
+                }
+                
             };
 
             $scope.bancoDeDados = BancoDeDados;

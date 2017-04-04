@@ -5,7 +5,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
         .controller('PlanoOperacionalCtrl', function ($scope, PlanoOperacional, Cargo, $ionicListDelegate,
                 $ionicHistory, $ionicPopup, $ionicPopup, BancoDeDados, $ionicLoading, PlanoOperacionalID,
-                Modal, $rootScope, $cordovaCamera, $q, RecuperarPartes) {
+                Modal, $rootScope, $cordovaCamera, $q, RecuperarPartes, MonstadorPlanoOperacional) {
             $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
             
             ionic.on('$locationChangeStart', function () {
@@ -16,32 +16,15 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
             });
 
             $scope.init = function () {
-
                 console.log($rootScope.planoDeNegocioMontado.planoOperacional);
-
-                $scope.planoOperacional = PlanoOperacional.getPlanoOperacional();
-                $scope.planoOperacionalID = PlanoOperacionalID;
                 var planoOperacionalAux = RecuperarPartes.recuperarPlanoOperacional($rootScope.planoDeNegocioMontado.planoOperacional);
                 $ionicLoading.show({
                     template: 'Carregando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
                     duration: 1500
                 }).then(function () {
                     setTimeout(function () {
-                        $scope.planoOperacional._id = planoOperacionalAux._id;
-                        $scope.planoOperacionalID._id = planoOperacionalAux._id;
-                        $scope.planoOperacionalID.idImagem = planoOperacionalAux.idImagem;
-
-                        $scope.planoOperacional.capacidadeProdutiva = planoOperacionalAux.capacidadeProdutiva;
-                        $scope.planoOperacional.capacidadeComercial = planoOperacionalAux.capacidadeComercial;
-                        $scope.planoOperacional.capacidadeProdutivaInicial = planoOperacionalAux.capacidadeProdutivaInicial;
-                        $scope.planoOperacional.capacidadeComercialInicial = planoOperacionalAux.capacidadeComercialInicial;
-                        $scope.planoOperacional.processosOperacionais = planoOperacionalAux.processosOperacionais;
-                        
-                        $scope.planoOperacional.layout = planoOperacionalAux.layout;
-                        $scope.planoOperacional.cargos = planoOperacionalAux.cargos;
-                        $scope.planoOperacionalID.idsCargos = planoOperacionalAux.idsCargos;
-                        $scope.planoOperacionalID.idImagem = planoOperacionalAux.idImagem;
-
+                        $scope.planoOperacional = MonstadorPlanoOperacional.montar(planoOperacionalAux);
+                        $scope.planoOperacionalID = MonstadorPlanoOperacional.montarID(planoOperacionalAux);
                     }, 1000);
 
                 });

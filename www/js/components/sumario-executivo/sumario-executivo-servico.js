@@ -77,4 +77,58 @@ angular.module('starter.services.sumarioExecutivo', [])
                 idsSocios: idsSocios,
                 _id: _id
             };
+        })
+
+        .factory('MontadorSumarioExecutivo', function (SumarioExecutivo, SumarioExecutivoID) {
+            return{
+                montar: function (sumarioExecutivoAux) {
+                    var sumarioExecutivo = SumarioExecutivo.getSumarioExecutivo();
+                    sumarioExecutivo._id = sumarioExecutivoAux._id;
+
+                    if (sumarioExecutivoAux.dadosDoemprendimento !== undefined) {
+                        sumarioExecutivo.dadosDoemprendimento = sumarioExecutivoAux.dadosDoemprendimento;
+                    }else{
+                        sumarioExecutivo.dadosDoemprendimento = '';
+                    }
+                    if (sumarioExecutivoAux.principaisPontos !== undefined) {
+                        sumarioExecutivo.principaisPontos = sumarioExecutivoAux.principaisPontos;
+                    }else{
+                        sumarioExecutivo.principaisPontos = '';
+                    }
+                    if (sumarioExecutivoAux.missaoDaEmpresa !== undefined) {
+                        sumarioExecutivo.missaoDaEmpresa = sumarioExecutivoAux.missaoDaEmpresa;
+                    }else{
+                        sumarioExecutivo.missaoDaEmpresa = '';
+                    }
+                    if (sumarioExecutivoAux.formaJuridica !== undefined) {
+                        sumarioExecutivo.formaJuridica = sumarioExecutivoAux.formaJuridica;
+                    }else{
+                        sumarioExecutivo.formaJuridica = '';
+                    }
+                    if (sumarioExecutivoAux.optantePeloSimples !== undefined) {
+                        sumarioExecutivo.optantePeloSimples = sumarioExecutivoAux.optantePeloSimples;
+                    }else{
+                        sumarioExecutivo.optantePeloSimples = '';
+                    }
+                    if (sumarioExecutivoAux.fontesDeRecursos !== undefined) {
+                        sumarioExecutivo.fontesDeRecursos = sumarioExecutivoAux.fontesDeRecursos;
+                    }else{
+                        sumarioExecutivo.fontesDeRecursos = '';
+                    }
+                    if (sumarioExecutivoAux.socios !== undefined) {
+                        sumarioExecutivo.socios = sumarioExecutivoAux.socios;
+                    }else{
+                        sumarioExecutivo.socios = '';
+                    }
+                    return sumarioExecutivo;
+                },
+                montarID: function (sumarioExecutivoAux) {
+                    var sumarioExecutivoID = SumarioExecutivoID;
+                    sumarioExecutivoID._id = sumarioExecutivoAux._id;
+                    if(sumarioExecutivoAux.idSocios !== undefined){
+                        sumarioExecutivoID.idsSocios = sumarioExecutivoAux.idSocios;
+                    }
+                    return sumarioExecutivoID;
+                }
+            }
         });
