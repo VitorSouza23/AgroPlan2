@@ -63,8 +63,6 @@ angular.module('starter.controllers.construcaoDeCenario', [
                     duration: 1000
                 }).then(function () {
                     setTimeout(function () {
-                        json = angular.toJson($scope.construcaoDeCenario);
-                        localStorage.setItem("avaliacaoEstrategica", json);
                         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/construcaoCenario?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
                         objeto = $scope.construcaoDeCenario;
                         $scope.bancoDeDados.atualizar(caminho, objeto);

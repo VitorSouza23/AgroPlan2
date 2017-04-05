@@ -198,7 +198,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                 {
                                     ul: [
                                         {text: 'Receita Total: ' + planoPDF.construcaoDeCenarios.provavel.receitaTotal, style: 'valoresTabela'},
-                                        {text: 'Custos Variáveis Totais: ' + planoPDF.construcaoDeCenarios.provavel.custosVariaveisTotais, style: 'valoresTabela'},
+                                        {text: 'Custos Variáveis Totais: ' + planoPDF.construcaoDeCenarios.provavel.custoVariaveisTotais, style: 'valoresTabela'},
                                         {text: 'Imposto sobre venda: ' + planoPDF.construcaoDeCenarios.provavel.impostoSobreVenda, style: 'valoresTabela'},
                                         {text: 'Gastos com vendas: ' + planoPDF.construcaoDeCenarios.provavel.gastoComVenda, style: 'valoresTabela'}
                                     ]
@@ -208,16 +208,16 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                     ul: [
                                         {text: 'Margem de Contribuição: ' + planoPDF.construcaoDeCenarios.provavel.margemDeContribuicao, style: 'valoresTabela'},
                                         {text: 'Custo Fixo Total: ' + planoPDF.construcaoDeCenarios.provavel.custoFixoTotal, style: 'valoresTabela'},
-                                        {text: 'Lucro/Prejuízo Operacional: ' + planoPDF.construcaoDeCenarios.provavel.lucroPrejuizoOperacional, style: 'valoresTabela'}
+                                        {text: 'Lucro/Prejuízo Operacional: ' + planoPDF.construcaoDeCenarios.provavel.lucroPrejuisoOperacional, style: 'valoresTabela'}
                                     ]
                                 },
                                 {text: 'Cenário Pessimista', style: 'subtitulo'},
                                 {
                                     ul: [
                                         {text: 'Receita Total: ' + planoPDF.construcaoDeCenarios.pessimista.receitaTotal, style: 'valoresTabela'},
-                                        {text: 'Custos Variáveis Totais: ' + planoPDF.construcaoDeCenarios.pessimista.custosVariaveisTotais, style: 'valoresTabela'},
+                                        {text: 'Custos Variáveis Totais: ' + planoPDF.construcaoDeCenarios.pessimista.custoVariaveisTotais, style: 'valoresTabela'},
                                         {text: 'Imposto sobre venda: ' + planoPDF.construcaoDeCenarios.pessimista.impostoSobreVenda, style: 'valoresTabela'},
-                                        {text: 'Gastos com vendas: ' + planoPDF.construcaoDeCenarios.pessimista.gastoComvenda, style: 'valoresTabela'}
+                                        {text: 'Gastos com vendas: ' + planoPDF.construcaoDeCenarios.pessimista.gastoComVenda, style: 'valoresTabela'}
                                     ]
                                 },
                                 {text: 'Subtotal', style: 'subtitulo'},
@@ -232,7 +232,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                 {
                                     ul: [
                                         {text: 'Receita Total: ' + planoPDF.construcaoDeCenarios.otimista.receitaTotal, style: 'valoresTabela'},
-                                        {text: 'Custos Variáveis Totais: ' + planoPDF.construcaoDeCenarios.otimista.custosVariaveisTotais, style: 'valoresTabela'},
+                                        {text: 'Custos Variáveis Totais: ' + planoPDF.construcaoDeCenarios.otimista.custoVariaveisTotais, style: 'valoresTabela'},
                                         {text: 'Imposto sobre venda: ' + planoPDF.construcaoDeCenarios.otimista.impostoSobreVenda, style: 'valoresTabela'},
                                         {text: 'Gastos com vendas: ' + planoPDF.construcaoDeCenarios.otimista.gastoComVenda, style: 'valoresTabela'}
                                     ]
@@ -252,15 +252,15 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                 {text: 'Ambiente Interno', style: 'subtitulo'},
                                 {
                                     ul: [
-                                        {text: 'Forças: ', style: 'valoresTabela'},
-                                        {text: 'Fraquezas: ', style: 'valoresTabela'}
+                                        {text: 'Forças: ' + planoPDF.avaliacaoEstrategica.forca, style: 'valoresTabela'},
+                                        {text: 'Fraquezas: ' + planoPDF.avaliacaoEstrategica.fraquesa, style: 'valoresTabela'}
                                     ]
                                 },
                                 {text: 'Ambiente Externo', style: 'subtitulo'},
                                 {
                                     ul: [
-                                        {text: 'Oportunidades: ', style: 'valoresTabela'},
-                                        {text: 'Ameaças: ', style: 'valoresTabela', pageBreak: 'after'}
+                                        {text: 'Oportunidades: ' + planoPDF.avaliacaoEstrategica.oportunidade, style: 'valoresTabela'},
+                                        {text: 'Ameaças: ' + planoPDF.avaliacaoEstrategica.ameaca, style: 'valoresTabela', pageBreak: 'after'}
                                     ]
                                 },
                                 // Fim da Análise FOFA ---------------------------------------- //
@@ -270,53 +270,53 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                 {text: 'Sumário Executivo', style: 'subtitulo'},
                                 {
                                     ul: [
-                                        {text: 'O que?: ', style: 'valoresTabela'},
-                                        {text: 'Onde?: ', style: 'valoresTabela'},
-                                        {text: 'Quando?: ', style: 'valoresTabela'},
-                                        {text: 'Quem?: ', style: 'valoresTabela'}
+                                        {text: 'O que?: ' + planoPDF.roteiroDeInformacao.sumarioExecutivo.atividade, style: 'valoresTabela'},
+                                        {text: 'Onde?: ' + planoPDF.roteiroDeInformacao.sumarioExecutivo.local, style: 'valoresTabela'},
+                                        {text: 'Quando?: ' + planoPDF.roteiroDeInformacao.sumarioExecutivo.prazo, style: 'valoresTabela'},
+                                        {text: 'Quem?: '  + planoPDF.roteiroDeInformacao.sumarioExecutivo.responsavel, style: 'valoresTabela'}
                                     ]
                                 },
                                 {text: 'Análise de Mercado', style: 'subtitulo'},
                                 {
                                     ul: [
-                                        {text: 'O que?: ', style: 'valoresTabela'},
-                                        {text: 'Onde?: ', style: 'valoresTabela'},
-                                        {text: 'Quando?: ', style: 'valoresTabela'},
-                                        {text: 'Quem?: ', style: 'valoresTabela'}
+                                        {text: 'O que?: ' + planoPDF.roteiroDeInformacao.analiseDeMercado.atividade, style: 'valoresTabela'},
+                                        {text: 'Onde?: ' + planoPDF.roteiroDeInformacao.analiseDeMercado.local, style: 'valoresTabela'},
+                                        {text: 'Quando?: ' + planoPDF.roteiroDeInformacao.analiseDeMercado.prazo, style: 'valoresTabela'},
+                                        {text: 'Quem?: ' + planoPDF.roteiroDeInformacao.analiseDeMercado.responsavel, style: 'valoresTabela'}
                                     ]
                                 },
                                 {text: 'Plano de Marketing', style: 'subtitulo'},
                                 {
                                     ul: [
-                                        {text: 'O que?: ', style: 'valoresTabela'},
-                                        {text: 'Onde?: ', style: 'valoresTabela'},
-                                        {text: 'Quando?: ', style: 'valoresTabela'},
-                                        {text: 'Quem?: ', style: 'valoresTabela'}
+                                        {text: 'O que?: ' + planoPDF.roteiroDeInformacao.planoDeMarketing.atividade, style: 'valoresTabela'},
+                                        {text: 'Onde?: ' + planoPDF.roteiroDeInformacao.planoDeMarketing.local, style: 'valoresTabela'},
+                                        {text: 'Quando?: ' + planoPDF.roteiroDeInformacao.planoDeMarketing.prazo, style: 'valoresTabela'},
+                                        {text: 'Quem?: ' + planoPDF.roteiroDeInformacao.planoDeMarketing.responsavel, style: 'valoresTabela'}
                                     ]
                                 },
                                 {text: 'Plano Operacional', style: 'subtitulo'},
                                 {
                                     ul: [
-                                        {text: 'O que?: ', style: 'valoresTabela'},
-                                        {text: 'Onde?: ', style: 'valoresTabela'},
-                                        {text: 'Quando?: ', style: 'valoresTabela'},
-                                        {text: 'Quem?: ', style: 'valoresTabela'}
+                                        {text: 'O que?: ' + planoPDF.roteiroDeInformacao.planoOperacional.atividade, style: 'valoresTabela'},
+                                        {text: 'Onde?: ' + planoPDF.roteiroDeInformacao.planoOperacional.local, style: 'valoresTabela'},
+                                        {text: 'Quando?: ' + planoPDF.roteiroDeInformacao.planoOperacional.prazo, style: 'valoresTabela'},
+                                        {text: 'Quem?: ' + planoPDF.roteiroDeInformacao.planoOperacional.responsavel, style: 'valoresTabela'}
                                     ]
                                 },
                                 {text: 'Plano Financeiro', style: 'subtitulo'},
                                 {
                                     ul: [
-                                        {text: 'O que?: ', style: 'valoresTabela'},
-                                        {text: 'Onde?: ', style: 'valoresTabela'},
-                                        {text: 'Quando?: ', style: 'valoresTabela'},
-                                        {text: 'Quem?: ', style: 'valoresTabela', pageBreak: 'after'}
+                                        {text: 'O que?: ' + planoPDF.roteiroDeInformacao.planoFinanceiro.atividade, style: 'valoresTabela'},
+                                        {text: 'Onde?: ' + planoPDF.roteiroDeInformacao.planoFinanceiro.local, style: 'valoresTabela'},
+                                        {text: 'Quando?: ' + planoPDF.roteiroDeInformacao.planoFinanceiro.prazo, style: 'valoresTabela'},
+                                        {text: 'Quem?: ' + planoPDF.roteiroDeInformacao.planoFinanceiro.responsavel, style: 'valoresTabela', pageBreak: 'after'}
                                     ]
                                 },
                                 // Fim do Roteiro para Coleta  ---------------------------------------- //
 
                                 // Começo da Avaliação do plano  ---------------------------------------- //
                                 {text: 'Avaliação do Plano de Negócio', style: 'titulo', alignment: 'center'},
-                                {text: ' ', style: 'valores'}
+                                {text: planoPDF.avaliacaoDoPlano.avaliacao, style: 'valores'}
 
 
 
