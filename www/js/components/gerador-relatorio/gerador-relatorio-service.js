@@ -11,12 +11,12 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                 recuperarPlano(planoDeNegocio).then(function (dados) {
                     console.log(dados);
                     var planoPDF = dados;
-                    
+
                     setTimeout(function () {
                         console.log(planoPDF.planoOperacional.layout);
                         dd = {
                             content: [
-                                {text: planoDeNegocio.nome, style: 'titulo_capa'},
+                                {text: planoDeNegocio.nome, style: 'tituloCapa'},
                                 {columns: [
                                         {
                                             width: 'auto',
@@ -28,7 +28,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                         }
                                     ],
                                     columnGap: 50,
-                                    style: 'colunas_capa'
+                                    style: 'colunasCapa'
                                 },
                                 //sumário executivo
                                 {text: 'Sumário Executivo', style: 'titulo', alignment: 'center'},
@@ -87,16 +87,248 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                         {text: 'Item a ser comprado: ' + planoPDF.analiseDeMercado.fornecedores[0].item, style: 'valoresTabela', pageBreak: 'after'}
                                     ]
                                 },
-                                
+                                // Fim da Análise de Mercado ---------------------------------------- //
+
+                                // Começo do Plano de Marketing ---------------------------------------- //
+                                {text: 'Plano de Marketing', style: 'titulo', alignment: 'center'},
+                                {text: 'Produtos', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Nome: ' + planoPDF.planoDeMarketing.produtos[0].nome, style: 'valoresTabela'},
+                                        {text: 'Ciclo de Produção: ' + planoPDF.planoDeMarketing.produtos[0].cicloDeProducao, style: 'valoresTabela'},
+                                        {text: 'Preço: ' + planoPDF.planoDeMarketing.produtos[0].preco, style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Estratégias e Estruturas', style: 'subtitulo'},
+                                {text: 'Estratégias Promocionais: ' + planoPDF.planoDeMarketing.estrategiasPromocionais, style: 'valores'},
+                                {text: 'Estrutura de Comercialização: ' + planoPDF.planoDeMarketing.estruturaDeComercializacao, style: 'valores'},
+                                {text: 'Estudo da Localização', style: 'subtitulo'},
+                                {text: 'Endereço: ' + planoPDF.planoDeMarketing.localizacaoDoNegocio.endereco, style: 'valores'},
+                                {text: 'Bairro: ' + planoPDF.planoDeMarketing.localizacaoDoNegocio.bairro, style: 'valores'},
+                                {text: 'Cidade: ' + planoPDF.planoDeMarketing.localizacaoDoNegocio.cidade, style: 'valores'},
+                                {text: 'Estado: ' + planoPDF.planoDeMarketing.localizacaoDoNegocio.estado, style: 'valores'},
+                                {text: 'Telefone: ' + planoPDF.planoDeMarketing.localizacaoDoNegocio.telefone, style: 'valores'},
+                                {text: 'Considerações: ' + planoPDF.planoDeMarketing.localizacaoDoNegocio.consideracoes, style: 'valores', pageBreak: 'after'},
+                                // Fim do Plano de Marketing ---------------------------------------- //
+
+                                // Começo do Plano Operacional ---------------------------------------- //
+                                {text: 'Plano Operacional', style: 'titulo', alignment: 'center'},
+                                {text: 'Layout Físico', style: 'subtitulo'},
+                                {text: 'Dados de Capacidade', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Capacidade Produtiva: ' + planoPDF.planoOperacional.capacidadeProdutiva, style: 'valoresTabela'},
+                                        {text: 'Capacidade Comercial: ' + planoPDF.planoOperacional.capacidadeComercial, style: 'valoresTabela'},
+                                        {text: 'Capacidade Produtiva Inicial: ' + planoPDF.planoOperacional.capacidadeComercialInicial, style: 'valoresTabela'},
+                                        {text: 'Capacidade Comercial Inicial: ' + planoPDF.planoOperacional.capacidadeComercialInicial, style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Processos Operacionais', style: 'subtitulo'},
+                                {text: planoPDF.planoOperacional.processosOperacionais, style: 'valores'},
+                                {text: 'Cargos Disponíveis', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Nome: ' + planoPDF.planoOperacional.cargos[0].nome, style: 'valoresTabela'},
+                                        {text: 'Qualificações: ' + planoPDF.planoOperacional.cargos[0].qualificacoes, style: 'valoresTabela', pageBreak: 'after'}
+                                    ]
+                                },
+                                // Fim do Plano de Marketing ---------------------------------------- //
+
+                                // Começo do Plano Financeiro ---------------------------------------- //
+                                {text: 'Plano Financeiro', style: 'titulo', alignment: 'center'},
+                                {text: 'Equipamentos', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Descrição: ' + planoPDF.planoFinanceiro.estoqueInicial.equipamentos[0].descricao, style: 'valoresTabela'},
+                                        {text: 'Quantidade: ' + planoPDF.planoFinanceiro.estoqueInicial.equipamentos[0].quantidade, style: 'valoresTabela'},
+                                        {text: 'Valor Unitário: ' + planoPDF.planoFinanceiro.estoqueInicial.equipamentos[0].valorUnitario, style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Máquinas', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Descrição: ' + planoPDF.planoFinanceiro.estoqueInicial.maquinas[0].descricao, style: 'valoresTabela'},
+                                        {text: 'Quantidade: ' + planoPDF.planoFinanceiro.estoqueInicial.maquinas[0].quantidade, style: 'valoresTabela'},
+                                        {text: 'Valor Unitário: ' + planoPDF.planoFinanceiro.estoqueInicial.maquinas[0].valorUnitario, style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Móveis', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Descrição: ' + planoPDF.planoFinanceiro.estoqueInicial.moveis[0].descricao, style: 'valoresTabela'},
+                                        {text: 'Quantidade: ' + planoPDF.planoFinanceiro.estoqueInicial.moveis[0].quantidade, style: 'valoresTabela'},
+                                        {text: 'Valor Unitário: ' + planoPDF.planoFinanceiro.estoqueInicial.moveis[0].valorUnitario, style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Utensílios', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Descrição: ' + planoPDF.planoFinanceiro.estoqueInicial.utensilios[0].descricao, style: 'valoresTabela'},
+                                        {text: 'Quantidade: '  + planoPDF.planoFinanceiro.estoqueInicial.utensilios[0].quantidade, style: 'valoresTabela'},
+                                        {text: 'Valor Unitário: ' + planoPDF.planoFinanceiro.estoqueInicial.utensilios[0].valorUnitario, style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Veículos', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Descrição: ' + planoPDF.planoFinanceiro.estoqueInicial.veiculos[0].descricao, style: 'valoresTabela'},
+                                        {text: 'Quantidade: ' + planoPDF.planoFinanceiro.estoqueInicial.veiculos[0].quantidade, style: 'valoresTabela'},
+                                        {text: 'Valor Unitário: ' + planoPDF.planoFinanceiro.estoqueInicial.veiculos[0].valorUnitario, style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Compras', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Dias de prazo de pagamento: ' + planoPDF.planoFinanceiro.compras[0].dias, style: 'valoresTabela'},
+                                        {text: 'Porcentagem de compras com esse prazo: ' + planoPDF.planoFinanceiro.compras[0].porcentagem + ' %', style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Vendas', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Dias de prazo de pagamento: ' + planoPDF.planoFinanceiro.vendas[0].dias, style: 'valoresTabela'},
+                                        {text: 'Porcentagem de vendas com esse prazo: ' + planoPDF.planoFinanceiro.vendas[0].porcentagem + ' %', style: 'valoresTabela', pageBreak: 'after'}
+                                    ]
+                                },
+                                // Fim do Plano Financeiro ---------------------------------------- //
+
+                                // Começo da Construção de Cenários ---------------------------------------- //
+                                {text: 'Construção de Cenários', style: 'titulo', alignment: 'center'},
+                                {text: 'Cenário Provável', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Receita Total: ' + planoPDF.construcaoDeCenarios.provavel.receitaTotal, style: 'valoresTabela'},
+                                        {text: 'Custos Variáveis Totais: ' + planoPDF.construcaoDeCenarios.provavel.custosVariaveisTotais, style: 'valoresTabela'},
+                                        {text: 'Imposto sobre venda: ' + planoPDF.construcaoDeCenarios.provavel.impostoSobreVenda, style: 'valoresTabela'},
+                                        {text: 'Gastos com vendas: ' + planoPDF.construcaoDeCenarios.provavel.gastoComVenda, style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Subtotal', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Margem de Contribuição: ' + planoPDF.construcaoDeCenarios.provavel.margemDeContribuicao, style: 'valoresTabela'},
+                                        {text: 'Custo Fixo Total: ' + planoPDF.construcaoDeCenarios.provavel.custoFixoTotal, style: 'valoresTabela'},
+                                        {text: 'Lucro/Prejuízo Operacional: ' + planoPDF.construcaoDeCenarios.provavel.lucroPrejuizoOperacional, style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Cenário Pessimista', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Receita Total: ' + planoPDF.construcaoDeCenarios.pessimista.receitaTotal, style: 'valoresTabela'},
+                                        {text: 'Custos Variáveis Totais: ' + planoPDF.construcaoDeCenarios.pessimista.custosVariaveisTotais, style: 'valoresTabela'},
+                                        {text: 'Imposto sobre venda: ' + planoPDF.construcaoDeCenarios.pessimista.impostoSobreVenda, style: 'valoresTabela'},
+                                        {text: 'Gastos com vendas: ' + planoPDF.construcaoDeCenarios.pessimista.gastoComvenda, style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Subtotal', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Margem de Contribuição: ' + planoPDF.construcaoDeCenarios.pessimista.margemDeContribuicao, style: 'valoresTabela'},
+                                        {text: 'Custo Fixo Total: ' + planoPDF.construcaoDeCenarios.pessimista.custoFixoTotal, style: 'valoresTabela'},
+                                        {text: 'Lucro/Prejuízo Operacional: ' + planoPDF.construcaoDeCenarios.pessimista.lucroPrejuisoOperacional, style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Cenário Otimista', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Receita Total: ' + planoPDF.construcaoDeCenarios.otimista.receitaTotal, style: 'valoresTabela'},
+                                        {text: 'Custos Variáveis Totais: ' + planoPDF.construcaoDeCenarios.otimista.custosVariaveisTotais, style: 'valoresTabela'},
+                                        {text: 'Imposto sobre venda: ' + planoPDF.construcaoDeCenarios.otimista.impostoSobreVenda, style: 'valoresTabela'},
+                                        {text: 'Gastos com vendas: ' + planoPDF.construcaoDeCenarios.otimista.gastoComVenda, style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Subtotal', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Margem de Contribuição: ' + planoPDF.construcaoDeCenarios.otimista.margemDeContribuicao, style: 'valoresTabela'},
+                                        {text: 'Custo Fixo Total: ' + planoPDF.construcaoDeCenarios.otimista.custoFixoTotal, style: 'valoresTabela'},
+                                        {text: 'Lucro/Prejuízo Operacional: ' + planoPDF.construcaoDeCenarios.otimista.lucroPrejuisoOperacional, style: 'valoresTabela', pageBreak: 'after'}
+                                    ]
+                                },
+                                // Fim da Construção de Cenários ---------------------------------------- //
+
+                                // Começo da Análise FOFA ---------------------------------------- //
+                                {text: 'Análise FOFA', style: 'titulo', alignment: 'center'},
+                                {text: 'Ambiente Interno', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Forças: ', style: 'valoresTabela'},
+                                        {text: 'Fraquezas: ', style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Ambiente Externo', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'Oportunidades: ', style: 'valoresTabela'},
+                                        {text: 'Ameaças: ', style: 'valoresTabela', pageBreak: 'after'}
+                                    ]
+                                },
+                                // Fim da Análise FOFA ---------------------------------------- //
+
+                                // Começo do Roteiro para Coleta  ---------------------------------------- //
+                                {text: 'Roteiro para Coleta de Informações', style: 'titulo', alignment: 'center'},
+                                {text: 'Sumário Executivo', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'O que?: ', style: 'valoresTabela'},
+                                        {text: 'Onde?: ', style: 'valoresTabela'},
+                                        {text: 'Quando?: ', style: 'valoresTabela'},
+                                        {text: 'Quem?: ', style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Análise de Mercado', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'O que?: ', style: 'valoresTabela'},
+                                        {text: 'Onde?: ', style: 'valoresTabela'},
+                                        {text: 'Quando?: ', style: 'valoresTabela'},
+                                        {text: 'Quem?: ', style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Plano de Marketing', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'O que?: ', style: 'valoresTabela'},
+                                        {text: 'Onde?: ', style: 'valoresTabela'},
+                                        {text: 'Quando?: ', style: 'valoresTabela'},
+                                        {text: 'Quem?: ', style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Plano Operacional', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'O que?: ', style: 'valoresTabela'},
+                                        {text: 'Onde?: ', style: 'valoresTabela'},
+                                        {text: 'Quando?: ', style: 'valoresTabela'},
+                                        {text: 'Quem?: ', style: 'valoresTabela'}
+                                    ]
+                                },
+                                {text: 'Plano Financeiro', style: 'subtitulo'},
+                                {
+                                    ul: [
+                                        {text: 'O que?: ', style: 'valoresTabela'},
+                                        {text: 'Onde?: ', style: 'valoresTabela'},
+                                        {text: 'Quando?: ', style: 'valoresTabela'},
+                                        {text: 'Quem?: ', style: 'valoresTabela', pageBreak: 'after'}
+                                    ]
+                                },
+                                // Fim do Roteiro para Coleta  ---------------------------------------- //
+
+                                // Começo da Avaliação do plano  ---------------------------------------- //
+                                {text: 'Avaliação do Plano de Negócio', style: 'titulo', alignment: 'center'},
+                                {text: ' ', style: 'valores'}
+
+
+
                             ],
                             styles: {
-                                titulo_capa: {
+                                tituloCapa: {
                                     fontSize: 40,
                                     bold: true,
                                     margin: [0, 300, 0, 0],
                                     alignment: 'center'
                                 },
-                                colunas_capa: {
+                                colunasCapa: {
                                     margin: [0, 400, 0, 0]
                                 },
                                 titulo: {

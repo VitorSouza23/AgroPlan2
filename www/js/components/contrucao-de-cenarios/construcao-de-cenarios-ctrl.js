@@ -19,12 +19,18 @@ angular.module('starter.controllers.construcaoDeCenario', [
                 $scope.construcaoDeCenario._id = construcaoDeCenariosAux._id;
                 if(construcaoDeCenariosAux.provavel !== undefined){
                     $scope.construcaoDeCenario.provavel = construcaoDeCenariosAux.provavel;
+                }else{
+                    $scope.construcaoDeCenario.provavel = {};
                 }
                 if(construcaoDeCenariosAux.pessimsita !== undefined){
                     $scope.construcaoDeCenario.pessimsita = construcaoDeCenariosAux.pessimsita;
+                }else{
+                    $scope.construcaoDeCenario.pessimsita = {};
                 }
                 if(construcaoDeCenariosAux.otimista !== undefined){
                     $scope.construcaoDeCenario.otimista = construcaoDeCenariosAux.otimista;
+                }else{
+                    $scope.construcaoDeCenario.otimista = {};
                 }
                 
             };

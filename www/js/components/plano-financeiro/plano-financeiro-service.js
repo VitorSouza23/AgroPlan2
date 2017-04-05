@@ -173,24 +173,38 @@ angular.module('starter.services.planoFinanceiro', [])
                   planoFinanceiro._id = planoFinanceiroAux._id;
                   if(planoFinanceiroAux.estoqueInicial.equipamentos !== undefined){
                       planoFinanceiro.estoqueInicial.equipamentos = planoFinanceiroAux.estoqueInicial.equipamentos;
+                  }else{
+                      planoFinanceiro.estoqueInicial.equipamentos = [];
                   }
                   if(planoFinanceiroAux.estoqueInicial.maquinas !== undefined){
                       planoFinanceiro.estoqueInicial.maquinas = planoFinanceiroAux.estoqueInicial.maquinas;
+                  }else{
+                      planoFinanceiro.estoqueInicial.maquinas = [];
                   }
                   if(planoFinanceiroAux.estoqueInicial.moveis !== undefined){
                       planoFinanceiro.estoqueInicial.moveis = planoFinanceiroAux.estoqueInicial.moveis;
+                  }else{
+                      planoFinanceiro.estoqueInicial.moveis = [];
                   }
                   if(planoFinanceiroAux.estoqueInicial.utensilios !== undefined){
                       planoFinanceiro.estoqueInicial.utensilios = planoFinanceiroAux.estoqueInicial.utensilios;
+                  }else{
+                      planoFinanceiro.estoqueInicial.utensilios = [];
                   }
                   if(planoFinanceiroAux.estoqueInicial.veiculos !== undefined){
                       planoFinanceiro.estoqueInicial.veiculos = planoFinanceiroAux.estoqueInicial.veiculos;
+                  }else{
+                      planoFinanceiro.estoqueInicial.veiculos = [];
                   }
                   if(planoFinanceiroAux.vendas !== undefined){
                       planoFinanceiro.vendas = planoFinanceiroAux.vendas;
+                  }else{
+                      planoFinanceiro.vendas = [];
                   }
                   if(planoFinanceiroAux.compras !== undefined){
                       planoFinanceiro.compras = planoFinanceiroAux.compras;
+                  }else{
+                      planoFinanceiro.compras = [];
                   }
                   return planoFinanceiro;
                 },
@@ -199,24 +213,38 @@ angular.module('starter.services.planoFinanceiro', [])
                     planoFinanceiroID._id = planoFinanceiroAux._id;
                     if(planoFinanceiroAux.idsEquipamentos !== undefined){
                         planoFinanceiroID.idsEquipamentos = planoFinanceiroAux.idsEquipamentos;
+                    }else{
+                        planoFinanceiroID.idsEquipamentos = [];
                     }
                     if(planoFinanceiroAux.idsMaquinas !== undefined){
                         planoFinanceiroID.idsMaquinas = planoFinanceiroAux.idsMaquinas;
+                    }else{
+                        planoFinanceiroID.idsMaquinas = [];
                     }
                     if(planoFinanceiroAux.idsMoveis !== undefined){
                         planoFinanceiroID.idsMoveis = planoFinanceiroAux.idsMoveis;
+                    }else{
+                        planoFinanceiroID.idsMoveis = [];
                     }
                     if(planoFinanceiroAux.idsUtensilios !== undefined){
                         planoFinanceiroID.idsUtensilios = planoFinanceiroAux.idsUtensilios;
+                    }else{
+                        planoFinanceiroID.idsUtensilios = [];
                     }
                     if(planoFinanceiroAux.idsVeiculos !== undefined){
                         planoFinanceiroID.idsVeiculos = planoFinanceiroAux.idsVeiculos;
+                    }else{
+                        planoFinanceiroID.idsVeiculos = [];
                     }
                     if(planoFinanceiroAux.idsVendas !== undefined){
                         planoFinanceiroID.idsVendas = planoFinanceiroAux.idsVendas;
+                    }else{
+                        planoFinanceiroID.idsVendas = [];
                     }
                     if(planoFinanceiroAux.idsCompras !== undefined){
                         planoFinanceiroID.idsCompras = planoFinanceiroAux.idsCompras;
+                    }else{
+                        planoFinanceiroID.idsCompras = [];
                     }
                     return planoFinanceiroID;
                 }

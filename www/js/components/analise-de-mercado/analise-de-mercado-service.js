@@ -87,12 +87,18 @@ angular.module('starter.services.analiseDeMercado', [])
                     analiseDeMercado._id = analiseDeMercadoAux._id;
                     if(analiseDeMercadoAux.concorrentes !== undefined){
                         analiseDeMercado.concorrentes = analiseDeMercadoAux.concorrentes;
+                    }else{
+                        analiseDeMercado.concorrentes = [];
                     }
                     if(analiseDeMercadoAux.fornecedores !== undefined){
                         analiseDeMercado.fornecedores = analiseDeMercadoAux.fornecedores;
+                    }else{
+                        analiseDeMercado.fornecedores = [];
                     }
                     if(analiseDeMercadoAux.cliente !== undefined){
                         analiseDeMercado.novoCliente(analiseDeMercadoAux.cliente);
+                    }else{
+                        analiseDeMercado.cliente = new Cliente();
                     }
                     return analiseDeMercado;
                 },
@@ -101,9 +107,13 @@ angular.module('starter.services.analiseDeMercado', [])
                     analiseDeMercadoID._id = analiseDeMercadoAux._id;
                     if(analiseDeMercadoAux.idsConcorrentes !== undefined){
                         analiseDeMercadoID.idsConcorrentes = analiseDeMercadoAux.idsConcorrentes;
+                    }else{
+                        analiseDeMercadoID.idsConcorrentes = [];
                     }
                     if(analiseDeMercadoAux.idsFornecedores !== undefined){
                         analiseDeMercadoID.idsFornecedores = analiseDeMercadoAux.idsFornecedores;
+                    }else{
+                        analiseDeMercadoID.idsFornecedores = [];
                     }
                     return analiseDeMercadoID;
                 }

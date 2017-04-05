@@ -74,24 +74,38 @@ angular.module('starter.services.planoOperacional', [])
                     planoOperacional._id = planoOperacionalAux._id;
                     if (planoOperacionalAux.capacidadeProdutiva !== undefined) {
                         planoOperacional.capacidadeProdutiva = planoOperacionalAux.capacidadeProdutiva;
+                    }else{
+                        planoOperacional.capacidadeProdutiva = '';
                     }
                     if (planoOperacionalAux.capacidadeComercial !== undefined) {
                         planoOperacional.capacidadeComercial = planoOperacionalAux.capacidadeComercial;
+                    }else{
+                        planoOperacional.capacidadeComercial = '';
                     }
                     if (planoOperacionalAux.capacidadeProdutivaInicial !== undefined) {
                         planoOperacional.capacidadeProdutivaInicial = planoOperacionalAux.capacidadeProdutivaInicial;
+                    }else{
+                        planoOperacional.capacidadeProdutivaInicial = '';
                     }
                     if (planoOperacionalAux.capacidadeComercialInicial !== undefined) {
                         planoOperacional.capacidadeComercialInicial = planoOperacionalAux.capacidadeComercialInicial;
+                    }else{
+                        planoOperacional.capacidadeComercialInicial = '';
                     }
                     if (planoOperacionalAux.processosOperacionais !== undefined) {
                         planoOperacional.processosOperacionais = planoOperacionalAux.processosOperacionais;
+                    }else{
+                        planoOperacional.processosOperacionais = '';
                     }
                     if (planoOperacionalAux.layout !== undefined) {
                         planoOperacional.layout = planoOperacionalAux.layout;
+                    }else{
+                        planoOperacional.layout = {};
                     }
                     if (planoOperacionalAux.cargos !== undefined) {
                         planoOperacional.cargos = planoOperacionalAux.cargos;
+                    }else{
+                        planoOperacional.cargos = [];
                     }
 
                     return planoOperacional;
@@ -101,9 +115,13 @@ angular.module('starter.services.planoOperacional', [])
                     planoOperacionalID._id = planoOperacionalAux._id;
                     if (planoOperacionalAux.idImagem !== undefined) {
                         planoOperacionalID.idImagem = planoOperacionalAux.idImagem;
+                    }else{
+                        planoOperacionalID.idImagem = {};
                     }
                     if (planoOperacionalAux.idsCargos !== undefined) {
                         planoOperacionalID.idsCargos = planoOperacionalAux.idsCargos;
+                    }else{
+                        planoOperacionalID.idsCargos = [];
                     }
 
                     return planoOperacionalID;

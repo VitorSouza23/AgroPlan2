@@ -69,15 +69,23 @@ angular.module('starter.services.planoDeMarketing', [])
                     planoDeMarketing._id = planoDeMarketingAux._id;
                     if (planoDeMarketingAux.estrategiasPromocionais !== undefined) {
                         planoDeMarketing.estrategiasPromocionais = planoDeMarketingAux.estrategiasPromocionais;
+                    }else{
+                        planoDeMarketing.estrategiasPromocionais = '';
                     }
                     if (planoDeMarketingAux.estruturaDeComercializacao !== undefined) {
                         planoDeMarketing.estruturaDeComercializacao = planoDeMarketingAux.estruturaDeComercializacao;
+                    }else{
+                        planoDeMarketing.estruturaDeComercializacao = '';
                     }
                     if (planoDeMarketingAux.localizacaoDoNegocio !== undefined) {
                         planoDeMarketing.localizacaoDoNegocio = planoDeMarketingAux.localizacaoDoNegocio;
+                    }else{
+                        planoDeMarketing.localizacaoDoNegocio = new LocalizacaoDoNegocio();
                     }
                     if (planoDeMarketingAux.produtos !== undefined) {
                         planoDeMarketing.produtos = planoDeMarketingAux.produtos;
+                    }else{
+                        planoDeMarketing.produtos = [];
                     }
                     return planoDeMarketing;
                 },

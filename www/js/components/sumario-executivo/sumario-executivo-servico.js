@@ -118,7 +118,7 @@ angular.module('starter.services.sumarioExecutivo', [])
                     if (sumarioExecutivoAux.socios !== undefined) {
                         sumarioExecutivo.socios = sumarioExecutivoAux.socios;
                     }else{
-                        sumarioExecutivo.socios = '';
+                        sumarioExecutivo.socios = [];
                     }
                     return sumarioExecutivo;
                 },
@@ -127,8 +127,10 @@ angular.module('starter.services.sumarioExecutivo', [])
                     sumarioExecutivoID._id = sumarioExecutivoAux._id;
                     if(sumarioExecutivoAux.idSocios !== undefined){
                         sumarioExecutivoID.idsSocios = sumarioExecutivoAux.idSocios;
+                    }else{
+                        sumarioExecutivoID.idsSocios = [];
                     }
                     return sumarioExecutivoID;
                 }
-            }
+            };
         });

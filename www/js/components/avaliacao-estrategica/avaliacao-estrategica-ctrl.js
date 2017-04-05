@@ -21,15 +21,23 @@ angular.module('starter.controllers.avaliacaoEstrategica', ['starter.services.av
                 $scope.avaliacaoEstrategica._id = avaliacaoEstrategicaAux._id;
                 if(avaliacaoEstrategicaAux.forca !== undefined){
                     $scope.avaliacaoEstrategica.forca = avaliacaoEstrategicaAux.forca;
+                }else{
+                    $scope.avaliacaoEstrategica.forca = '';
                 }
                 if(avaliacaoEstrategicaAux.fraquesa !== undefined){
                     $scope.avaliacaoEstrategica.fraquesa = avaliacaoEstrategicaAux.fraquesa;
+                }else{
+                    $scope.avaliacaoEstrategica.fraquesa = '';
                 }
                 if(avaliacaoEstrategicaAux.oportunidade){
                     $scope.avaliacaoEstrategica.oportunidade = avaliacaoEstrategicaAux.oportunidade;
+                }else{
+                    $scope.avaliacaoEstrategica.oportunidade = '';
                 }
                 if(avaliacaoEstrategicaAux.ameaca !== undefined){
                     $scope.avaliacaoEstrategica.ameaca = avaliacaoEstrategicaAux.ameaca;
+                }else{
+                    $scope.avaliacaoEstrategica.ameaca = '';
                 }
             };
 
