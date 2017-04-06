@@ -2,7 +2,7 @@
 
 angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de-negocios', 'starter.services.utilitarios'])
         .factory('GeradorDeRelatorio', function ($cordovaPrinter, ServicoPlanoDeNegocio, $rootScope
-                , RecuperarPartes, $q, $ionicLoading) {
+                , RecuperarPartes, $q, $ionicLoading, $cordovaFile) {
 
             var binaryArray = null;
             var appDirectory = null;
@@ -15,6 +15,9 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                     setTimeout(function () {
                         console.log(planoPDF.planoOperacional.layout);
                         dd = {
+                            info: {
+                                title: planoDeNegocio.nome
+                            },
                             content: [
                                 {text: planoDeNegocio.nome, style: 'tituloCapa'},
                                 {columns: [
@@ -41,14 +44,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                 {text: planoPDF.sumarioExecutivo.missaoDaEmpresa, style: 'valores'},
                                 {text: 'Sócios: ', style: 'subtitulo'},
                                 {
-                                    ul: [
-                                        {text: 'Nome: ' + planoPDF.sumarioExecutivo.socios[0].nome, style: 'valoresTabela'},
-                                        {text: 'Endereço: ' + planoPDF.sumarioExecutivo.socios[0].endereco, style: 'valoresTabela'},
-                                        {text: 'Cidade: ' + planoPDF.sumarioExecutivo.socios[0].cidade, style: 'valoresTabela'},
-                                        {text: 'Estado: ' + planoPDF.sumarioExecutivo.socios[0].estado, style: 'valoresTabela'},
-                                        {text: 'Telefone: ' + planoPDF.sumarioExecutivo.socios[0].telefone, style: 'valoresTabela'},
-                                        {text: 'Perfil do Sócio: ' + planoPDF.sumarioExecutivo.socios[0].perfil, style: 'valoresTabela'}
-                                    ]
+                                    ul: formatarSocios(planoPDF.sumarioExecutivo.socios)
                                 },
                                 {text: 'Forma Jurídica: ', style: 'subtitulo'},
                                 {text: planoPDF.sumarioExecutivo.formaJuridica, style: 'valores'},
@@ -64,28 +60,11 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                 {text: 'Área de Abrangência: ' + planoPDF.analiseDeMercado.cliente.areaDeAbrangencia, style: 'valores'},
                                 {text: 'Concorrrentes', style: 'subtitulo'},
                                 {
-                                    ul: [
-                                        {text: 'Nome: ' + planoPDF.analiseDeMercado.concorrentes[0].nome, style: 'valoresTabela'},
-                                        {text: 'Qualidade: ' + planoPDF.analiseDeMercado.concorrentes[0].qualidade, style: 'valoresTabela'},
-                                        {text: 'Preço: ' + planoPDF.analiseDeMercado.concorrentes[0].preco, style: 'valoresTabela'},
-                                        {text: 'Condições de Pagamento: ' + planoPDF.analiseDeMercado.concorrentes[0].condicoesDePagamento, style: 'valoresTabela'},
-                                        {text: 'Endereço: ' + planoPDF.analiseDeMercado.concorrentes[0].localizacao, style: 'valoresTabela'},
-                                        {text: 'Tipo de Atendimento: ' + planoPDF.analiseDeMercado.concorrentes[0].atendimento, style: 'valoresTabela'},
-                                        {text: 'Serviços aos Clientes: ' + planoPDF.analiseDeMercado.concorrentes[0].servicos, style: 'valoresTabela'},
-                                        {text: 'Garantias Oferecidas: ' + planoPDF.analiseDeMercado.concorrentes[0].garantias, style: 'valoresTabela'},
-                                        {text: 'Observações: ' + planoPDF.analiseDeMercado.concorrentes[0].observacoes, style: 'valoresTabela'}
-                                    ]
+                                    ul: formatarConcorrentes(planoPDF.analiseDeMercado.concorrentes)
                                 },
                                 {text: 'Fornecedores', style: 'subtitulo'},
                                 {
-                                    ul: [
-                                        {text: 'Nome: ' + planoPDF.analiseDeMercado.fornecedores[0].nome, style: 'valoresTabela'},
-                                        {text: 'Preço: ' + planoPDF.analiseDeMercado.fornecedores[0].preco, style: 'valoresTabela'},
-                                        {text: 'Condições de Pagamento: ' + planoPDF.analiseDeMercado.fornecedores[0].condicoesDePagamento, style: 'valoresTabela'},
-                                        {text: 'Endereço: ' + planoPDF.analiseDeMercado.fornecedores[0].localizacao, style: 'valoresTabela'},
-                                        {text: 'Prazo de Entrega: ' + planoPDF.analiseDeMercado.fornecedores[0].prazoDeEntrega, style: 'valoresTabela'},
-                                        {text: 'Item a ser comprado: ' + planoPDF.analiseDeMercado.fornecedores[0].item, style: 'valoresTabela', pageBreak: 'after'}
-                                    ]
+                                    ul: formatarFornecedores(planoPDF.analiseDeMercado.fornecedores)
                                 },
                                 // Fim da Análise de Mercado ---------------------------------------- //
 
@@ -93,11 +72,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                 {text: 'Plano de Marketing', style: 'titulo', alignment: 'center'},
                                 {text: 'Produtos', style: 'subtitulo'},
                                 {
-                                    ul: [
-                                        {text: 'Nome: ' + planoPDF.planoDeMarketing.produtos[0].nome, style: 'valoresTabela'},
-                                        {text: 'Ciclo de Produção: ' + planoPDF.planoDeMarketing.produtos[0].cicloDeProducao, style: 'valoresTabela'},
-                                        {text: 'Preço: ' + planoPDF.planoDeMarketing.produtos[0].preco, style: 'valoresTabela'}
-                                    ]
+                                    ul: formatarProdutos(planoPDF.planoDeMarketing.produtos)
                                 },
                                 {text: 'Estratégias e Estruturas', style: 'subtitulo'},
                                 {text: 'Estratégias Promocionais: ' + planoPDF.planoDeMarketing.estrategiasPromocionais, style: 'valores'},
@@ -127,69 +102,42 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                 {text: planoPDF.planoOperacional.processosOperacionais, style: 'valores'},
                                 {text: 'Cargos Disponíveis', style: 'subtitulo'},
                                 {
-                                    ul: [
-                                        {text: 'Nome: ' + planoPDF.planoOperacional.cargos[0].nome, style: 'valoresTabela'},
-                                        {text: 'Qualificações: ' + planoPDF.planoOperacional.cargos[0].qualificacoes, style: 'valoresTabela', pageBreak: 'after'}
-                                    ]
+                                    ul: formatarCargos(planoPDF.planoOperacional.cargos)
                                 },
+                                {text: '', pageBreak: 'after'},
                                 // Fim do Plano de Marketing ---------------------------------------- //
 
                                 // Começo do Plano Financeiro ---------------------------------------- //
                                 {text: 'Plano Financeiro', style: 'titulo', alignment: 'center'},
                                 {text: 'Equipamentos', style: 'subtitulo'},
                                 {
-                                    ul: [
-                                        {text: 'Descrição: ' + planoPDF.planoFinanceiro.estoqueInicial.equipamentos[0].descricao, style: 'valoresTabela'},
-                                        {text: 'Quantidade: ' + planoPDF.planoFinanceiro.estoqueInicial.equipamentos[0].quantidade, style: 'valoresTabela'},
-                                        {text: 'Valor Unitário: ' + planoPDF.planoFinanceiro.estoqueInicial.equipamentos[0].valorUnitario, style: 'valoresTabela'}
-                                    ]
+                                    ul: formatarItensFinanceiro(planoPDF.planoFinanceiro.estoqueInicial.equipamentos)
                                 },
                                 {text: 'Máquinas', style: 'subtitulo'},
                                 {
-                                    ul: [
-                                        {text: 'Descrição: ' + planoPDF.planoFinanceiro.estoqueInicial.maquinas[0].descricao, style: 'valoresTabela'},
-                                        {text: 'Quantidade: ' + planoPDF.planoFinanceiro.estoqueInicial.maquinas[0].quantidade, style: 'valoresTabela'},
-                                        {text: 'Valor Unitário: ' + planoPDF.planoFinanceiro.estoqueInicial.maquinas[0].valorUnitario, style: 'valoresTabela'}
-                                    ]
+                                    ul: formatarItensFinanceiro(planoPDF.planoFinanceiro.estoqueInicial.maquinas)
                                 },
                                 {text: 'Móveis', style: 'subtitulo'},
                                 {
-                                    ul: [
-                                        {text: 'Descrição: ' + planoPDF.planoFinanceiro.estoqueInicial.moveis[0].descricao, style: 'valoresTabela'},
-                                        {text: 'Quantidade: ' + planoPDF.planoFinanceiro.estoqueInicial.moveis[0].quantidade, style: 'valoresTabela'},
-                                        {text: 'Valor Unitário: ' + planoPDF.planoFinanceiro.estoqueInicial.moveis[0].valorUnitario, style: 'valoresTabela'}
-                                    ]
+                                    ul: formatarItensFinanceiro(planoPDF.planoFinanceiro.estoqueInicial.moveis)
                                 },
                                 {text: 'Utensílios', style: 'subtitulo'},
                                 {
-                                    ul: [
-                                        {text: 'Descrição: ' + planoPDF.planoFinanceiro.estoqueInicial.utensilios[0].descricao, style: 'valoresTabela'},
-                                        {text: 'Quantidade: '  + planoPDF.planoFinanceiro.estoqueInicial.utensilios[0].quantidade, style: 'valoresTabela'},
-                                        {text: 'Valor Unitário: ' + planoPDF.planoFinanceiro.estoqueInicial.utensilios[0].valorUnitario, style: 'valoresTabela'}
-                                    ]
+                                    ul: formatarItensFinanceiro(planoPDF.planoFinanceiro.estoqueInicial.utensilios)
                                 },
                                 {text: 'Veículos', style: 'subtitulo'},
                                 {
-                                    ul: [
-                                        {text: 'Descrição: ' + planoPDF.planoFinanceiro.estoqueInicial.veiculos[0].descricao, style: 'valoresTabela'},
-                                        {text: 'Quantidade: ' + planoPDF.planoFinanceiro.estoqueInicial.veiculos[0].quantidade, style: 'valoresTabela'},
-                                        {text: 'Valor Unitário: ' + planoPDF.planoFinanceiro.estoqueInicial.veiculos[0].valorUnitario, style: 'valoresTabela'}
-                                    ]
+                                    ul: formatarItensFinanceiro(planoPDF.planoFinanceiro.estoqueInicial.veiculos)
                                 },
                                 {text: 'Compras', style: 'subtitulo'},
                                 {
-                                    ul: [
-                                        {text: 'Dias de prazo de pagamento: ' + planoPDF.planoFinanceiro.compras[0].dias, style: 'valoresTabela'},
-                                        {text: 'Porcentagem de compras com esse prazo: ' + planoPDF.planoFinanceiro.compras[0].porcentagem + ' %', style: 'valoresTabela'}
-                                    ]
+                                    ul: formatarCompras(planoPDF.planoFinanceiro.compras)
                                 },
                                 {text: 'Vendas', style: 'subtitulo'},
                                 {
-                                    ul: [
-                                        {text: 'Dias de prazo de pagamento: ' + planoPDF.planoFinanceiro.vendas[0].dias, style: 'valoresTabela'},
-                                        {text: 'Porcentagem de vendas com esse prazo: ' + planoPDF.planoFinanceiro.vendas[0].porcentagem + ' %', style: 'valoresTabela', pageBreak: 'after'}
-                                    ]
+                                    ul: formatarVendas(planoPDF.planoFinanceiro.vendas)
                                 },
+                                {text: '', pageBreak: 'after'},
                                 // Fim do Plano Financeiro ---------------------------------------- //
 
                                 // Começo da Construção de Cenários ---------------------------------------- //
@@ -273,7 +221,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                         {text: 'O que?: ' + planoPDF.roteiroDeInformacao.sumarioExecutivo.atividade, style: 'valoresTabela'},
                                         {text: 'Onde?: ' + planoPDF.roteiroDeInformacao.sumarioExecutivo.local, style: 'valoresTabela'},
                                         {text: 'Quando?: ' + planoPDF.roteiroDeInformacao.sumarioExecutivo.prazo, style: 'valoresTabela'},
-                                        {text: 'Quem?: '  + planoPDF.roteiroDeInformacao.sumarioExecutivo.responsavel, style: 'valoresTabela'}
+                                        {text: 'Quem?: ' + planoPDF.roteiroDeInformacao.sumarioExecutivo.responsavel, style: 'valoresTabela'}
                                     ]
                                 },
                                 {text: 'Análise de Mercado', style: 'subtitulo'},
@@ -357,6 +305,95 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                         };
                     }, 3000);
 
+                    function formatarSocios(socios) {
+                        var listaSocios = [];
+                        socios.forEach(function (socio) {
+                            listaSocios.push({text: 'Nome: ' + socio.nome, style: 'valoresTabela'},
+                            {text: 'Endereço: ' + socio.endereco, style: 'valoresTabela'},
+                            {text: 'Cidade: ' + socio.cidade, style: 'valoresTabela'},
+                            {text: 'Estado: ' + socio.estado, style: 'valoresTabela'},
+                            {text: 'Telefone: ' + socio.telefone, style: 'valoresTabela'},
+                            {text: 'Perfil do Sócio: ' + socio.perfil, style: 'valoresTabela'},
+                            {text: '', style: 'valoresTabela'});
+                        });
+                        return listaSocios;
+                    }
+
+                    function formatarConcorrentes(concorrentes) {
+                        var listaConcorrentes = [];
+                        concorrentes.forEach(function (concorrente) {
+                            listaConcorrentes.push({text: 'Nome: ' + concorrente.nome, style: 'valoresTabela'},
+                            {text: 'Qualidade: ' + concorrente.qualidade, style: 'valoresTabela'},
+                            {text: 'Preço: ' + concorrente.preco, style: 'valoresTabela'},
+                            {text: 'Condições de Pagamento: ' + concorrente.condicoesDePagamento, style: 'valoresTabela'},
+                            {text: 'Endereço: ' + concorrente.localizacao, style: 'valoresTabela'},
+                            {text: 'Tipo de Atendimento: ' + concorrente.atendimento, style: 'valoresTabela'},
+                            {text: 'Serviços aos Clientes: ' + concorrente.servicos, style: 'valoresTabela'},
+                            {text: 'Garantias Oferecidas: ' + concorrente.garantias, style: 'valoresTabela'},
+                            {text: 'Observações: ' + concorrente.observacoes, style: 'valoresTabela'});
+                        });
+                        return listaConcorrentes;
+                    }
+
+                    function formatarFornecedores(fornecedores) {
+                        var listaFornecedores = [];
+                        fornecedores.forEach(function (fornecedor) {
+                            listaFornecedores.push({text: 'Nome: ' + fornecedor.nome, style: 'valoresTabela'},
+                            {text: 'Preço: ' + fornecedor.preco, style: 'valoresTabela'},
+                            {text: 'Condições de Pagamento: ' + fornecedor.condicoesDePagamento, style: 'valoresTabela'},
+                            {text: 'Endereço: ' + fornecedor.localizacao, style: 'valoresTabela'},
+                            {text: 'Prazo de Entrega: ' + fornecedor.prazoDeEntrega, style: 'valoresTabela'},
+                            {text: 'Item a ser comprado: ' + fornecedor.item, style: 'valoresTabela', pageBreak: 'after'});
+                        });
+                        return listaFornecedores;
+                    }
+
+                    function formatarProdutos(produtos) {
+                        var listaProdutos = [];
+                        produtos.forEach(function (produto) {
+                            listaProdutos.push({text: 'Nome: ' + produto.nome, style: 'valoresTabela'},
+                            {text: 'Ciclo de Produção: ' + produto.cicloDeProducao, style: 'valoresTabela'},
+                            {text: 'Preço: ' + produto.preco, style: 'valoresTabela'});
+                        });
+                        return listaProdutos;
+                    }
+
+                    function formatarCargos(cargos) {
+                        var listaCargos = [];
+                        cargos.forEach(function (cargo) {
+                            listaCargos.push({text: 'Nome: ' + cargo.nome, style: 'valoresTabela'},
+                            {text: 'Qualificações: ' + cargo.qualificacoes, style: 'valoresTabela'});
+                        });
+                        return listaCargos;
+                    }
+
+                    function formatarItensFinanceiro(itens) {
+                        var listaItens = [];
+                        itens.forEach(function (item) {
+                            listaItens.push({text: 'Descrição: ' + item.descricao, style: 'valoresTabela'},
+                            {text: 'Quantidade: ' + item.quantidade, style: 'valoresTabela'},
+                            {text: 'Valor Unitário: ' + item.valorUnitario, style: 'valoresTabela'});
+                        });
+                        return listaItens;
+                    }
+
+                    function formatarCompras(compras) {
+                        var listaCompras = [];
+                        compras.forEach(function (compra) {
+                            listaCompras.push({text: 'Dias de prazo de pagamento: ' + compra.dias, style: 'valoresTabela'},
+                            {text: 'Porcentagem de compras com esse prazo: ' + compra.porcentagem + ' %', style: 'valoresTabela'});
+                        });
+                        return listaCompras;
+                    }
+                    function formatarVendas(vendas) {
+                        var listaVendas = [];
+                        vendas.forEach(function (venda) {
+                            listaVendas.push({text: 'Dias de prazo de pagamento: ' + venda.dias, style: 'valoresTabela'},
+                            {text: 'Porcentagem de vendas com esse prazo: ' + venda.porcentagem + ' %', style: 'valoresTabela'});
+                        });
+                        return listaVendas;
+                    }
+
                     $ionicLoading.show({
                         template: 'Gerando Relatório... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
                         duration: 5000
@@ -365,17 +402,11 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                             if (!window.cordova) {
                                 pdfMake.createPdf(dd).open();
                             } else {
-                                pdfMake.createPdf(dd).getBuffer(function (buffer) {
-                                    var utf8 = new Uint8Array(buffer); // Convert to UTF-8...                
-                                    binaryArray = utf8.buffer; // Convert to Binary...
-                                    window.requestFileSystem(LocalFileSystem.PERSISTENT, 1, function (fileSys) {
-                                        fileSys.root.getDirectory('AgroPlanPDF', {create: true, exclusive: false}, function (directory) {
-                                            appDirectory = directory;
-                                            console.log("App directory initialized.");
-                                        }, fail);
-                                    }, fail);
-                                    save(binaryArray, "Test.pdf");
+                                var pdfFinal = 
+                                pdfDocGenerator.getDataUrl(function (url){
+                                    
                                 });
+                                
                             }
                         }, 3000);
                     });

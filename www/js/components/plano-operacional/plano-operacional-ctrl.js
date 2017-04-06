@@ -149,7 +149,8 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
                     var caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/imagem?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
                     var objeto = $scope.imagemJSON;
-                    if ($scope.planoOperacionalID.idImagem === undefined) {
+                    
+                    if ($scope.planoOperacionalID.idImagem === {}) {
                         $scope.bancoDeDados.salvar(caminho, objeto).then(function (response) {
                             $scope.planoOperacionalID.idImagem = response.data._id;
                             console.log(response);
@@ -196,9 +197,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
                     } else {
                         $scope.bancoDeDados.atualizar(caminho, objeto);
                     }
-                }, function (err) {
-                    alert('Erro ao obter imagem!');
-                });
+                }, erroAoPegarFoto);
             };
 
 

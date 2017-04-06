@@ -82,6 +82,7 @@ angular.module('starter.services.sumarioExecutivo', [])
         .factory('MontadorSumarioExecutivo', function (SumarioExecutivo, SumarioExecutivoID) {
             return{
                 montar: function (sumarioExecutivoAux) {
+                    console.log(sumarioExecutivoAux);
                     var sumarioExecutivo = SumarioExecutivo.getSumarioExecutivo();
                     sumarioExecutivo._id = sumarioExecutivoAux._id;
 
@@ -125,8 +126,8 @@ angular.module('starter.services.sumarioExecutivo', [])
                 montarID: function (sumarioExecutivoAux) {
                     var sumarioExecutivoID = SumarioExecutivoID;
                     sumarioExecutivoID._id = sumarioExecutivoAux._id;
-                    if(sumarioExecutivoAux.idSocios !== undefined){
-                        sumarioExecutivoID.idsSocios = sumarioExecutivoAux.idSocios;
+                    if(sumarioExecutivoAux.idsSocios !== undefined){
+                        sumarioExecutivoID.idsSocios = sumarioExecutivoAux.idsSocios;
                     }else{
                         sumarioExecutivoID.idsSocios = [];
                     }
