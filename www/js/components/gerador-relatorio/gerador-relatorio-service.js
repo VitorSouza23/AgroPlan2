@@ -404,7 +404,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                             } else {
                                 var pdfFinal = pdfMake.createPdf(dd);
                                 pdfFinal.getDataUrl(function (dataUrl) {
-                                    window.open(dataUrl, '_system', 'location=yes');
+                                   window.open(dataUrl, '_self', 'location=yes');
                                 });
                             }
                         }, 3000);
