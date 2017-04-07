@@ -402,16 +402,14 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                             if (!window.cordova) {
                                 pdfMake.createPdf(dd).open();
                             } else {
-                                var pdfFinal = 
-                                pdfDocGenerator.getDataUrl(function (url){
-                                    
+                                var pdfFinal = pdfMake.createPdf(dd);
+                                pdfFinal.getDataUrl(function (dataUrl) {
+                                    window.open(dataUrl, '_system', 'location=yes');
                                 });
-                                
                             }
                         }, 3000);
                     });
                 });
-
             };
 
             function save(data, savefile) {
