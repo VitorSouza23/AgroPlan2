@@ -404,7 +404,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                             } else {
                                 var pdfFinal = pdfMake.createPdf(dd);
                                 pdfFinal.getDataUrl(function (dataUrl) {
-                                   cordova.InAppBrowser.open(dataUrl, '_self', 'location=yes');
+                                   window.open(encodeURI(dataUrl), '_blank', 'location=yes');
                                 });
                             }
                         }, 3000);
