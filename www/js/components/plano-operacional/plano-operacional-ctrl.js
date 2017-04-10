@@ -110,6 +110,11 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
                     $scope.cargo = Cargo.novoCargo();
                 }
             };
+            
+            $scope.fecharCargos = function (){
+              $scope.modalCargo.hide();
+              $scope.editar = false;
+            };
 
             function sucessoAoPegarFoto(imageData) {
                 if (tipoDestinoCaminhoFoto === 1 || tipoDestinoCaminhoFoto === 2) {

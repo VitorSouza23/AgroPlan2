@@ -2,7 +2,7 @@
     <ion-header-bar class="bar-calm">
         <h1 class="title">Utensílio</h1>
         <div class="buttons">
-            <button class="button button-clear" ng-click="modalUtensilio.hide()">Fechar</button>
+            <button class="button button-clear" ng-click="fecharUtensilios()">Fechar</button>
         </div>
     </ion-header-bar>
     <ion-content>
@@ -26,8 +26,11 @@
                     </button>
                 </div>
                 <div class="col">
-                    <button class="button button-block icon-rigth ion-trash-a button-assertive" ng-click="excluirUtensilioPermanentemente()">
+                    <button ng-if="editar" class="button button-block icon-rigth ion-trash-a button-assertive" ng-click="excluirUtensilioPermanentemente()">
                         Excluir
+                    </button>
+                    <button ng-if="!(editar)" class="button button-block icon-rigth ion-close-round button-energized" ng-click="modalUtensilio.hide()">
+                        Cancelar
                     </button>
                 </div>
             </div>

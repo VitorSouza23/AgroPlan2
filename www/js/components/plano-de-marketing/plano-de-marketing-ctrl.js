@@ -95,6 +95,11 @@ angular.module('starter.controllers.planoDeMarketing', ['starter.services.planoD
                     $scope.produto = Produto.novoProduto();
                 }
             };
+            
+            $scope.fecharProdutos = function (){
+                $scope.modalProduto.hide();
+                $scope.editar = false;
+            };
 
             $scope.mostrarReordem = function () {
                 $scope.reordenar = !$scope.reordenar;

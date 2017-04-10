@@ -65,6 +65,8 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
                 }
                 $scope.modalConcorrente.hide();
             };
+            
+            
 
             $scope.showConfirm = function () {
                 var confirmPopup = $ionicPopup.confirm({
@@ -92,6 +94,11 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
                 if (!$scope.editar) {
                     $scope.concorrente = Concorrente.novoConcorrente();
                 }
+            };
+            
+            $scope.fecharConcorrentes = function (){
+                $scope.modalConcorrente.hide();
+                $scope.editar = false;
             };
 
             $scope.excluirConcorrentePermanentemente = function () {
@@ -147,6 +154,11 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
                     $scope.fornecedor = Fornecedor.novoFornecedor();
                 }
 
+            };
+            
+            $scope.fecharFornecedores = function (){
+                $scope.modalFornecedor.hide();
+                $scope.editar = false;
             };
 
             $scope.excluirFornecedorPermanentemente = function () {

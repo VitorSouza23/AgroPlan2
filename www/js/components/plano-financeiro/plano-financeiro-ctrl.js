@@ -503,6 +503,46 @@ angular.module('starter.controllers.planoFinanceiro', ['starter.services.planoFi
                 $scope.planoFinanceiro.compras.splice(fromIndex, 1);
                 $scope.planoFinanceiro.compras.splice(toIndex, 0, item);
             };
+            
+            $scope.fecharEquipamentos = function (){
+                $scope.modalEquipamento.hide();
+                $scope.editar = false;
+            };
+            
+            $scope.fecharMaquinas = function (){
+                $scope.modalMaquina.hide();
+                $scope.editar = false;
+            };
+            
+            $scope.fecharMoveis = function (){
+                $scope.modalMovel.hide();
+                $scope.editar = false;
+            };
+            
+            $scope.fecharEquipamentos = function (){
+                $scope.modalEquipamento.hide();
+                $scope.editar = false;
+            };
+            
+            $scope.fecharUtensilios = function (){
+                $scope.modalUtensilio.hide();
+                $scope.editar = false;
+            };
+            
+            $scope.fecharVeiculos = function (){
+                $scope.modalVeiculo.hide();
+                $scope.editar = false;
+            };
+            
+            $scope.fecharCompras = function (){
+                $scope.modalCompra.hide();
+                $scope.editar = false;
+            };
+            
+            $scope.fecharVendas = function (){
+                $scope.modalVenda.hide();
+                $scope.editar = false;
+            };
 
             $scope.salvar = function () {
                 var caminho;

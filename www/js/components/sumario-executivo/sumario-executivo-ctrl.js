@@ -122,6 +122,11 @@ angular.module('starter.controllers.sumarioExecutivo', ['starter.services.sumari
                     $scope.socio = Socio.novoSocio();
                 }
             };
+            
+            $scope.fecharSocios =  function (){
+                $scope.modalSocio.hide();
+                $scope.editar = false;
+            };
 
             $scope.back = function () {
                 $ionicHistory.goBack();

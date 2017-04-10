@@ -2,7 +2,7 @@
     <ion-header-bar class="bar-balanced">
         <h1 class="title">Cargos</h1>
         <div class="buttons">
-            <button class="button button-clear" ng-click="modalCargo.hide()">Fechar</button>
+            <button class="button button-clear" ng-click="fecharCargos()">Fechar</button>
         </div>
     </ion-header-bar>
     <ion-content>
@@ -15,6 +15,10 @@
                 <span class="input-label">Qualificações Necessárias</span>
                 <input type="text" placeholder="Qualificações" ng-model="cargo.qualificacoes">
             </label>
+             <label class="item item-input item-floating-label">
+                <span class="input-label">Qualificações Necessárias</span>
+                <input type="text" placeholder="Qualificações" ng-model="cargo.salarioBase">
+            </label>
 
             <div class="row">
                 <div class="col col-60">
@@ -23,8 +27,11 @@
                     </button>
                 </div>
                 <div class="col">
-                    <button class="button button-block icon-rigth ion-trash-a button-assertive" ng-click="excluirCargoPermanentemente()">
+                    <button ng-if="editar" class="button button-block icon-rigth ion-trash-a button-assertive" ng-click="excluirCargoPermanentemente()">
                         Excluir
+                    </button>
+                    <button ng-if="!(editar)" class="button button-block icon-rigth ion-close-round button-energized" ng-click="modalCargo.hide()">
+                        Cancelar
                     </button>
                 </div>
             </div>
