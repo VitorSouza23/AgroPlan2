@@ -399,12 +399,17 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                         duration: 5000
                     }).then(function () {
                         setTimeout(function () {
+                            var pdfFinal = pdfMake.createPdf(dd);
                             if (!window.cordova) {
-                                pdfMake.createPdf(dd).open();
+                                pdfFinal.open();
+                                pdfFinal.getDataUrl(function (dados) {
+                                    console.log(dados);
+                                    window.open(dados, '_blank', 'location=yes');
+                                });
                             } else {
-                                var pdfFinal = pdfMake.createPdf(dd);
-                                pdfFinal.getDataUrl(function (dataUrl) {
-                                   window.open(encodeURI(dataUrl), '_blank', 'location=yes');
+                                pdfFinal.getDataUrl(function (dados) {
+                                    alert(dados);
+                                    window.open(dados, '_blank', 'location=yes');
                                 });
                             }
                         }, 3000);
