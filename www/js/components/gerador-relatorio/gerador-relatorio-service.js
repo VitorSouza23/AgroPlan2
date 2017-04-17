@@ -402,14 +402,14 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                             var pdfFinal = pdfMake.createPdf(dd);
                             if (!window.cordova) {
                                 pdfFinal.open();
-                                pdfFinal.getDataUrl(function (dados) {
+                                /*pdfFinal.getDataUrl(function (dados) {
                                     console.log(dados);
                                     window.open(dados, '_blank', 'location=yes');
-                                });
+                                });*/
                             } else {
-                                pdfFinal.getDataUrl(function (dados) {
+                                pdfFinal.getBase64(function (dados) {
                                     alert(dados);
-                                    window.open(dados, '_blank', 'location=yes');
+                                    window.open('data:application/pdf;base64,' + dados, '_blank');
                                 });
                             }
                         }, 3000);

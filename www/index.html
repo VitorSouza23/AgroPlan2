@@ -32,7 +32,14 @@
 
         <!--Gerador de PDF -->
         <script src="lib/pdfmake/build/pdfmake.min.js"></script>
- 	<script src="lib/pdfmake/build/vfs_fonts.js"></script>
+        <script src="lib/pdfmake/build/vfs_fonts.js"></script>
+
+        <script>
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady() {
+                window.open = cordova.InAppBrowser.open;
+            }
+        </script>
 
 
         <!-- your app's js -->
