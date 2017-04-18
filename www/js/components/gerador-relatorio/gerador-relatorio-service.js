@@ -402,14 +402,14 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                             var pdfFinal = pdfMake.createPdf(dd);
                             if (!window.cordova) {
                                 pdfFinal.open();
-                                /*pdfFinal.getDataUrl(function (dados) {
-                                    console.log(dados);
-                                    window.open(dados, '_blank', 'location=yes');
-                                });*/
                             } else {
                                 pdfFinal.getBase64(function (dados) {
-                                    alert(dados);
-                                    window.open('data:application/pdf;base64,' + dados, '_blank');
+                                    //alert(dados);
+                                    var myBase64 = dados;
+                                    var contentType = "application/pdf";
+                                    var folderpath = cordova.file.externalRootDirectory;
+                                    var filename = planoDeNegocio.nome + ".pdf";
+                                    savebase64AsPDF(folderpath, filename, myBase64,contentType);
                                 });
                             }
                         }, 3000);
@@ -417,30 +417,49 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                 });
             };
 
-            function save(data, savefile) {
-                var html = savefile;
-                appDirectory.getFile(html, {create: true, exclusive: false}, function (fileEntry) {
-                    fileEntry.createWriter(win, fail);
-                }, fail);
+            function b64toBlob(b64Data, contentType, sliceSize) {
+                contentType = contentType || '';
+                sliceSize = sliceSize || 512;
 
-                function win(writer) {
-                    writer.onwriteend = function (evt) {
-                        if (writer.length === 0) {
-                            writer.write(data);
-                        }
-                    };
-                    writer.truncate(0);
-                    console.log("Write success");
-                    alert("Saving is successful.");
+                var byteCharacters = atob(b64Data);
+                var byteArrays = [];
+
+                for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                    var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                    var byteNumbers = new Array(slice.length);
+                    for (var i = 0; i < slice.length; i++) {
+                        byteNumbers[i] = slice.charCodeAt(i);
+                    }
+
+                    var byteArray = new Uint8Array(byteNumbers);
+
+                    byteArrays.push(byteArray);
                 }
-                ;
+
+                var blob = new Blob(byteArrays, {type: contentType});
+                return blob;
             }
 
-            function fail(error) {
-                alert("Writer Error: " + error.code);
+            function savebase64AsPDF(folderpath, filename, content, contentType) {
+                // Convert the base64 string in a Blob
+                var DataBlob = b64toBlob(content, contentType);
+
+                console.log("Starting to write the file :3");
+
+                window.resolveLocalFileSystemURL(folderpath, function (dir) {
+                    console.log("Access to the directory granted succesfully");
+                    dir.getFile(filename, {create: true}, function (file) {
+                        console.log("File created succesfully.");
+                        file.createWriter(function (fileWriter) {
+                            fileWriter.write(DataBlob);
+                            alert("O arquivo " + filename + " foi salvo em: " + folderpath);
+                        }, function () {
+                            alert('Não foi possível salvar o arquivo em: ' + folderpath);
+                        });
+                    });
+                });
             }
-
-
 
             var gerarRelatorio = function () {
                 console.log($cordovaPrinter);

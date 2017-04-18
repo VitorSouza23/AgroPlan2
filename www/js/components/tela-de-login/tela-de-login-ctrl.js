@@ -42,12 +42,18 @@ angular.module('starter.controllers.login', ['starter.services', 'starter.servic
                         if ($rootScope.usuario !== null) {
                             $state.go('planoDeNegocio');
                         } else {
-                            var alertPopup = $ionicPopup.alert({
+                            $ionicPopup.alert({
                                 title: 'Falha no Login!',
                                 template: 'O CPF ou Senha incorretos!'
                             });
                             $scope.mensagemDeErroLogin.camposIncorretos = true;
                         }
+                    }, function(erro){
+                        $ionicPopup.alert({
+                                title: 'Falha no Login!',
+                                template: 'Não foi possível estabelecer conexão com o Servidor!\
+                                           Verifique sua conexão ou tente mais tarde.'
+                            });
                     });
                 } else {
                     if ($scope.usuario.cpf === undefined) {
