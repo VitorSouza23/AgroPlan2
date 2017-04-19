@@ -155,11 +155,12 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
                     var caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/imagem?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
                     var objeto = $scope.imagemJSON;
                     
-                    if ($scope.planoOperacionalID.idImagem === {}) {
+                    
+                    if ($scope.planoOperacionalID.idImagem === {} || $scope.planoOperacionalID.idImagem === undefined) {
                         $scope.bancoDeDados.salvar(caminho, objeto).then(function (response) {
                             $scope.planoOperacionalID.idImagem = response.data._id;
                             console.log(response);
-
+                            alert(response);
                         });
                     } else {
                         $scope.bancoDeDados.atualizar(caminho, objeto);
@@ -227,7 +228,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
                 $ionicLoading.show({
                     template: 'Salvando... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
-                    duration: 1000
+                    duration: 2000
                 }).then(function () {
                     setTimeout(function () {
                         console.log($scope.planoOperacionalID.idsCargos);
@@ -236,7 +237,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
                         caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/planoOperacional?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
                         objeto = $scope.planoOperacionalID;
                         $scope.bancoDeDados.atualizar(caminho, objeto);
-                    }, 1000);
+                    }, 2000);
                 });
 
                 $scope.hide = function () {

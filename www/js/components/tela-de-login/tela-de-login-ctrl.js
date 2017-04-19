@@ -62,7 +62,7 @@ angular.module('starter.controllers.login', ['starter.services', 'starter.servic
                     if ($scope.usuario.senha === undefined) {
                         $scope.mensagemDeErroLogin.senhaVazia = true;
                     }
-                    var alertPopup = $ionicPopup.alert({
+                    $ionicPopup.alert({
                         title: 'Falha no Login! (Campos Vazios)',
                         template: 'Por favor, corrija os campos vazios!'
                     });

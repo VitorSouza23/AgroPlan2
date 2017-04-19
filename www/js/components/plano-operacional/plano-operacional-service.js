@@ -113,7 +113,7 @@ angular.module('starter.services.planoOperacional', [])
                 montarID: function (planoOperacionalAux) {
                     var planoOperacionalID = PlanoOperacionalID;
                     planoOperacionalID._id = planoOperacionalAux._id;
-                    if (planoOperacionalAux.idImagem !== undefined) {
+                    if (planoOperacionalAux.idImagem !== {} || planoOperacionalAux.idImagem !== undefined) {
                         planoOperacionalID.idImagem = planoOperacionalAux.idImagem;
                     }else{
                         planoOperacionalID.idImagem = {};
