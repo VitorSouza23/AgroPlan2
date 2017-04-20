@@ -2,7 +2,7 @@
 
 angular.module('starter.services.utilitarios', [])
 
-        .factory('BancoDeDados', function ($http, $q, $rootScope) {
+        .factory('BancoDeDados', function ($http, $q, $ionicPopup) {
 
             var salvar = function (caminho, objeto) {
                 deffered = $q.defer();
@@ -12,6 +12,7 @@ angular.module('starter.services.utilitarios', [])
                         }
                         , function (dados) {
                             deffered.reject(dados + "erro!");
+                            mostrarMensagemDeErro();
                         });
 
                 return deffered.promise;
@@ -35,6 +36,7 @@ angular.module('starter.services.utilitarios', [])
                     deffered.resolve(dados);
                 }), function (dados) {
                     deffered.reject(dados + "erro!");
+                    mostrarMensagemDeErro()
                 };
                 return deffered.promise;
             };
@@ -47,6 +49,7 @@ angular.module('starter.services.utilitarios', [])
                     deffered.resolve(dados);
                 }), function (dados) {
                     deffered.reject(dados + "erro!");
+                    mostrarMensagemDeErro();
                 };
                 return deffered.promise;
             };
@@ -60,6 +63,7 @@ angular.module('starter.services.utilitarios', [])
                     deffered.resolve(dados);
                 }), function (dados) {
                     deffered.reject(dados + "erro!");
+                    mostrarMensagemDeErro();
                 };
                 return deffered.promise;
             };
@@ -79,6 +83,7 @@ angular.module('starter.services.utilitarios', [])
                     deffered.resolve(dados);
                 }, function (dados) {
                     deffered.reject(dados + "erro!");
+                    mostrarMensagemDeErro();
                 });
                 return deffered.promise;
             };
@@ -97,6 +102,7 @@ angular.module('starter.services.utilitarios', [])
 
                 }, function (dados) {
                     deffered.reject(dados + "erro!");
+                    mostrarMensagemDeErro();
                 });
                 return deffered.promise;
             };
@@ -109,6 +115,7 @@ angular.module('starter.services.utilitarios', [])
                     deffered.resolve(dados);
                 }), function (dados) {
                     deffered.reject(dados + "erro!");
+                    mostrarMensagemDeErro();
                 };
                 return deffered.promise;
             };
@@ -119,14 +126,19 @@ angular.module('starter.services.utilitarios', [])
                 jsonString = JSON.stringify({_id: objeto._id});
                 console.log(caminho + "&q=" + jsonString);
                 return $http.get(caminho + "&q=" + jsonString, {cache: false});
-                ;
             };
 
             var salvarPromessa = function (caminho, objeto) {
                 return $http.post(caminho, objeto);
             };
 
-            ;
+            var mostrarMensagemDeErro = function () {
+                $ionicPopup.alert({
+                    title: 'Problemas de conexão',
+                    template: 'Não foi possível estabelecer conexão com o Servidor!\
+                                           Verifique sua conexão ou tente mais tarde.'
+                });
+            };
 
             return{
                 salvar: salvar,
@@ -138,8 +150,8 @@ angular.module('starter.services.utilitarios', [])
                 pesquisarCPFCadastrado: pesquisarCPFCadastrado,
                 recuperarComIdUsuario: recuperarComIdUsuario,
                 recuperarComId: recuperarComId,
-                salvarPromessa: salvarPromessa
-
+                salvarPromessa: salvarPromessa,
+                mostrarMensagemDeErro: mostrarMensagemDeErro
             };
 
         })

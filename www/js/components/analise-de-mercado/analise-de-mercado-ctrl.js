@@ -69,7 +69,7 @@ angular.module('starter.controllers.analiseDeMercado', ['starter.services.analis
             
 
             $scope.showConfirm = function () {
-                var confirmPopup = $ionicPopup.confirm({
+                $ionicPopup.confirm({
                     title: 'Análise de Mercado',
                     template: 'É onde serão inseridos os dados coletados pelo usuário em relação do seu empreendimento com o mercado.',
                     cancelText: 'Sair'

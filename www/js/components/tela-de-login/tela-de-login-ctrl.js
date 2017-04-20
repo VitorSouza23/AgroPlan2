@@ -118,6 +118,12 @@ angular.module('starter.controllers.login', ['starter.services', 'starter.servic
                             title: 'Novo Usuário Cadastrado!',
                             template: 'Seja bem vindo ' + dados.data.nome + "! \n" + 'CPF: ' + dados.data.cpf
                         });
+                    }, function(erro){
+                        $ionicPopup.alert({
+                                title: 'Falha no Cadastro!',
+                                template: 'Não foi possível estabelecer conexão com o Servidor!\
+                                           Verifique sua conexão ou tente mais tarde.'
+                            });
                     });
                 }
 

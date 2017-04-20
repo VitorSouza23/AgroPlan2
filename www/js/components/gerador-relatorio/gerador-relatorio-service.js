@@ -67,6 +67,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                     {
                                         ul: formatarFornecedores(planoPDF.analiseDeMercado.fornecedores)
                                     },
+                                    {text: '', pageBreak: 'after'},
                                     // Fim da Análise de Mercado ---------------------------------------- //
 
                                     // Começo do Plano de Marketing ---------------------------------------- //
@@ -306,6 +307,11 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                         margin: [26, 5, 0, 0],
                                         alignment: 'left'
                                     },
+                                     ultimoValorTabela: {
+                                        fontSize: 13,
+                                        margin: [26, 5, 0, 10],
+                                        alignment: 'left'
+                                    },
                                     posicaoImagem:{
                                         alignment: 'center'
                                     },
@@ -338,7 +344,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                             {text: 'Estado: ' + socio.estado, style: 'valoresTabela'},
                             {text: 'Telefone: ' + socio.telefone, style: 'valoresTabela'},
                             {text: 'Perfil do Sócio: ' + socio.perfil, style: 'valoresTabela'},
-                            {text: '', style: 'valoresTabela'});
+                            {text: '', style: 'ultimoValorTabela'});
                         });
                         return listaSocios;
                     }
@@ -354,7 +360,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                             {text: 'Tipo de Atendimento: ' + concorrente.atendimento, style: 'valoresTabela'},
                             {text: 'Serviços aos Clientes: ' + concorrente.servicos, style: 'valoresTabela'},
                             {text: 'Garantias Oferecidas: ' + concorrente.garantias, style: 'valoresTabela'},
-                            {text: 'Observações: ' + concorrente.observacoes, style: 'valoresTabela'});
+                            {text: 'Observações: ' + concorrente.observacoes, style: 'ultimoValorTabela'});
                         });
                         return listaConcorrentes;
                     }
@@ -367,7 +373,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                             {text: 'Condições de Pagamento: ' + fornecedor.condicoesDePagamento, style: 'valoresTabela'},
                             {text: 'Endereço: ' + fornecedor.localizacao, style: 'valoresTabela'},
                             {text: 'Prazo de Entrega: ' + fornecedor.prazoDeEntrega, style: 'valoresTabela'},
-                            {text: 'Item a ser comprado: ' + fornecedor.item, style: 'valoresTabela', pageBreak: 'after'});
+                            {text: 'Item a ser comprado: ' + fornecedor.item, style: 'ultimoValorTabela'});
                         });
                         return listaFornecedores;
                     }
@@ -377,7 +383,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                         produtos.forEach(function (produto) {
                             listaProdutos.push({text: 'Nome: ' + produto.nome, style: 'valoresTabela'},
                             {text: 'Ciclo de Produção: ' + produto.cicloDeProducao, style: 'valoresTabela'},
-                            {text: 'Preço: ' + produto.preco, style: 'valoresTabela'});
+                            {text: 'Preço: ' + produto.preco, style: 'ultimoValorTabela'});
                         });
                         return listaProdutos;
                     }
@@ -386,7 +392,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                         var listaCargos = [];
                         cargos.forEach(function (cargo) {
                             listaCargos.push({text: 'Nome: ' + cargo.nome, style: 'valoresTabela'},
-                            {text: 'Qualificações: ' + cargo.qualificacoes, style: 'valoresTabela'});
+                            {text: 'Qualificações: ' + cargo.qualificacoes, style: 'ultimoValorTabela'});
                         });
                         return listaCargos;
                     }
@@ -396,7 +402,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                         itens.forEach(function (item) {
                             listaItens.push({text: 'Descrição: ' + item.descricao, style: 'valoresTabela'},
                             {text: 'Quantidade: ' + item.quantidade, style: 'valoresTabela'},
-                            {text: 'Valor Unitário: ' + item.valorUnitario, style: 'valoresTabela'});
+                            {text: 'Valor Unitário: ' + item.valorUnitario, style: 'ultimoValorTabela'});
                         });
                         return listaItens;
                     }
@@ -405,7 +411,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                         var listaCompras = [];
                         compras.forEach(function (compra) {
                             listaCompras.push({text: 'Dias de prazo de pagamento: ' + compra.dias, style: 'valoresTabela'},
-                            {text: 'Porcentagem de compras com esse prazo: ' + compra.porcentagem + ' %', style: 'valoresTabela'});
+                            {text: 'Porcentagem de compras com esse prazo: ' + compra.porcentagem + ' %', style: 'ultimoValorTabela'});
                         });
                         return listaCompras;
                     }
@@ -413,7 +419,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                         var listaVendas = [];
                         vendas.forEach(function (venda) {
                             listaVendas.push({text: 'Dias de prazo de pagamento: ' + venda.dias, style: 'valoresTabela'},
-                            {text: 'Porcentagem de vendas com esse prazo: ' + venda.porcentagem + ' %', style: 'valoresTabela'});
+                            {text: 'Porcentagem de vendas com esse prazo: ' + venda.porcentagem + ' %', style: 'ultimoValorTabela'});
                         });
                         return listaVendas;
                     }
@@ -477,7 +483,10 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                         console.log("File created succesfully.");
                         file.createWriter(function (fileWriter) {
                             fileWriter.write(DataBlob);
-                            $ionicPopup.alert("O arquivo " + filename + " foi salvo em: " + folderpath);
+                            $ionicPopup.alert({
+                                title: filename + ' salvo!',
+                                template: "O arquivo " + filename + " foi salvo em: " + folderpath
+                            });
                         }, function () {
                             alert('Não foi possível salvar o arquivo em: ' + folderpath);
                         });

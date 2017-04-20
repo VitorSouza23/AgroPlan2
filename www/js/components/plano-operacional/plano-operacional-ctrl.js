@@ -126,10 +126,10 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
             }
 
             function erroAoPegarFoto(erro) {
-                console.log(err);
+                console.log(erro);
                 $ionicPopup.alert({
                     title: 'Erro ao acessar recursos de Foto!',
-                    template: 'Não foi possível acessar a câmera ou a biblioteca de imagens.'
+                    template: 'Não foi possível usar a imagem.'
                 });
             }
 
@@ -160,7 +160,6 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
                         $scope.bancoDeDados.salvar(caminho, objeto).then(function (response) {
                             $scope.planoOperacionalID.idImagem = response.data._id;
                             console.log(response);
-                            alert(response);
                         });
                     } else {
                         $scope.bancoDeDados.atualizar(caminho, objeto);
@@ -168,7 +167,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
 
                 }, function (err) {
-                    alert('Erro ao obter imagem!');
+                    erroAoPegarFoto(err);
                 });
             };
 
@@ -194,7 +193,7 @@ angular.module('starter.controllers.planoOperacional', ['starter.services.planoO
 
                     var caminho = 'https://api.mlab.com/api/1/databases/agroplan/collections/imagem?apiKey=XRSrAQkYZvpYR1cLVVbR5rknsPC0hZff';
                     var objeto = $scope.imagemJSON;
-                    if ($scope.planoOperacionalID.idImagem === undefined) {
+                    if ($scope.planoOperacionalID.idImagem === {} || $scope.planoOperacionalID.idImagem === undefined) {
                         $scope.bancoDeDados.salvar(caminho, objeto).then(function (response) {
                             $scope.planoOperacionalID.idImagem = response.data._id;
                             console.log(response);
