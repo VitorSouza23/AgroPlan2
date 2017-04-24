@@ -4,25 +4,21 @@ angular.module('starter.controllers.login', ['starter.services', 'starter.servic
 
         .controller('LoginCtrl', function ($scope, ServicoLogin, $ionicPopup, $state, $rootScope) {
             $scope.usuario = {};
-
             $scope.init = function () {
                 $scope.usuario = {};
                 $rootScope.usuario = null;
                 $rootScope.isLogin = false;
             };
-
             $scope.enter = function (evt) {
                 if (evt.which === 13) {
                     $scope.login();
                 }
             };
-
             $scope.mensagemDeErroLogin = {
                 cpfVazio: false,
                 senhaVazia: false,
                 camposIncorretos: false
             };
-
             $scope.login = function () {
                 $scope.mensagemDeErroLogin.cpfVazio = false;
                 $scope.mensagemDeErroLogin.senhaVazia = false;
@@ -33,7 +29,6 @@ angular.module('starter.controllers.login', ['starter.services', 'starter.servic
                         usuario = dados.data[0];
                         //console.log(usuario);
                         $rootScope.usuario = null;
-
                         if (usuario !== null) {
                             $rootScope.usuario = usuario;
                             $rootScope.isLogin = true;
@@ -48,12 +43,12 @@ angular.module('starter.controllers.login', ['starter.services', 'starter.servic
                             });
                             $scope.mensagemDeErroLogin.camposIncorretos = true;
                         }
-                    }, function(erro){
+                    }, function (erro) {
                         $ionicPopup.alert({
-                                title: 'Falha no Login!',
-                                template: 'Não foi possível estabelecer conexão com o Servidor!\
+                            title: 'Falha no Login!',
+                            template: 'Não foi possível estabelecer conexão com o Servidor!\
                                            Verifique sua conexão ou tente mais tarde.'
-                            });
+                        });
                     });
                 } else {
                     if ($scope.usuario.cpf === undefined) {
@@ -79,13 +74,10 @@ angular.module('starter.controllers.login', ['starter.services', 'starter.servic
                 $scope.modalCadastro = modal;
                 console.log($scope.modalCadastro);
             });
-
             $scope.abrirTela = function () {
                 $scope.modalCadastro.show();
             };
-
             $scope.cpfExistente = false;
-
             $scope.cadastrarUsuario = function () {
 
                 //console.log($scope.novoUsuario.senha);
@@ -102,7 +94,8 @@ angular.module('starter.controllers.login', ['starter.services', 'starter.servic
                         title: 'Este CPF já está cadastrado no sisitema!',
                         template: 'Por favor, coloque outro CPF.'
                     });
-                } else if (!validarCPFReceitaFederal($scope.novoUsuario.cpf)) {
+                } else if (validarCPFReceitaFederal($scope.novoUsuario.cpf) === false) {
+                    console.log($scope.novoUsuario.cpf);
                     $ionicPopup.alert({
                         title: 'Este CPF não é valido pela Recieta Federal!',
                         template: 'Por favor, corrija o campo "CPF".'
@@ -118,17 +111,16 @@ angular.module('starter.controllers.login', ['starter.services', 'starter.servic
                             title: 'Novo Usuário Cadastrado!',
                             template: 'Seja bem vindo ' + dados.data.nome + "! \n" + 'CPF: ' + dados.data.cpf
                         });
-                    }, function(erro){
+                    }, function (erro) {
                         $ionicPopup.alert({
-                                title: 'Falha no Cadastro!',
-                                template: 'Não foi possível estabelecer conexão com o Servidor!\
+                            title: 'Falha no Cadastro!',
+                            template: 'Não foi possível estabelecer conexão com o Servidor!\
                                            Verifique sua conexão ou tente mais tarde.'
-                            });
+                        });
                     });
                 }
 
             };
-
             $scope.verificarCPF = function () {
                 ServicoLogin.verificarCPFJaCadastrado($scope.novoUsuario).then(function (dados) {
                     //console.log(dados.data);
@@ -140,37 +132,42 @@ angular.module('starter.controllers.login', ['starter.services', 'starter.servic
                 });
                 //console.log($scope.cpfExistente);
             };
-
-            validarCPFReceitaFederal = function (cpf) {
-
-                var numeros, digitos, soma, i, resultado, digitos_iguais;
-                digitos_iguais = 1;
-                if (cpf.length < 11)
+            validarCPFReceitaFederal = function (cpfAux) {
+                var cpf = cpfAux.replace(/[^\d]+/g, '');
+                var Soma;
+                var Resto;
+                Soma = 0;
+                
+                if (cpf.length !== 11 ||
+                        cpf === "00000000000" ||
+                        cpf === "11111111111" ||
+                        cpf === "22222222222" ||
+                        cpf === "33333333333" ||
+                        cpf === "44444444444" ||
+                        cpf === "55555555555" ||
+                        cpf === "66666666666" ||
+                        cpf === "77777777777" ||
+                        cpf === "88888888888" ||
+                        cpf === "99999999999") {
                     return false;
-                for (i = 0; i < cpf.length - 1; i++)
-                    if (cpf.charAt(i) !== cpf.charAt(i + 1)) {
-                        digitos_iguais = 0;
-                        break;
-                    }
-                if (!digitos_iguais) {
-                    numeros = cpf.substring(0, 9);
-                    digitos = cpf.substring(9);
-                    soma = 0;
-                    for (i = 10; i > 1; i--)
-                        soma += numeros.charAt(10 - i) * i;
-                    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-                    if (resultado !== digitos.charAt(0))
-                        return false;
-                    numeros = cpf.substring(0, 10);
-                    soma = 0;
-                    for (i = 11; i > 1; i--)
-                        soma += numeros.charAt(11 - i) * i;
-                    resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-                    if (resultado !== digitos.charAt(1))
-                        return false;
-                    return true;
-                } else
+                }
+
+                for (i = 1; i <= 9; i++)
+                    Soma = Soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
+                Resto = (Soma * 10) % 11;
+                if ((Resto == 10) || (Resto == 11))
+                    Resto = 0;
+                if (Resto != parseInt(cpf.substring(9, 10)))
                     return false;
+                Soma = 0;
+                for (i = 1; i <= 10; i++)
+                    Soma = Soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
+                Resto = (Soma * 10) % 11;
+                if ((Resto == 10) || (Resto == 11))
+                    Resto = 0;
+                if (Resto != parseInt(cpf.substring(10, 11)))
+                    return false;
+                return true;
             };
 
         });

@@ -1,0 +1,29 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-balanced">
+        <h1 class="title">Atualizar Conta</h1>
+         <div class="buttons">
+            <button class="button button-clear" ng-click="modalAtaulizarConta.hide()">Fechar</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <ion-item>CPF: {{usuario.cpf}}</ion-item>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Nome:</span>
+                <input type="text" placeholder="Insira seu Nome" ng-model="nome.data">
+            </label>
+
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Nova Senha:</span>
+                <input type="password" placeholder="Insira sua senha" ng-model="novaSenha.data">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Confirmar Senha:</span>
+                <input type="password" placeholder="Confirmar sua senha" ng-model="senhaAConfirmar.data">
+            </label>
+
+        </div>
+        <button class="button button-block button-positive" ng-click="alterarConta()">Confirmar</button>
+        <button class="button button-block button-assertive" ng-click="modalAtaulizarConta.hide()">Voltar</button>
+    </ion-content>
+</ion-modal-view>

@@ -79,6 +79,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',
                         templateUrl: 'js/components/plano-de-negocio/subitens/menu-de-opcoes.html',
                         controller: 'PlanoDeNegocioCtrl'
                     })
+                    
+                    .state('planoDeNegocio.atualizarConta', {
+                        url: '/planoDeNegocio/menuPlanoDeNegocio/atualizarConta',
+                        templateUrl: 'js/components/plano-de-negocio/subitens/atualizar-conta.html',
+                        controller: 'PlanoDeNegocioCtrl'
+                    })
 
                     .state('tab', {
                         url: '/tab',

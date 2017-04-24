@@ -93,7 +93,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                     {text: 'Layout Físico', style: 'tituloImagem'},
                                     //imagem
                                     {
-                                        image: 'layout', style: 'posicaoImagem'
+                                        image: 'layout', width:180, style: 'posicaoImagem'
                                     },
                                     {text: 'Dados de Capacidade', style: 'subtitulo'},
                                     {
@@ -392,7 +392,8 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                         var listaCargos = [];
                         cargos.forEach(function (cargo) {
                             listaCargos.push({text: 'Nome: ' + cargo.nome, style: 'valoresTabela'},
-                            {text: 'Qualificações: ' + cargo.qualificacoes, style: 'ultimoValorTabela'});
+                            {text: 'Qualificações: ' + cargo.qualificacoes, style: 'valoresTabela'},
+                            {text: 'Salário Base: ' + cargo.salarioBase, style: 'ultimoValorTabela'});
                         });
                         return listaCargos;
                     }
