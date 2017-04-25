@@ -50,7 +50,7 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                                     {text: 'Forma Jurídica: ', style: 'subtitulo'},
                                     {text: planoPDF.sumarioExecutivo.formaJuridica, style: 'valores'},
                                     {text: 'Enquadramento Tributário: ', style: 'subtitulo'},
-                                    {text: 'Optante pelo SIMPLES: ' + planoPDF.sumarioExecutivo.optantePeloSimples, style: 'valores'},
+                                    {text: 'Optante pelo SIMPLES: ' + optantePeloSimples(planoPDF.sumarioExecutivo.optantePeloSimples), style: 'valores'},
                                     {text: 'Fontes de Recursos: ', style: 'subtitulo'},
                                     {text: planoPDF.sumarioExecutivo.fontesDeRecursos, style: 'valores', pageBreak: 'after'},
                                     // Começo da Análise de Mercado ---------------------------------------- //
@@ -423,6 +423,14 @@ angular.module('starter.services.gerador-relatorio', ['starter.services.plano-de
                             {text: 'Porcentagem de vendas com esse prazo: ' + venda.porcentagem + ' %', style: 'ultimoValorTabela'});
                         });
                         return listaVendas;
+                    }
+                    
+                    function optantePeloSimples(optante){
+                        if(optante){
+                            return ' Sim.';
+                        }else{
+                            return ' Não.';
+                        }
                     }
 
                     $ionicLoading.show({
