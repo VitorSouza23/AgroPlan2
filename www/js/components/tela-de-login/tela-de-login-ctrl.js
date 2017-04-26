@@ -2,7 +2,7 @@
 
 angular.module('starter.controllers.login', ['starter.services', 'starter.services.utilitarios', 'starter.services.login'])
 
-        .controller('LoginCtrl', function ($scope, ServicoLogin, $ionicPopup, $state, $rootScope) {
+        .controller('LoginCtrl', function ($scope, ServicoLogin, $ionicPopup, $state, $rootScope, $ionicLoading) {
             $scope.usuario = {};
             $scope.init = function () {
                 $scope.usuario = {};
@@ -24,32 +24,40 @@ angular.module('starter.controllers.login', ['starter.services', 'starter.servic
                 $scope.mensagemDeErroLogin.senhaVazia = false;
                 $scope.camposIncorretos = false;
                 if (!angular.equals($scope.usuario, {})) {
-                    ServicoLogin.fazerLogin($scope.usuario).then(function (dados) {
-                        //console.log(dados);
-                        usuario = dados.data[0];
-                        //console.log(usuario);
-                        $rootScope.usuario = null;
-                        if (usuario !== null) {
-                            $rootScope.usuario = usuario;
-                            $rootScope.isLogin = true;
-                        }
+                    $ionicLoading.show({
+                        template: 'Fazendo Login... <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>',
+                        duration: 2000
+                    }).then(function () {
+                        setTimeout(function () {
+                            ServicoLogin.fazerLogin($scope.usuario).then(function (dados) {
+                                //console.log(dados);
+                                usuario = dados.data[0];
+                                //console.log(usuario);
+                                $rootScope.usuario = null;
+                                if (usuario !== null) {
+                                    $rootScope.usuario = usuario;
+                                    $rootScope.isLogin = true;
+                                }
 
-                        if ($rootScope.usuario !== null) {
-                            $state.go('planoDeNegocio');
-                        } else {
-                            $ionicPopup.alert({
-                                title: 'Falha no Login!',
-                                template: 'O CPF ou Senha incorretos!'
-                            });
-                            $scope.mensagemDeErroLogin.camposIncorretos = true;
-                        }
-                    }, function (erro) {
-                        $ionicPopup.alert({
-                            title: 'Falha no Login!',
-                            template: 'Não foi possível estabelecer conexão com o Servidor!\
+                                if ($rootScope.usuario !== null) {
+                                    $state.go('planoDeNegocio');
+                                } else {
+                                    $ionicPopup.alert({
+                                        title: 'Falha no Login!',
+                                        template: 'O CPF ou Senha incorretos!'
+                                    });
+                                    $scope.mensagemDeErroLogin.camposIncorretos = true;
+                                }
+                            }, function (erro) {
+                                $ionicPopup.alert({
+                                    title: 'Falha no Login!',
+                                    template: 'Não foi possível estabelecer conexão com o Servidor!\
                                            Verifique sua conexão ou tente mais tarde.'
-                        });
+                                });
+                            });
+                        }, 1000);
                     });
+
                 } else {
                     if ($scope.usuario.cpf === undefined) {
                         $scope.mensagemDeErroLogin.cpfVazio = true;
@@ -137,7 +145,7 @@ angular.module('starter.controllers.login', ['starter.services', 'starter.servic
                 var Soma;
                 var Resto;
                 Soma = 0;
-                
+
                 if (cpf.length !== 11 ||
                         cpf === "00000000000" ||
                         cpf === "11111111111" ||

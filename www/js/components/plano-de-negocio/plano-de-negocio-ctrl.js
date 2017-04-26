@@ -139,7 +139,7 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
             };
             //opções da conta
 
-            var templatePopover = '<ion-popover-view><ion-content><ion-list><ion-item ng-click="abrirAlterarConta()">Alterar Conta</ion-item></ion-list> </ion-content></ion-popover-view>';
+            var templatePopover = '<ion-popover-view ><ion-header-bar><h1 class="title">Opções</h1></ion-header-bar><ion-content><ion-list><ion-item ng-click="abrirAlterarConta()">Alterar Conta</ion-item></ion-list> </ion-content></ion-popover-view>';
             $scope.popover = $ionicPopover.fromTemplate(templatePopover, {
                 scope: $scope
             });
@@ -162,7 +162,7 @@ angular.module('starter.controllers.planoDeNegocio', ['starter.services',
                 // Execute action
             });
             $scope.abrirAlterarConta = function () {
-                $scope.closePopover;
+                $scope.closePopover();
                 $scope.senha.data = "";
                 $scope.nome.data = $scope.usuario.nome;
                 $scope.senhaAConfirmar.data = "";

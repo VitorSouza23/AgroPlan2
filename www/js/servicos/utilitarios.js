@@ -6,7 +6,7 @@ angular.module('starter.services.utilitarios', [])
 
             var salvar = function (caminho, objeto) {
                 deffered = $q.defer();
-                $http.post(caminho, objeto)
+                $http.post(caminho, objeto, {timeout: 5000})
                         .then(function (dados) {
                             deffered.resolve(dados);
                         }
@@ -23,7 +23,7 @@ angular.module('starter.services.utilitarios', [])
                 var promessa;
 
                 array.forEach(function (objeto) {
-                    promessa = $http.post(caminho, objeto);
+                    promessa = $http.post(caminho, objeto, {timeout: 5000});
                     promessas.push(promessa);
                 });
 
@@ -32,7 +32,7 @@ angular.module('starter.services.utilitarios', [])
 
             var recuperar = function (caminho) {
                 deffered = $q.defer();
-                $http.get(caminho, {cache: true}).then(function (dados) {
+                $http.get(caminho, {cache: true, timeout: 5000}).then(function (dados) {
                     deffered.resolve(dados);
                 }), function (dados) {
                     deffered.reject(dados + "erro!");
@@ -45,7 +45,7 @@ angular.module('starter.services.utilitarios', [])
                 deffered = $q.defer();
                 jsonString = JSON.stringify({_id: objeto._id});
                 console.log(caminho + "&q=" + jsonString);
-                $http.put(caminho + "&q=" + jsonString, objeto).then(function (dados) {
+                $http.put(caminho + "&q=" + jsonString, objeto, {timeout: 5000}).then(function (dados) {
                     deffered.resolve(dados);
                 }), function (dados) {
                     deffered.reject(dados + "erro!");
@@ -59,7 +59,7 @@ angular.module('starter.services.utilitarios', [])
                 deffered = $q.defer();
                 jsonString = JSON.stringify({_id: objeto._id});
                 console.log(caminho + "&q=" + jsonString);
-                $http.put(caminho + "&q=" + jsonString, objeto).then(function (dados) {
+                $http.put(caminho + "&q=" + jsonString, objeto, {timeout: 5000}).then(function (dados) {
                     deffered.resolve(dados);
                 }), function (dados) {
                     deffered.reject(dados + "erro!");
@@ -77,7 +77,8 @@ angular.module('starter.services.utilitarios', [])
                 $http({
                     method: 'GET',
                     url: caminho + "&q=" + jsonString,
-                    cache: false
+                    cache: false,
+                    timeout: 5000
                 }).then(function (dados) {
                     console.log(dados);
                     deffered.resolve(dados);
@@ -95,7 +96,8 @@ angular.module('starter.services.utilitarios', [])
                 $http({
                     method: 'GET',
                     url: caminho + "&q=" + jsonString,
-                    cache: false
+                    cache: false,
+                    timeout: 5000
                 }).then(function (dados) {
                     deffered.resolve(dados);
                     //console.log(dados);
@@ -111,7 +113,7 @@ angular.module('starter.services.utilitarios', [])
                 deffered = $q.defer();
                 jsonString = JSON.stringify({idUsuario: usuario._id, desativado: false});
                 console.log(caminho + "&q=" + jsonString);
-                $http.get(caminho + "&q=" + jsonString, {cache: false}).then(function (dados) {
+                $http.get(caminho + "&q=" + jsonString, {cache: false, timeout:5000}).then(function (dados) {
                     deffered.resolve(dados);
                 }), function (dados) {
                     deffered.reject(dados + "erro!");
@@ -125,11 +127,11 @@ angular.module('starter.services.utilitarios', [])
                 console.log(objeto);
                 jsonString = JSON.stringify({_id: objeto._id});
                 console.log(caminho + "&q=" + jsonString);
-                return $http.get(caminho + "&q=" + jsonString, {cache: false});
+                return $http.get(caminho + "&q=" + jsonString, {cache: false, timeout: 5000});
             };
 
             var salvarPromessa = function (caminho, objeto) {
-                return $http.post(caminho, objeto);
+                return $http.post(caminho, objeto, {timeout: 5000});
             };
 
             var mostrarMensagemDeErro = function () {
